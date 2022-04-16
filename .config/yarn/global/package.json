@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "neovim": "^4.10.1",
+    "react-static": "^7.6.2",
+    "tree-sitter-cli": "^0.20.6"
+  }
+}
