@@ -1,7 +1,7 @@
-imap kj <Esc>
+map <S-k> :-10<cr>
+map <S-j> :+10<cr>
 
-" ESC for kill the Highlighting (while searching)
-"nnoremap <esc> :noh<return><esc>
+imap kj <Esc>
 
 " Moving Down with Line Break 
 nnoremap j gj 
@@ -27,8 +27,8 @@ nnoremap o dw
 " Delete to the end of line
 nnoremap ü D
 
-" active line numbers 
-set number
+" deactive line numbers 
+set nonumber
 
 " auto write files when changing when multiple files open 
 set autowrite 
@@ -77,11 +77,8 @@ nnoremap ff :nohl<CR><C-L>
 set omnifunc=syntaxcomplete#Complete
 
 " functions keys
-map <F1> :set number!<CR> :set relativenumber!<CR>
+map <F1> :set number!<CR> :set number!<CR>
 map <F4> :set list!<CR>
-map <F5> :set cursorline!<CR>
-map <F7> :set spell!<CR>
-map <F12> :set fdm=indent<CR>
 
 " my old stuff
 syntax on
