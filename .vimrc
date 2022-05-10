@@ -1,7 +1,9 @@
-map <S-k> :-10<cr>
-map <S-j> :+10<cr>
+colorscheme pablo
 
 imap kj <Esc>
+
+" no wrap 
+set nowrap
 
 " Moving Down with Line Break 
 nnoremap j gj 
