@@ -1,4 +1,5 @@
-colorscheme pablo
+map <S-k> :-10<cr>
+map <S-j> :+10<cr>
 
 imap kj <Esc>
 
