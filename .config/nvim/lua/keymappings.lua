@@ -2,6 +2,9 @@
 vim.api.nvim_set_keymap("i", "kj", "<ESC>", {silent=true})
 vim.api.nvim_set_keymap("i", "jk", "<ESC>", {silent=true})
 
+-- Quick Close  
+vim.api.nvim_set_keymap("n", "zZ", ":qa!<CR>", {noremap=true, silent=true})
+
 -- Delete word
 vim.api.nvim_set_keymap("n", "o", "dw", {noremap=true, silent=true})
 
@@ -36,4 +39,3 @@ vim.api.nvim_buf_set_option(0, "commentstring", "# %s")
 -- Move Selection up and down
 vim.api.nvim_set_keymap("x", "J", ":move '>+1<CR>gv-gv", {noremap=true, silent=true})
 vim.api.nvim_set_keymap("x", "K", ":move '<-2<CR>gv-gv", {noremap=true, silent=true})
-
