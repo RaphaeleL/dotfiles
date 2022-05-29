@@ -4,6 +4,8 @@
 
 These dotfiles were created for use on a macOS system (intel and apple silicon). However, they will run on Linux (Debian) without any problems.
 
+Check this awesome and fucking minimalistic [Debian-Setup](https://github.com/RaphaeleL/DebianSetup) out for more.
+
 ## MacOS
 
 ### TouchID for `sudo` access in Terminal
