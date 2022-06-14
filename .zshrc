@@ -4,11 +4,13 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export GOPATH="$HOME/sdk/go1.18.2/bin"
 export EDITOR=nvim
 export PATH="/usr/local/sbin:$PATH"
+export TERM=xterm
+export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
 
 ZSH_THEME="own-theme"
 
 plugins=( 
-    zsh-syntax-highlighting
+    #zsh-syntax-highlighting
     #zsh-autosuggestions
 )
 
@@ -116,8 +118,6 @@ function homebrew() {
   echo "==> Running 'brew cleanup'" && brew cleanup
 }
 
-
-
 # If you type foo, and it isn't a command, and it is a directory in your cdpath, go there
 setopt AUTO_CD
 # Remove extra blanks from each command line being added to history
@@ -126,4 +126,5 @@ setopt HIST_REDUCE_BLANKS
 setopt EXTENDED_HISTORY
 unsetopt MENU_COMPLETE
 setopt AUTO_MENU
+
 
