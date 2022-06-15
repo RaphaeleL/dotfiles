@@ -6,6 +6,9 @@ end
 
 return require("packer").startup(function()
     use "wbthomason/packer.nvim"
+    use "onsails/lspkind.nvim"
+    use "github/copilot.vim"
+    use "tpope/vim-sensible"
     use 'christianchiarulli/nvcode-color-schemes.vim'
     use 'nvim-treesitter/nvim-treesitter'
     use "alec-gibson/nvim-tetris"
@@ -14,6 +17,7 @@ return require("packer").startup(function()
     use "folke/which-key.nvim"
     use "terrortylor/nvim-comment"
     use "hrsh7th/nvim-cmp"
+    use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-cmdline"
@@ -44,5 +48,4 @@ return require("packer").startup(function()
             }
         end,
     }
-
 end)

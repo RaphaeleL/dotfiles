@@ -131,6 +131,7 @@ menu.register({
   ["<Leader>"] = {
     g = {
       name = "+Git",
+      g = {":Copilot panel<cr>", "Github Copilot Suggestions"},
       l = {":Gitsigns toggle_signs<cr>", "Toggle Git Changes Sign"},
       s = {":Telescope git_status<cr>", "Git Status"},
       c = {":Telescope git_commits<cr>", "Git Commits"},
