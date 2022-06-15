@@ -76,7 +76,7 @@ menu.register({
   ["<leader>;"] = { ":Dashboard<cr>", "Dashboard" },
   ["<leader>T"] = { ":Tetris<cr>", "Tetris" },
   ["<leader>r"] = { ":lua require('renamer').rename()<cr>", "Rename" },
-  ["<leader>k"] = { ":CommentToggle<cr>", "Toggle Comment" },
+  ["<leader>k"] = { ":CommentToggle<cr>", "Comment Line Toggle" },
 })
 
 menu.register({
