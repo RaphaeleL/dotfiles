@@ -10,7 +10,7 @@ font:
   italic:
     family: DroidSansMono Nerd Font
     style: Italic
-  size: 16.0
+  size: 14.0
   ligatures: true
   offset:
     x: 0
@@ -19,49 +19,58 @@ font:
     x: 0
     y: 0
 window:
-  opacity: 0.9
-  decorations: "buttonless" 
-  padding:
-    x: 5
-    y: 5
-  history: 10000
+  opacity: 1
+  decorations: 'buttonless'
+  # padding:
+  #   x: 5
+  #   y: 5
+  history: 5000
   dynamic_title: true
   semantic_escape_chars: ',│`|:"'' ()[]{}<>'
   save_to_clipboard: true
   live_config_reload: true
-key_bindings:
-  - { key: Comma,     mods: Command,        command:
-      {program: "sh", args: ["-c","open -e ~/.config/alacritty/alacritty.yml"]}     }
-  - { key: N,         mods: Command,        action: SpawnNewInstance}
-  - { key: Space,     mods: Alt,            chars: " " }
-  - { key: Back,      mods: Super,          chars: "\x15" }
-  - { key: Left,      mods: Alt,            chars: "\x1bb" } 
-  - { key: Right,     mods: Alt,            chars: "\x1bf" }
-  - { key: Left,      mods: Command,        chars: "\x1bOH",   mode: AppCursor   } 
-  - { key: Right,     mods: Command,        chars: "\x1bOF",   mode: AppCursor   } 
-  - { key: V,         mods: Control|Shift,  action: Paste }
-  - { key: C,         mods: Control|Shift,  action: Copy }
-  - { key: Key0,      mods: Control,        action: ResetFontSize }
-  - { key: Equals,    mods: Control,        action: IncreaseFontSize }
-  - { key: Minus,     mods: Control,        action: DecreaseFontSize }
-  - { key: Key5,      mods: Alt,            chars: "\x5b" }
-  - { key: Key6,      mods: Alt,            chars: "\x5d" }
-  - { key: Key7,      mods: Alt|Shift,      chars: "\x5c" }
-  - { key: Key7,      mods: Alt,            chars: "\x7c" }
-  - { key: Key8,      mods: Alt,            chars: "\x7b" }
-  - { key: Key9,      mods: Alt,            chars: "\x7d" }
-  - { key: L,         mods: Alt,            chars: "\x40" } 
-  - { key: 36,        mods: Command,        action: ToggleFullscreen }
-  - { key: 28,        mods: Alt,            chars: "{" }
-  - { key: 25,        mods: Alt,            chars: "}" }
-  - { key: 37,        mods: Alt,            chars: "@" }
-  - { key: 26,        mods: Alt|Shift,      chars: "\\" }
-  - { key: 26,        mods: Alt,            chars: "|" }
-  - { key: 45,        mods: Alt,            chars: "~" }
-  - { key: 23,        mods: Alt,            chars: "[" }
-  - { key: 22,        mods: Alt,            chars: "]" }
-scrolling: 
+scrolling:
   history: 10000
   multiplier: 3
   faux_multiplier: 3
-  auto_scroll: false 
+  auto_scroll: false
+key_bindings:
+  - {
+      key: Comma,
+      mods: Command,
+      command:
+        {
+          program: 'sh',
+          args: ['-c', 'open -e ~/.config/alacritty/alacritty.yml'],
+        },
+    }
+  - { key: N, mods: Command, action: SpawnNewInstance }
+  - { key: Space, mods: Alt, chars: ' ' }
+  - { key: Back, mods: Super, chars: "\x15" }
+  - { key: Left, mods: Alt, chars: "\x1bb" }
+  - { key: Right, mods: Alt, chars: "\x1bf" }
+  - { key: Left, mods: Command, chars: "\x1bOH", mode: AppCursor }
+  - { key: Right, mods: Command, chars: "\x1bOF", mode: AppCursor }
+  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: C, mods: Control|Shift, action: Copy }
+  - { key: Key0, mods: Control, action: ResetFontSize }
+  - { key: Equals, mods: Control, action: IncreaseFontSize }
+  - { key: Minus, mods: Control, action: DecreaseFontSize }
+  - { key: Key5, mods: Alt, chars: "\x5b" }
+  - { key: Key6, mods: Alt, chars: "\x5d" }
+  - { key: Key7, mods: Alt|Shift, chars: "\x5c" }
+  - { key: Key7, mods: Alt, chars: "\x7c" }
+  - { key: Key8, mods: Alt, chars: "\x7b" }
+  - { key: Key9, mods: Alt, chars: "\x7d" }
+  - { key: L, mods: Alt, chars: "\x40" }
+  - { key: 36, mods: Command, action: ToggleFullscreen }
+  - { key: 28, mods: Alt, chars: '{' }
+  - { key: 25, mods: Alt, chars: '}' }
+  - { key: 37, mods: Alt, chars: '@' }
+  - { key: 26, mods: Alt|Shift, chars: "\\" }
+  - { key: 26, mods: Alt, chars: '|' }
+    #- { key: 45, mods: Alt, chars: '~' }
+  - { key: 23, mods: Alt, chars: '[' }
+  - { key: 22, mods: Alt, chars: ']' }
+  - { key: PageUp, mods: None, action: ScrollPageUp }
+  - { key: PageDown, mods: None, action: ScrollPageDown }
