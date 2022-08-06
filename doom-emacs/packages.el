@@ -1,3 +1,5 @@
+(package! key-chord)
+
 ;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 
