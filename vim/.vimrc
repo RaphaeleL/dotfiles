@@ -1,36 +1,9 @@
-map <S-k> :-10<cr>
-map <S-j> :+10<cr>
-
 imap kj <Esc>
 
 " no wrap 
 set nowrap
 
 " Moving Down with Line Break 
-nnoremap j gj 
-
-" Moving Up with Line Break 
-nnoremap k gk
-
-" Moving to the Top of the File
-nnoremap 4 gg
-
-" Moving to the End of the File
-nnoremap 3 G
-
-" Moving to the End of the Line
-nnoremap 2 g$
-
-" Moving to the Beginngin of the Line
-nnoremap 1 g0
-
-" Delete a word
-nnoremap o dw
-
-" Delete to the end of line
-nnoremap ü D
-
-" deactive line numbers 
 set nonumber
 
 " auto write files when changing when multiple files open 
@@ -74,14 +47,6 @@ set background=dark
 
 " better command line completion 
 set wildmenu
-
-" disable search highlighting with <C-L> when refreshing screen
-nnoremap ff :nohl<CR><C-L> 
-set omnifunc=syntaxcomplete#Complete
-
-" functions keys
-map <F1> :set number!<CR> :set number!<CR>
-map <F4> :set list!<CR>
 
 " my old stuff
 syntax on
