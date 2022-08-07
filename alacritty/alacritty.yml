@@ -3,12 +3,12 @@ cursor:
     blinking: Never
 font:
   normal:
-    family: DroidSansMono Nerd Font
+    family: Iosevka Nerd Font
   bold:
-    family: DroidSansMono Nerd Font
+    family: Iosevka Nerd Font
     style: Bold
   italic:
-    family: DroidSansMono Nerd Font
+    family: Iosevka Nerd Font
     style: Italic
   size: 14.0
   ligatures: true
@@ -21,19 +21,14 @@ font:
 window:
   opacity: 1
   decorations: 'buttonless'
-  # padding:
-  #   x: 5
-  #   y: 5
+  padding:
+    x: 0
+    y: 0
   history: 5000
   dynamic_title: true
   semantic_escape_chars: ',│`|:"'' ()[]{}<>'
   save_to_clipboard: true
   live_config_reload: true
-scrolling:
-  history: 10000
-  multiplier: 3
-  faux_multiplier: 3
-  auto_scroll: false
 key_bindings:
   - {
       key: Comma,
@@ -74,3 +69,33 @@ key_bindings:
   - { key: 22, mods: Alt, chars: ']' }
   - { key: PageUp, mods: None, action: ScrollPageUp }
   - { key: PageDown, mods: None, action: ScrollPageDown }
+schemes:
+  DoomOne: &DoomOne
+    primary:
+      background: '#282c34'
+      foreground: '#bbc2cf'
+    cursor:
+      text: CellBackground
+      cursor: '#528bff'
+    selection:
+      text: CellForeground
+      background: '#3e4451'
+    normal:
+      black: '#1c1f24'
+      red: '#ff6c6b'
+      green: '#98be65'
+      yellow: '#da8548'
+      blue: '#51afef'
+      magenta: '#c678dd'
+      cyan: '#5699af'
+      white: '#202328'
+    bright:
+      black: '#5b6268'
+      red: '#da8548'
+      green: '#4db5bd'
+      yellow: '#ecbe7b'
+      blue: '#3071db' # This is 2257a0 in Doom Emacs but I lightened it.
+      magenta: '#a9a1e1'
+      cyan: '#46d9ff'
+      white: '#dfdfdf'
+#colors: *DoomOne
