@@ -10,7 +10,7 @@ font:
   italic:
     family: Iosevka Nerd Font
     style: Italic
-  size: 14.0
+  size: 16.0
   ligatures: true
   offset:
     x: 0
@@ -72,7 +72,8 @@ key_bindings:
 schemes:
   DoomOne: &DoomOne
     primary:
-      background: '#282c34'
+      # background: '#282c34'
+      background: '#282828'
       foreground: '#bbc2cf'
     cursor:
       text: CellBackground
@@ -98,4 +99,4 @@ schemes:
       magenta: '#a9a1e1'
       cyan: '#46d9ff'
       white: '#dfdfdf'
-#colors: *DoomOne
+colors: *DoomOne
