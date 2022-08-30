@@ -361,7 +361,7 @@
     "Red Component" : 0.42352941176470588,
     "Blue Component" : 0.73333333333333328
   },
-  "Window Type" : 0,
+  "Window Type" : 12,
   "Use Bright Bold" : true,
   "Has Hotkey" : false,
   "HotKey Modifier Activation" : 0,
@@ -385,12 +385,6 @@
   "Name" : "Own Black ",
   "Blinking Cursor" : true,
   "Guid" : "43403882-2477-4D27-9BD0-4BEAE1C4A3BB",
-  "Idle Code" : 0,
-  "Ansi 10 Color" : {
-    "Green Component" : 0.55576569570135748,
-    "Red Component" : 0.49473804391474724,
-    "Blue Component" : 0.31444666754949363
-  },
   "Ansi 8 Color" : {
     "Red Component" : 0.3843137254901961,
     "Color Space" : "sRGB",
@@ -398,6 +392,12 @@
     "Alpha Component" : 1,
     "Green Component" : 0.3843137254901961
   },
+  "Ansi 10 Color" : {
+    "Green Component" : 0.55576569570135748,
+    "Red Component" : 0.49473804391474724,
+    "Blue Component" : 0.31444666754949363
+  },
+  "Idle Code" : 0,
   "Badge Color" : {
     "Red Component" : 1,
     "Color Space" : "sRGB",
@@ -470,8 +470,8 @@
 
   ],
   "Visual Bell" : true,
-  "ASCII Ligatures" : false,
   "Custom Directory" : "No",
+  "ASCII Ligatures" : false,
   "Thin Strokes" : 4
 },
 {
@@ -866,12 +866,6 @@
   "Name" : "Hotkey Window",
   "Blinking Cursor" : true,
   "Guid" : "1937D48B-E752-43B1-A110-F2B46D090493",
-  "Idle Code" : 0,
-  "Ansi 10 Color" : {
-    "Green Component" : 0.55576569570135748,
-    "Red Component" : 0.49473804391474724,
-    "Blue Component" : 0.31444666754949363
-  },
   "Ansi 8 Color" : {
     "Red Component" : 0.3843137254901961,
     "Color Space" : "sRGB",
@@ -879,6 +873,12 @@
     "Alpha Component" : 1,
     "Green Component" : 0.3843137254901961
   },
+  "Ansi 10 Color" : {
+    "Green Component" : 0.55576569570135748,
+    "Red Component" : 0.49473804391474724,
+    "Blue Component" : 0.31444666754949363
+  },
+  "Idle Code" : 0,
   "Badge Color" : {
     "Red Component" : 1,
     "Color Space" : "sRGB",
@@ -952,8 +952,8 @@
 
   ],
   "Visual Bell" : true,
-  "ASCII Ligatures" : false,
   "Custom Directory" : "No",
+  "ASCII Ligatures" : false,
   "Thin Strokes" : 4
 }
 ]
