@@ -24,3 +24,8 @@ set smartindent
 set softtabstop=2
 set expandtab
 set mouse=a
+
+map <space>e :Lexplore<cr>
+map <tab> :tabnext<cr>
+map <space>n :tabnew<cr>
+map <space>c :tabclose<cr>
