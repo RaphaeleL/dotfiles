@@ -32,6 +32,9 @@ source $ZSH/oh-my-zsh.sh
 # work connection 
 alias iam="sshpass -f ~/.ssh/.secret.txt ssh iam-mms"
 
+# coding 
+alias dev="cd ~/Developer"
+
 # navigation 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -52,23 +55,19 @@ alias ip="ipconfig getifaddr en0"
 alias v="nvim" 
 alias g="git"
 
+# Apple Silicon Brew  
+alias brew="arch -arm64 brew"
+
 # tmux
-alias tk="tmux kill-server"
-alias tl="tmux ls"
-tr() {
+alias tmux-kill-server="tmux kill-server"
+alias tmux-ls="tmux ls"
+tmux-kill-session() {
   tmux kill-session -t $1
 }
-td() {
+tmux-detach() {
   tmux detach 
 }
-ta() {
-  tmux attach-session -t $1
-}
-t() {
-  tmux has-session -t $1 2>/dev/null
-  if [ $? != 0 ]; then
-    tmux new -s $1 
-  fi
+tmux-attach() {
   tmux attach-session -t $1
 }
 
@@ -80,20 +79,18 @@ t() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Shortcuts
-ft() {
+tmux-find-session() {
+  tmux-detach
   local dir
   dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
   cd "$dir"
   tmux new -s $(basename $dir)
   cd
 }
-ff() {
-  nvim $(fzf)
-}
-fh() {
+history-fuzzy() {
   history | fzf
 }
-fkill() {
+kill-fuzzy() {
     local pid 
     if [ "$UID" != "0" ]; then
         pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
@@ -111,11 +108,6 @@ bindkey "^K"      kill-whole-line                      # ctrl-k
 bindkey "^R"      history-incremental-search-backward  # ctrl-r
 bindkey "^A"      beginning-of-line                    # ctrl-a  
 bindkey "^E"      end-of-line                          # ctrl-e
-#bindkey "[B"      history-search-forward               # down arrow
-#bindkey "[A"      history-search-backward              # up arrow
-#bindkey "^D"      delete-char                          # ctrl-d
-#bindkey "^F"      forward-char                         # ctrl-f
-#bindkey "^B"      backward-char                        # ctrl-b
 
 # Homebrew 
 function homebrew() {
