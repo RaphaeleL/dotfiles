@@ -10,6 +10,7 @@ export EDITOR=nvim
 export PATH="/usr/local/sbin:$PATH"
 export TERM=xterm
 export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
+export PATH=/Users/raphaele/.local/bin:$PATH
 
 # +----------------+
 # | Theme          | 
@@ -60,14 +61,14 @@ alias brew="arch -arm64 brew"
 
 # tmux
 alias tmux-kill-server="tmux kill-server"
-alias tmux-ls="tmux ls"
+alias tls="tmux ls"
 tmux-kill-session() {
   tmux kill-session -t $1
 }
-tmux-detach() {
+td() {
   tmux detach 
 }
-tmux-attach() {
+ta() {
   tmux attach-session -t $1
 }
 
@@ -79,7 +80,7 @@ tmux-attach() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Shortcuts
-tmux-find-session() {
+tf() {
   tmux-detach
   local dir
   dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
@@ -154,3 +155,8 @@ unset __conda_setup
 
 
 
+
+# pnpm
+export PNPM_HOME="/Users/raphaele/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
