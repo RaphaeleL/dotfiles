@@ -19,7 +19,7 @@ export PATH=/Users/raphaele/.local/bin:$PATH
 ZSH_THEME="own-theme"
 
 # +----------------+
-# | Plugins        | 
+# | Plugins        |
 # +----------------+
 
 plugins=(zsh-syntax-highlighting)
@@ -33,10 +33,10 @@ source $ZSH/oh-my-zsh.sh
 # work connection 
 alias iam="sshpass -f ~/.ssh/.secret.txt ssh iam-mms"
 
-# coding 
-alias dev="cd ~/Developer"
-
 # navigation 
+alias dev="cd ~/Developer"
+alias s2="cd ~/Hochschule/Semester-2"
+
 alias ..="cd .."
 alias ...="cd ../.."
 alias .3="cd ../../.."
@@ -53,16 +53,18 @@ alias l.="exa -a | egrep "^\.""
 
 # just shorter 
 alias ip="ipconfig getifaddr en0"
+alias ip-public="curl ifconfig.me"
 alias v="nvim" 
 alias g="git"
+alias gl="lazygit"
 
 # Apple Silicon Brew  
 alias brew="arch -arm64 brew"
 
 # tmux
-alias tmux-kill-server="tmux kill-server"
+alias tk-server="tmux kill-server"
 alias tls="tmux ls"
-tmux-kill-session() {
+tk-session() {
   tmux kill-session -t $1
 }
 td() {
@@ -88,10 +90,10 @@ tf() {
   tmux new -s $(basename $dir)
   cd
 }
-history-fuzzy() {
+hf() {
   history | fzf
 }
-kill-fuzzy() {
+kf() {
     local pid 
     if [ "$UID" != "0" ]; then
         pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
@@ -153,10 +155,15 @@ else
 fi
 unset __conda_setup
 
-
-
-
 # pnpm
 export PNPM_HOME="/Users/raphaele/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
-# pnpm end
+
+# llvm 
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
+# doom emacs 
+export PATH="/Applications/MacPorts/Emacs.app/Contents/MacOS:$PATH"
+
