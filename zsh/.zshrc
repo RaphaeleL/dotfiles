@@ -64,7 +64,7 @@ alias brew="arch -arm64 brew"
 # tmux
 alias tk-server="tmux kill-server"
 alias tls="tmux ls"
-tk-session() {
+tk() {
   tmux kill-session -t $1
 }
 td() {
@@ -90,10 +90,10 @@ tf() {
   tmux new -s $(basename $dir)
   cd
 }
-hf() {
+fh() {
   history | fzf
 }
-kf() {
+killf() {
     local pid 
     if [ "$UID" != "0" ]; then
         pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
