@@ -11,6 +11,7 @@ export PATH="/usr/local/sbin:$PATH"
 export TERM=xterm
 export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
 export PATH=/Users/raphaele/.local/bin:$PATH
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
 # +----------------+
 # | Theme          | 
@@ -63,7 +64,7 @@ alias brew="arch -arm64 brew"
 
 # tmux
 alias tk-server="tmux kill-server"
-alias tls="tmux ls"
+alias tl="tmux ls"
 tk() {
   tmux kill-session -t $1
 }
@@ -166,4 +167,3 @@ export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 
 # doom emacs 
 export PATH="/Applications/MacPorts/Emacs.app/Contents/MacOS:$PATH"
-
