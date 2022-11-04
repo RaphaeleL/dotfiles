@@ -1,0 +1,22 @@
+[user]
+	email = raphaele.salvatore@outlook.de
+    username = RaphaeleL 
+	name = Raphaele Salvatore Licciardo
+[github]
+    user = RaphaeleL 
+    token = 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
+[color]
+	ui = auto
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+[core]
+	excludesfile = /Users/raphaele/.gitignore
