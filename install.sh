@@ -54,6 +54,13 @@ cp alacritty/alacritty.yml ~/config/alacritty
 
 echo "+======================================+"
 echo "|                                      |"
+echo "| Dotfiles: Git                        |"
+echo "|                                      |"
+echo "+======================================+"
+cp git/.gitconfig ~/
+
+echo "+======================================+"
+echo "|                                      |"
 echo "| Dotfiles: NeoVim                     |"
 echo "|                                      |"
 echo "+======================================+"
@@ -64,6 +71,7 @@ echo "|                                      |"
 echo "| Settings: TODO                       |"
 echo "|                                      |"
 echo "+======================================+"
+
 echo " [iTerm2] -> Import and Select 'Kanagawa' as Profile." 
 echo " [NeoVim] -> Open Neovim and Type ':PackerInstall'." 
 echo " [TouchID] -> Use TouchID for 'sudo' access in the Terminal (for MacOS)." 
