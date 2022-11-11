@@ -23,8 +23,8 @@ ZSH_THEME="own-theme"
 # | Plugins        |
 # +----------------+
 
-plugins=(zsh-syntax-highlighting)
-
+plugins=(zsh-autosuggestions zsh-syntax-highlighting)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928E7B"
 source $ZSH/oh-my-zsh.sh
 
 # +----------------+
