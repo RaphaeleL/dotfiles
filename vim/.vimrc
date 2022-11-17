@@ -22,6 +22,7 @@ set shiftwidth=2
 set autoindent 
 set smartindent
 set softtabstop=2
+set tabstop=2
 set expandtab
 set mouse=a
 
