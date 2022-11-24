@@ -1,5 +1,7 @@
 # Dotfiles
 
+> Use ZSH for a Pretty Terminal `chsh -s /bin/zsh` or use Bash (`/bin/bash`)
+
 ## Linux (Debian)
 
 These dotfiles were created for use on a macOS system (intel and apple silicon). However, they will run on Linux (Debian) without any problems.
