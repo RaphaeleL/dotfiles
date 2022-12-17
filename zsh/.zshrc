@@ -12,6 +12,7 @@ export TERM=xterm
 export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
 export PATH=/Users/raphaele/.local/bin:$PATH
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+export PATH=$PATH:/opt/homebrew/bin
 
 # +----------------+
 # | Theme          | 
@@ -30,9 +31,6 @@ source $ZSH/oh-my-zsh.sh
 # +----------------+
 # | Shortcuts      | 
 # +----------------+
-
-# work connection 
-alias iam="sshpass -f ~/.ssh/.secret.txt ssh iam-mms"
 
 # navigation 
 alias dev="cd ~/Developer"
@@ -55,12 +53,9 @@ alias l.="exa -a | egrep "^\.""
 # just shorter 
 alias ip="ipconfig getifaddr en0"
 alias ip-public="curl ifconfig.me"
-alias v="nvim" 
-alias g="git"
-alias gl="lazygit"
-
-# Apple Silicon Brew  
-alias brew="arch -arm64 brew"
+alias lg="lazygit"
+alias vim='nvim'
+alias vi='/usr/bin/vim'
 
 # tmux
 alias tk-server="tmux kill-server"
@@ -110,7 +105,7 @@ killf() {
 # Command Line Shortcuts 
 bindkey "^K"      kill-whole-line                      # ctrl-k
 bindkey "^R"      history-incremental-search-backward  # ctrl-r
-bindkey "^A"      beginning-of-line                    # ctrl-a  
+bindkey "^A"      beginning-of-line                    # ctrl-a
 bindkey "^E"      end-of-line                          # ctrl-e
 
 # Homebrew 
