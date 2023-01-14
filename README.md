@@ -10,6 +10,15 @@ Check this awesome and fucking minimalistic [Debian-Setup](https://github.com/Ra
 
 ## MacOS
 
+### Spaces in Dock
+
+Use this Command for one Space Item in the Dock. Reuse it, how often you want.
+
+```bash 
+defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}'
+killall Dock
+```
+
 ### TouchID for `sudo` access in Terminal
 
 1. open a Terminal
