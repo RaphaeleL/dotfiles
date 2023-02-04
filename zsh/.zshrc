@@ -54,8 +54,13 @@ alias l.="exa -a | egrep "^\.""
 alias ip="ipconfig getifaddr en0"
 alias ip-public="curl ifconfig.me"
 alias lg="lazygit"
-alias vim='nvim'
-alias vi='/usr/bin/vim'
+alias vim="nvim"
+alias vi="/usr/bin/vim"
+alias test-nvim="hyperfine 'nvim --headless +qa' --warmup 5"
+
+# git
+alias gb="git branch --sort=-committerdate | fzf --header Checkout --preview 'git diff {1} | delta' | xargs git checkout"
+alias gd="git diff | delta"
 
 # tmux
 alias tk-server="tmux kill-server"
@@ -116,6 +121,23 @@ function homebrew() {
   echo "==> Running 'brew cleanup'" && brew cleanup
 }
 
+# Full Color Support Test
+function colortest() {
+  awk 'BEGIN{
+      s="/\\/\\/\\/\\/\\"; s=s s s s s s s s;
+      for (colnum = 0; colnum<77; colnum++) {
+          r = 255-(colnum*255/76);
+          g = (colnum*510/76);
+          b = (colnum*255/76);
+          if (g>255) g = 510-g;
+          printf "\033[48;2;%d;%d;%dm", r,g,b;
+          printf "\033[38;2;%d;%d;%dm", 255-r,255-g,255-b;
+          printf "%s\033[0m", substr(s,colnum+1,1);
+      }
+      printf "\n";
+  }'
+}
+
 # +----------------+
 # | Options        | 
 # +----------------+
@@ -160,6 +182,7 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 
+
 # starship
-eval "$(starship init zsh)"
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
+# eval "$(starship init zsh)"
+# export STARSHIP_CONFIG=~/.config/starship/starship.toml
