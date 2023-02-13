@@ -8,7 +8,7 @@
 (def-doom-theme zaiste
   "A light theme inspired by Bluloco"
 
-  ;; doomme        default   256       16
+  ;; name        default   256       16
   ((bg         '("#f0f0f0" nil       nil            ))
    (bg-alt     '("#fafafa" nil       nil            ))
    (base0      '("#efefef" "#efefef" "white"        ))
@@ -65,8 +65,8 @@
 
    (modeline-bg base1)
    (modeline-bg-l base2)
-   (modeline-bg-idoomctive (doom-darken bg 0.1))
-   (modeline-bg-idoomctive-l `(,(doom-darken (car bg-alt) 0.05) ,@(cdr base1))))
+   (modeline-bg-inactive (doom-darken bg 0.1))
+   (modeline-bg-inactive-l `(,(doom-darken (car bg-alt) 0.05) ,@(cdr base1))))
 
   ((font-lock-comment-face
     :foreground comments
@@ -84,7 +84,7 @@
    (doom-modeline-buffer-file :weight 'regular)
 
    (mode-line :background modeline-bg :foreground modeline-fg)
-   (mode-line-idoomctive :background modeline-bg-idoomctive :foreground modeline-fg-alt)
+   (mode-line-inactive :background modeline-bg-inactive :foreground modeline-fg-alt)
    (mode-line-emphasis :foreground highlight)
 
    (magit-blame-heading :foreground orange :background bg-alt)

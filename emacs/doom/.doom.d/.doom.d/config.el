@@ -1,109 +1,57 @@
-;;; $doomDIR/config.el -*- lexical-binding: t; -*-
+(setq user-full-name "Raphaele Salvatore Licciardo"
+      user-mail-address "raphaele.salvatore@outlook.de")
 
-;; Place your private configuration here! Remember, you do not need to run 'doom
-;; sync' after modifying this file!
+(setq doom-theme 'doom-one)
 
-;; Some functiodoomlity uses this to identify you, e.g. GPG configuration, email
-;; clients, file templates and snippets. It is optiodooml.
-(setq user-full-doomme "Raphaele Salvatore Licciardo")
-;;      user-mail-address "john@doe.com")
-
-;; doom exposes five (optiodooml) variables for controlling fonts in doom:
-;;
-;; - `doom-font' -- the primary font to use
-;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)
-;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for
-;;   presentations or streaming.
-;; - `doom-unicode-font' -- for unicode glyphs
-;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
-;;
-;; See 'C-h v doom-font' for documentation and more examples of what they
-;; accept. For example:
-;;
-;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
-;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
-;;
-;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
-;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
-;; refresh your font settings. If Emacs still can't find your font, it likely
-;; wasn't installed correctly. Font issues are rarely doom issues!
-
-;; There are two ways to load a theme. Both assume the theme is installed and
-;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one-light)
-
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/Org/")
 
+(require 'key-chord)
+(key-chord-mode t)
+(key-chord-define-global "jk" 'evil-normal-state)
+(key-chord-define-global "kj" 'evil-normal-state)
 
-;; Whenever you reconfigure a package, make sure to wrap your config in an
-;; `after!' block, otherwise doom's defaults may override your settings. E.g.
-;;
-;;   (after! PACKAGE
-;;     (setq x y))
-;;
-;; The exceptions to this rule:
-;;
-;;   - Setting file/directory variables (like `org-directory')
-;;   - Setting variables which explicitly tell you to set them before their
-;;     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
-;;   - Setting doom variables (which start with 'doom-' or '+').
-;;
-;; Here are some additiodooml functions/macros that will help you configure doom.
-;;
-;; - `load!' for loading exterdooml *.el files relative to this one
-;; - `use-package!' for configuring packages
-;; - `after!' for running code after a package has loaded
-;; - `add-load-path!' for adding directories to the `load-path', relative to
-;;   this file. Emacs searches the `load-path' when you load packages with
-;;   `require' or `use-package'.
-;; - `map!' for binding new keys
-;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
-;; This will open documentation for it, including demos of how they are used.
-;; Alterdoomtively, use `C-h o' to look up a symbol (functions, variables, faces,
-;; etc).
-;;
-;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
-;; they are implemented.
-
-;; ==================================================================================
-;; ==================================================================================
-;; ======= My Private Additions to Doom =============================================
-;; ==================================================================================
-;; ==================================================================================
-
-;; MacOS Keyboard
 (setq default-input-method "MacOSX")
+
 (setq mac-command-modifier 'meta
       mac-option-modifier nil
       mac-allow-anti-aliasing t
       mac-command-key-is-meta t)
 
-;; Better Resize
-(use-package dired-hide-dotfiles
-  :hook (dired-mode . dired-hide-dotfiles-mode)
-  :config
-  (evil-collection-define-key 'normal 'dired-mode-map
-    "H" 'dired-hide-dotfiles-mode))
-(defun add-to-map(keys func)
-  (define-key evil-normal-state-map (kbd keys) func)
-  (define-key evil-motion-state-map (kbd keys) func))
-(add-to-map "M--" 'text-scale-decrease)
-(add-to-map "M-+" 'text-scale-increase)
+(setq doom-font (font-spec :family "DroidSansMono Nerd Font" :size 14))
 
-;; Relative Line Numbers
-(setq display-line-numbers-type 'relative)
+(require 'evil-multiedit)
+(evil-multiedit-default-keybinds)
 
-;; ==================================================================================
-;; ==================================================================================
-;; ======= End of Private Changes ===================================================
-;; ==================================================================================
-;; ==================================================================================
+(setq display-line-numbers-type t)
+(map! :leader
+      :desc "Comment or uncomment lines" "TAB TAB" #'comment-line
+      (:prefix ("t" . "toggle")
+       :desc "Toggle line numbers" "l" #'doom/toggle-line-numbers))
+
+(setq auto-save-default t
+      make-backup-files t)
+
+(setq confirm-kill-emacs nil)
+
+(setq minimap-window-location 'right)
+
+(custom-set-faces
+ '(org-level-1 ((t (:inherit outline-1 :height 1.6))))
+ '(org-level-2 ((t (:inherit outline-1 :height 1.5))))
+ '(org-level-3 ((t (:inherit outline-1 :height 1.4))))
+ '(org-level-4 ((t (:inherit outline-1 :height 1.3))))
+ '(org-level-5 ((t (:inherit outline-1 :height 1.2))))
+ '(org-level-6 ((t (:inherit outline-1 :height 1.1))))
+)
+
+(custom-set-faces
+ '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight b ld :family "variable-pitch"))))
+ '(markdown-header-face-1 ((t (:inherit markdown-header-face :height 1.6))))
+ '(markdown-header-face-2 ((t (:inherit markdown-header-face :height 1.5))))
+ '(markdown-header-face-3 ((t (:inherit markdown-header-face :height 1.4))))
+ '(markdown-header-face-4 ((t (:inherit markdown-header-face :height 1.3))))
+ '(markdown-header-face-5 ((t (:inherit markdown-header-face :height 1.2))))
+ '(markdown-header-face-6 ((t (:inherit markdown-header-face :height 1.1)))))
+
