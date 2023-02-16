@@ -45,7 +45,7 @@ alias l.="exa -a | egrep "^\.""
 alias tl="tmux list-sessions"
 alias ta="tmux attach -t"
 alias td="tmux detach"
-alias tk="tmux kill-session -t"
+alias tk="tmux kill-session -a -t"
 
 # Don't underline Paths
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
