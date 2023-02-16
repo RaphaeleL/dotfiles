@@ -21,6 +21,7 @@ alias vim="nvim"
 alias vi="/usr/bin/vim"
 alias lg="lazygit"
 
+# Some Alias' - Git
 alias gs="git status"
 alias gd="git diff"
 alias ga="git add"
@@ -28,17 +29,23 @@ alias gc="git commit -m"
 alias gca="git commit -a -m"
 alias gp="git push"
 
+# Some Alias' - Navigation
 alias ..="cd .."
 alias ...="cd ../.."
 alias .3="cd ../../.."
 alias .4="cd ../../../.."
 alias .5="cd ../../../../.."
-
 alias la="exa -a --color=always --group-directories-first" 
 alias ll="exa -aril --color=always --group-directories-first"  
 alias ls="exa --color=always --group-directories-first"  
 alias lt="exa -aT --color=always --group-directories-first" 
 alias l.="exa -a | egrep "^\.""
+
+# Some Alias' - Tmux
+alias tl="tmux list-sessions"
+alias ta="tmux attach -t"
+alias td="tmux detach"
+alias tk="tmux kill-session -t"
 
 # Don't underline Paths
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
