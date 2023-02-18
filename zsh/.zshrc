@@ -51,3 +51,6 @@ alias tk="tmux kill-session -a -t"
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
