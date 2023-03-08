@@ -1,20 +1,21 @@
-# oh-my-zsh Plugins
-plugins=(zsh-syntax-highlighting)
-
-# powerlevel10k Prompt
+# Enable Powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+# oh-my-zsh Plugins
+plugins=(zsh-syntax-highlighting zsh-autosuggestions)
 
 # No Comp Files 
 if [ -z "$ZSH_COMPDUMP" ]; then
   ZSH_COMPDUMP="${ZDOTDIR:-${ZSH}}/cache/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 fi
 
-# Get oh-my-zsh and Powerlevel10k
+# Theme 
+ZSH_THEME="own-theme"
 source $ZSH/oh-my-zsh.sh
-source $(brew --prefix powerlevel10k)/powerlevel10k.zsh-theme
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# source $(brew --prefix powerlevel10k)/powerlevel10k.zsh-theme
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Some Alias'
 alias vim="nvim"
@@ -54,3 +55,5 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
