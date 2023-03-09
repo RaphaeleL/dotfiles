@@ -5,6 +5,18 @@
     "ä": true,
     "ß": true
   },
+  // https://gist.github.com/museun/d9de011fff40ddb8d030a2ae6b73f861
+  "workbench.editor.showIcons": false,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.tabCloseButton": "off",
+  "workbench.editor.labelFormat": "short",
+  "workbench.editor.showTabs": true,
+  "workbench.editor.splitInGroupLayout": "horizontal",
+  "workbench.editor.splitSizing": "split",
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.editor.untitled.hint": "hidden",
+  "workbench.editor.untitled.labelFormat": "name",
+
   "explorer.confirmDelete": false,
   "editor.inlineSuggest.enabled": true,
   "git.ignoreMissingGitWarning": true,
@@ -44,5 +56,6 @@
     "editor.formatOnType": true
   },
   "workbench.colorTheme": "Default Dark+ Experimental",
-  "workbench.statusBar.visible": false
+  "workbench.statusBar.visible": false,
+  "workbench.activityBar.visible": false
 }
