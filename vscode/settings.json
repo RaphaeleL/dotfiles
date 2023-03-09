@@ -1,39 +1,16 @@
 {
   "editor.unicodeHighlight.allowedCharacters": {
-    "ü": true
+    "ü": true,
+    "ö": true,
+    "ä": true,
+    "ß": true
   },
   "explorer.confirmDelete": false,
   "editor.inlineSuggest.enabled": true,
-  "tabnine.experimentalAutoImports": true,
   "git.ignoreMissingGitWarning": true,
-  "auto-close-tag.activationOnLanguage": [
-    "xml",
-    "php",
-    "blade",
-    "ejs",
-    "jinja",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "plaintext",
-    "markdown",
-    "vue",
-    "liquid",
-    "erb",
-    "lang-cfml",
-    "cfml",
-    "HTML (EEx)",
-    "HTML (Eex)",
-    "plist"
-  ],
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "workbench.startupEditor": "none",
   "files.autoSave": "afterDelay",
-  "editor.formatOnSave": true,
-  "breadcrumbs.enabled": true,
+  "editor.formatOnSave": false,
 
   "vim.easymotion": true,
   "vim.incsearch": true,
@@ -54,11 +31,18 @@
   "editor.wordWrap": "on",
   "git.confirmSync": false,
   "editor.lineNumbers": "relative",
-  "editor.minimap.enabled": true,
-  "haskell.manageHLS": "PATH",
-  "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
   "window.autoDetectColorScheme": true,
-  "[latex]": {
-    "editor.defaultFormatter": "mathematic.vscode-latex"
-  }
+  "security.workspace.trust.untrustedFiles": "open",
+  "git.enableSmartCommit": true,
+  "editor.indentSize": "tabSize",
+  "workbench.tree.indent": 4,
+  "window.commandCenter": true,
+  "window.openFilesInNewWindow": "on",
+  "window.openFoldersInNewWindow": "on",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "workbench.colorTheme": "Default Dark+ Experimental",
+  "workbench.statusBar.visible": false
 }
