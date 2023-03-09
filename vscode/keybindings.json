@@ -1548,6 +1548,7 @@
                                          "when": "cmake:enableFullFeatureSet && !cmake:hideBuildCommand" },
     { "key": "escape",                "command": "extension.vim_escape",
                                          "when": "editorTextFocus && vim.active && !inDebugRepl" },
+    { "key": "alt+h",                 "command": "git.viewFileHistory" },
     { "key": "left",                  "command": "gitlens.key.left",
                                          "when": "gitlens:key:left" },
     { "key": "shift+enter",           "command": "python.execSelectionInTerminal",
@@ -1911,11 +1912,20 @@
     // - changeEditorIndentation
     // - cleanSearchEditorState
     // - closeReferenceSearchEditor
+    // - cmake.activeBuildPresetName
+    // - cmake.activeConfigurePresetName
+    // - cmake.activeFolderName
+    // - cmake.activeFolderPath
+    // - cmake.activeTestPresetName
     // - cmake.addBuildPreset
     // - cmake.addConfigurePreset
     // - cmake.addTestPreset
     // - cmake.buildAll
+    // - cmake.buildDirectory
+    // - cmake.buildKit
     // - cmake.buildNamedTarget
+    // - cmake.buildTargetName
+    // - cmake.buildType
     // - cmake.clean
     // - cmake.cleanAll
     // - cmake.cleanConfigure
@@ -1931,9 +1941,19 @@
     // - cmake.editCache
     // - cmake.editCacheUI
     // - cmake.editKits
+    // - cmake.executableTargets
+    // - cmake.getLaunchTargetDirectory
+    // - cmake.getLaunchTargetFilename
+    // - cmake.getLaunchTargetPath
+    // - cmake.hideBuildCommand
+    // - cmake.hideDebugCommand
+    // - cmake.hideLaunchCommand
     // - cmake.install
     // - cmake.installAll
     // - cmake.launchTargetAll
+    // - cmake.launchTargetDirectory
+    // - cmake.launchTargetFilename
+    // - cmake.launchTargetPath
     // - cmake.logDiagnostics
     // - cmake.onlineHelp
     // - cmake.openCMakePresets
@@ -1971,18 +1991,30 @@
     // - cmake.selectKit
     // - cmake.selectLaunchTarget
     // - cmake.selectTestPreset
+    // - cmake.selectWorkspace
+    // - cmake.setBuildPreset
+    // - cmake.setConfigurePreset
     // - cmake.setDefaultTarget
+    // - cmake.setKitByName
+    // - cmake.setTestPreset
     // - cmake.setVariant
     // - cmake.setVariantAll
     // - cmake.showBuildCommand
     // - cmake.showConfigureCommand
+    // - cmake.statusbar.update
     // - cmake.stop
     // - cmake.stopAll
+    // - cmake.tasksBuildCommand
+    // - cmake.useCMakePresets
     // - cmake.viewLog
     // - codelens.showLensesInCurrentLine
     // - columnSelect
     // - comments.collapse
     // - comments.expand
+    // - commitViewProvider.focus
+    // - commitViewProvider.resetViewLocation
+    // - compareCommitViewProvider.focus
+    // - compareCommitViewProvider.resetViewLocation
     // - compareFiles
     // - compareSelected
     // - compositionEnd
@@ -2225,7 +2257,9 @@
     // - extensions.actions.searchByCategory.Visualization
     // - extensions.filter.featured
     // - extensions.recommendedList.focus
+    // - extensions.recommendedList.removeView
     // - extensions.recommendedList.resetViewLocation
+    // - extensions.recommendedList.toggleVisibility
     // - extensions.sort.installs
     // - extensions.sort.name
     // - extensions.sort.publishedDate
@@ -2235,9 +2269,7 @@
     // - files.participants.resetChoice
     // - filesExplorer.findInWorkspace
     // - focusAndAcceptSuggestion
-    // - gaia.copyExample
-    // - gaia_feedback.submit_feedback
-    // - gaia_hover.show_call_summary_document
+    // - formatter/configure/dfl/5f2554d8-8665-4d68-b601-79c7d1a7ec64
     // - getContextKeyInfo
     // - git-base.api.getRemoteSources
     // - git._syncAll
@@ -2260,6 +2292,27 @@
     // - git.close
     // - git.closeAllDiffEditors
     // - git.commit
+    // - git.commit.FileEntry.CompareAgainstPrevious
+    // - git.commit.FileEntry.CompareAgainstWorkspace
+    // - git.commit.FileEntry.ViewFileContents
+    // - git.commit.FileEntry.compare
+    // - git.commit.FileEntry.selectForComparison
+    // - git.commit.ViewChangeLog
+    // - git.commit.cherryPick
+    // - git.commit.compare
+    // - git.commit.compare.file.compare
+    // - git.commit.compare.selectForComparison
+    // - git.commit.compare.view.hide
+    // - git.commit.compare.view.show
+    // - git.commit.compare.view.showFilesOnly
+    // - git.commit.compare.view.showFolderView
+    // - git.commit.createBranch
+    // - git.commit.merge
+    // - git.commit.rebase
+    // - git.commit.view.hide
+    // - git.commit.view.show
+    // - git.commit.view.showFilesOnly
+    // - git.commit.view.showFolderView
     // - git.commitAll
     // - git.commitAllAmend
     // - git.commitAllAmendNoVerify
@@ -2350,6 +2403,8 @@
     // - git.undoCommit
     // - git.unstage
     // - git.unstageAll
+    // - git.viewHistory
+    // - git.viewLineHistory
     // - github.copyVscodeDevLink
     // - github.copyVscodeDevLinkFile
     // - github.openOnVscodeDev
@@ -2477,6 +2532,9 @@
     // - gitlens.graph.switchToCommit
     // - gitlens.graph.switchToTag
     // - gitlens.graph.undoCommit
+    // - gitlens.home.restoreWelcome
+    // - gitlens.home.showSCM
+    // - gitlens.home.toggleWelcome
     // - gitlens.inviteToLiveShare
     // - gitlens.openAssociatedPullRequestOnRemote
     // - gitlens.openAutolinkUrl
@@ -3053,12 +3111,14 @@
     // - npm.openScript
     // - npm.packageManager
     // - npm.refresh
+    // - npm.removeView
     // - npm.resetViewLocation
     // - npm.runInstall
     // - npm.runScript
     // - npm.runScriptFromFolder
     // - npm.runScriptFromHover
     // - npm.runSelectedScript
+    // - npm.toggleVisibility
     // - openEditors.closeAll
     // - openEditors.newUntitledFile
     // - openInTerminal
@@ -3102,7 +3162,6 @@
     // - problems.action.copyRelatedInformationMessage
     // - problems.action.showMultilineMessage
     // - problems.action.showSinglelineMessage
-    // - pylance.addToExtraPaths
     // - pylance.completionAccepted
     // - pylance.convertImportFormat
     // - pylance.dumpCachedTypes
@@ -3112,19 +3171,13 @@
     // - pylance.dumpTypes
     // - pylance.executedClientCommand
     // - pylance.extractMethod
-    // - pylance.extractMethodWithRename
     // - pylance.extractVariable
-    // - pylance.extractVariableWithRename
     // - pylance.fixAll
     // - pylance.getSourceFiles
     // - pylance.moveSymbol
-    // - pylance.moveSymbolWithFileSelection
     // - pylance.pytest.addAllFixtureTypeAnnotations
     // - pylance.pytest.addFixtureTypeAnnotation
     // - pylance.reportIssue
-    // - pylance.runCommands
-    // - pylance.setTypeChecking
-    // - pylance.triggerParameterHints
     // - pyright.addoptionalforparam
     // - pyright.createtypestub
     // - pyright.dumpFileDebugInfo
@@ -3390,7 +3443,6 @@
     // - vim.editVimrc
     // - vim.remap
     // - vim.showQuickpickCmdLine
-    // - vsintellicode.completionItemSelected
     // - walkthroughs.selectStep
     // - watch.collapse
     // - welcome.markStepComplete
@@ -3601,23 +3653,21 @@
     // - workbench.action.openWorkspaceSettings
     // - workbench.action.openWorkspaceSettingsFile
     // - workbench.action.output.show.editSessionsSyncLog
-    // - workbench.action.output.show.extension-output-VisualStudioExptTeam.intellicode-api-usage-examples-#1-IntelliCode API Examples
-    // - workbench.action.output.show.extension-output-VisualStudioExptTeam.intellicode-api-usage-examples-#2-API Usage Examples LSP
-    // - workbench.action.output.show.extension-output-VisualStudioExptTeam.vscodeintellicode-#1-VS IntelliCode
     // - workbench.action.output.show.extension-output-eamodio.gitlens-#1-GitLens
     // - workbench.action.output.show.extension-output-esbenp.prettier-vscode-#1-Prettier
     // - workbench.action.output.show.extension-output-ms-python.python-#1-Python
     // - workbench.action.output.show.extension-output-ms-python.python-#2-Python-Testprotokoll
     // - workbench.action.output.show.extension-output-ms-python.python-#3-Python-Sprachserver
+    // - workbench.action.output.show.extension-output-ms-vscode.cmake-tools-#1-CMake/Build
     // - workbench.action.output.show.extension-output-ms-vscode.cpptools-#1-remote-attach
     // - workbench.action.output.show.extension-output-ms-vscode.makefile-tools-#1-Makefile tools
     // - workbench.action.output.show.extension-output-vscode.json-language-features-#1-JSON-Sprachserver
     // - workbench.action.output.show.file:///Users/raphaelelicciardo/Library/Application%20Support/Code/logs/20230309T133125/ptyhost.log
-    // - workbench.action.output.show.file:///Users/raphaelelicciardo/Library/Application%20Support/Code/logs/20230309T133125/window1/exthost/exthost.log
-    // - workbench.action.output.show.file:///Users/raphaelelicciardo/Library/Application%20Support/Code/logs/20230309T133125/window1/exthost/vscode.git/Git.log
-    // - workbench.action.output.show.file:///Users/raphaelelicciardo/Library/Application%20Support/Code/logs/20230309T133125/window1/exthost/vscode.github-authentication/GitHub%20Authentication.log
-    // - workbench.action.output.show.file:///Users/raphaelelicciardo/Library/Application%20Support/Code/logs/20230309T133125/window1/exthost/vscode.microsoft-authentication/Microsoft%20Authentication.log
-    // - workbench.action.output.show.file:///Users/raphaelelicciardo/Library/Application%20Support/Code/logs/20230309T133125/window1/exthost/vscodevim.vim/Vim.log
+    // - workbench.action.output.show.file:///Users/raphaelelicciardo/Library/Application%20Support/Code/logs/20230309T133125/window6/exthost/exthost.log
+    // - workbench.action.output.show.file:///Users/raphaelelicciardo/Library/Application%20Support/Code/logs/20230309T133125/window6/exthost/vscode.git/Git.log
+    // - workbench.action.output.show.file:///Users/raphaelelicciardo/Library/Application%20Support/Code/logs/20230309T133125/window6/exthost/vscode.github-authentication/GitHub%20Authentication.log
+    // - workbench.action.output.show.file:///Users/raphaelelicciardo/Library/Application%20Support/Code/logs/20230309T133125/window6/exthost/vscode.microsoft-authentication/Microsoft%20Authentication.log
+    // - workbench.action.output.show.file:///Users/raphaelelicciardo/Library/Application%20Support/Code/logs/20230309T133125/window6/exthost/vscodevim.vim/Vim.log
     // - workbench.action.output.show.mainLog
     // - workbench.action.output.show.notebook.rendering
     // - workbench.action.output.show.remoteTunnelServiceLog
@@ -3795,6 +3845,24 @@
     // - workbench.actions.syncData.reset
     // - workbench.actions.table.workbench.panel.markers.view.viewAsTable
     // - workbench.actions.table.workbench.panel.markers.view.viewAsTree
+    // - workbench.actions.treeView.gitlens.views.branches.collapseAll
+    // - workbench.actions.treeView.gitlens.views.branches.refresh
+    // - workbench.actions.treeView.gitlens.views.commits.collapseAll
+    // - workbench.actions.treeView.gitlens.views.commits.refresh
+    // - workbench.actions.treeView.gitlens.views.contributors.collapseAll
+    // - workbench.actions.treeView.gitlens.views.contributors.refresh
+    // - workbench.actions.treeView.gitlens.views.fileHistory.collapseAll
+    // - workbench.actions.treeView.gitlens.views.fileHistory.refresh
+    // - workbench.actions.treeView.gitlens.views.remotes.collapseAll
+    // - workbench.actions.treeView.gitlens.views.remotes.refresh
+    // - workbench.actions.treeView.gitlens.views.searchAndCompare.collapseAll
+    // - workbench.actions.treeView.gitlens.views.searchAndCompare.refresh
+    // - workbench.actions.treeView.gitlens.views.stashes.collapseAll
+    // - workbench.actions.treeView.gitlens.views.stashes.refresh
+    // - workbench.actions.treeView.gitlens.views.tags.collapseAll
+    // - workbench.actions.treeView.gitlens.views.tags.refresh
+    // - workbench.actions.treeView.gitlens.views.worktrees.collapseAll
+    // - workbench.actions.treeView.gitlens.views.worktrees.refresh
     // - workbench.actions.treeView.workbench.panel.markers.view.collapseAll
     // - workbench.actions.view.toggleProblems
     // - workbench.actions.workbench.panel.comments.toggleResolvedComments
@@ -3976,6 +4044,7 @@
     // - workbench.scm.action.setSortKey.path
     // - workbench.scm.action.setSortKey.status
     // - workbench.scm.action.setTreeViewMode
+    // - workbench.scm.action.toggleRepositoryVisibility.scm0
     // - workbench.scm.focus
     // - workbench.scm.removeView
     // - workbench.scm.repositories.focus
@@ -4042,11 +4111,17 @@
     // - workbench.views.extensions.deprecatedExtensions.focus
     // - workbench.views.extensions.deprecatedExtensions.resetViewLocation
     // - workbench.views.extensions.disabled.focus
+    // - workbench.views.extensions.disabled.removeView
     // - workbench.views.extensions.disabled.resetViewLocation
+    // - workbench.views.extensions.disabled.toggleVisibility
     // - workbench.views.extensions.enabled.focus
+    // - workbench.views.extensions.enabled.removeView
     // - workbench.views.extensions.enabled.resetViewLocation
+    // - workbench.views.extensions.enabled.toggleVisibility
     // - workbench.views.extensions.installed.focus
+    // - workbench.views.extensions.installed.removeView
     // - workbench.views.extensions.installed.resetViewLocation
+    // - workbench.views.extensions.installed.toggleVisibility
     // - workbench.views.extensions.marketplace.focus
     // - workbench.views.extensions.marketplace.resetViewLocation
     // - workbench.views.extensions.otherRecommendations.focus
