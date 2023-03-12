@@ -1,14 +1,15 @@
-(setq user-full-name "Raphaele Salvatore Licciardo"
+(setq user-full-name "Raphaele Salvatore Licciardo, B.Sc."
       user-mail-address "raphaele.salvatore@outlook.de")
 
 (setq doom-theme 'doom-one-light)
 
 (setq display-line-numbers-type 'relative)
 
-(require 'key-chord)
-(key-chord-mode t)
-(key-chord-define-global "jk" 'evil-normal-state)
-(key-chord-define-global "kj" 'evil-normal-state)
+;; Slows the k / j movements down ..
+;;(require 'key-chord)
+;;(key-chord-mode t)
+;;(key-chord-define-global "jk" 'evil-normal-state)
+;;(key-chord-define-global "kj" 'evil-normal-state)
 
 (setq default-input-method "MacOSX")
 
@@ -21,6 +22,10 @@
       make-backup-files t)
 
 (setq confirm-kill-emacs nil)
+
+(add-hook 'buffer-list-update-hook (lambda ()
+                                     (unless (active-minibuffer-window)
+                                       (hide-mode-line-mode))))
 
 (custom-set-faces
  '(org-level-1 ((t (:inherit outline-1 :height 1.6))))
@@ -42,3 +47,6 @@
 
 (global-set-key [C-wheel-up] 'text-scale-increase)
 (global-set-key [C-wheel-down] 'text-scale-decrease)
+
+(setq initial-frame-alist '((top . 1) (left . 1) (width . 120) (height . 60)))
+
