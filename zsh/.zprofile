@@ -7,5 +7,6 @@ export LESSHISTFILE=-
 export ZSH="$HOME/.oh-my-zsh"
 export HISTFILE=${ZDOTDIR:-$HOME}/.cache/.zsh_history
 export SHELL_SESSIONS_DISABLE=1
+export PATH="$PATH:/Users/raphaelelicciardo/Library/Application Support/JetBrains/Toolbox/scripts"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
