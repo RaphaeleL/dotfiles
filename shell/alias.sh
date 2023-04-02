@@ -25,20 +25,21 @@ alias tl="tmux list-sessions"
 alias ta="tmux attach -t"
 alias td="tmux detach"
 alias tk="tmux kill-session -a -t"
-tf() {
+tms() {
     local dir
-    dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
-    tmux has-session -t $(basename $dir) 2> /dev/null 
+    # find ${1:-.}
+    session_name=$(basename $(find ~/Developer/ ~/Master/ ~/Documents/ ~/.config/ ~/Desktop/ -type d 2> /dev/null | fzf +m) && cd "$dir")
+    tmux has-session -t=$session_name 2> /dev/null
+
     if [[ $? -ne 0 ]]; then
-        TMUX='' tmux new -d -s $(basename $dir)
+        TMUX='' tmux new-session -d -s "$session_name"
     fi
-    cd "$dir"
+
     if [[ -z "$TMUX" ]]; then
-        tmux attach-session -t $(basename $dir) || tmux new -s $(basename $dir)
+        tmux attach -t "$session_name"
     else
-        tmux switch-client -t $(basename $dir)
+        tmux switch-client -t "$session_name"
     fi
-    cd
 }
 
 # Permissions 
