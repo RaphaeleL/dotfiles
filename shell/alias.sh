@@ -1,8 +1,11 @@
-# Some Alias'
+# Basics 
 alias lg="lazygit"
 alias tldrf="tldr --list | fzf --preview 'tldr {1} --color=always' --preview-window=right,70% | xargs tldr"
+alias rgrep="rg"
+alias vim="nvim"
+alias vi="/usr/bin/vim"
 
-# Some Alias' - Git
+# Git
 alias gs="git status"
 alias gd="git diff"
 alias ga="git add"
@@ -10,14 +13,14 @@ alias gc="git commit -m"
 alias gca="git commit -a -m"
 alias gp="git push"
 
-# Some Alias' - Navigation
+# Navigation
 alias ..="cd .."
 alias ...="cd ../.."
 alias .3="cd ../../.."
 alias .4="cd ../../../.."
 alias .5="cd ../../../../.."
 
-# Some Alias' - Tmux
+# Tmux
 alias tl="tmux list-sessions"
 alias ta="tmux attach -t"
 alias td="tmux detach"
