@@ -28,7 +28,7 @@ alias tk="tmux kill-session -a -t"
 tms() {
     local dir
     # find ${1:-.}
-    session_name=$(basename $(find ~/Developer/ ~/Master/ ~/Documents/ ~/.config/ ~/Desktop/ -type d 2> /dev/null | fzf +m) && cd "$dir")
+    session_name=$(basename $(find ~/Developer/ ~/Master/ ~/Documents/ ~/.config/ ~/Desktop/ -type d 2> /dev/null | fzf +m))
     tmux has-session -t=$session_name 2> /dev/null
 
     if [[ $? -ne 0 ]]; then
