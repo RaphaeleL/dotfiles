@@ -1,23 +1,23 @@
-# oh-my-zsh Plugins
-plugins=(zsh-syntax-highlighting zsh-autosuggestions)
-
 # No Comp Files
 if [ -z "$ZSH_COMPDUMP" ]; then
   ZSH_COMPDUMP="${ZDOTDIR:-${ZSH}}/cache/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 fi
 
-# Theme
-ZSH_THEME="own-theme" # "robbyrussell"
-source $ZSH/oh-my-zsh.sh
-
-# Don't underline Paths
+# No Underlining
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
-# fzf
+# FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# alias
+# Alias'
 source ~/.config/shell/alias.sh
 source ~/.config/shell/alias_exa.sh
+
+# Syntax Highlighting
+source ./.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Theme
+PROMPT="%F{green}raphaele@%m:%F{blue}%~%F{white}\$ "
+
