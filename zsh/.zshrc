@@ -19,5 +19,4 @@ source ~/.config/shell/alias_exa.sh
 source ./.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Theme
-PROMPT="%F{green}raphaele@%m:%F{blue}%~%F{white}\$ "
-
+PROMPT="%B%F{green}raphaele@%m:%B%F{blue}%~%F{white}\$ "
