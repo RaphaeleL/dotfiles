@@ -6,6 +6,7 @@
 
 # KEYMAPS 
 source ~/.config/shell/alias.sh
+source ~/.config/shell/alias_exa.sh
 
 # PLUGINS
 source .oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
