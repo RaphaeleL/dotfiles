@@ -22,4 +22,4 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # PROMPT
-PROMPT='%F{green}raphaele@%m:%F{blue}%~%F{white}$%F{reset} '
+PROMPT='%B%F{green}raphaele@%m:%F{blue}%~%F{white}$%F{reset} '
