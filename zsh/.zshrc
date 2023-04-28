@@ -1,9 +1,18 @@
-# No Comp Files
-if [ -z "$ZSH_COMPDUMP" ]; then
-  ZSH_COMPDUMP="${ZDOTDIR:-${ZSH}}/cache/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
-fi
+# OH MY ZSH - NOT USED - BUT KEEP FOR PLUG LOCATION
+# export ZSH="$HOME/.oh-my-zsh"
+# ZSH_THEME="robbyrussell"
+# plugins=(git) # zsh-syntax-highlighting)
+# source $ZSH/oh-my-zsh.sh
 
-# No Underlining
+# KEYMAPS 
+source ~/.config/shell/alias.sh
+
+# PLUGINS
+source .oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+source .oh-my-zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source .oh-my-zsh/plugins/vi-mode/vi-mode.plugin.zsh
+
+# NO UGLY
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
@@ -11,12 +20,5 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Alias'
-source ~/.config/shell/alias.sh
-source ~/.config/shell/alias_exa.sh
-
-# Syntax Highlighting
-source ./.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Theme
-PROMPT="%B%F{green}raphaele@%m:%B%F{blue}%~%F{white}\$ "
+# PROMPT
+PROMPT='%F{green}raphaele@%m:%F{blue}%~%F{white}$%F{reset} '
