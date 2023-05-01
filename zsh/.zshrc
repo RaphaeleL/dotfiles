@@ -2,11 +2,11 @@
 source ~/.config/shell/alias.sh
 
 # PLUGINS
-source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-source ~/.oh-my-zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-source ~/.oh-my-zsh/plugins/vi-mode/vi-mode.plugin.zsh
+source ~/Developer/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+source ~/Developer/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source ~/Developer/dotfiles/zsh/vi-mode/vi-mode.plugin.zsh
 
-# NO UGLY
+# DO NOT BE UGLY
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
