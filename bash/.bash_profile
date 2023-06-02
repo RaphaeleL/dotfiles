@@ -1,23 +1,30 @@
-export EDITOR='vim'
-export BASH_SILENCE_DEPRECATION_WARNING=1
+# export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # Default: \h:\W \u\$
-# https://robotmoon.com/bash-prompt-generator/
-# https://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/
-# https://indibit.de/macos-pimp-your-terminal-prompt/
-# export PS1='raphaele@\h:\[$(tput setaf 10)\]\w\[$(tput sgr0)\]\$ '
 export PS1='\[\e[01;32m\]raphaele@\h:\[\e[01;34m\]\w\[\e[0m\]\$ '
-# export PS1='raphaele@\h:\[$(tput setaf 28)\]\w\[$(tput sgr0)\]\$ '
 # export PS1='raphaele@\h:\[\e[01;32m\]\w\[\e[0m\]\$ '
 
-export PATH=$PATH:/opt/homebrew/bin
-export PATH=$PATH:.cargo/bin
-export PATH=$PATH:$HOME/.local/bin
+export BASH_SILENCE_DEPRECATION_WARNING=1
+export LDFLAGS="-L/opt/homebrew/opt/curl/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/curl/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/curl/lib/pkgconfig"
+export LESSHISTFILE=-
+export ZSH="$HOME/.oh-my-zsh"
+export HISTFILE=${ZDOTDIR:-$HOME}/.cache/.zsh_history
+export SHELL_SESSIONS_DISABLE=1
 export PATH="$PATH:/Users/raphaelelicciardo/Library/Application Support/JetBrains/Toolbox/scripts"
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+export PATH="$PATH:/Users/raphaelelicciardo/.local/bin"
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:$HOME/.local/share/nvim/mason/packages/jdtls/bin"
+export PATH="$PATH:$HOME/.config/emacs/bin"
+export ES_JAVA_HOME=$(/usr/libexec/java_home)
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 source ~/.config/shell/alias.sh
+export EDITOR='vi'
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"
