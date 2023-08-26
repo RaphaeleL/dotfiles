@@ -5,7 +5,24 @@ export PS1='\[\e[01;32m\]raphaele@\h:\[\e[01;34m\]\w\[\e[0m\]\$ '
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export BASH_SESSIONS_DISABLE=1
 export LESSHISTFILE=-
+<<<<<<< HEAD
 export EDITOR='vim'
+=======
+export HISTFILE=${ZDOTDIR:-$HOME}/.cache/.zsh_history
+export SHELL_SESSIONS_DISABLE=1
+export ES_JAVA_HOME=$(/usr/libexec/java_home)
+export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:$HOME/.local/share/nvim/mason/packages/jdtls/bin"
+export PATH="$PATH:$HOME/.config/emacs/bin"
+export PATH="$PATH:$HOME/Developer"
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"
+export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+export PATH="$HOME/Developer/apache-jena-fuseki-4.8.0:$PATH"
+export EDITOR='vi'
+>>>>>>> 9d3f059c9402c8b320cfaaf1e52faf8526869b58
 
 # --- PATH --- 
 export PATH="$PATH:/Users/raphaele/Library/Application Support/JetBrains/Toolbox/scripts"
