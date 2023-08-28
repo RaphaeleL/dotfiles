@@ -6,7 +6,7 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
-(setq user-full-name "Raphaele Salvatore Licciardo, B.Sc."
+(setq user-full-name "Raphaele Salvatore Licciardo, M.Sc."
       user-mail-address "raphaele.salvatore@outlook.de")
 
 ;; Einstellungen
@@ -37,7 +37,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-dark+)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -46,7 +46,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Developer/")
+(setq org-directory "~/Projects/")
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -80,13 +80,32 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; Keymaps Inc and Dec Font Size
 (defun increase-font-size ()
   (interactive)
   (text-scale-increase 1))
-
 (defun decrease-font-size ()
   (interactive)
   (text-scale-decrease 1))
-
 (global-set-key (kbd "M-+") 'increase-font-size)
 (global-set-key (kbd "M--") 'decrease-font-size)
+
+;; No Titlebar with round corners
+(add-to-list 'default-frame-alist '(undecorated-round . t))
+
+;; No Modeline
+(setq-default mode-line-format nil)
+(add-hook 'after-change-major-mode-hook (lambda () (setq mode-line-format nil)))
+(setq-default header-line-format nil)
+
+;; Auto Theme
+(defun my/apply-theme (appearance)
+  (mapc #'disable-theme custom-enabled-themes)
+  (pcase appearance
+    ('light (load-theme 'doom-one-light t))
+    ('dark (load-theme 'doom-dark+ t))))
+
+(add-hook 'ns-system-appearance-change-functions #'my/apply-theme)
+
+;; Default Window Size
+;; (setq initial-frame-alist '((top . 1) (left . 1) (width . 143) (height . 55)))
