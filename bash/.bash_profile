@@ -1,40 +1,38 @@
 # --- PROMPT --- 
-export PS1='\[\e[01;32m\]raphaele@\h:\[\e[01;34m\]\w\[\e[0m\]\$ '
+export PS1='\u@\h:\[\e[01;36m\]\w\[\e[0m\]\$ '
+# export PS1='\[\e[01;32m\]\u@\h:\[\e[01;34m\]\w\[\e[0m\]\$ '
+# export PS1='\u@\h:\[\e[01;32m\]\w\[\e[0m\]\$ '
+# export PS1='\h:\W \u\$ '
+# export PS1='[\u@\h \[\e[01;36m\]\w\[\e[0m\]]\$ '
 
 # --- PROFILE --- 
+export CLICOLOR=1
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export BASH_SESSIONS_DISABLE=1
 export LESSHISTFILE=-
 export EDITOR='vim'
+export PNPM_HOME="/Users/raphaele/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 
 # --- PATH --- 
 export PATH="$PATH:/Users/raphaele/Library/Application Support/JetBrains/Toolbox/scripts"
+export PATH="$HOME/bin:$PATH";
+export PATH="$HOME/bin:$PATH";
+. "$HOME/.cargo/env"
+export PATH="$PNPM_HOME:$PATH"
 
 # --- BREW --- 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# --- KEYMAPPINGS --- 
-
+# --- Alias' --- 
 # Basics 
 alias lg="lazygit"
 alias vim="nvim"
 alias vi="NVIM_APPNAME=macnvim nvim"
 alias v="/usr/bin/vim"
-
-# Git
-alias gs="git status"
-alias gd="git diff"
-alias ga="git add"
-alias gc="git commit -m"
-alias gca="git commit -a -m"
-alias gp="git push"
-
-# Navigation
-alias ..="cd .."
-alias ...="cd ../.."
-alias .3="cd ../../.."
-alias .4="cd ../../../.."
-alias .5="cd ../../../../.."
 
 # Tmux
 alias tn="tmux display-message -p '#S'"
@@ -62,17 +60,6 @@ tms() {
 
 # Permissions 
 alias perms="stat -f '%N %A' *"
-
-# Easter Eggs
-function theme() {
-    osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
-    DARK_MODE=$(osascript -e 'tell app "System Events" to tell appearance preferences to get dark mode')
-    if [[ "${DARK_MODE}" == "true" ]]; then
-        export PS1='\[\e[01;32m\]raphaele@\h:\[\e[01;34m\]\w\[\e[0m\]\$ '
-    else
-        export PS1='\h:\W \u\$ '
-    fi
-}
 
 # Spezial Commands simplified 
 alias remove="shred -n 512 --remove "
