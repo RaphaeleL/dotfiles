@@ -12,20 +12,24 @@ export BASH_SESSIONS_DISABLE=1
 export LESSHISTFILE=-
 export EDITOR='vim'
 export PNPM_HOME="/Users/raphaele/Library/pnpm"
+if [[ "$(uname)" == "Linux" ]]; then
+	export PNPM_HOME="~/.local/share/pnpm"
+fi
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
 # --- PATH --- 
-export PATH="$PATH:/Users/raphaele/Library/Application Support/JetBrains/Toolbox/scripts"
 export PATH="$HOME/bin:$PATH";
 export PATH="$HOME/bin:$PATH";
 . "$HOME/.cargo/env"
 export PATH="$PNPM_HOME:$PATH"
 
 # --- BREW --- 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [[ "$(uname)" == "Darwin" ]]; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # --- Alias' --- 
 # Basics 
