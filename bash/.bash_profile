@@ -68,6 +68,7 @@ alias perms="stat -f '%N %A' *"
 # Spezial Commands simplified 
 alias remove="shred -n 512 --remove "
 alias sizes="du -sh * | gsort -hr"
+alias uuid="sysctl -n kernel.random.uuid"
 
 # List Directory - geohot
 alias ls='ls -Ghp'
