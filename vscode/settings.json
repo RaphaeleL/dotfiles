@@ -1,79 +1,98 @@
 {
-    // VIM
-    "vim.easymotion": true,
-    "vim.incsearch": true,
-    "vim.useSystemClipboard": true,
-    "vim.useCtrlKeys": true,
-    "vim.hlsearch": true,
-    "vim.insertModeKeyBindings": [
-      {
-        "before": ["k", "j"],
-        "after": ["<Esc>"]
-      },
-      {
-        "before": ["j", "k"],
-        "after": ["<Esc>"]
-      }
-    ],
-    "vim.normalModeKeyBindingsNonRecursive": [
-      {
-        "before": ["<leader>", "d"],
-        "after": ["d", "d"]
-      },
-      {
-        "before": ["<C-n>"],
-        "commands": [":nohl"]
-      },
-      {
-        "before": ["K"],
-        "commands": ["lineBreakInsert"],
-        "silent": true
-      }
-    ],
-    "vim.leader": "<space>",
-    "vim.handleKeys": {
-      "<C-a>": false,
-      "<C-f>": false
-    },
+  // Editor Settings
+  "editor.lineNumbers": "on",
+  "editor.lineHeight": 1.7,
+  "editor.fontLigatures": true,
+"editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+  "editor.minimap.enabled": false,
+  "editor.cursorSurroundingLines": 15,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorBlinking": "phase",
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.hover.above": true,
+  "editor.hover.delay": 150,
+"editor.glyphMargin": false,
+"editor.wordWrap": "on",
+"editor.wrappingStrategy": "advanced",
+"editor.scrollbar.horizontal": "hidden",
+  "editor.copyWithSyntaxHighlighting": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.gotoLocation.multipleReferences": "goto",
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  "editor.gotoLocation.multipleDeclarations": "goto",
+  
+  // Workbench Settings
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.statusBar.visible": false,
+  "workbench.editor.scrollToSwitchTabs": true,
+"workbench.layoutControl.enabled": true,
+  "workbench.preferredHighContrastColorTheme": "Default Light Modern",
+  "workbench.tips.enabled": false,
+  "workbench.startupEditor": "none",
+  "workbench.activityBar.location": "top",
+"workbench.colorCustomizations": {
+  "[Default Dark Modern]": {},
+},
+  
+  // Window Settings
+"window.commandCenter": false,
+  "window.autoDetectColorScheme": true,
+  "window.newWindowDimensions": "inherit",
 
-    // BASICS
-    "editor.lineNumbers": "on",
-    "editor.lineHeight": 1.6,
-    "editor.wordWrap": "on",
-    "editor.fontLigatures": true,
-    "workbench.preferredHighContrastColorTheme": "Default Light Modern",
-    "window.autoDetectColorScheme": true,
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "security.workspace.trust.untrustedFiles": "open",
-    "workbench.activityBar.location": "top",
-    "git.confirmSync": false,
-    "editor.minimap.enabled": false,
-    "diffEditor.ignoreTrimWhitespace": false,
-    "editor.fontFamily": "\"-apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif\"",
-    "terminal.integrated.fontFamily": "monospace",
-    "[python]": {
-      "editor.defaultFormatter": "ms-python.black-formatter"
+  // Git Settings
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+
+  // Mixed Settings
+  "terminal.integrated.fontFamily": "monospace",
+  "security.workspace.trust.untrustedFiles": "open",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.renderSideBySide": false,
+  "breadcrumbs.enabled": false,
+
+  // Language Settings
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "notebook.output.scrolling": true,
+  "markdown.preview.typographer": true,
+
+  // Extension Settings
+  
+  // Vim
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["k", "j"],
+      "after": ["<Esc>"]
     },
-    "[json]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    {
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "d"],
+      "after": ["d", "d"]
     },
-    "[typescriptreact]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    {
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
     },
-    "[javascriptreact]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[scss]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "git.autofetch": true,
-    "git.enableSmartCommit": true,
-    "notebook.output.scrolling": true,
-    "workbench.statusBar.visible": false,
-    
-    "editor.cursorSurroundingLines": 15,
-    "editor.cursorSmoothCaretAnimation": "on",
-    "editor.cursorBlinking": "phase",
-    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
-    "workbench.editor.scrollToSwitchTabs": true,
+    {
+      "before": ["K"],
+      "commands": ["lineBreakInsert"],
+      "silent": true
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  },
+
 }
