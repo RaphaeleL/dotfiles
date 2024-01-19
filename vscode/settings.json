@@ -1,61 +1,79 @@
 {
-  "editor.unicodeHighlight.allowedCharacters": {
-    "ü": true,
-    "ö": true,
-    "ä": true,
-    "ß": true
-  },
-  // https://gist.github.com/museun/d9de011fff40ddb8d030a2ae6b73f861
-  "workbench.editor.showIcons": false,
-  "workbench.editor.highlightModifiedTabs": true,
-  "workbench.editor.tabCloseButton": "off",
-  "workbench.editor.labelFormat": "short",
-  "workbench.editor.showTabs": true,
-  "workbench.editor.splitInGroupLayout": "horizontal",
-  "workbench.editor.splitSizing": "split",
-  "workbench.editor.tabSizing": "shrink",
-  "workbench.editor.untitled.hint": "hidden",
-  "workbench.editor.untitled.labelFormat": "name",
+    // VIM
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+      {
+        "before": ["k", "j"],
+        "after": ["<Esc>"]
+      },
+      {
+        "before": ["j", "k"],
+        "after": ["<Esc>"]
+      }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+      {
+        "before": ["<leader>", "d"],
+        "after": ["d", "d"]
+      },
+      {
+        "before": ["<C-n>"],
+        "commands": [":nohl"]
+      },
+      {
+        "before": ["K"],
+        "commands": ["lineBreakInsert"],
+        "silent": true
+      }
+    ],
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+      "<C-a>": false,
+      "<C-f>": false
+    },
 
-  "explorer.confirmDelete": false,
-  "editor.inlineSuggest.enabled": true,
-  "git.ignoreMissingGitWarning": true,
-  "workbench.startupEditor": "none",
-  "files.autoSave": "afterDelay",
-  "editor.formatOnSave": false,
-
-  "vim.easymotion": true,
-  "vim.incsearch": true,
-  "vim.useSystemClipboard": true,
-  "vim.useCtrlKeys": true,
-  "vim.hlsearch": true,
-  "vim.insertModeKeyBindings": [
-    {
-      "before": ["k", "j"],
-      "after": ["<Esc>"]
-    }
-  ],
-  "vim.leader": "<space>",
-  "vim.handleKeys": {
-    "<C-a>": false,
-    "<C-f>": false
-  },
-  "editor.wordWrap": "on",
-  "git.confirmSync": false,
-  "editor.lineNumbers": "relative",
-  "window.autoDetectColorScheme": true,
-  "security.workspace.trust.untrustedFiles": "open",
-  "git.enableSmartCommit": true,
-  "editor.indentSize": "tabSize",
-  "workbench.tree.indent": 4,
-  "window.commandCenter": true,
-  "window.openFilesInNewWindow": "on",
-  "window.openFoldersInNewWindow": "on",
-  "diffEditor.ignoreTrimWhitespace": false,
-  "[python]": {
-    "editor.formatOnType": true
-  },
-  "workbench.colorTheme": "Default Dark+ Experimental",
-  "workbench.statusBar.visible": false,
-  "workbench.activityBar.visible": false
+    // BASICS
+    "editor.lineNumbers": "on",
+    "editor.lineHeight": 1.6,
+    "editor.wordWrap": "on",
+    "editor.fontLigatures": true,
+    "workbench.preferredHighContrastColorTheme": "Default Light Modern",
+    "window.autoDetectColorScheme": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "security.workspace.trust.untrustedFiles": "open",
+    "workbench.activityBar.location": "top",
+    "git.confirmSync": false,
+    "editor.minimap.enabled": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.fontFamily": "\"-apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif\"",
+    "terminal.integrated.fontFamily": "monospace",
+    "[python]": {
+      "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[scss]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "notebook.output.scrolling": true,
+    "workbench.statusBar.visible": false,
+    
+    "editor.cursorSurroundingLines": 15,
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorBlinking": "phase",
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "workbench.editor.scrollToSwitchTabs": true,
 }
