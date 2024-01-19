@@ -31,6 +31,8 @@
   "workbench.tips.enabled": false,
   "workbench.startupEditor": "none",
   "workbench.activityBar.location": "top",
+  "workbench.preferredDarkColorTheme": "Dark",
+  "workbench.colorTheme": "Dark",
 "workbench.colorCustomizations": {
   "[Dark]": {
     "editorLineNumber.foreground": "#767272",
@@ -48,7 +50,7 @@
   "git.confirmSync": false,
 
   // Mixed Settings
-  "terminal.integrated.fontFamily": "monospace",
+  "terminal.integrated.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
   "security.workspace.trust.untrustedFiles": "open",
   "diffEditor.ignoreTrimWhitespace": false,
   "diffEditor.renderSideBySide": false,
@@ -97,7 +99,5 @@
     "<C-a>": false,
     "<C-f>": false
 },
-"workbench.preferredDarkColorTheme": "Dark",
-"workbench.colorTheme": "Dark",
 
 }
