@@ -3,7 +3,7 @@
   "editor.lineNumbers": "on",
   "editor.lineHeight": 1.7,
   "editor.fontLigatures": true,
-"editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
   "editor.minimap.enabled": false,
   "editor.cursorSurroundingLines": 15,
   "editor.cursorSmoothCaretAnimation": "on",
@@ -11,7 +11,7 @@
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.hover.above": true,
   "editor.hover.delay": 150,
-"editor.glyphMargin": false,
+"editor.glyphMargin": true,
 "editor.wordWrap": "on",
 "editor.wrappingStrategy": "advanced",
 "editor.scrollbar.horizontal": "hidden",
@@ -20,18 +20,21 @@
   "editor.gotoLocation.multipleReferences": "goto",
   "editor.gotoLocation.multipleDefinitions": "goto",
   "editor.gotoLocation.multipleDeclarations": "goto",
+  "editor.tabSize": 4,
   
   // Workbench Settings
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.statusBar.visible": false,
   "workbench.editor.scrollToSwitchTabs": true,
-"workbench.layoutControl.enabled": true,
+"workbench.layoutControl.enabled": false,
   "workbench.preferredHighContrastColorTheme": "Default Light Modern",
   "workbench.tips.enabled": false,
   "workbench.startupEditor": "none",
   "workbench.activityBar.location": "top",
 "workbench.colorCustomizations": {
-  "[Default Dark Modern]": {},
+  "[Dark]": {
+    "editorLineNumber.foreground": "#767272",
+  }
 },
   
   // Window Settings
@@ -57,7 +60,7 @@
   "markdown.preview.typographer": true,
 
   // Extension Settings
-  
+
   // Vim
   "vim.easymotion": true,
   "vim.incsearch": true,
@@ -93,6 +96,8 @@
   "vim.handleKeys": {
     "<C-a>": false,
     "<C-f>": false
-  },
+},
+"workbench.preferredDarkColorTheme": "Dark",
+"workbench.colorTheme": "Dark",
 
 }
