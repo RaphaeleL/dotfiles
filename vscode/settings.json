@@ -11,36 +11,41 @@
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.hover.above": true,
   "editor.hover.delay": 150,
-"editor.glyphMargin": true,
-"editor.wordWrap": "on",
-"editor.wrappingStrategy": "advanced",
-"editor.scrollbar.horizontal": "hidden",
+  "editor.glyphMargin": true,
+  "editor.wordWrap": "on",
+  "editor.wrappingStrategy": "advanced",
+  "editor.scrollbar.horizontal": "hidden",
   "editor.copyWithSyntaxHighlighting": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.gotoLocation.multipleReferences": "goto",
   "editor.gotoLocation.multipleDefinitions": "goto",
   "editor.gotoLocation.multipleDeclarations": "goto",
   "editor.tabSize": 4,
-  
+
   // Workbench Settings
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.statusBar.visible": false,
   "workbench.editor.scrollToSwitchTabs": true,
-"workbench.layoutControl.enabled": false,
+  "workbench.layoutControl.enabled": false,
   "workbench.preferredHighContrastColorTheme": "Default Light Modern",
   "workbench.tips.enabled": false,
   "workbench.startupEditor": "none",
   "workbench.activityBar.location": "top",
   "workbench.preferredDarkColorTheme": "Dark",
   "workbench.colorTheme": "Dark",
-"workbench.colorCustomizations": {
-  "[Dark]": {
-    "editorLineNumber.foreground": "#767272",
-  }
-},
-  
+  "workbench.colorCustomizations": {
+    "[Dark]": {
+      "editorLineNumber.foreground": "#767272",
+      "editor.lineHighlightBackground": "#76727220",
+      "editorError.foreground": "#902929",
+      "editorWarning.foreground": "#c3a21b",
+      "editorInfo.foreground": "#2b6a8f",
+      "editorHint.foreground": "#2b6a8f"
+    }
+  },
+
   // Window Settings
-"window.commandCenter": false,
+  "window.commandCenter": false,
   "window.autoDetectColorScheme": true,
   "window.newWindowDimensions": "inherit",
 
@@ -57,9 +62,26 @@
   "breadcrumbs.enabled": false,
 
   // Language Settings
+
+  // TypeScript
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "notebook.output.scrolling": true,
+
+  // Markdown
   "markdown.preview.typographer": true,
+
+  // Python
+  "notebook.output.scrolling": true,
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.analysis.inlayHints.variableTypes": true,
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.logLevel": "Warning",
+
+  // Advanced Settings
+  "apc.menubar.compact": true,
+  "apc.electron": {
+    "frame": false,
+  },
 
   // Extension Settings
 
@@ -98,6 +120,5 @@
   "vim.handleKeys": {
     "<C-a>": false,
     "<C-f>": false
-},
-
+  }
 }
