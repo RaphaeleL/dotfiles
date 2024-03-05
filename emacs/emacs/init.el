@@ -13,10 +13,10 @@
 
 ;; Ido Mode for Files
 (ido-mode 1)
+(ido-everywhere 1)
 
 ;; Package Manager
-(add-to-list 'package-archives
-           '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
 ;; Ido Mode for M-x
@@ -28,8 +28,8 @@
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;; Relative Line Numbering
+(setq display-line-numbers 'relative)
 (global-display-line-numbers-mode t)
-(setq display-line-numbers 'relative) 
 
 ;; Bigger Font
 (set-face-attribute 'default nil :height 130)
@@ -44,35 +44,37 @@
 ;; Tastatur
 
 ;; Deutsche Mac Tastatur
-(setq mac-command-modifier 'meta
-      mac-option-modifier 'none
-      default-input-method "MacOSX")
+(if (eq system-type 'darwin)
+    (setq mac-command-modifier 'meta
+	  mac-option-modifier 'none
+	  default-input-method "MacOSX")
+)
 
 ;; Custom Keybindings
 
 ;; Dired
-(global-set-key (kbd "C-x d") 'dired) ; Open Dired with C-x d
+(global-set-key (kbd "C-x d") 'dired)
 
 ;; Magit
-(global-set-key (kbd "C-x g") 'magit-status) ; Open Magit Status with C-x g
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;; Buffer Navigation
-(global-set-key (kbd "C-<tab>") 'next-buffer) ; Next buffer with Ctrl-Tab
-(global-set-key (kbd "C-S-<tab>") 'previous-buffer) ; Previous buffer with Ctrl-Shift-Tab
-(global-set-key (kbd "C-c l") 'buffer-menu) ; Buffer Menu
+(global-set-key (kbd "C-<tab>") 'next-buffer)
+(global-set-key (kbd "C-S-<tab>") 'previous-buffer)
+(global-set-key (kbd "C-c l") 'buffer-menu)
 
 ;; Window Navigation
-(global-set-key (kbd "C-x h") 'windmove-left) ; Move to left window with C-x left arrow
-(global-set-key (kbd "C-x l") 'windmove-right) ; Move to right window with C-x right arrow
-(global-set-key (kbd "C-x k") 'windmove-up) ; Move to upper window with C-x up arrow
-(global-set-key (kbd "C-x j") 'windmove-down) ; Move to lower window with C-x down arrow
+(global-set-key (kbd "C-x h") 'windmove-left)
+(global-set-key (kbd "C-x l") 'windmove-right)
+(global-set-key (kbd "C-x k") 'windmove-up)
+(global-set-key (kbd "C-x j") 'windmove-down)
 
 ;; Close window
-(global-set-key (kbd "C-x 0") 'delete-window) ; Close current window with C-x 0
-(global-set-key (kbd "C-x 1") 'delete-other-windows) ; Close other windows with C-x 1
+(global-set-key (kbd "C-x 0") 'delete-window)
+(global-set-key (kbd "C-x 1") 'delete-other-windows)
 
 ;; Compile
-(global-set-key (kbd "C-x m") 'compile) ; Run Compile Command
+(global-set-key (kbd "C-x m") 'compile)
 
 ;; Copy and Paste
 (require 'simpleclip)
@@ -90,10 +92,18 @@
 (global-set-key (kbd "M-+") (lambda () (interactive) (text-scale-increase 1)))
 (global-set-key (kbd "M--") (lambda () (interactive) (text-scale-decrease 1)))
 
-;; TODO - Which Key
+;; Kill Current Buffer
+(global-set-key (kbd "C-c k") (lambda () (interactive) (kill-current-buffer)))
+
+;; Which Key
 (require 'which-key)
 (which-key-mode)
 (which-key-setup-side-window-right)
+
+;; Move Text
+(require 'move-text)
+(global-set-key (kbd "M-p") 'move-text-up)
+(global-set-key (kbd "M-n") 'move-text-down)
 
 ;; C / C++ LSP
 (setq package-selected-packages '(lsp-mode yasnippet helm-lsp
@@ -124,7 +134,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(simpleclip smex which-key)))
+ '(custom-safe-themes
+   '("e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7"
+     "18cf5d20a45ea1dff2e2ffd6fbcd15082f9aa9705011a3929e77129a971d1cb3"
+     default))
+ '(package-selected-packages
+   '(linum-relative move-text simpleclip smex which-key zenburn-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
