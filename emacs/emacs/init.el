@@ -67,10 +67,6 @@
 (global-set-key (kbd "C-x k") 'windmove-up) ; Move to upper window with C-x up arrow
 (global-set-key (kbd "C-x j") 'windmove-down) ; Move to lower window with C-x down arrow
 
-;; Split Windows more intuitively
-(global-set-key (kbd "C-x .") 'split-window-right) ; Split window vertically with C-x |
-(global-set-key (kbd "C-x -") 'split-window-below) ; Split window horizontally with C-x _
-
 ;; Close window
 (global-set-key (kbd "C-x 0") 'delete-window) ; Close current window with C-x 0
 (global-set-key (kbd "C-x 1") 'delete-other-windows) ; Close other windows with C-x 1
@@ -93,6 +89,11 @@
 ;; Font Size
 (global-set-key (kbd "M-+") (lambda () (interactive) (text-scale-increase 1)))
 (global-set-key (kbd "M--") (lambda () (interactive) (text-scale-decrease 1)))
+
+;; TODO - Which Key
+(require 'which-key)
+(which-key-mode)
+(which-key-setup-side-window-right)
 
 ;; C / C++ LSP
 (setq package-selected-packages '(lsp-mode yasnippet helm-lsp
@@ -123,7 +124,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(simpleclip smex)))
+ '(package-selected-packages '(simpleclip smex which-key)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
