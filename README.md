@@ -1,5 +1,11 @@
 # Dotfiles
 
+... just my Personal Dotfiles.
+
+## Windows (11)
+
+These dotfiles were created for use on a macOS system (intel and apple silicon). However, they should run on Windows without any problems.
+
 ## Linux (Debian)
 
 These dotfiles were created for use on a macOS system (intel and apple silicon). However, they will run on Linux (Debian) without any problems.
