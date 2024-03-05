@@ -11,6 +11,15 @@
 ;; Theme
 (load-theme 'gruber-darker t)
 
+;; Font
+(defun get-default-font ()
+  (cond
+   ((eq system-type 'windows-nt) "Iosevka-14")
+   ((eq system-type 'darwin) "Iosevka-14")
+   ((eq system-type 'gnu/linux) "Iosevka-14")))
+
+(add-to-list 'default-frame-alist `(font . ,(get-default-font)))
+
 ;; Ido Mode for Files
 (ido-mode 1)
 (ido-everywhere 1)
@@ -28,7 +37,6 @@
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;; Relative Line Numbering
-(setq display-line-numbers 'relative)
 (global-display-line-numbers-mode t)
 
 ;; Bigger Font
@@ -93,7 +101,7 @@
 (global-set-key (kbd "M--") (lambda () (interactive) (text-scale-decrease 1)))
 
 ;; Kill Current Buffer
-(global-set-key (kbd "C-c k") (lambda () (interactive) (kill-current-buffer)))
+(global-set-key (kbd "C-c k") (lambda () (interactive) (kill-current-buffer))) 
 
 ;; Which Key
 (require 'which-key)
@@ -105,7 +113,7 @@
 (global-set-key (kbd "M-p") 'move-text-up)
 (global-set-key (kbd "M-n") 'move-text-down)
 
-;; C / C++ LSP
+;; LSP
 (setq package-selected-packages '(lsp-mode yasnippet helm-lsp
     projectile hydra flycheck company avy helm-xref))
 
@@ -115,6 +123,7 @@
 
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
+(add-hook 'lisp-mode-hook 'lsp)
 
 (setq lsp-headerline-breadcrumb-enable nil)
 
