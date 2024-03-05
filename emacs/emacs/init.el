@@ -1,3 +1,7 @@
+;; ---------------------------------------------------------------------------------
+;; Appearance
+;; ---------------------------------------------------------------------------------
+
 ;; No Startup Message
 (setq inhibit-startup-message t)
 
@@ -5,11 +9,12 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
-(set-fringe-mode 10)
+(set-fringe-mode 0)
 (menu-bar-mode -1)
 
 ;; Theme
 (load-theme 'gruber-darker t)
+;; (load-theme 'modus-operandi t)
 
 ;; Font
 (defun get-default-font ()
@@ -46,19 +51,22 @@
 (when window-system (set-frame-size (selected-frame) 120 45))
 
 ;; Disable Backup and Autosave Settings
-(setq make-backup-files nil) ; Stop creating backup~ files
-(setq auto-save-default nil) ; Stop creating #autosave# files
+(setq make-backup-files nil)
+(setq auto-save-default nil)
 
+;; ---------------------------------------------------------------------------------
 ;; Tastatur
+;; ---------------------------------------------------------------------------------
 
 ;; Deutsche Mac Tastatur
 (if (eq system-type 'darwin)
     (setq mac-command-modifier 'meta
 	  mac-option-modifier 'none
-	  default-input-method "MacOSX")
-)
+	  default-input-method "MacOSX"))
 
+;; ---------------------------------------------------------------------------------
 ;; Custom Keybindings
+;; ---------------------------------------------------------------------------------
 
 ;; Dired
 (global-set-key (kbd "C-x d") 'dired)
@@ -113,7 +121,10 @@
 (global-set-key (kbd "M-p") 'move-text-up)
 (global-set-key (kbd "M-n") 'move-text-down)
 
+;; ---------------------------------------------------------------------------------
 ;; LSP
+;; ---------------------------------------------------------------------------------
+
 (setq package-selected-packages '(lsp-mode yasnippet helm-lsp
     projectile hydra flycheck company avy helm-xref))
 
@@ -123,7 +134,17 @@
 
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
+(add-hook 'python-mode-hook 'lsp)
 (add-hook 'lisp-mode-hook 'lsp)
+
+;; TODO: Add more LSPs
+;; - https://emacs-lsp.github.io/lsp-mode/page/lsp-cmake/
+;; - CMake
+;; - Make
+;; - Java
+;; - JS/TS
+;; - Markdown
+;; - ...  
 
 (setq lsp-headerline-breadcrumb-enable nil)
 
@@ -138,6 +159,105 @@
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
   (yas-global-mode))
 
+;; ---------------------------------------------------------------------------------
+;; Modeline
+;; ---------------------------------------------------------------------------------
+
+;; TODO
+;; https://protesilaos.com/codelog/2023-07-29-emacs-custom-modeline-tutorial/
+
+;; The default mode line 🤨
+(setq-default mode-line-format
+              '("%e" mode-line-front-space
+                (:propertize
+                 ("" mode-line-mule-info mode-line-client mode-line-modified
+                  mode-line-remote)
+                 display (min-width (5.0)))
+                mode-line-frame-identification mode-line-buffer-identification "   "
+                mode-line-position (vc-mode vc-mode) "  " mode-line-modes
+                mode-line-misc-info mode-line-end-spaces))
+
+;; My mode line with the `prot-modeline.el' 🤩
+;; Note that separate to this is my `prot-modeline-subtle-mode'.
+(setq-default mode-line-format
+              '("%e"
+                prot-modeline-kbd-macro
+                prot-modeline-narrow
+                prot-modeline-input-method
+                prot-modeline-buffer-status
+                " "
+                prot-modeline-buffer-identification
+                "  "
+                prot-modeline-major-mode
+                prot-modeline-process
+                "  "
+                prot-modeline-vc-branch
+                "  "
+                prot-modeline-flymake
+                "  "
+                prot-modeline-align-right
+                prot-modeline-misc-info))
+
+
+;; Here I explained why `setq' sets a buffer-local value and discussed
+;; why we need `setq-default' in such cases.
+(setq mode-line-format nil)
+(kill-local-variable 'mode-line-format)
+(force-mode-line-update)
+(setq-default mode-line-format
+              '("%e"
+                my-modeline-buffer-name
+                "  "
+                my-modeline-major-mode))
+
+(defface my-modeline-background
+  '((t :background "#ffdd33" :foreground "black" :inherit bold))
+  "Face with a red background for use on the mode line.")
+
+(defun my-modeline--buffer-name ()
+  "Return `buffer-name' with spaces around it."
+  (format " %s " (buffer-name)))
+
+(defvar-local my-modeline-buffer-name
+    '(:eval
+      (when (mode-line-window-selected-p)
+        (propertize (my-modeline--buffer-name) 'face 'my-modeline-background)))
+  "Mode line construct to display the buffer name.")
+
+(put 'my-modeline-buffer-name 'risky-local-variable t)
+
+(defun my-modeline--major-mode-name ()
+  "Return capitalized `major-mode' as a string."
+  (capitalize (symbol-name major-mode)))
+
+(defvar-local my-modeline-major-mode
+    '(:eval
+      (list
+       (propertize "λ" 'face 'shadow)
+       " "
+       (propertize (my-modeline--major-mode-name) 'face 'bold)))
+  "Mode line construct to display the major mode.")
+
+(put 'my-modeline-major-mode 'risky-local-variable t)
+
+;; Emacs 29, check the definition right below
+(mode-line-window-selected-p)
+
+(defun mode-line-window-selected-p ()
+  "Return non-nil if we're updating the mode line for the selected window.
+This function is meant to be called in `:eval' mode line
+constructs to allow altering the look of the mode line depending
+on whether the mode line belongs to the currently selected window
+or not."
+  (let ((window (selected-window)))
+    (or (eq window (old-selected-window))
+	(and (minibuffer-window-active-p (minibuffer-window))
+	     (with-selected-window (minibuffer-window)
+	       (eq window (minibuffer-selected-window)))))))
+
+;; ---------------------------------------------------------------------------------
+;; ---------------------------------------------------------------------------------
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -148,7 +268,8 @@
      "18cf5d20a45ea1dff2e2ffd6fbcd15082f9aa9705011a3929e77129a971d1cb3"
      default))
  '(package-selected-packages
-   '(linum-relative move-text simpleclip smex which-key zenburn-theme)))
+   '(linum-relative magit modus-themes move-text python-mode simpleclip
+		    smex which-key zenburn-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
