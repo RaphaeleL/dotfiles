@@ -197,7 +197,6 @@ Containing LEFT, and RIGHT aligned respectively."
 	     mode-line-modes
 	     mode-line-misc-info))))))
 
-
 ;; ---------------------------------------------------------------------------------
 ;; ---------------------------------------------------------------------------------
 
@@ -206,22 +205,13 @@ Containing LEFT, and RIGHT aligned respectively."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("3cbfdfce26469ddf69164b28d07852cc0f09a7b4b14d25ca40b34369db7e1664"
-     "aed3a896c4ea7cd7603f7a242fe2ab21f1539ab4934347e32b0070a83c9ece01"
-     "e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7"
-     "18cf5d20a45ea1dff2e2ffd6fbcd15082f9aa9705011a3929e77129a971d1cb3"
-     default))
  '(package-selected-packages
-   '(dired-preview linum-relative magit modus-themes move-text
-		   python-mode simpleclip smex spacious-padding
-		   which-key zenburn-theme)))
+   '(avy company flycheck helm-lsp helm-xref hydra jupyter lsp-mode
+	 projectile yasnippet)))
 (custom-set-faces
-
-'(org-level-1 ((t (:inherit outline-1 :height 2.0))))
-  '(org-level-2 ((t (:inherit outline-2 :height 1.5))))
-  '(org-level-3 ((t (:inherit outline-3 :height 1.2))))
-  '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
-  '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
 
  )
