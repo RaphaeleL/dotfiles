@@ -4,6 +4,7 @@
 
 ;; No Startup Message
 (setq inhibit-startup-message t)
+(setq initial-scratch-message "\n\n\n")
 
 ;; Cleanup the UI
 (scroll-bar-mode -1)
@@ -11,10 +12,10 @@
 (tooltip-mode -1)
 (set-fringe-mode 0)
 (menu-bar-mode -1)
+(spacious-padding-mode 1)
 
 ;; Theme
-(load-theme 'gruber-darker t)
-;; (load-theme 'modus-operandi t)
+(load-theme 'modus-operandi-tinted t)
 
 ;; Font
 (defun get-default-font ()
@@ -48,7 +49,7 @@
 (set-face-attribute 'default nil :height 130)
 
 ;; Window Size
-(when window-system (set-frame-size (selected-frame) 120 45))
+(when window-system (set-frame-size (selected-frame) 120 39))
 
 ;; Disable Backup and Autosave Settings
 (setq make-backup-files nil)
@@ -69,6 +70,7 @@
 ;; ---------------------------------------------------------------------------------
 
 ;; Dired
+(dired-preview-global-mode 1)
 (global-set-key (kbd "C-x d") 'dired)
 
 ;; Magit
@@ -78,6 +80,7 @@
 (global-set-key (kbd "C-<tab>") 'next-buffer)
 (global-set-key (kbd "C-S-<tab>") 'previous-buffer)
 (global-set-key (kbd "C-c l") 'buffer-menu)
+(global-set-key (kbd "C-c s") 'switch-to-buffer)
 
 ;; Window Navigation
 (global-set-key (kbd "C-x h") 'windmove-left)
@@ -109,7 +112,7 @@
 (global-set-key (kbd "M--") (lambda () (interactive) (text-scale-decrease 1)))
 
 ;; Kill Current Buffer
-(global-set-key (kbd "C-c k") (lambda () (interactive) (kill-current-buffer))) 
+(global-set-key (kbd "C-c k") (lambda () (interactive) (kill-current-buffer)))
 
 ;; Which Key
 (require 'which-key)
@@ -124,6 +127,8 @@
 ;; ---------------------------------------------------------------------------------
 ;; -------- LSP --------------------------------------------------------------------
 ;; ---------------------------------------------------------------------------------
+
+(set-fringe-mode 0)
 
 (setq package-selected-packages '(lsp-mode yasnippet helm-lsp
     projectile hydra flycheck company avy helm-xref))
@@ -144,7 +149,7 @@
 ;; - Java
 ;; - JS/TS
 ;; - Markdown
-;; - ...  
+;; - ...
 
 (setq lsp-headerline-breadcrumb-enable nil)
 
@@ -169,12 +174,12 @@
   "Return a string of `window-width' length.
 Containing LEFT, and RIGHT aligned respectively."
   (let ((available-width
-         (- (window-total-width)
-            (+ (length (format-mode-line left))
-               (length (format-mode-line right))))))
+	 (- (window-total-width)
+	    (+ (length (format-mode-line left))
+	       (length (format-mode-line right))))))
     (append left
-            (list (format (format "%%%ds" available-width) ""))
-            right)))
+	    (list (format (format "%%%ds" available-width) ""))
+	    right)))
 
 (setq-default
  mode-line-format
@@ -182,15 +187,16 @@ Containing LEFT, and RIGHT aligned respectively."
     (simple-mode-line-render
      ;; Left.
      (quote ("%e "
-             mode-line-buffer-identification
-             " %l : %c"
-             evil-mode-line-tag
-             "[%*]"))
+	     mode-line-buffer-identification
+	     " %l : %c"
+	     evil-mode-line-tag
+	     "[%*]"))
      ;; Right.
      (quote ("%p "
-             mode-line-frame-identification
-             mode-line-modes
-             mode-line-misc-info))))))
+	     mode-line-frame-identification
+	     mode-line-modes
+	     mode-line-misc-info))))))
+
 
 ;; ---------------------------------------------------------------------------------
 ;; ---------------------------------------------------------------------------------
@@ -201,15 +207,21 @@ Containing LEFT, and RIGHT aligned respectively."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7"
+   '("3cbfdfce26469ddf69164b28d07852cc0f09a7b4b14d25ca40b34369db7e1664"
+     "aed3a896c4ea7cd7603f7a242fe2ab21f1539ab4934347e32b0070a83c9ece01"
+     "e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7"
      "18cf5d20a45ea1dff2e2ffd6fbcd15082f9aa9705011a3929e77129a971d1cb3"
      default))
  '(package-selected-packages
-   '(linum-relative magit modus-themes move-text python-mode simpleclip
-		    smex which-key zenburn-theme)))
+   '(dired-preview linum-relative magit modus-themes move-text
+		   python-mode simpleclip smex spacious-padding
+		   which-key zenburn-theme)))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+
+'(org-level-1 ((t (:inherit outline-1 :height 2.0))))
+  '(org-level-2 ((t (:inherit outline-2 :height 1.5))))
+  '(org-level-3 ((t (:inherit outline-3 :height 1.2))))
+  '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
+  '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
+
  )
