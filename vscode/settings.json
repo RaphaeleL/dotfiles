@@ -1,85 +1,124 @@
 {
-  // Editor Settings
-  "editor.lineNumbers": "relative",
-  "editor.lineHeight": 1.4,
-  "editor.fontLigatures": true,
-  "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
-  "editor.minimap.enabled": false,
-  "editor.cursorSurroundingLines": 15,
-  "editor.cursorSmoothCaretAnimation": "on",
-  "editor.cursorBlinking": "phase",
-  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
-  "editor.hover.above": true,
-  "editor.hover.delay": 150,
-  "editor.glyphMargin": true,
+  // Better defaults
+  "editor.copyWithSyntaxHighlighting": false,
+  "editor.lightbulb.enabled": "off",
+  "editor.formatOnSave": true,
+  "editor.smoothScrolling": true,
+  "editor.cursorSmoothCaretAnimation": "on", // most asked
+  "editor.scrollbar.horizontal": "hidden",
   "editor.wordWrap": "on",
   "editor.wrappingStrategy": "advanced",
-  "editor.scrollbar.horizontal": "hidden",
-  "editor.copyWithSyntaxHighlighting": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "files.insertFinalNewline": true,
+  "explorer.confirmDelete": false,
+  "workbench.sideBar.location": "right",
+  "git.enableCommitSigning": true, // always sign your commits
+  
+  // Reduced noise 
+  "editor.hover.enabled": true,
+  "workbench.tips.enabled": false,
+  "git.decorations.enabled": false,
+  "explorer.decorations.colors": true,
+  "explorer.decorations.badges": false,
+  "editor.renderLineHighlight": "none",
+  "editor.occurrencesHighlight": "off",
   "editor.gotoLocation.multipleReferences": "goto",
   "editor.gotoLocation.multipleDefinitions": "goto",
   "editor.gotoLocation.multipleDeclarations": "goto",
-  "editor.tabSize": 4,
+  "editor.gotoLocation.multipleImplementations": "goto",
+  "editor.gotoLocation.multipleTypeDefinitions": "goto",
 
-  // Workbench Settings
-  "workbench.editor.enablePreviewFromQuickOpen": false,
-  "workbench.editor.scrollToSwitchTabs": true,
-  "workbench.preferredHighContrastColorTheme": "Default Light Modern",
-  "workbench.tips.enabled": false,
-  "workbench.startupEditor": "none",
-  "workbench.layoutControl.enabled": false,
-  "window.commandCenter": false,
+  // Improved search
+  "search.useIgnoreFiles": false,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**debug": true,
+    "**/package-lock.json": true,
+    "**/.next": true,
+    "**/data": true,
+  },
+
+  // Code
+  "editor.fontSize": 13,
+  "editor.lineHeight": 1.7,
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontLigatures": true,
+
+  // Suggestions
+  "editor.suggestFontSize": 12,
+  "editor.suggestLineHeight": 25,
+  
+  // Terminal
+  "terminal.integrated.lineHeight": 1.3,
+  "terminal.integrated.fontSize": 13,
+  
+  // ... other settings
+  // APC UI
+  "window.titleBarStyle": "native",
+  "apc.electron": {
+    "titleBarStyle": "hiddenInset",
+    "titleBarOverlay": {
+      "color": "#292929",
+      "symbolColor": "#fff"
+    },
+  },
+  "apc.header": {
+    "height": 34
+  },
+  "apc.parts.font.family": {
+    "sidebar": "JetBrains Mono"
+  },
+
+  // Erros
+  "errorLens.enabled": true,
+  "errorLens.padding": "0",
+  "errorLens.gutterIconsEnabled": true,
+  "errorLens.removeLinebreaks": false,
+  "errorLens.scrollbarHackEnabled": true,
+  "errorLens.fontWeight": "600",
+  "errorLens.fontFamily": "JetBrains Mono",
+
+  // Theme
   "workbench.colorCustomizations": {
-    "[Dark]": {
-      "editorLineNumber.foreground": "#767272",
-      "editor.lineHighlightBackground": "#76727220",
-      "editorError.foreground": "#902929",
-      "editorWarning.foreground": "#c3a21b",
-      "editorInfo.foreground": "#2b6a8f",
-      "editorHint.foreground": "#2b6a8f"
+    "[Fleet*]": { 
+      "statusBar.border": "#292929",
+      "tab.inactiveBackground": "#292929",
+      "editorGroupHeader.border": "#292929",
+      "editorGroupHeader.tabsBackground": "#292929",
+      "editorLineNumber.foreground": "#5D5D5D",
+      "tab.inactiveForeground": "#D1D1D1",
+      "tab.activeForeground": "#fff",
+      "searchEditor.textInputBorder": "#fff",
+      "tab.activeBorderTop": "#fff",
+      "editorInlayHint.foreground": "#5D5D5D",
+      "editorInlayHint.background": "#FFFFFF00",
+      "terminal.ansiBrightBlack": "#5D5D5D"
+    },
+    "[Kaolin*]": { 
+      "statusBar.background": "#5b3e31",
+      "terminal.ansiBrightMagenta": "#956a4e",
+      "terminal.ansiBrightCyan": "#4c6444",
+      "editorInlayHint.background": "#FFFFFF00",
+      "terminal.ansiBrightBlack": "#A0A0A0",
     }
   },
 
-  // Window Settings
-  "window.autoDetectColorScheme": true,
-  "window.newWindowDimensions": "inherit",
-
-  // Git Settings
-  "git.autofetch": true,
-  "git.enableSmartCommit": true,
-  "git.confirmSync": false,
-
-  // Mixed Settings
-  "terminal.integrated.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
-  "security.workspace.trust.untrustedFiles": "open",
-  "diffEditor.ignoreTrimWhitespace": false,
-  "diffEditor.renderSideBySide": false,
-  "breadcrumbs.enabled": false,
-
-  // Language Settings
-
-  // TypeScript
-  "typescript.updateImportsOnFileMove.enabled": "always",
-
-  // Markdown
-  "markdown.preview.typographer": true,
-
-  // Python
-  "notebook.output.scrolling": true,
-  "python.analysis.diagnosticMode": "workspace",
-  "python.analysis.inlayHints.functionReturnTypes": false,
-  "python.analysis.inlayHints.variableTypes": false,
-  "python.analysis.typeCheckingMode": "basic",
-  "python.analysis.logLevel": "Warning",
-
-  // Advanced Settings
-  "apc.menubar.compact": true,
-  "apc.electron": {
-    "frame": false,
-  },
-
-  // Extension Settings
+  // Settings Cycle
+  "settings.cycle": [
+    {
+      "id": "explorer.excludeGitIgnore",
+      "values": [
+        {
+          "explorer.excludeGitIgnore": true
+        },
+        {
+          "explorer.excludeGitIgnore": false
+        }
+      ]
+    },
+  ],
 
   // Vim
   "vim.easymotion": true,
@@ -118,4 +157,6 @@
     "<C-f>": false
   },
   "window.zoomLevel": 1,
+  "workbench.productIconTheme": "fluent-icons",
+  "workbench.colorTheme": "Fleet Dark",
 }
