@@ -1,7 +1,7 @@
 {
   // Editor Settings
-  "editor.lineNumbers": "on",
-  "editor.lineHeight": 1.7,
+  "editor.lineNumbers": "relative",
+  "editor.lineHeight": 1.4,
   "editor.fontLigatures": true,
   "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
   "editor.minimap.enabled": false,
@@ -24,15 +24,12 @@
 
   // Workbench Settings
   "workbench.editor.enablePreviewFromQuickOpen": false,
-  "workbench.statusBar.visible": false,
   "workbench.editor.scrollToSwitchTabs": true,
-  "workbench.layoutControl.enabled": false,
   "workbench.preferredHighContrastColorTheme": "Default Light Modern",
   "workbench.tips.enabled": false,
   "workbench.startupEditor": "none",
-  "workbench.activityBar.location": "top",
-  "workbench.preferredDarkColorTheme": "Dark",
-  "workbench.colorTheme": "Dark",
+  "workbench.layoutControl.enabled": false,
+  "window.commandCenter": false,
   "workbench.colorCustomizations": {
     "[Dark]": {
       "editorLineNumber.foreground": "#767272",
@@ -45,7 +42,6 @@
   },
 
   // Window Settings
-  "window.commandCenter": false,
   "window.autoDetectColorScheme": true,
   "window.newWindowDimensions": "inherit",
 
@@ -72,8 +68,8 @@
   // Python
   "notebook.output.scrolling": true,
   "python.analysis.diagnosticMode": "workspace",
-  "python.analysis.inlayHints.functionReturnTypes": true,
-  "python.analysis.inlayHints.variableTypes": true,
+  "python.analysis.inlayHints.functionReturnTypes": false,
+  "python.analysis.inlayHints.variableTypes": false,
   "python.analysis.typeCheckingMode": "basic",
   "python.analysis.logLevel": "Warning",
 
@@ -120,5 +116,6 @@
   "vim.handleKeys": {
     "<C-a>": false,
     "<C-f>": false
-  }
+  },
+  "window.zoomLevel": 1,
 }
