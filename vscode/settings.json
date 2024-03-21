@@ -8,7 +8,7 @@
   "editor.scrollbar.horizontal": "hidden",
   "editor.wordWrap": "on",
   "editor.wrappingStrategy": "advanced",
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
   "diffEditor.ignoreTrimWhitespace": false,
   "files.insertFinalNewline": true,
   "explorer.confirmDelete": false,
@@ -118,6 +118,17 @@
         }
       ]
     },
+    {
+      "id": "explorer.colorTheme",
+      "values": [
+        {
+          "workbench.colorTheme": "Fleet Dark" 
+        },
+        {
+          "workbench.colorTheme": "Kaolin Light" 
+        }
+      ]
+    },
   ],
 
   // Vim
@@ -159,4 +170,7 @@
   "window.zoomLevel": 1,
   "workbench.productIconTheme": "fluent-icons",
   "workbench.colorTheme": "Fleet Dark",
+  "workbench.statusBar.visible": false,
+  "explorer.excludeGitIgnore": true,
+  "editor.lineNumbers": "relative",
 }
