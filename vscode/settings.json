@@ -4,7 +4,7 @@
   "editor.lightbulb.enabled": "off",
   "editor.formatOnSave": true,
   "editor.smoothScrolling": true,
-  "editor.cursorSmoothCaretAnimation": "on", // most asked
+  "editor.cursorSmoothCaretAnimation": "on",
   "editor.scrollbar.horizontal": "hidden",
   "editor.wordWrap": "on",
   "editor.wrappingStrategy": "advanced",
@@ -13,9 +13,8 @@
   "files.insertFinalNewline": true,
   "explorer.confirmDelete": false,
   "workbench.sideBar.location": "right",
-  "git.enableCommitSigning": true, // always sign your commits
-  
-  // Reduced noise 
+
+  // Reduced noise
   "editor.hover.enabled": true,
   "workbench.tips.enabled": false,
   "git.decorations.enabled": false,
@@ -37,11 +36,11 @@
     "**debug": true,
     "**/package-lock.json": true,
     "**/.next": true,
-    "**/data": true,
+    "**/data": true
   },
 
   // Code
-  "editor.fontSize": 13,
+  "editor.fontSize": 12,
   "editor.lineHeight": 1.7,
   "editor.fontFamily": "JetBrains Mono",
   "editor.fontLigatures": true,
@@ -49,11 +48,11 @@
   // Suggestions
   "editor.suggestFontSize": 12,
   "editor.suggestLineHeight": 25,
-  
+
   // Terminal
   "terminal.integrated.lineHeight": 1.3,
   "terminal.integrated.fontSize": 13,
-  
+
   // ... other settings
   // APC UI
   "window.titleBarStyle": "native",
@@ -62,7 +61,7 @@
     "titleBarOverlay": {
       "color": "#292929",
       "symbolColor": "#fff"
-    },
+    }
   },
   "apc.header": {
     "height": 34
@@ -82,7 +81,7 @@
 
   // Theme
   "workbench.colorCustomizations": {
-    "[Fleet*]": { 
+    "[Fleet*]": {
       "statusBar.border": "#292929",
       "tab.inactiveBackground": "#292929",
       "editorGroupHeader.border": "#292929",
@@ -96,12 +95,12 @@
       "editorInlayHint.background": "#FFFFFF00",
       "terminal.ansiBrightBlack": "#5D5D5D"
     },
-    "[Kaolin*]": { 
+    "[Kaolin*]": {
       "statusBar.background": "#5b3e31",
       "terminal.ansiBrightMagenta": "#956a4e",
       "terminal.ansiBrightCyan": "#4c6444",
       "editorInlayHint.background": "#FFFFFF00",
-      "terminal.ansiBrightBlack": "#A0A0A0",
+      "terminal.ansiBrightBlack": "#A0A0A0"
     }
   },
 
@@ -122,13 +121,13 @@
       "id": "explorer.colorTheme",
       "values": [
         {
-          "workbench.colorTheme": "Fleet Dark" 
+          "workbench.colorTheme": "Fleet Dark"
         },
         {
-          "workbench.colorTheme": "Kaolin Light" 
+          "workbench.colorTheme": "Atom One Light"
         }
       ]
-    },
+    }
   ],
 
   // Vim
@@ -173,4 +172,8 @@
   "workbench.statusBar.visible": false,
   "explorer.excludeGitIgnore": true,
   "editor.lineNumbers": "relative",
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-auto",
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false
 }
