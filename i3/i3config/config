@@ -181,5 +181,8 @@ bindsym $mod+Shift+period exec "env XDG_CURRENT_DESKTOP=GNOME gnome-control-cent
 exec --no-startup-id nitrogen --set-auto ~/Pictures/background.png
 exec --no-startup-id compton -b -f 
 
+# i3 is a manual tiling window manager,
+# an automatic tiling window manager, is arranging them e.g. in a spiral order
+
 
 
