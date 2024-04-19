@@ -188,3 +188,13 @@ bindsym $mod+Shift+n exec --no-startup-id amixer -D pulse sset Master 5%-
 exec --no-startup-id feh --bg-fill ~/Pictures/background.png 
 exec --no-startup-id compton -b -f 
 
+# No Title Bar
+default_border pixel 0
+default_floating_border pixel 0
+for_window [class="^.*"] border pixel 0
+
+# Gaps
+gaps inner 10
+gaps outer 10
+
+
