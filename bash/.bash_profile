@@ -10,26 +10,12 @@ export CLICOLOR=1
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export BASH_SESSIONS_DISABLE=1
 export LESSHISTFILE=-
-export EDITOR='vim'
-export PNPM_HOME="/Users/raphaele/Library/pnpm"
-if [[ "$(uname)" == "Linux" ]]; then
-	export PNPM_HOME="~/.local/share/pnpm"
-fi
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
+export EDITOR='nvim'
 
 # --- PATH --- 
+export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/bin:$PATH";
-export PATH="$HOME/bin:$PATH";
-. "$HOME/.cargo/env"
-export PATH="$PNPM_HOME:$PATH"
 
-# --- BREW --- 
-if [[ "$(uname)" == "Darwin" ]]; then
-	eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
 
 # --- Alias' --- 
 # Basics 
@@ -47,7 +33,7 @@ alias tk="tmux kill-session -a -t"
 tms() {
     local dir
     # find ${1:-.}
-    dir=$(find ~/Developer ~/Master ~/Documents ~/.config ~/Desktop -type d 2> /dev/null | fzf +m)
+    dir=$(find ~/Projects ~/.config ~/Documents ~/Desktop ~/Downloads-type d 2> /dev/null | fzf +m)
     session_name=$(basename $dir)
     tmux has-session -t=$session_name 2> /dev/null
 
@@ -72,3 +58,9 @@ alias uuid="sysctl -n kernel.random.uuid"
 
 # List Directory - geohot
 alias ls='ls -Ghp'
+
+# i3 Window Manager
+alias hpoff="xrandr --output eDP --off"
+alias hpon="xrandr --output eDP --off"
+
+
