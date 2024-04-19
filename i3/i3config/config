@@ -174,15 +174,17 @@ bar {
         status_command i3status
 }
 
+# NOTE: i3 is a manual tiling window manager,
+# an automatic tiling window manager, is arranging them e.g. in a spiral order
+
 # Open Settings
 bindsym $mod+Shift+period exec "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center" 
 
+# Audio controls
+bindsym $mod+Shift+s exec --no-startup-id amixer -D pulse sset Master 5%+
+bindsym $mod+Shift+n exec --no-startup-id amixer -D pulse sset Master 5%-
+
 # Wallpaper 
-exec --no-startup-id nitrogen --set-auto ~/Pictures/background.png
+exec --no-startup-id feh --bg-fill ~/Pictures/background.png 
 exec --no-startup-id compton -b -f 
-
-# i3 is a manual tiling window manager,
-# an automatic tiling window manager, is arranging them e.g. in a spiral order
-
-
 
