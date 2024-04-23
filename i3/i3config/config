@@ -73,7 +73,8 @@ bindsym $mod+Shift+l move right
 
 # split 
 bindsym $mod+Ctrl+h split h
-bindsym $mod+Ctrl+v split v
+bindsym $mod+v split v
+bindsym $mod+t split toggle
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -142,7 +143,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# i3bar
+# Bar
 bar {
         status_command i3status
         position top
@@ -157,22 +158,19 @@ bindsym $mod+Shift+n exec --no-startup-id amixer -D pulse sset Master 5%-
 
 # Wallpaper 
 exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/wallpapers/ &
-exec --no-startup-id picom --config /home/lira0003/.config/picom/picom.conf --experimental-backends -b &
-# exec --no-startup-id feh --bg-fill ~/Pictures/background.png &
-# exec --no-startup-id compton -b -f &&
+exec --no-startup-id picom --config /home/lira0003/.config/picom/picom_i3.conf --experimental-backends -b &
 
 # No Title Bar
 default_border pixel 0
 default_floating_border pixel 0
 
 # Focused Color 
-for_window [class="^.*"] border pixel 3
+# for_window [class="^.*"] border pixel 3
 
 # Gaps
-gaps inner 10
-gaps outer 4
+# gaps outer 4
+# gaps inner 10
 
 # Autotiling ./autotiling.py 
 # exec_always --no-startup-id autotiling
-
 
