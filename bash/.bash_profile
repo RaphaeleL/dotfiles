@@ -59,8 +59,43 @@ alias uuid="sysctl -n kernel.random.uuid"
 # List Directory - geohot
 alias ls='ls -Ghp'
 
-# i3 Window Manager
+# --- i3wm Related Shit --- 
+
+# Turn on/off the Laptop
 alias hpoff="xrandr --output eDP --off"
 alias hpon="xrandr --output eDP --off"
 
+# Manage Monitors
+duplicate() {
+    if [ -z "$1" ] || [ -z "$2" ]; then
+        echo "Error: Two monitor identifiers and the location is required."
+        echo "  Monitors:"
+        xrandr --listmonitors | awk 'NR>1 {print "\t- "$NF}'
+        echo "Usage: duplicate <monitor-a> <monitor-b>"
+        return 1
+    fi
+    xrandr --output $1 --same-as $2
+}
+expand() {
+    if [ -z "$1" ] || [ -z "$2" ]; then
+        echo "Error: Two monitor identifiers and the location is required."
+        echo "  Monitors:"
+        xrandr --listmonitors | awk 'NR>1 {print "\t- "$NF}'
+        echo "  Location:"
+        echo "        - --left-of"
+        echo "        - --right-of"
+        echo "        - --above"
+        echo "        - --below"
+        echo "Usage: expand <monitor-a> <location> <monitor-b>"
+        return 1
+    fi
+    xrandr --output $1 $2 $3
+}
 
+# Set a random Wallpaper
+alias wallpaper="feh --bg-fill --randomize Pictures/wallpapers/"
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
