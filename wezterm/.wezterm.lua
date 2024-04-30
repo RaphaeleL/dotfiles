@@ -6,9 +6,8 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.font_size = 14.0
-config.line_height = 1.2
-
+config.font_size = 12.0
+config.line_height = 1.0
 config.window_decorations = "RESIZE"
 config.initial_rows = 45
 config.initial_cols = 200
@@ -17,13 +16,17 @@ config.use_fancy_tab_bar = false
 config.show_new_tab_button_in_tab_bar = false
 config.tab_max_width = 22
 
+<<<<<<< HEAD
 config.hide_tab_bar_if_only_one_tab = true 
+=======
+config.hide_tab_bar_if_only_one_tab = true
+>>>>>>> 2a8ca77d (Updates)
 
 config.window_padding = {
-	left = 0,
-	right = 0,
-	top = 0,
-	bottom = 0,
+	left = 10,
+	right = 10,
+	top = 10,
+	bottom = 10,
 }
 
 config.colors = {
@@ -48,7 +51,7 @@ config.colors = {
 		background = "rgb(22, 24, 26 / 20%)",
 	},
 }
-config.window_background_opacity = 0.92
+config.window_background_opacity = 0.90
 config.macos_window_background_blur = 30
 
 local function tab_title(tab_info)
