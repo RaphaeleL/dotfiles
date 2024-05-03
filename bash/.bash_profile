@@ -23,7 +23,6 @@ export PATH="$HOME/bin:$PATH";
 alias lg="lazygit"
 alias vim="nvim"
 alias vi="NVIM_APPNAME=macnvim nvim"
-alias v="/usr/bin/vim"
 alias wezterm="flatpak run org.wezfurlong.wezterm"
 alias ls='ls -Ghp'
 
@@ -60,7 +59,7 @@ alias perms="stat -f '%N %A' *"
 
 # Turn on/off the Laptop
 alias hpoff="xrandr --output eDP --off"
-alias hpon="xrandr --output eDP --off"
+alias hpon="xrandr --output eDP --auto"
 
 # Manage Monitors
 duplicate() {
@@ -91,6 +90,9 @@ expand() {
 
 # Set a random Wallpaper
 alias wallpaper="feh --bg-fill --randomize Pictures/wallpapers/"
+
+# Lock Screen 
+alias lock="i3lock -c 000000"
 
 # --- AUTO GENERATRED --- 
 
