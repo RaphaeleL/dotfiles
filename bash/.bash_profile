@@ -11,7 +11,7 @@ export CLICOLOR=1
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export BASH_SESSIONS_DISABLE=1
 export LESSHISTFILE=-
-export EDITOR='nvim'
+export EDITOR="nvim"
 
 # --- PATH --- 
 export PATH=$PATH:/usr/local/go/bin
@@ -24,7 +24,14 @@ alias lg="lazygit"
 alias vim="nvim"
 alias vi="NVIM_APPNAME=macnvim nvim"
 alias wezterm="flatpak run org.wezfurlong.wezterm"
-alias ls='ls -Ghp'
+alias ls="exa"  # "ls -Ghp"
+alias prompt="export PS1='\u@\h:\[\e[01;36m\]\w\[\e[0m\]\$ '"
+
+# Spezial Commands simplified 
+alias remove="shred -n 512 --remove "
+alias sizes="du -sh * | gsort -hr"
+alias uuid="sysctl -n kernel.random.uuid"
+alias perms="stat -f '%N %A' *"
 
 # Tmux
 alias tn="tmux display-message -p '#S'"
@@ -49,17 +56,18 @@ tms() {
     fi
 }
 
-# Spezial Commands simplified 
-alias remove="shred -n 512 --remove "
-alias sizes="du -sh * | gsort -hr"
-alias uuid="sysctl -n kernel.random.uuid"
-alias perms="stat -f '%N %A' *"
-
 # --- I3WM RELATED SHIT --- 
 
 # Turn on/off the Laptop
 alias hpoff="xrandr --output eDP --off"
 alias hpon="xrandr --output eDP --auto"
+alias i3picom="picom --config /home/lira0003/.config/picom/picom_i3.conf --experimental-backends -b &"
+
+# Set a random Wallpaper
+alias wallpaper="feh --bg-fill --randomize Pictures/wallpapers/"
+
+# Lock Screen 
+alias lock="i3lock -c ffffff"
 
 # Manage Monitors
 duplicate() {
@@ -87,12 +95,6 @@ expand() {
     fi
     xrandr --output $1 $2 $3
 }
-
-# Set a random Wallpaper
-alias wallpaper="feh --bg-fill --randomize Pictures/wallpapers/"
-
-# Lock Screen 
-alias lock="i3lock -c 000000"
 
 # --- AUTO GENERATRED --- 
 
