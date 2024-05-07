@@ -1,10 +1,10 @@
 # --- PROMPT --- 
-# export PS1='\u@\h:\[\e[01;36m\]\w\[\e[0m\]\$ '
+export PS1='\u@\h:\[\e[01;36m\]\w\[\e[0m\]\$ '
 # export PS1='\[\e[01;32m\]\u@\h:\[\e[01;34m\]\w\[\e[0m\]\$ '
 # export PS1='\u@\h:\[\e[01;32m\]\w\[\e[0m\]\$ '
 # export PS1='\h:\W \u\$ '
 # export PS1='[\u@\h \[\e[01;36m\]\w\[\e[0m\]]\$ '
-eval "$(starship init bash)"
+# eval "$(starship init bash)"
 
 # --- PROFILE --- 
 export CLICOLOR=1
@@ -34,16 +34,12 @@ alias uuid="sysctl -n kernel.random.uuid"
 alias perms="stat -f '%N %A' *"
 
 # Tmux
-alias tn="tmux display-message -p '#S'"
-alias tl="tmux list-sessions"
-alias ta="tmux attach -t"
-alias td="tmux detach"
-alias tk="tmux kill-session -a -t"
+alias tmux-ls="tmux list-sessions"
+alias tmux-a="tmux attach -t"
+alias tmux-d="tmux detach"
 tms() {
-    local dir
-    dir=$(find ~/bwSyncShare ~/Projects ~/.config ~/Documents ~/Desktop ~/Downloads-type d 2> /dev/null | fzf +m)
+    dir=$(find ~/bwSyncShare ~/Projects ~/.config ~/Documents ~/Desktop ~/Downloads -mindepth 0 -maxdepth 1 -type d 2> /dev/null | fzf +m)
     session_name=$(basename $dir)
-    tmux has-session -t=$session_name 2> /dev/null
 
     if [[ $? -ne 0 ]]; then
         TMUX='' tmux new-session -d -s "$session_name" -c $dir
