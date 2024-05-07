@@ -40,6 +40,7 @@ alias tmux-d="tmux detach"
 tms() {
     dir=$(find ~/bwSyncShare ~/Projects ~/.config ~/Documents ~/Desktop ~/Downloads -mindepth 0 -maxdepth 1 -type d 2> /dev/null | fzf +m)
     session_name=$(basename $dir)
+    tmux has-session -t=$session_name 2> /dev/null
 
     if [[ $? -ne 0 ]]; then
         TMUX='' tmux new-session -d -s "$session_name" -c $dir
