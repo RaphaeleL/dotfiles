@@ -1,10 +1,10 @@
 # --- PROMPT --- 
-# export PS1='\u@\h:\[\e[01;36m\]\w\[\e[0m\]\$ '
+export PS1='\u@\h:\[\e[01;36m\]\w\[\e[0m\]\$ '
 # export PS1='\[\e[01;32m\]\u@\h:\[\e[01;34m\]\w\[\e[0m\]\$ '
 # export PS1='\u@\h:\[\e[01;32m\]\w\[\e[0m\]\$ '
 # export PS1='\h:\W \u\$ '
 # export PS1='[\u@\h \[\e[01;36m\]\w\[\e[0m\]]\$ '
-eval "$(starship init bash)"
+# eval "$(starship init bash)"
 
 # --- PROFILE --- 
 export CLICOLOR=1
@@ -54,6 +54,12 @@ alias remove="shred -n 512 --remove "
 alias sizes="du -sh * | gsort -hr"
 alias uuid="sysctl -n kernel.random.uuid"
 alias perms="stat -f '%N %A' *"
+
+
+# --- MACOS RELATED SHIT --- 
+
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # --- I3WM RELATED SHIT --- 
 
