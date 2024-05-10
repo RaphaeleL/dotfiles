@@ -24,10 +24,10 @@ alias lg="lazygit"
 alias vim="nvim"
 alias vi="NVIM_APPNAME=macnvim nvim"
 alias wezterm="flatpak run org.wezfurlong.wezterm"
-alias ls="exa"  # "ls -Ghp"
+alias ls="ls -Ghp"
 alias prompt="export PS1='\u@\h:\[\e[01;36m\]\w\[\e[0m\]\$ '"
 
-# Spezial Commands simplified 
+# Special Commands simplified 
 alias remove="shred -n 512 --remove "
 alias sizes="du -sh * | gsort -hr"
 alias uuid="sysctl -n kernel.random.uuid"
@@ -52,11 +52,6 @@ tms() {
         tmux switch-client -t "$session_name"
     fi
 }
-
-# --- MACOS RELATED SHIT --- 
-
-# Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # --- I3WM RELATED SHIT --- 
 
