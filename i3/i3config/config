@@ -53,8 +53,8 @@ bindsym $mod+q kill
 bindsym $mod+w kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+shift+d exec --no-startup-id rofi -show run
+bindsym $mod+shift+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id rofi -show run
 
 # browser
 bindsym $mod+b exec --no-startup-id google-chrome &
@@ -72,8 +72,6 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # split 
-bindsym $mod+Ctrl+h split h
-bindsym $mod+v split v
 bindsym $mod+t split toggle
 
 # enter fullscreen mode for the focused container
@@ -124,30 +122,31 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+    # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+    # back to normal: Enter or Escape or $mod+r
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
 
 # Bar
 bar {
-        status_command i3status
-        position top
+    status_command i3status
+    position top
 }
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Open Settings
 bindsym $mod+Shift+period exec "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center" 
@@ -158,19 +157,19 @@ bindsym $mod+Shift+n exec --no-startup-id amixer -D pulse sset Master 5%-
 
 # Wallpaper 
 exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/wallpapers/ &
-exec --no-startup-id picom --config /home/lira0003/.config/picom/picom_i3.conf --experimental-backends -b &
+# exec --no-startup-id picom --config /home/lira0003/.config/picom/picom_i3.conf --experimental-backends -b &
 
 # No Title Bar
 default_border pixel 0
 default_floating_border pixel 0
 
 # Focused Color 
-# for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 2
 
 # Gaps
-# gaps outer 4
-# gaps inner 10
+gaps outer 1
+gaps inner 10
 
-# Autotiling ./autotiling.py 
-# exec_always --no-startup-id autotiling
+# google-chrome
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets &
 
