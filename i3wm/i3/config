@@ -157,7 +157,7 @@ bindsym $mod+Shift+n exec --no-startup-id amixer -D pulse sset Master 5%-
 
 # Wallpaper 
 # exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/wallpapers/ &
-# exec --no-startup-id picom --config /home/lira0003/.config/picom/picom_i3.conf --experimental-backends -b &
+exec --no-startup-id picom --config /home/lira0003/.config/picom/picom.conf --experimental-backends -b &
 
 # No Title Bar
 default_border pixel 0
