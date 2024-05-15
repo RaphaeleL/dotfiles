@@ -62,6 +62,7 @@ alias i3picom="picom --config /home/lira0003/.config/picom/picom_i3.conf --exper
 
 # Set a random Wallpaper
 alias wallpaper="feh --bg-fill --randomize Pictures/wallpapers/"
+alias background_black="hsetroot -solid "#000000""
 
 # Lock Screen 
 alias lock="i3lock -c ffffff"
