@@ -154,9 +154,12 @@ bindsym $mod+Shift+period exec "env XDG_CURRENT_DESKTOP=GNOME gnome-control-cent
 # Audio controls
 bindsym $mod+Shift+s exec --no-startup-id amixer -D pulse sset Master 5%+
 bindsym $mod+Shift+n exec --no-startup-id amixer -D pulse sset Master 5%-
+bindsym $mod+Shift+m exec --no-startup-id amixer -D pulse sset Master toggle 
 
 # Wallpaper 
 # exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/wallpapers/ &
+
+# Picom
 exec --no-startup-id picom --config /home/lira0003/.config/picom/picom.conf --experimental-backends -b &
 
 # No Title Bar
