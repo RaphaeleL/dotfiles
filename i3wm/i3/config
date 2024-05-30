@@ -163,7 +163,7 @@ bindsym $mod+Shift+m exec --no-startup-id amixer -D pulse sset Master toggle
 exec --no-startup-id picom --config /home/lira0003/.config/picom/picom.conf --experimental-backends -b &
 
 # bwSyncShare
-bwSyncShare &
+exec --no-startup-id bwSyncShare &
 
 # No Title Bar
 default_border pixel 0
