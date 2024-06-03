@@ -1,53 +1,77 @@
 ;; ---------------------------------------------------------------------------------
-;; -------- Appearance--------------------------------------------------------------
+;; -------- Package Manager --------------------------------------------------------
+;; ---------------------------------------------------------------------------------
+
+; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;
+; (defun ensure-package-installed (&rest packages)
+;   "Assure every package is installed, ask for installation if it’s not.
+;
+; Return a list of installed packages or nil for every skipped package."
+;   (mapcar
+;    (lambda (package)
+;      ;; (package-installed-p 'evil)
+;      (if (package-installed-p package)
+;          nil
+;        (if (y-or-n-p (format "Package %s is missing. Install it? " package))
+;            (package-install package)
+;          package)))
+;    packages))
+;
+; (or (file-exists-p package-user-dir)
+;     (package-refresh-contents))
+;
+; (package-refresh-contents)
+;
+; (ensure-package-installed
+;  'spacious-padding
+;  'gruber-darker-theme
+;  'modus-themes
+;  'smex
+;  'simpleclip
+;  'multiple-cursors
+;  'move-text
+;  'mood-line
+;  'magit
+;  'doom-themes
+; )
+
+;; activate installed packages
+; (package-initialize)
+
+;; ---------------------------------------------------------------------------------
+;; -------- Appearance -------------------------------------------------------------
 ;; ---------------------------------------------------------------------------------
 
 ;; No Startup Message
 (setq inhibit-startup-message t)
-(setq initial-scratch-message "\n\n\n")
+(setq initial-scratch-message "")
 
 ;; Cleanup the UI
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
-(set-fringe-mode -1)
 (menu-bar-mode -1)
 
-(spacious-padding-mode 1)
-(hide-mode-line-mode -1)
-
 ;; Theme
-(load-theme 'doom-tomorrow-night 1) ;; modus-operandi-tinted
-
-;; Modeline
-(column-number-mode 1)
+;; (load-theme 'modus-operandi-tinted 1)
+(load-theme 'gruber-darker 1)
+;; (load-theme 'doom-one 1)
+;; (load-theme 'zenburn 1)
 
 (use-package mood-line
   :config
-  (mood-line-mode)
+  (mood-line-mode 1)
 )
 
 ;; Font
 (defun get-default-font ()
   (cond
-   ((eq system-type 'windows-nt) "Iosevka-12")
+   ((eq system-type 'windows-nt) "Iosevka-12") ;; IosevkaTermSlab NF-12
    ((eq system-type 'darwin) "Iosevka-14")
-   ((eq system-type 'gnu/linux) "JetBrainsMono-12")))
+   ((eq system-type 'gnu/linux) "Iosevka-12")))
 
 (add-to-list 'default-frame-alist `(font . ,(get-default-font)))
-
-;; UI Tweaks
-(setq left-fringe-width 0)
-(setq right-fringe-width 0)
-
-;; Treesitter
-(require 'tree-sitter)
-(require 'tree-sitter-hl)
-(require 'tree-sitter-langs)
-(require 'tree-sitter-debug)
-(require 'tree-sitter-query)
-(global-tree-sitter-mode)
-(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 
 ;; Ido Mode for Files
 (ido-mode 1)
@@ -55,7 +79,6 @@
 
 ;; Package Manager
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
 
 ;; Ido Mode for M-x
 (require 'smex)
@@ -106,23 +129,6 @@
 ;; Smooth Scroll - Horizontal
 (setq hscroll-step 1)
 (setq hscroll-margin 1)
-
-;; Pixel Scroll Precision Mode
-(pixel-scroll-precision-mode 1)
-
-;; Prettify Symbols
-(global-prettify-symbols-mode 1)
-(defun add-pretty-lambda ()
-  "Make some word or string show as pretty Unicode symbols.  See https://unicodelookup.com for more."
-  (setq prettify-symbols-alist
-        '(("lambda" . 955)
-          ("delta" . 120517)
-          ("epsilon" . 120518)
-          ("->" . 8594)
-          ("<=" . 8804)
-          (">=" . 8805))))
-(add-hook 'prog-mode-hook 'add-pretty-lambda)
-(add-hook 'org-mode-hook 'add-pretty-lambda)
 
 ;; Dired
 (use-package dired
@@ -209,11 +215,6 @@
            (name 16 -1)
            " " filename))))
 
-(use-package super-save
-  :ensure t
-  :config
-  (super-save-mode +1))
-
 ;; ---------------------------------------------------------------------------------
 ;; -------- Shortcuts --------------------------------------------------------------
 ;; ---------------------------------------------------------------------------------
@@ -231,8 +232,10 @@
 (setq use-dialog-box nil)
 
 ;; Dired
-(global-set-key (kbd "C-x d") 'dired)
+;; (dired-preview-global-mode 1)
+(global-set-key (kbd "C-x d") 'dired) 
 (global-set-key (kbd "C-x C-d") 'dired)
+(global-set-key (kbd "C-x .") 'dired)
 
 ;; Magit
 (global-set-key (kbd "C-x g") 'magit-status)
@@ -240,34 +243,26 @@
 
 ;; Buffer Navigation
 (global-set-key (kbd "C-<tab>") 'next-buffer)
-(global-set-key (kbd "C-S-<tab>") 'previous-buffer)
-(global-set-key (kbd "C-c l") 'ibuffer)
-(global-set-key (kbd "C-c s") 'switch-to-buffer)
-
-;; Window Navigation
-(global-set-key (kbd "C-x h") 'windmove-left)
-(global-set-key (kbd "C-x l") 'windmove-right)
-(global-set-key (kbd "C-x k") 'windmove-up)
-(global-set-key (kbd "C-x j") 'windmove-down)
+(global-set-key (kbd "C-<iso-lefttab>") 'previous-buffer)
+(global-set-key (kbd "C-c i") 'ibuffer)
+(global-set-key (kbd "C-c l") 'switch-to-buffer)
 
 ;; Close window
-(global-set-key (kbd "C-x 0") 'delete-window)
-(global-set-key (kbd "C-x 1") 'delete-other-windows)
+(global-set-key (kbd "C-c 0") 'delete-window)
+(global-set-key (kbd "C-c 1") 'delete-other-windows)
 
 ;; Usefull Commands
-(global-set-key (kbd "C-x m") 'compile)
-(global-set-key (kbd "C-x c") 'shell-command)
-(global-set-key (kbd "C-x l") 'duplicate-line)
-(global-set-key (kbd "C-x k") 'delete-current-line)
-(global-set-key (kbd "C-x j") 'join-line)
+(global-set-key (kbd "C-c m") 'compile)
+(global-set-key (kbd "C-c s") 'shell-command)
+(global-set-key (kbd "C-c n") 'duplicate-line)
+(global-set-key (kbd "C-c d") 'delete-current-line)
+(global-set-key (kbd "C-c j") 'join-line)
 
 ;; Copy and Paste
 (require 'simpleclip)
 (simpleclip-mode 1)
-(global-set-key (kbd "C-x v") 'simpleclip-copy)
-(global-set-key (kbd "C-x p") 'simpleclip-paste)
-(global-set-key (kbd "C-c C-c") 'simpleclip-copy)
-(global-set-key (kbd "C-c C-v") 'simpleclip-paste)
+(global-set-key (kbd "C-c c") 'simpleclip-copy)
+(global-set-key (kbd "C-c v") 'simpleclip-paste)
 
 ;; Multi Cursor
 (require 'multiple-cursors)
@@ -293,7 +288,7 @@
 (global-set-key (kbd "C-c a") 'mark-whole-buffer)
 
 ;; Magit
-(global-set-key (kbd "C-x g") 'magit)
+(global-set-key (kbd "C-c g") 'magit)
 
 ;; Selection
 (global-set-key (kbd "M-w") 'mark-word)
@@ -301,50 +296,45 @@
 (global-set-key (kbd "M-F") 'mark-defun)
 (global-set-key (kbd "M-s") 'mark-paragraph)
 
-;; Navigation
-(global-set-key (kbd "M-U") 'scroll-up)
-(global-set-key (kbd "M-u") 'scroll-down)
-
 ;; Line Numbers
-(global-set-key (kbd "C-x C-l") 'global-display-line-numbers-mode)
+(global-set-key (kbd "C-c C-l") 'global-display-line-numbers-mode)
 
 ;; ---------------------------------------------------------------------------------
 ;; -------- LSP --------------------------------------------------------------------
 ;; ---------------------------------------------------------------------------------
 
-(set-fringe-mode 0)
-
-(setq package-selected-packages '(lsp-mode yasnippet helm-lsp
-    projectile hydra flycheck company avy helm-xref))
-
-(when (cl-find-if-not #'package-installed-p package-selected-packages)
-  (package-refresh-contents)
-  (mapc #'package-install package-selected-packages))
-
-(add-hook 'c-mode-hook 'lsp)
-(add-hook 'c++-mode-hook 'lsp)
-(add-hook 'python-mode-hook 'lsp)
-(add-hook 'lisp-mode-hook 'lsp)
-(add-hook 'go-mode-hook 'lsp)
-
-(setq lsp-headerline-breadcrumb-enable nil)
-
-(setq gc-cons-threshold (* 100 1024 1024)
-      read-process-output-max (* 1024 1024)
-      treemacs-space-between-root-nodes nil
-      company-idle-delay 0.0
-      company-minimum-prefix-length 1
-      lsp-idle-delay 0.1)
-
-(with-eval-after-load 'lsp-mode
-  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
-  (yas-global-mode))
-
-(use-package lsp-pyright
-  :ensure t
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp))))  ; or lsp-deferred
+; (set-fringe-mode 0)
+;
+; (setq package-selected-packages '(lsp-mode yasnippet helm-lsp
+;     projectile hydra flycheck company avy helm-xref))
+;
+; (when (cl-find-if-not #'package-installed-p package-selected-packages)
+;   (package-refresh-contents)
+;   (mapc #'package-install package-selected-packages))
+;
+; ; (add-hook 'c-mode-hook 'lsp)
+; ; (add-hook 'c++-mode-hook 'lsp)
+; ; (add-hook 'python-mode-hook 'lsp)
+; ; (add-hook 'go-mode-hook 'lsp)
+;
+; (setq lsp-headerline-breadcrumb-enable nil)
+;
+; (setq gc-cons-threshold (* 100 1024 1024)
+;       read-process-output-max (* 1024 1024)
+;       treemacs-space-between-root-nodes nil
+;       company-idle-delay 0.0
+;       company-minimum-prefix-length 1
+;       lsp-idle-delay 0.1)
+;
+; (with-eval-after-load 'lsp-mode
+;   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+;   (yas-global-mode))
+;
+; (use-package lsp-pyright
+;   :ensure t
+;   :hook (python-mode . (lambda ()
+;                           (require 'lsp-pyright)
+;                           (lsp))))  ; or lsp-deferred
 
 
 ;; ---------------------------------------------------------------------------------
@@ -356,13 +346,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("7e377879cbd60c66b88e51fad480b3ab18d60847f31c435f15f5df18bdb18184" "0f76f9e0af168197f4798aba5c5ef18e07c926f4e7676b95f2a13771355ce850" "88f7ee5594021c60a4a6a1c275614103de8c1435d6d08cc58882f920e0cec65e" default))
+   '("f079ef5189f9738cf5a2b4507bcaf83138ad22d9c9e32a537d61c9aae25502ef" "c7a926ad0e1ca4272c90fce2e1ffa7760494083356f6bb6d72481b879afce1f2" "0f76f9e0af168197f4798aba5c5ef18e07c926f4e7676b95f2a13771355ce850" "e27c9668d7eddf75373fa6b07475ae2d6892185f07ebed037eedf783318761d7" "88f7ee5594021c60a4a6a1c275614103de8c1435d6d08cc58882f920e0cec65e" "7613ef56a3aebbec29618a689e47876a72023bbd1b8393efc51c38f5ed3f33d1" "d77d6ba33442dd3121b44e20af28f1fae8eeda413b2c3d3b9f1315fbda021992" "e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7" "9f297216c88ca3f47e5f10f8bd884ab24ac5bc9d884f0f23589b0a46a608fe14" "285d1bf306091644fb49993341e0ad8bafe57130d9981b680c1dbd974475c5c7" "4c56af497ddf0e30f65a7232a8ee21b3d62a8c332c6b268c81e9ea99b11da0d3" "4b026ac68a1vaa4d1a91879b64f54c2490b4ecad8b64de5b1865bca0addd053d9" "21e3d55141186651571241c2ba3c665979d1e886f53b2e52411e9e96659132d4" default))
  '(package-selected-packages
-   '(evil-visual-mark-mode lsp-pyright lsp-mode yasnippet helm-lsp projectile hydra flycheck company avy helm-xref)))
-
+   '(zenburn-theme yasnippet super-save smex simpleclip projectile multiple-cursors move-text mood-line modus-themes magit lsp-pyright hydra hide-mode-line helm-xref helm-lsp gruber-darker-theme format-all flycheck doom-themes company avy)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-)
+ )
+
