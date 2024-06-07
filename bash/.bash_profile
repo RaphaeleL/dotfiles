@@ -23,6 +23,7 @@ export PATH="$HOME/bin:$PATH";
 alias lg="lazygit"
 alias vim="nvim"
 alias vi="NVIM_APPNAME=macnvim nvim"
+alias e="emacs -nw"
 alias wezterm="flatpak run org.wezfurlong.wezterm"
 alias ls="ls -Ghp"
 alias prompt="export PS1='\u@\h:\[\e[01;36m\]\w\[\e[0m\]\$ '"
