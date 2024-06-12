@@ -33,7 +33,7 @@ alias remove="shred -n 512 --remove "
 alias sizes="du -sh * | gsort -hr"
 alias uuid="sysctl -n kernel.random.uuid"
 alias perms="stat -f '%N %A' *"
-alias emacs-kill="emacsclient -e "(kill-emacs)""
+alias emacs-kill="emacsclient -e '(kill-emacs)'"
 
 # Tmux
 alias tmux-ls="tmux list-sessions"
