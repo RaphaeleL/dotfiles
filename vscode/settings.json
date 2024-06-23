@@ -12,7 +12,6 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "files.insertFinalNewline": true,
   "explorer.confirmDelete": false,
-  "workbench.sideBar.location": "right",
 
   // Reduced noise
   "editor.hover.enabled": true,
@@ -170,10 +169,12 @@
   "workbench.productIconTheme": "fluent-icons",
   "workbench.colorTheme": "Fleet Dark",
   "workbench.statusBar.visible": false,
-  "explorer.excludeGitIgnore": true,
-  "editor.lineNumbers": "relative",
+  "explorer.excludeGitIgnore": false,
+  "editor.lineNumbers": "on",
   "editor.unicodeHighlight.ambiguousCharacters": false,
   "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-auto",
   "git.enableSmartCommit": true,
-  "git.confirmSync": false
+  "git.confirmSync": false,
+  "github.copilot.editor.enableAutoCompletions": true,
+  "workbench.sideBar.location": "right"
 }
