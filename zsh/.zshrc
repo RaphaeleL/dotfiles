@@ -8,6 +8,10 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
+(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]=none
+ZSH_HIGHLIGHT_STYLES[path_prefix]=none
+
 # --- PROFILE --- 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export BASH_SESSIONS_DISABLE=1
@@ -57,4 +61,6 @@ tms() {
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# --- AUTO GENERATED --- 
 
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
