@@ -1,5 +1,5 @@
 # --- PROMPT --- 
-export PS1='\u@\h:\[\e[01;36m\]\w\[\e[0m\]\$ '
+# export PS1='\u@\h:\[\e[01;36m\]\w\[\e[0m\]\$ '
 # export PS1='\[\e[01;32m\]\u@\h:\[\e[01;34m\]\w\[\e[0m\]\$ '
 # export PS1='\u@\h:\[\e[01;32m\]\w\[\e[0m\]\$ '
 # export PS1='\h:\W \u\$ '
@@ -7,11 +7,11 @@ export PS1='\u@\h:\[\e[01;36m\]\w\[\e[0m\]\$ '
 # eval "$(starship init bash)"
 
 # --- PROFILE --- 
-export CLICOLOR=1
+# export CLICOLOR=1
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export BASH_SESSIONS_DISABLE=1
 export LESSHISTFILE=-
-export EDITOR="nvim"
+export EDITOR="/usr/bin/vim"
 
 # --- PATH --- 
 export PATH=$PATH:/usr/local/go/bin
@@ -21,15 +21,16 @@ export PATH="$HOME/bin:$PATH";
 
 # Basics 
 alias lg="lazygit"
+alias v="/usr/bin/vim"
 alias vim="nvim"
-alias vi="NVIM_APPNAME=macnvim nvim"
 alias e="emacs -nw"
-alias wezterm="flatpak run org.wezfurlong.wezterm"
-alias ls="ls -Ghp"
+# alias wezterm="flatpak run org.wezfurlong.wezterm"
+# alias ls="ls -Ghp"
 alias prompt="export PS1='\u@\h:\[\e[01;36m\]\w\[\e[0m\]\$ '"
+alias python="python3"
 
 # Special Commands simplified 
-alias remove="shred -n 512 --remove "
+alias remove="shred -f -n 512 --remove -x -z"
 alias sizes="du -sh * | gsort -hr"
 alias uuid="sysctl -n kernel.random.uuid"
 alias perms="stat -f '%N %A' *"
@@ -95,6 +96,11 @@ expand() {
     fi
     xrandr --output $1 $2 $3
 }
+
+# --- MACOS RELATED SHIT --- 
+
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # --- AUTO GENERATRED --- 
 
