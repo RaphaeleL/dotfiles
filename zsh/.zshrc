@@ -16,25 +16,35 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export BASH_SESSIONS_DISABLE=1
 export LESSHISTFILE=-
-export EDITOR='nvim'
-
-# --- PATH --- 
+export EDITOR="/usr/bin/vim"
+export PATH=$PATH:/usr/local/go/bin
+export PATH="$HOME/bin:$PATH";
+export BASH_SILENCE_DEPRECATION_WARNING=1
+export BASH_SESSIONS_DISABLE=1
+export LESSHISTFILE=-
+export EDITOR="nvim"
+# export CLICOLOR=1
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/bin:$PATH";
 
 # --- Alias' --- 
 
 # Basics 
+alias lg="lazygit"
+alias v="/usr/bin/vim"
 alias vim="nvim"
-alias vi="/usr/bin/vim"
 alias e="emacs -nw"
-
-alias ls="eza"
+# alias wezterm="flatpak run org.wezfurlong.wezterm"
+# alias ls="ls -Ghp"
+alias prompt="export PS1='\u@\h:\[\e[01;36m\]\w\[\e[0m\]\$ '"
+alias python="python3"
 
 # Special Commands simplified 
-alias remove="shred -n 512 --remove "
+alias remove="shred -f -n 512 --remove -x -z"
 alias sizes="du -sh * | gsort -hr"
+alias uuid="sysctl -n kernel.random.uuid"
 alias perms="stat -f '%N %A' *"
+alias emacs-kill="emacsclient -e '(kill-emacs)'"
 
 # Tmux
 alias tmux-ls="tmux list-sessions"
@@ -54,6 +64,47 @@ tms() {
     else
         tmux switch-client -t "$session_name"
     fi
+}
+
+# --- I3WM RELATED SHIT --- 
+
+# Turn on/off the Laptop
+alias hpoff="xrandr --output eDP --off"
+alias hpon="xrandr --output eDP --auto"
+alias i3picom="picom --config /home/lira0003/.config/picom/picom_i3.conf --experimental-backends -b &"
+
+# Set a random Wallpaper
+alias wallpaper="feh --bg-fill --randomize Pictures/wallpapers/"
+alias background_black="hsetroot -solid "#000000""
+
+# Lock Screen 
+alias lock="i3lock -c ffffff"
+
+# Manage Monitors
+duplicate() {
+    if [ -z "$1" ] || [ -z "$2" ]; then
+        echo "Error: Two monitor identifiers and the location is required."
+        echo "  Monitors:"
+        xrandr --listmonitors | awk 'NR>1 {print "\t- "$NF}'
+        echo "Usage: duplicate <monitor-a> <monitor-b>"
+        return 1
+    fi
+    xrandr --output $1 --same-as $2
+}
+expand() {
+    if [ -z "$1" ] || [ -z "$2" ]; then
+        echo "Error: Two monitor identifiers and the location is required."
+        echo "  Monitors:"
+        xrandr --listmonitors | awk 'NR>1 {print "\t- "$NF}'
+        echo "  Location:"
+        echo "        - --left-of"
+        echo "        - --right-of"
+        echo "        - --above"
+        echo "        - --below"
+        echo "Usage: expand <monitor-a> <location> <monitor-b>"
+        return 1
+    fi
+    xrandr --output $1 $2 $3
 }
 
 # --- MACOS RELATED SHIT --- 
