@@ -2,9 +2,9 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="example"
 plugins=(
-    git
-    zsh-syntax-highlighting
-    zsh-autosuggestions
+    # git
+    # zsh-syntax-highlighting
+    # zsh-autosuggestions
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -22,10 +22,29 @@ export PATH="$HOME/bin:$PATH";
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export BASH_SESSIONS_DISABLE=1
 export LESSHISTFILE=-
-export EDITOR="nvim"
+export EDITOR="vi"
 # export CLICOLOR=1
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/bin:$PATH";
+
+# --- General --- 
+
+# BindKey
+bindkey -s ^s "tms\n"
+
+# Keybindings 
+bindkey -e
+
+# History
+HISTSIZE=5000
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
 
 # --- Alias' --- 
 
@@ -34,15 +53,12 @@ alias lg="lazygit"
 alias v="/usr/bin/vim"
 alias vim="nvim"
 alias e="emacs -nw"
-# alias wezterm="flatpak run org.wezfurlong.wezterm"
-# alias ls="ls -Ghp"
-alias prompt="export PS1='\u@\h:\[\e[01;36m\]\w\[\e[0m\]\$ '"
+alias ls="ls -hp" # -G for colors or just use eza
 alias python="python3"
 
 # Special Commands simplified 
 alias remove="shred -f -n 512 --remove -x -z"
 alias sizes="du -sh * | gsort -hr"
-alias uuid="sysctl -n kernel.random.uuid"
 alias perms="stat -f '%N %A' *"
 alias emacs-kill="emacsclient -e '(kill-emacs)'"
 
@@ -115,3 +131,11 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # --- AUTO GENERATED --- 
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# pnpm
+export PNPM_HOME="/Users/raphaele/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
