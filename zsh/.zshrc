@@ -11,6 +11,7 @@ source $ZSH/oh-my-zsh.sh
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
 # --- PROFILE --- 
 export BASH_SILENCE_DEPRECATION_WARNING=1
