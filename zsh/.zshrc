@@ -1,6 +1,6 @@
 # --- ZSH --- 
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="example"
+ZSH_THEME="example_non_colorful" # or just colorful
 plugins=(
     # git
     # zsh-syntax-highlighting
