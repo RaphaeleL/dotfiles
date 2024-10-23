@@ -99,13 +99,7 @@
     }
   },
   "workbench.productIconTheme": "fluent-icons",
-  "workbench.colorTheme": "Fleet Dark",
   "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-auto",
-
-  // SSH
-  "remote.SSH.remotePlatform": {
-    "gpu-workstation-2.tail11f2f.ts.net": "linux"
-  },
 
   // Vim
   "vim.easymotion": true,
@@ -143,5 +137,10 @@
     "<C-a>": false,
     "<C-f>": false
   },
+
+  // something else
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "explorer.confirmDragAndDrop": false,
+  "workbench.colorTheme": "Fleet Dark Modern",
   
 }
