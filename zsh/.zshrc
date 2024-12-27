@@ -1,10 +1,10 @@
 # --- ZSH --- 
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="example_non_colorful" # or just colorful
+ZSH_THEME="ROBBYRUSSELL"
 plugins=(
-    # git
-    # zsh-syntax-highlighting
-    # zsh-autosuggestions
+    git
+    zsh-syntax-highlighting
+    zsh-autosuggestions
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -17,16 +17,19 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export BASH_SESSIONS_DISABLE=1
 export LESSHISTFILE=-
-export EDITOR="/usr/bin/vim"
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/bin:$PATH";
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export BASH_SESSIONS_DISABLE=1
 export LESSHISTFILE=-
-export EDITOR="vi"
 # export CLICOLOR=1
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/bin:$PATH";
+if [[ -n $SSH_CONNECTION ]]; then 
+    export EDITOR='vim' 
+else 
+    export EDITOR='nvim'
+fi
 
 # --- General --- 
 
@@ -54,7 +57,8 @@ alias lg="lazygit"
 alias v="/usr/bin/vim"
 alias vim="nvim"
 alias e="emacs -nw"
-alias ls="ls -hp" # -G for colors or just use eza
+# alias ls="ls -hp" # -G for colors or just use eza
+alias ls="eza"
 alias python="python3"
 
 # Special Commands simplified 
@@ -68,7 +72,7 @@ alias tmux-ls="tmux list-sessions"
 alias tmux-a="tmux attach -t"
 alias tmux-d="tmux detach"
 tms() {
-    dir=$(find ~/bwSyncShare ~/Projects ~/.config ~/Documents ~/Desktop ~/Downloads -mindepth 0 -maxdepth 1 -type d 2> /dev/null | fzf +m)
+    dir=$(find ~/Projects ~/.config ~/Documents ~/Desktop ~/Downloads -mindepth 0 -maxdepth 1 -type d 2> /dev/null | fzf +m)
     session_name=$(basename $dir)
     tmux has-session -t=$session_name 2> /dev/null
 
@@ -86,9 +90,9 @@ tms() {
 # --- I3WM RELATED SHIT --- 
 
 # Turn on/off the Laptop
-alias hpoff="xrandr --output eDP --off"
-alias hpon="xrandr --output eDP --auto"
-alias i3picom="picom --config /home/lira0003/.config/picom/picom_i3.conf --experimental-backends -b &"
+# alias hpoff="xrandr --output eDP --off"
+# alias hpon="xrandr --output eDP --auto"
+# alias i3picom="picom --config /home/lira0003/.config/picom/picom_i3.conf --experimental-backends -b &"
 
 # Set a random Wallpaper
 alias wallpaper="feh --bg-fill --randomize Pictures/wallpapers/"
@@ -139,4 +143,3 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end

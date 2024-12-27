@@ -3,7 +3,6 @@ font-family = Iosevka Fixed
 font-size = 18
 font-thicken = true
 background = #181818
-shell-integration = bash
 window-padding-x = 18
 window-padding-y = 16
 # title = " "
@@ -13,3 +12,5 @@ background-opacity = 0.85
 background-blur-radius = 70
 # cmd+K to clear doesn't work in tmux by default
 keybind = super+k=text:\x0c
+selection-background = #f6c177
+selection-foreground = #000000 
