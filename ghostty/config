@@ -1,9 +1,15 @@
 theme = rose-pine
 font-family = Iosevka Fixed
 font-size = 18
+font-thicken = true
 background = #181818
 shell-integration = bash
-window-padding-x = 0
-window-padding-y = 0
-title = " "
+window-padding-x = 18
+window-padding-y = 16
+# title = " "
 confirm-close-surface = false
+macos-titlebar-style = hidden
+background-opacity = 0.85
+background-blur-radius = 70
+# cmd+K to clear doesn't work in tmux by default
+keybind = super+k=text:\x0c
