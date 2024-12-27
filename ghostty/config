@@ -1,0 +1,9 @@
+theme = rose-pine
+font-family = Iosevka Fixed
+font-size = 18
+background = #181818
+shell-integration = bash
+window-padding-x = 0
+window-padding-y = 0
+title = " "
+confirm-close-surface = false
