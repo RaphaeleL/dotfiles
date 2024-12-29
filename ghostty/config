@@ -5,16 +5,15 @@
 freetype-load-flags            = no-hinting
 freetype-load-flags            = no-force-autohint
 
-font-family                    = Iosevka Custom
-font-family                    = Iosevka Custom
-window-title-font-family       = Iosevka Custom
+font-family                    = Iosevka Fixed 
+window-title-font-family       = Iosevka Fixed
 
 font-feature                   = calt
 font-feature                   = dlig
 font-feature                   = ss05
 
 font-thicken                   = false
-font-size                      = 16
+font-size                      = 18
 window-inherit-font-size       = true
 
 # UI 
