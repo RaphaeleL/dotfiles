@@ -1,27 +1,29 @@
-! xterm*Font:        7x14 
-xterm*Font:        10x20
+*.font:        10x20
+*.scrollBar:   false
+*.utf8:        1
 
+xterm*Font:        10x20
 xterm*scrollBar:   false
 xterm*utf8:        1
 
-xterm*Background:  #181818
-xterm*Foreground:  #FEFEEF
-xterm*color0:      #2E3436
-xterm*color1:      #A40000
-xterm*color2:      #4E9A06
-xterm*color3:      #C4A000
-xterm*color4:      #3465A4
-xterm*color5:      #75507B
-xterm*color6:      #CE5C00
-xterm*color7:      #BABDB9
-xterm*color8:      #555753
-xterm*color9:      #EF2929
-xterm*color10:     #8AE234
-xterm*color11:     #FCE94F
-xterm*color12:     #729FCF
-xterm*color13:     #AD7FA8
-xterm*color14:     #FCAF3E
-xterm*color15:     #EEEEEC
+*.background:  #181818
+*.foreground:  #FEFEEF
+*.color0:      #2E3436
+*.color1:      #A40000
+*.color2:      #4E9A06
+*.color3:      #C4A000
+*.color4:      #3465A4
+*.color5:      #75507B
+*.color6:      #CE5C00
+*.color7:      #BABDB9
+*.color8:      #555753
+*.color9:      #EF2929
+*.color10:     #8AE234
+*.color11:     #FCE94F
+*.color12:     #729FCF
+*.color13:     #AD7FA8
+*.color14:     #FCAF3E
+*.color15:     #EEEEEC
 
 Xft.dpi:           96
 Xft.antialias:     1
