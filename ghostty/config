@@ -23,6 +23,7 @@ bold-is-bright                 = true
 link-url                       = true
 macos-titlebar-proxy-icon      = hidden
 macos-titlebar-style           = hidden
+window-decoration              = false
 mouse-hide-while-typing        = true
 theme                          = rose-pine 
 window-vsync                   = true
@@ -53,27 +54,4 @@ keybind                        = super+shift+i=inspector:toggle
 keybind                        = super+shift+r=reload_config
 keybind                        = super+t=new_tab
 keybind                        = super+k=text:\x0c
-# keybind                        = ctrl+shift+h=goto_split:left
-# keybind                        = ctrl+shift+j=goto_split:bottom
-# keybind                        = ctrl+shift+k=goto_split:top
-# keybind                        = ctrl+shift+l=goto_split:right
-
-# Approach #1 
-# theme = rose-pine
-# font-family = Iosevka Fixed
-# font-size = 18
-# font-thicken = true
-# background = #181818
-# window-padding-x = 18
-# window-padding-y = 16
-# # title = " "
-# confirm-close-surface = false
-# macos-titlebar-style = hidden
-# background-opacity = 0.85
-# background-blur-radius = 70
-# # cmd+K to clear doesn't work in tmux by default
-# keybind = super+k=text:\x0c
-# selection-background = #f6c177
-# selection-foreground = #000000 
-
 
