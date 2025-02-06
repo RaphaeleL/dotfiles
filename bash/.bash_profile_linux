@@ -1,0 +1,114 @@
+# .bashrc
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+export PATH="$PATH:/home/raliccia/.local/share/JetBrains/Toolbox/scripts"
+export PATH=$PATH:~/.local/bin
+export EDITOR="/usr/bin/vim"
+# export PS1='[\u@\h \w]\$ '
+# export PS1='[\u@\h \[\e[1;34m\]\w\[\e[0m\]]\$ '
+export PS1='[\u@\h \[\e[1;31m\]\w\[\e[0m\]]\$ '
+
+alias ger='echo "LANG=de_DE.UTF-8" | sudo tee /etc/locale.conf && setxkbmap de'
+alias eng='echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf && setxkbmap us'
+
+alias i3_bg_black='xsetroot -solid black &'
+alias i3_bg_wallpaper='feh --bg-fill ~/Bilder/Wallpaper-main/pexels-ragga-muffin-2468773.jpg'
+
+alias grep='grep --color=always'
+alias ls="ls --color=never -Ghp"
+
+bind -x '"\C-r": fh'
+
+fh() {
+  local cmd
+  cmd=$(history | awk '{$1=""; print substr($0,2)}' | fzf --height 40% --border --no-scrollbar --tac --no-mouse --pointer='' --no-info --prompt='' --marker='')
+  if [[ -n $cmd ]]; then
+    history -s "$cmd"
+    READLINE_LINE="$cmd"
+    READLINE_POINT=${#cmd}
+  fi
+}
+
+tms() {
+    dir=$(find ~/dev -mindepth 0 -maxdepth 2 -type d 2> /dev/null | fzf +m)
+    session_name=$(basename "$dir")
+    tmux has-session -t="$session_name" 2>/dev/null
+
+    if [[ $? -ne 0 ]]; then
+        # Create the session if it doesn't exist
+        TMUX='' tmux new-session -d -s "$session_name" -c "$dir"
+
+        # Apply custom configuration if this is the 'ccms' session
+        if [[ "$session_name" == "ccms" ]]; then
+            tmux rename-window -t 1 CCMS
+            tmux new-window -t "$session_name" -n Podman
+            tmux new-window -t "$session_name" -n TestVMs
+            tmux new-window -t "$session_name" -n ksbuild8
+            tmux new-window -t "$session_name" -n scp-toolbox
+            tmux new-window -t "$session_name" -n packaging
+			tmux select-window -t:-5
+        fi
+    else
+        # For existing sessions, check if 'ccms' has only one window
+        if [[ "$session_name" == "ccms" ]]; then
+            num_windows=$(tmux list-windows -t "$session_name" 2>/dev/null | wc -l)
+            if [[ $num_windows -eq 1 ]]; then
+                tmux rename-window -t 1 CCMS
+                tmux new-window -t "$session_name" -n Podman
+                tmux new-window -t "$session_name" -n TestVMs
+                tmux new-window -t "$session_name" -n ksbuild8
+                tmux new-window -t "$session_name" -n scp-toolbox
+                tmux new-window -t "$session_name" -n packaging
+				tmux select-window -t:-5
+            fi
+        fi
+    fi
+
+    # Attach or switch to the session
+    if [[ -z "$TMUX" ]]; then
+        tmux attach -t "$session_name"
+    else
+        tmux switch-client -t "$session_name"
+    fi
+}
+
+# Test for TRAMP Emacs
+if [[ $- != *i* ]]; then
+    return
+fi
+
+toggle-ghostty-theme () {
+    CONFIG_FILE="$HOME/.config/ghostty/config"
+    if [[ ! -f "$CONFIG_FILE" ]]; then
+      echo "Config file not found at $CONFIG_FILE"
+      exit 1
+    fi
+    last_two_lines=$(tail -n 2 "$CONFIG_FILE")
+    current_background=$(echo "$last_two_lines" | grep "background" | awk '{print $3}')
+    current_foreground=$(echo "$last_two_lines" | grep "foreground" | awk '{print $3}')
+    dark_background="#181818"
+    dark_foreground="#F6F5F4"
+    light_background="#F6F5F4"
+    light_foreground="#181818"
+    if [[ "$current_background" == "$light_background" && "$current_foreground" == "$light_foreground" ]]; then
+      new_background=$dark_background
+      new_foreground=$dark_foreground
+    else
+      new_background=$light_background
+      new_foreground=$light_foreground
+    fi
+    sed -i "/^background /c\background                     = $new_background" "$CONFIG_FILE"
+    sed -i "/^foreground /c\foreground                     = $new_foreground" "$CONFIG_FILE"
+    sed -i "/^foreground /c\foreground                     = $new_foreground" "$CONFIG_FILE"
+    echo "Toggled Ghostty mode. New mode:"
+    echo "Background: $new_background"
+    echo "Foreground: $new_foreground"
+    ghostty +list-actions reload_config
+}
+
+

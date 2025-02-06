@@ -3,15 +3,15 @@
 # export PS1='\[\e[01;32m\]\u@\h:\[\e[01;34m\]\w\[\e[0m\]\$ '
 # export PS1='\u@\h:\[\e[01;32m\]\w\[\e[0m\]\$ '
 # export PS1='\h:\W \u\$ '
-# export PS1='[\u@\h \[\e[01;36m\]\w\[\e[0m\]]\$ '
+export PS1='[\u@\h \[\e[01;36m\]\w\[\e[0m\]]\$ '
 # eval "$(starship init bash)"
 
 # --- PROFILE --- 
-# export CLICOLOR=1
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export BASH_SESSIONS_DISABLE=1
 export LESSHISTFILE=-
 export EDITOR="/usr/bin/vim"
+# export CLICOLOR=1
 
 # --- PATH --- 
 export PATH=$PATH:/usr/local/go/bin
@@ -24,10 +24,7 @@ alias lg="lazygit"
 alias v="/usr/bin/vim"
 alias vim="nvim"
 alias e="emacs -nw"
-# alias wezterm="flatpak run org.wezfurlong.wezterm"
 # alias ls="ls -Ghp"
-alias prompt="export PS1='\u@\h:\[\e[01;36m\]\w\[\e[0m\]\$ '"
-alias python="python3"
 
 # Special Commands simplified 
 alias remove="shred -f -n 512 --remove -x -z"
