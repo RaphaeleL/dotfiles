@@ -19,6 +19,7 @@
   "git.decorations.enabled": false,
   "explorer.decorations.colors": true,
   "explorer.decorations.badges": false,
+  "explorer.confirmDragAndDrop": false,
   "editor.renderLineHighlight": "none",
   "editor.occurrencesHighlight": "off",
   "editor.gotoLocation.multipleReferences": "goto",
@@ -42,13 +43,14 @@
   "editor.fontSize": 12,
   "editor.lineHeight": 1.7,
   "editor.fontFamily": "JetBrains Mono",
-  "editor.fontLigatures": true,
-  "editor.lineNumbers": "on",
+  "editor.fontLigatures": false,
+  "editor.lineNumbers": "relative",
   "editor.unicodeHighlight.ambiguousCharacters": false,
 
   // Git
   "git.enableSmartCommit": true,
   "git.confirmSync": false,
+  "git.autofetch": true,
 
   // Suggestions
   "editor.suggestFontSize": 12,
@@ -61,10 +63,6 @@
   // Security
   "security.workspace.trust.untrustedFiles": "open",
   
-  // APC UI
-  // "window.titleBarStyle": "native",
-  // "window.density.editorTabHeight": "compact",
- 
   // Erros
   "errorLens.enabled": true,
   "errorLens.padding": "0",
@@ -74,73 +72,32 @@
   "errorLens.fontWeight": "600",
   "errorLens.fontFamily": "JetBrains Mono",
 
-  // Theme 
-  "workbench.colorCustomizations": {
-    "[Fleet*]": {
-      "statusBar.border": "#292929",
-      "tab.inactiveBackground": "#292929",
-      "editorGroupHeader.border": "#292929",
-      "editorGroupHeader.tabsBackground": "#292929",
-      "editorLineNumber.foreground": "#5D5D5D",
-      "tab.inactiveForeground": "#D1D1D1",
-      "tab.activeForeground": "#fff",
-      "searchEditor.textInputBorder": "#fff",
-      "tab.activeBorderTop": "#fff",
-      "editorInlayHint.foreground": "#5D5D5D",
-      "editorInlayHint.background": "#FFFFFF00",
-      "terminal.ansiBrightBlack": "#5D5D5D"
-    },
-    "[Kaolin*]": {
-      "statusBar.background": "#5b3e31",
-      "terminal.ansiBrightMagenta": "#956a4e",
-      "terminal.ansiBrightCyan": "#4c6444",
-      "editorInlayHint.background": "#FFFFFF00",
-      "terminal.ansiBrightBlack": "#A0A0A0"
-    }
-  },
-  "workbench.productIconTheme": "fluent-icons",
-  "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-auto",
-
   // Vim
   "vim.easymotion": true,
   "vim.incsearch": true,
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
+  "vim.leader": "<space>",
   "vim.insertModeKeyBindings": [
-    {
-      "before": ["k", "j"],
-      "after": ["<Esc>"]
-    },
-    {
-      "before": ["j", "k"],
-      "after": ["<Esc>"]
-    }
+    { "before": ["k", "j"], "after": ["<Esc>"] },
+    { "before": ["j", "k"], "after": ["<Esc>"] }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    { "before": ["H"], "after": ["0"] },
+    { "before": ["L"], "after": ["$"] }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": ["<leader>", "d"],
-      "after": ["d", "d"]
-    },
-    {
-      "before": ["<C-n>"],
-      "commands": [":nohl"]
-    },
-    {
-      "before": ["K"],
-      "commands": ["lineBreakInsert"],
-      "silent": true
-    }
+    { "before": ["H"], "after": ["0"] },
+    { "before": ["L"], "after": ["$"] }
   ],
-  "vim.leader": "<space>",
   "vim.handleKeys": {
     "<C-a>": false,
-    "<C-f>": false
-  },
-
-  // something else
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "explorer.confirmDragAndDrop": false,
-  "workbench.colorTheme": "Fleet Dark Modern",
-  
+    "<C-f>": false,
+    "<C-p>": false,
+    "<C-S-p>": false,
+    "<C-j>": false,
+    "<C-w>": false
+  }
 }
+
