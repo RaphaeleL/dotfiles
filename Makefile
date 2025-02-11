@@ -55,10 +55,7 @@ mac:
 
 windows:
 	@ echo '********** WINDOWS'
-	@ $(MAKE) nvim
-	@ $(MAKE) tmux 
-	@ $(MAKE) bash 
-	@ $(MAKE) zsh 
+	@ echo '***** makefile is not implemented for windows yet'
 
 clean:
 	@ echo '********** CLEAN'
