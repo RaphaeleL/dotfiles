@@ -37,13 +37,26 @@ alias emacs-kill="emacsclient -e '(kill-emacs)'"
 alias tmux-ls="tmux list-sessions"
 alias tmux-a="tmux attach -t"
 alias tmux-d="tmux detach"
+tmux_ccms_prep() {
+    tmux rename-window -t 1 CCMS
+    tmux new-window -t "$session_name" -n Podman
+    tmux new-window -t "$session_name" -n TestVMs
+    tmux new-window -t "$session_name" -n ksbuild8
+    tmux new-window -t "$session_name" -n scp-toolbox
+    tmux new-window -t "$session_name" -n packaging
+    tmux select-window -t:-5
+}
 tms() {
-    dir=$(find ~/bwSyncShare ~/Projects ~/.config ~/Documents ~/Desktop ~/Downloads -mindepth 0 -maxdepth 1 -type d 2> /dev/null | fzf +m)
-    session_name=$(basename $dir)
-    tmux has-session -t=$session_name 2> /dev/null
+    if [[ -n "$1" ]]; then
+        session_name="$1"
+    else
+        dir=$(find ~/dev -mindepth 0 -maxdepth 2 -type d 2> /dev/null | fzf +m)
+        session_name=$(basename "$dir")
+    fi
+    tmux has-session -t="$session_name" 2>/dev/null
 
     if [[ $? -ne 0 ]]; then
-        TMUX='' tmux new-session -d -s "$session_name" -c $dir
+        TMUX='' tmux new-session -d -s "$session_name" -c "$dir"
     fi
 
     if [[ -z "$TMUX" ]]; then
