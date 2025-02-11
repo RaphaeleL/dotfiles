@@ -1,6 +1,6 @@
-# --- ZSH --- 
+# --- ZSH ---
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="ROBBYRUSSELL"
+ZSH_THEME="example"
 plugins=(
     git
     zsh-syntax-highlighting
@@ -13,45 +13,49 @@ ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
-# --- PROFILE --- 
-# export PATH=$PATH:/usr/local/go/bin
+# --- PROFILE ---
+export PATH
 export PATH="$HOME/bin:$PATH";
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
+export PATH=$PATH:~/.local/bin
+
 export EDITOR='nvim'
 
-# --- General --- 
+# --- Alias' ---
 
-# History
-# HISTSIZE=5000
-# HISTDUP=erase
-# setopt appendhistory
-# setopt sharehistory
-# setopt hist_ignore_space
-# setopt hist_ignore_dups
-# setopt hist_ignore_all_dups
-# setopt hist_save_no_dups
-# setopt hist_find_no_dups
+# Basic's
+alias ger='echo "LANG=de_DE.UTF-8" | sudo tee /etc/locale.conf && setxkbmap de'
+alias eng='echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf && setxkbmap us'
+alias i3_bg_black='xsetroot -solid black &'
+alias i3_bg_wallpaper='feh --bg-fill ~/Bilder/Wallpaper-main/pexels-ragga-muffin-2468773.jpg'
+alias grep='grep --color=always'
+alias ls="ls --color=always -Ghp"
 
-# --- Alias' --- 
-
-# Basics 
-# alias v="/usr/bin/vim"
-# alias vim="nvim"
-# alias e="emacs -nw"
-# # alias ls="ls -hp" # -G for colors or just use eza
-alias ls="eza"
-# alias python="python3"
-
-# Special Commands simplified 
+# Special Commands simplified
 alias remove="shred -f -n 512 --remove -x -z"
-alias sizes="du -sh * | gsort -hr"
-alias perms="stat -f '%N %A' *"
-alias emacs-kill="emacsclient -e '(kill-emacs)'"
 
-# Tmux
-alias tmux-ls="tmux list-sessions"
-alias tmux-a="tmux attach -t"
-alias tmux-d="tmux detach"
-tmux_ccms_prep() {
+fh() {
+  local cmd
+  cmd=$(builtin fc -lnr 1 | fzf --height 40% --border --no-scrollbar --tac --no-mouse --pointer='' --no-info --prompt='' --marker='')
+
+  if [[ -n $cmd ]]; then
+    LBUFFER+="$cmd"
+    zle reset-prompt 
+  fi
+}
+
+zle -N fh
+bindkey "^R" fh
+
+ccms_tmux_setup_test() {
+    tmux rename-window -t 1 CCMS
+    tmux new-window -t "$session_name" -n TestVM-1 
+    tmux new-window -t "$session_name" -n TestVM-2 
+    tmux new-window -t "$session_name" -n ksbuild8
+    tmux select-window -t:-3
+}
+ccms_tmux_setup_dev() {
     tmux rename-window -t 1 CCMS
     tmux new-window -t "$session_name" -n Podman
     tmux new-window -t "$session_name" -n TestVMs
@@ -60,6 +64,8 @@ tmux_ccms_prep() {
     tmux new-window -t "$session_name" -n packaging
     tmux select-window -t:-5
 }
+
+# Tmux
 tms() {
     if [[ -n "$1" ]]; then
         session_name="$1"
@@ -80,50 +86,10 @@ tms() {
     fi
 }
 
-# # --- I3WM RELATED SHIT --- 
-#
-# # Turn on/off the Laptop
-# # alias hpoff="xrandr --output eDP --off"
-# # alias hpon="xrandr --output eDP --auto"
-# # alias i3picom="picom --config /home/lira0003/.config/picom/picom_i3.conf --experimental-backends -b &"
-#
-# # Set a random Wallpaper
-# alias wallpaper="feh --bg-fill --randomize Pictures/wallpapers/"
-# alias background_black="hsetroot -solid "#000000""
-#
-# # Lock Screen 
-# alias lock="i3lock -c ffffff"
-#
-# # Manage Monitors
-# duplicate() {
-#     if [ -z "$1" ] || [ -z "$2" ]; then
-#         echo "Error: Two monitor identifiers and the location is required."
-#         echo "  Monitors:"
-#         xrandr --listmonitors | awk 'NR>1 {print "\t- "$NF}'
-#         echo "Usage: duplicate <monitor-a> <monitor-b>"
-#         return 1
-#     fi
-#     xrandr --output $1 --same-as $2
-# }
-# expand() {
-#     if [ -z "$1" ] || [ -z "$2" ]; then
-#         echo "Error: Two monitor identifiers and the location is required."
-#         echo "  Monitors:"
-#         xrandr --listmonitors | awk 'NR>1 {print "\t- "$NF}'
-#         echo "  Location:"
-#         echo "        - --left-of"
-#         echo "        - --right-of"
-#         echo "        - --above"
-#         echo "        - --below"
-#         echo "Usage: expand <monitor-a> <location> <monitor-b>"
-#         return 1
-#     fi
-#     xrandr --output $1 $2 $3
-# }
+# Test for TRAMP Emacs
+if [[ $- != *i* ]]; then
+    return
+fi
 
-# --- MACOS RELATED SHIT --- 
 
-# Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# --- AUTO GENERATED --- 
+# --- AUTO GENERATED ---
