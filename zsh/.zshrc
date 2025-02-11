@@ -49,6 +49,7 @@ zle -N fh
 bindkey "^R" fh
 
 ccms_tmux_setup_test() {
+    tmux kill-window -a -t 1
     tmux rename-window -t 1 CCMS
     tmux new-window -t "$session_name" -n TestVM-1 
     tmux new-window -t "$session_name" -n TestVM-2 
@@ -56,6 +57,7 @@ ccms_tmux_setup_test() {
     tmux select-window -t:-3
 }
 ccms_tmux_setup_dev() {
+    tmux kill-window -a -t 1
     tmux rename-window -t 1 CCMS
     tmux new-window -t "$session_name" -n Podman
     tmux new-window -t "$session_name" -n TestVMs
