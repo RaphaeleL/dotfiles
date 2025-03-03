@@ -98,6 +98,20 @@
     "<C-S-p>": false,
     "<C-j>": false,
     "<C-w>": false
-  }
-}
+  },
 
+  // SSH
+  "remote.SSH.remotePlatform": {
+    "10.26.15.66": "linux",
+    "ksbuild8": "linux",
+    "DevVM": "linux",
+    "d": "linux",
+    "k8": "linux"
+  },
+  "makefile.configureOnOpen": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "gitlens.launchpad.indicator.enabled": false,
+  "extensions.ignoreRecommendations": true,
+  "workbench.colorTheme": "Fleet Dark",
+  "workbench.activityBar.location": "top",
+}
