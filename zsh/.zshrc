@@ -1,10 +1,9 @@
 # --- ZSH ---
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="example"
+ZSH_THEME="robbyrussell"
 plugins=(
     git
     zsh-syntax-highlighting
-    zsh-autosuggestions
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -17,8 +16,7 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 export PATH
 export PATH="$HOME/bin:$PATH";
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
-export PATH=$PATH:~/.local/bin
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
 export EDITOR='nvim'
 
@@ -27,10 +25,9 @@ export EDITOR='nvim'
 # Basic's
 alias ger='echo "LANG=de_DE.UTF-8" | sudo tee /etc/locale.conf && setxkbmap de'
 alias eng='echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf && setxkbmap us'
-alias i3_bg_black='xsetroot -solid black &'
-alias i3_bg_wallpaper='feh --bg-fill ~/Bilder/Wallpaper-main/pexels-ragga-muffin-2468773.jpg'
 alias grep='grep --color=always'
 alias ls="ls --color=always -Ghp"
+alias vim='nvim'
 
 # Special Commands simplified
 alias remove="shred -f -n 512 --remove -x -z"
@@ -47,25 +44,6 @@ fh() {
 
 zle -N fh
 bindkey "^R" fh
-
-ccms_tmux_setup_test() {
-    tmux kill-window -a -t 1
-    tmux rename-window -t 1 CCMS
-    tmux new-window -t "$session_name" -n TestVM-1 
-    tmux new-window -t "$session_name" -n TestVM-2 
-    tmux new-window -t "$session_name" -n ksbuild8
-    tmux select-window -t:-3
-}
-ccms_tmux_setup_dev() {
-    tmux kill-window -a -t 1
-    tmux rename-window -t 1 CCMS
-    tmux new-window -t "$session_name" -n Podman
-    tmux new-window -t "$session_name" -n TestVMs
-    tmux new-window -t "$session_name" -n ksbuild8
-    tmux new-window -t "$session_name" -n scp-toolbox
-    tmux new-window -t "$session_name" -n packaging
-    tmux select-window -t:-5
-}
 
 # Tmux
 tms() {
@@ -87,11 +65,18 @@ tms() {
         tmux switch-client -t "$session_name"
     fi
 }
+# Completion function for tms
+_tms_complete() {
+    local -a sessions
+    sessions=("${(@f)$(tmux list-sessions -F '#S' 2>/dev/null)}")
+    compadd -a sessions
+}
+compdef _tms_complete tms       # NOTE: this is for zsh. 
+# complete -F _tms_complete tms # NOTE: this is for bash. 
+
 
 # Test for TRAMP Emacs
 if [[ $- != *i* ]]; then
     return
 fi
 
-
-# --- AUTO GENERATED ---
