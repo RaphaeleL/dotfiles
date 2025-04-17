@@ -1,0 +1,54 @@
+# Prefix
+set -g prefix C-b
+bind C-b send-prefix
+unbind ´
+
+# Reload
+bind r source-file ~/.tmux.conf \; display "Reloaded."
+
+# Remove 'd' as a keybind
+bind-key d detach
+
+# Split
+bind _ split-window -h
+unbind '"'
+bind - split-window -v
+unbind %
+
+# UI
+set-option -g status-position bottom
+set -g status-left ''
+set -g status-right '#[fg=#000000,bg=default,bold] [#S] '
+set -g status-justify left
+set -g status-bg "#1c8037"
+setw -g window-status-format '#[fg=#ffffff]#I:#[fg=#ffffff,bold]#W'
+setw -g window-status-current-format '#[fg=#000000]#I:#[fg=#000000,bold]#W'
+set -g status-left-length 90
+
+# Mouse Mode
+set -g mouse off
+
+# Vim like Panel Selection
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# Rearange
+bind-key n swap-window -t +1
+bind-key p swap-window -t -1
+
+# Start windows and panes at 1, not 0
+set -g base-index 1
+set -g pane-base-index 1
+set-window-option -g pane-base-index 1
+set-option -g renumber-windows on
+
+# Switch Windows
+bind-key -n C-h previous-window
+bind-key -n C-l next-window
+
+# 256 Color, Truecolor
+set -g default-terminal "tmux-256color"
+set -as terminal-overrides ",xterm-256color:Tc"
+
