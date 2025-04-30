@@ -49,14 +49,21 @@ bindkey "^R" fh
 tms() {
     if [[ -n "$1" ]]; then
         session_name="$1"
+    # else if: if no params then:
     else
-        dir=$(find ~/dev -mindepth 0 -maxdepth 2 -type d 2> /dev/null | fzf +m)
-        session_name=$(basename "$dir")
+        echo 'Usage: tms <session_name>'
+        echo '   - session_name: is either a given or wanted Tmux Session'
+        echo '   - (there is tab completion)'
+        return
+
+        # dir=$(find ~/dev -mindepth 0 -maxdepth 2 -type d 2> /dev/null | fzf +m)
+        # session_name=$(tmux list-sessions -F '#S' 2> /dev/null | fzf --height 40% --border --no-scrollbar --tac --no-mouse --pointer='' --no-info --prompt='' --marker='')
+
     fi
     tmux has-session -t="$session_name" 2>/dev/null
 
     if [[ $? -ne 0 ]]; then
-        TMUX='' tmux new-session -d -s "$session_name" -c "$dir"
+        TMUX='' tmux new-session -d -s "$session_name" # -c "$dir"
     fi
 
     if [[ -z "$TMUX" ]]; then
@@ -73,7 +80,6 @@ _tms_complete() {
 }
 compdef _tms_complete tms       # NOTE: this is for zsh. 
 # complete -F _tms_complete tms # NOTE: this is for bash. 
-
 
 # Test for TRAMP Emacs
 if [[ $- != *i* ]]; then
