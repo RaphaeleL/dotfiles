@@ -76,13 +76,13 @@ header_window:
 .PHONY: install_fedora
 install_fedora:
 	@echo '***** install'
-	@ dnf install zsh tmux bspwm sxhkd zig >/dev/null 2>&1
+	@ dnf install zsh tmux i3 zig >/dev/null 2>&1
 	@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 .PHONY: install_mac
 install_mac:
 	@echo '***** install'
-	@ brew install zsh tmux bspwm sxhkd zig
+	@ brew install zsh tmux zig
 	@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 .PHONY: install_windows
@@ -95,7 +95,7 @@ linux: header_linux install_fedora
 	@ $(MAKE) nvim
 	@ $(MAKE) tmux 
 	@ $(MAKE) zsh 
-	@ $(MAKE) bspwm 
+	@ $(MAKE) i3wm 
 	@ $(MAKE) ghostty
 
 .PHONY: mac
