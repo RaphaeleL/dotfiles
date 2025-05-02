@@ -21,20 +21,17 @@ bindsym $mod+Shift+w kill
 bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 
-# browser
-# bindsym $mod+b exec --no-startup-id google-chrome &
-
 # change focus
-bindsym $mod+Shift+h focus left
-bindsym $mod+Shift+j focus down
-bindsym $mod+Shift+k focus up
-bindsym $mod+Shift+l focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # move focused window
-bindsym $mod+h move left
-bindsym $mod+j move down
-bindsym $mod+k move up
-bindsym $mod+l move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # split 
 bindsym $mod+t split toggle
@@ -120,6 +117,7 @@ exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/Wallpaper-
 
 # Short for Programms 
 bindsym $mod+e exec emacs-29.4-gtk+x11
+bindsym $mod+b exec firefox 
 
 # Autostart Stuff
 exec --no-startup-id vmware-user-suid-wrapper &
