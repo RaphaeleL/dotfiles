@@ -16,7 +16,6 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 export PATH
 export PATH="$HOME/bin:$PATH";
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
 export EDITOR='nvim'
 
