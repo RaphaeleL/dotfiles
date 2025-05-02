@@ -115,7 +115,8 @@ for_window [class="^.*"] border pixel 2
 focus_follows_mouse no
 
 # Wallpaper 
-exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/Wallpaper-main/ &
+# exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/Wallpaper-main/ &
+exec --no-startup-id xsetroot -solid "#000000" &
 
 # Short for Programms 
 bindsym $mod+e exec emacs-29.4-gtk+x11
