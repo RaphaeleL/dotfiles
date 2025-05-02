@@ -2,21 +2,20 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-bspc monitor -d I II III VI V VI VII VIII IX X
+bspc monitor -d I II III IV V VI VII VIII IX X
 
-bspc config border_width         2
-bspc config window_gap          12
+bspc config border_width         1
+bspc config window_gap           5
 
-bspc config split_ratio          0.52
-bspc config borderless_monocle   true
+bspc config split_ratio          0.50
 bspc config gapless_monocle      true
+bspc config borderless_monocle   true
 
-# bspc config normal_border_color "#484848"
-# bspc config focused_border_color "#850d04"
-# bspc config urgent_border_color "#B58900"
-# bspc config presel_border_color "#26E2FF"
+bspc config focused_border_color     "#F0C674"
+bspc config normal_border_color      "#6E6E6E"
 
 ./.config/polybar/launch.sh &
-feh --bg-fill ~/Pictures/background.png &
-picom --config /home/lira0003/.config/picom/picom.conf --experimental-backends -b &
-
+feh --bg-fill ~/Pictures/Wallpaper-main/pexels-ragga-muffin-2468773.jpg &
+vmware-user-suid-wrapper &
+copypaste &
+eng &

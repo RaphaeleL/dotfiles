@@ -1,58 +1,42 @@
-# ghostty +show-config --default --docs
-# ghostty +list-themes
-
 # Font
 freetype-load-flags            = no-hinting
 freetype-load-flags            = no-force-autohint
-
-font-family                    = Iosevka Fixed 
-window-title-font-family       = Iosevka Fixed
-
-font-feature                   = calt
-font-feature                   = dlig
-font-feature                   = ss05
-
-font-thicken                   = false
-font-size                      = 18
+font-family                    = Iosevka Nerd Font
+window-title-font-family       = Iosevka Nerd Font
+font-feature                   = -calt
+font-feature                   = -dlig
+font-feature                   = -ss05
+font-thicken                   = false 
+font-size                      = 12
 window-inherit-font-size       = true
 
-# UI 
+# UI
 adjust-cursor-thickness        = 3
 adjust-underline-position      = 3
 bold-is-bright                 = true
 link-url                       = true
-# macos-titlebar-proxy-icon      = hidden
-# macos-titlebar-style           = hidden
-# window-decoration              = false 
+window-decoration              = none 
+gtk-titlebar 				   = false 
 mouse-hide-while-typing        = true
-theme                          = rose-pine 
 window-vsync                   = true
-window-padding-x               = 18
-window-padding-y               = 16
-# title                          = ""
-background                     = #181818
-background-opacity             = 1.0 
-# background-opacity             = 0.85 
-# background-blur-radius         = 70 
-selection-background           = #f6c177
-selection-foreground           = #000000
+theme                          = monokai-pro
+window-padding-x               = 0 
+window-padding-y               = 0 
+window-height                  = 29
+window-width                   = 115
+# background                     = 181818
 
 # Other
 clipboard-paste-protection     = true
 clipboard-trim-trailing-spaces = true
 copy-on-select                 = true
-macos-auto-secure-input        = true
-macos-secure-input-indication  = true
 quit-after-last-window-closed  = false
 scrollback-limit               = 4200
-shell-integration              = zsh 
+shell-integration              = zsh
 shell-integration-features     = no-cursor,sudo,title
 confirm-close-surface          = false
 
 # Keybind's
-keybind                        = super+shift+enter=new_split:auto
-keybind                        = super+shift+i=inspector:toggle
-keybind                        = super+shift+r=reload_config
-keybind                        = super+t=new_tab
-keybind                        = super+k=text:\x0c
+keybind                        = alt+;=reload_config
+keybind                        = alt+n=new_tab
 

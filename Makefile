@@ -4,66 +4,93 @@ MAKEFLAGS = --no-print-directory
 
 i3wm:
 	@ echo '***** i3wm'
-	@ cp -R i3wm/i3/config ~/.config/i3/config
-	@ cp -R i3wm/i3status/config ~/.config/i3status/config
+	@ rm -rf ~/.config/i3 ~/.config/i3status
+	@ mkdir -p ~/.config/i3 ~/.config/i3status
+	@ ln -s $(HOME)/dev/code/dotfiles/i3wm/i3/config ~/.config/i3/config
+	@ ln -s $(HOME)/dev/code/dotfiles/i3wm/i3status/config ~/.config/i3status/config
+
+bspwm:
+	@ echo '***** bspwm'
+	@ rm -rf ~/.config/bspwm ~/.config/sxhkd ~/.config/polybar
+	@ mkdir -p ~/.config/bspwm ~/.config/sxhkd ~/.config/polybar
+	@ ln -s $(HOME)/dev/code/dotfiles/bspwm/bspwmrc ~/.config/bspwm/bspwmrc
+	@ ln -s $(HOME)/dev/code/dotfiles/sxhkd/sxhkdrc ~/.config/sxhkd/sxhkdrc
+	@ ln -s $(HOME)/dev/code/dotfiles/polybar/config.ini ~/.config/polybar/config.ini
+	@ ln -s $(HOME)/dev/code/dotfiles/polybar/launch.sh ~/.config/polybar/launch.sh
 
 xterm: 
 	@ echo '***** xterm'
-	@ cp -R xterm/.Xresources ~/.Xresources
+	@ ln -s $(HOME)/dev/code/dotfiles/xterm/.Xresources ~/.Xresources
 
 ghostty: 
 	@ echo '***** ghostty'
-	@ cp -R ghostty/config ~/.config/ghostty/config
+	@ rm -rf ~/.config/ghostty
+	@ mkdir -p ~/.config/ghostty
+	@ ln -s $(HOME)/dev/code/dotfiles/ghostty/config ~/.config/ghostty/config
 
 vim: 
 	@ echo '***** vim'
-	@ cp -R vim/.vimrc ~/.vimrc
+	rm -rf ~/.vimrc
+	@ ln -s $(HOME)/dev/code/dotfiles/vim/.vimrc ~/.vimrc
 
 zsh: 
 	@ echo '***** zsh'
-	@ cp -R zsh/.zshrc ~/.zshrc
+	@ rm -rf ~/.zshrc ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
+	@ git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/plugins/zsh-syntax-highlighting >/dev/null 2>&1
+	@ ln -s $(HOME)/dev/code/dotfiles/zsh/.zshrc ~/.zshrc
 
 bash: 
 	@ echo '***** bash'
-	@ cp -R bash/.bash_profile_linux ~/.bash_profile
+	@ rm -rf ~/.bash_profile
+	@ ln -s $(HOME)/dev/code/dotfiles/bash/.bash_profile_linux ~/.bash_profile
 
 tmux: 
 	@ echo '***** tmux'
-	@ cp -R tmux/.tmux.conf ~/.tmux.conf
+	@ rm -rf ~/.tmux.conf
+	@ ln -s $(HOME)/dev/code/dotfiles/tmux/.tmux.conf ~/.tmux.conf
 
 nvim: 
-	@ echo '***** nvim'
-	@ cp -R nvim/ ~/.config/nvim
+	@echo '***** nvim'
+	@rm -rf ~/.config/nvim
+	@git clone https://github.com/RaphaeleL/nvim ~/.config/nvim >/dev/null 2>&1
 
-linux: 
+header_linux:
 	@ echo '********** LINUX'
+
+header_mac:
+	@ echo '********** MACOS'
+
+header_window:
+	@ echo '********** WINDOWS'
+
+install_fedora:
+	@echo '***** install'
+	@ dnf install zsh tmux bspwm sxhkd zig >/dev/null 2>&1
+	@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+install_mac:
+	@echo '***** install'
+	@ brew install zsh tmux bspwm sxhkd zig
+	@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+install_windows:
+	@ # TODO
+	@echo '***** install'
+
+linux: header_linux install_fedora
 	@ $(MAKE) nvim
 	@ $(MAKE) tmux 
-	@ $(MAKE) bash 
 	@ $(MAKE) zsh 
-	@ $(MAKE) i3wm 
-	@ $(MAKE) xterm
+	@ $(MAKE) bspwm 
 	@ $(MAKE) ghostty
 
-mac:
+mac: header_mac install_mac
 	@ echo '********** MACOS'
 	@ $(MAKE) nvim
 	@ $(MAKE) tmux 
-	@ $(MAKE) bash 
 	@ $(MAKE) zsh 
 	@ $(MAKE) ghostty
 
-windows:
+windows: header_windows install_windows
 	@ echo '********** WINDOWS'
-	@ echo '***** makefile is not implemented for windows yet'
-
-clean:
-	@ echo '********** CLEAN'
-	@ echo '***** tmux' && rm -rf ~/.tmux.conf
-	@ echo '***** nvim' && rm -rf ~/.config/nvim
-	@ echo '***** bash' && rm -rf ~/.bash_profile
-	@ echo '***** ssh' && rm -rf ~/.zshrc
-	@ echo '***** i3wm' && rm -rf ~/.config/i3/config && rm -rf ~/.config/i3status/config
-	@ echo '***** xterm' && rm -rf ~/.Xresources
-	@ echo '***** ghostty' && rm -rf ~/.config/ghostty/config
-
+	@ echo '***** TODO'
