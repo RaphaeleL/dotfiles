@@ -101,9 +101,6 @@ bar {
     position top
 }
 
-# Wallpaper 
-exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/Wallpaper-main/ &
-
 # No Title Bar
 default_border pixel 0
 default_floating_border pixel 0
@@ -115,5 +112,15 @@ for_window [class="^.*"] border pixel 2
 # gaps outer 1
 # gaps inner 10
 
+# Mouse
 focus_follows_mouse no
-# hide_edge_borders both
+
+# Wallpaper 
+exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/Wallpaper-main/ &
+
+# Short for Programms 
+bindsym $mod+e exec emacs-29.4-gtk+x11
+
+# Autostart Stuff
+exec --no-startup-id vmware-user-suid-wrapper &
+exec --no-startup-id echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf && setxkbmap us &
