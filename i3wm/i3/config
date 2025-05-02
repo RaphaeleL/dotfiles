@@ -36,7 +36,7 @@ bindsym $mod+Shift+l move right
 bindsym $mod+t split toggle
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle
 
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -98,6 +98,7 @@ bar {
     font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
     font pango:mono 8 
 }
+# exec --no-startup-id ./$(HOME)/.config/polybar/launch.sh &
 
 # No Title Bar
 default_border pixel 0
