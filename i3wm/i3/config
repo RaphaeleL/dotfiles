@@ -9,17 +9,17 @@ set $refresh_i3status killall -SIGUSR1 i3status
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
+# Shortcut for Programms 
+bindsym $mod+e exec emacs-29.4-gtk+x11
+bindsym $mod+b exec firefox 
 bindsym $mod+Return exec xfce4-terminal 
 bindsym $mod+Shift+return exec ghostty 
+bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 
 # kill focused window
 bindsym $mod+w kill
 bindsym $mod+Shift+w kill
-
-# start dmenu
-bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 
 # change focus
 bindsym $mod+h focus left
@@ -75,7 +75,7 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-#
+# Reload / Restart I3
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
@@ -117,10 +117,6 @@ focus_follows_mouse no
 # Wallpaper 
 # exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/Wallpaper-main/ &
 exec --no-startup-id xsetroot -solid "#000000" &
-
-# Short for Programms 
-bindsym $mod+e exec emacs-29.4-gtk+x11
-bindsym $mod+b exec firefox 
 
 # Autostart Stuff
 exec --no-startup-id vmware-user-suid-wrapper &
