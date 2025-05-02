@@ -83,6 +83,7 @@ header_window:
 install_fedora:
 	@echo '***** install'
 	@ # TODO: Ghostty
+	@ # TODO: Dynamic Package Manager Selection (pacman, apt, ...) 
 	@ dnf install zsh tmux i3 zig git >/dev/null 2>&1
 	@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -90,6 +91,7 @@ install_fedora:
 install_mac:
 	@echo '***** install'
 	@ # TODO: Ghostty
+	@ # TODO: Homebrew 
 	@ brew install zsh tmux zig git
 	@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
