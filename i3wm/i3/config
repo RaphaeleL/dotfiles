@@ -1,6 +1,6 @@
 # Base
 set $mod Mod1
-font pango:monospace 8
+# font pango:monospace 8
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
@@ -96,6 +96,8 @@ bindsym $mod+r mode "resize"
 bar {
     status_command i3status
     position top
+    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    font pango:mono 8 
 }
 
 # No Title Bar
