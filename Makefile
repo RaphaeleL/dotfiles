@@ -55,6 +55,12 @@ tmux:
 	@ rm -rf ~/.tmux.conf
 	@ ln -s $(HOME)/dev/code/dotfiles/tmux/.tmux.conf ~/.tmux.conf
 
+.PHONY: emacs 
+emacs: 
+	@echo '***** emacs'
+	@rm -rf ~/.emacs.d/
+	@git clone https://github.com/RaphaeleL/.emacs.d ~/.emacs.d >/dev/null 2>&1
+
 .PHONY: nvim
 nvim: 
 	@echo '***** nvim'
@@ -76,23 +82,26 @@ header_window:
 .PHONY: install_fedora
 install_fedora:
 	@echo '***** install'
-	@ dnf install zsh tmux i3 zig >/dev/null 2>&1
+	@ # TODO: Ghostty
+	@ dnf install zsh tmux i3 zig git >/dev/null 2>&1
 	@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 .PHONY: install_mac
 install_mac:
 	@echo '***** install'
-	@ brew install zsh tmux zig
+	@ # TODO: Ghostty
+	@ brew install zsh tmux zig git
 	@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 .PHONY: install_windows
 install_windows:
-	@ # TODO
 	@echo '***** install'
+	@ # TODO: all
 
 .PHONY: linux
 linux: header_linux install_fedora
 	@ $(MAKE) nvim
+	@ $(MAKE) emacs
 	@ $(MAKE) tmux 
 	@ $(MAKE) zsh 
 	@ $(MAKE) i3wm 
@@ -102,6 +111,7 @@ linux: header_linux install_fedora
 mac: header_mac install_mac
 	@ echo '********** MACOS'
 	@ $(MAKE) nvim
+	@ $(MAKE) emacs
 	@ $(MAKE) tmux 
 	@ $(MAKE) zsh 
 	@ $(MAKE) ghostty
