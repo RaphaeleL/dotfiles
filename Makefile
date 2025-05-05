@@ -9,6 +9,10 @@ else
 	DOTFILES_DIR := $(HOME)/dotfiles
 endif
 
+.PHONY: update_submodule 
+update_submodule:
+	@ git submodule update --remote
+
 .PHONY: i3wm
 i3wm:
 	@ echo '***** i3wm'
