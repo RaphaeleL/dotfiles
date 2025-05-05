@@ -1,6 +1,6 @@
 # --- ZSH --- 
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="ROBBYRUSSELL"
+ZSH_THEME="robbyrussell"
 plugins=(
     git
     zsh-syntax-highlighting
@@ -67,46 +67,6 @@ tms() {
     fi
 }
 
-# # --- I3WM RELATED SHIT --- 
-#
-# # Turn on/off the Laptop
-# # alias hpoff="xrandr --output eDP --off"
-# # alias hpon="xrandr --output eDP --auto"
-# # alias i3picom="picom --config /home/lira0003/.config/picom/picom_i3.conf --experimental-backends -b &"
-#
-# # Set a random Wallpaper
-# alias wallpaper="feh --bg-fill --randomize Pictures/wallpapers/"
-# alias background_black="hsetroot -solid "#000000""
-#
-# # Lock Screen 
-# alias lock="i3lock -c ffffff"
-#
-# # Manage Monitors
-# duplicate() {
-#     if [ -z "$1" ] || [ -z "$2" ]; then
-#         echo "Error: Two monitor identifiers and the location is required."
-#         echo "  Monitors:"
-#         xrandr --listmonitors | awk 'NR>1 {print "\t- "$NF}'
-#         echo "Usage: duplicate <monitor-a> <monitor-b>"
-#         return 1
-#     fi
-#     xrandr --output $1 --same-as $2
-# }
-# expand() {
-#     if [ -z "$1" ] || [ -z "$2" ]; then
-#         echo "Error: Two monitor identifiers and the location is required."
-#         echo "  Monitors:"
-#         xrandr --listmonitors | awk 'NR>1 {print "\t- "$NF}'
-#         echo "  Location:"
-#         echo "        - --left-of"
-#         echo "        - --right-of"
-#         echo "        - --above"
-#         echo "        - --below"
-#         echo "Usage: expand <monitor-a> <location> <monitor-b>"
-#         return 1
-#     fi
-#     xrandr --output $1 $2 $3
-# }
 
 # --- MACOS RELATED SHIT --- 
 
