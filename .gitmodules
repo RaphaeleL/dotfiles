@@ -1,3 +1,6 @@
 [submodule "nvim"]
 	path = nvim
 	url = https://github.com/RaphaeleL/nvim
+[submodule "emacs"]
+	path = emacs
+	url = https://github.com/RaphaeleL/.emacs.d
