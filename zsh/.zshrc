@@ -12,6 +12,9 @@ ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
+# --- MACOS ---
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # --- PROFILE ---
 export PATH
 export PATH="$HOME/bin:$PATH";

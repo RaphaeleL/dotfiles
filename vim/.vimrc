@@ -18,7 +18,7 @@ set history=100
 set ttyfast
 set background=dark
 set wildmenu
-syntax off
+syntax on 
 set backspace=indent,eol,start
 set shiftwidth=2
 set autoindent 
