@@ -74,6 +74,8 @@ emacs:
 nvim: 
 	@echo '***** nvim'
 	@rm -rf ~/.config/nvim
+	@rm -rf ~/.local/share/nvim
+	@rm -rf ~/.local/state/nvim
 	@git clone --depth=1 https://github.com/RaphaeleL/nvim ~/.config/nvim >/dev/null 2>&1
 
 .PHONY: header_linux
