@@ -12,7 +12,7 @@ floating_modifier $mod
 # Shortcut for Programms 
 bindsym $mod+e exec emacs-29.4-gtk+x11
 bindsym $mod+Return exec xfce4-terminal 
-bindsym $mod+Shift+return exec ghostty 
+bindsym $mod+Shift+Return exec ghostty 
 bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 
@@ -76,7 +76,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # Reload / Restart I3
 bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+v restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 mode "resize" {
@@ -86,10 +86,10 @@ mode "resize" {
     bindsym l resize grow width 10 px or 10 ppt
     bindsym Return mode "default"
     bindsym Escape mode "default"
-    bindsym $mod+r mode "default"
+    bindsym $mod+Shift+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+Shift+r mode "resize"
 
 # Bar
 bar {
