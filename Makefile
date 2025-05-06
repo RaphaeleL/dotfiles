@@ -1,13 +1,56 @@
-MAKEFLAGS = --no-print-directory
-UNAME_S := $(shell uname -s)
+###########################################################################
+## Variables
+###########################################################################
 
-ifeq ($(UNAME_S),Linux)
+ifeq ($(shell uname -s),Linux)
 	DOTFILES_DIR := $(HOME)/dev/code/dotfiles
-else ifeq ($(UNAME_S),Darwin)
+else ifeq ($(shell uname -s),Darwin)
 	DOTFILES_DIR := $(HOME)/Projects/dotfiles
 else
 	DOTFILES_DIR := $(HOME)/dotfiles
 endif
+
+MAKEFLAGS = --no-print-directory
+
+YELLOW = \033[0;33m
+GREEN  = \033[0;32m
+RED    = \033[0;31m
+NC     = \033[0m
+
+###########################################################################
+## Helper Functions
+###########################################################################
+
+define pretty_print
+    name_length=$$(echo "$(1)" | wc -c); \
+    width=$$(expr 30 - $$name_length); \
+    dots=$$(printf '%*s' $$width | tr ' ' '.'); \
+    printf " %s %s %b\n" "$(1)" "$$dots" $(2)
+endef
+
+define do_target_git
+    $(call pretty_print, $(1), "$(YELLOW)"FORCED"$(NC)"); \
+    rm -rf $(HOME)/$(2)
+    git clone --depth=1 $(3) $(HOME)/$(2) >/dev/null 2>&1
+endef
+
+define do_target
+	if diff -q $(HOME)/$(2) $(DOTFILES_DIR)/$(3) >/dev/null 2>&1; then \
+		$(call pretty_print, $(1), "$(GREEN)"OK"$(NC)"); \
+	else \
+		$(call pretty_print, $(1), "$(YELLOW)"UPDATED"$(NC)"); \
+		rm -rf $(HOME)/$(2); \
+    	ln -s $(DOTFILES_DIR)/$(3) $(HOME)/$(2); \
+	fi
+endef
+
+###########################################################################
+## Package Management
+###########################################################################
+
+.PHONY: pretty_header
+pretty_header: 
+	@ $(call pretty_print, $(if $(CALLER),$(CALLER),$@))
 
 .PHONY: update_submodule 
 update_submodule:
@@ -15,88 +58,62 @@ update_submodule:
 
 .PHONY: i3wm
 i3wm:
-	@ echo '***** i3wm'
-	@ rm -rf ~/.config/i3 ~/.config/i3status
-	@ mkdir -p ~/.config/i3 ~/.config/i3status
-	@ ln -s $(DOTFILES_DIR)/i3wm/i3/config ~/.config/i3/config
-	@ ln -s $(DOTFILES_DIR)/i3wm/i3status/config ~/.config/i3status/config
+	@ $(call do_target,$@,.config/i3/config,i3wm/i3/config)
+	@ $(call do_target,'i3status',.config/i3status/config,i3wm/i3status/config)
 
 .PHONY: bspwm
-bspwm:
-	@ echo '***** bspwm'
-	@ rm -rf ~/.config/bspwm ~/.config/sxhkd ~/.config/polybar
-	@ mkdir -p ~/.config/bspwm ~/.config/sxhkd ~/.config/polybar
-	@ ln -s $(DOTFILES_DIR)bspwm/bspwmrc ~/.config/bspwm/bspwmrc
-	@ ln -s $(DOTFILES_DIR)/sxhkd/sxhkdrc ~/.config/sxhkd/sxhkdrc
-	@ ln -s $(DOTFILES_DIR)/polybar/config.ini ~/.config/polybar/config.ini
-	@ ln -s $(DOTFILES_DIR)/polybar/launch.sh ~/.config/polybar/launch.sh
+bspwm: polybar
+	@ $(call do_target,$@,.config/bspwm/bspwmrc,bspwm/bspwmrc)
+	@ $(call do_target,'sxhkd',.config/sxhkd/sxhkdrc,sxhkd/sxhkdrc)
+
+.PHONY: polybar
+polybar:
+	@ $(call do_target,$@,.config/polybar/config.ini,config.ini)
+	@ $(call do_target,$@,.config/polybar/launch.sh,polybar/launch.sh)
 
 .PHONY: xterm
 xterm: 
-	@ echo '***** xterm'
-	@ ln -s $(DOTFILES_DIR)/xterm/.Xresources ~/.Xresources
+	@ $(call do_target,$@,.Xresources,xterm/.Xresources)
 
 .PHONY: ghostty
 ghostty: 
-	@ echo '***** ghostty'
-	@ rm -rf ~/.config/ghostty
-	@ mkdir -p ~/.config/ghostty
-	@ ln -s $(DOTFILES_DIR)/ghostty/config ~/.config/ghostty/config
+	@ $(call do_target,$@,.config/ghostty/config,ghostty/config)
 
 .PHONY: vim
 vim: 
-	@ echo '***** vim'
-	@ rm -rf ~/.vimrc
-	@ ln -s $(DOTFILES_DIR)/vim/.vimrc ~/.vimrc
+	@ $(call do_target,$@,.vimrc,vim/.vimrc)
 
 .PHONY: zsh
-zsh: 
-	@ echo '***** zsh'
-	@ rm -rf ~/.zshrc ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
-	@ git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/plugins/zsh-syntax-highlighting >/dev/null 2>&1
-	@ ln -s $(DOTFILES_DIR)/zsh/.zshrc ~/.zshrc
+zsh: zsh_plugins
+	@ $(call do_target,$@,.zshrc,zsh/.zshrc)
+	
+.PHONY: zsh_plugins
+zsh_plugins: 
+	@ $(call do_target_git,$@,.oh-my-zsh/plugins/zsh-syntax-highlighting,https://github.com/zsh-users/zsh-syntax-highlighting)
 
 .PHONY: bash
 bash: 
-	@ echo '***** bash'
-	@ rm -rf ~/.bash_profile
-	@ ln -s $(DOTFILES_DIR)/bash/.bash_profile_linux ~/.bash_profile
+	@ $(call do_target,$@,.bash_profile_linux,bash/.bash_profile_linux)
 
 .PHONY: tmux
 tmux: 
-	@ echo '***** tmux'
-	@ rm -rf ~/.tmux.conf
-	@ ln -s $(DOTFILES_DIR)/tmux/.tmux.conf ~/.tmux.conf
+	@ $(call do_target,$@,.tmux.conf,tmux/.tmux.conf)
 
 .PHONY: emacs 
 emacs: 
-	@echo '***** emacs'
-	@rm -rf ~/.emacs.d/
-	@git clone --depth=1 https://github.com/RaphaeleL/.emacs.d ~/.emacs.d >/dev/null 2>&1
+	@ $(call do_target_git,$@,.emacs.d,https://github.com/RaphaeleL/.emacs.d)
 
 .PHONY: nvim
 nvim: 
-	@echo '***** nvim'
-	@rm -rf ~/.config/nvim
-	@rm -rf ~/.local/share/nvim
-	@rm -rf ~/.local/state/nvim
-	@git clone --depth=1 https://github.com/RaphaeleL/nvim ~/.config/nvim >/dev/null 2>&1
+	@ $(call do_target_git,$@,.config/nvim,https://github.com/RaphaeleL/nvim)
 
-.PHONY: header_linux
-header_linux:
-	@ echo '********** LINUX'
-
-.PHONY: header_mac
-header_mac:
-	@ echo '********** MACOS'
-
-.PHONY: header_windows
-header_window:
-	@ echo '********** WINDOWS'
+###########################################################################
+## Installations of Dependencies depending on the OS
+###########################################################################
 
 .PHONY: install_fedora
 install_fedora:
-	@echo '***** install'
+	@ $(call pretty_print, "dependencies", "$(YELLOW)"INSTALLED"$(NC)")
 	@ # TODO: Ghostty
 	@ # TODO: Dynamic Package Manager Selection (pacman, apt, ...) 
 	@ dnf install zsh tmux i3 zig git >/dev/null
@@ -104,19 +121,18 @@ install_fedora:
 
 .PHONY: install_mac
 install_mac:
-	@echo '***** install'
+	@ $(call pretty_print, "dependencies", "$(YELLOW)"INSTALLED"$(NC)")
 	@ # TODO: Ghostty
 	@ # TODO: Homebrew 
-	@ brew install --quiet zsh tmux zig git
+	@ brew install --quiet zsh tmux zig git >/dev/null
 	@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-.PHONY: install_windows
-install_windows:
-	@echo '***** install'
-	@ # TODO: all
+###########################################################################
+## Operating System
+###########################################################################
 
 .PHONY: linux
-linux: header_linux install_fedora
+linux: install_fedora
 	@ $(MAKE) nvim
 	@ $(MAKE) emacs
 	@ $(MAKE) tmux 
@@ -126,16 +142,10 @@ linux: header_linux install_fedora
 	@ $(MAKE) vim
 
 .PHONY: mac
-mac: header_mac install_mac
+mac: install_mac
 	@ $(MAKE) nvim
 	@ $(MAKE) emacs
 	@ $(MAKE) tmux 
 	@ $(MAKE) zsh 
 	@ $(MAKE) ghostty
 	@ $(MAKE) vim
-
-.PHONY: windows
-windows: header_windows install_windows
-	@ echo '********** WINDOWS'
-	@ echo '***** TODO'
-	@ # TODO: all
