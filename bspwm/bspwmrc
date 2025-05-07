@@ -17,5 +17,4 @@ bspc config normal_border_color      "#6E6E6E"
 ./.config/polybar/launch.sh &
 feh --bg-fill ~/Pictures/Wallpaper-main/pexels-ragga-muffin-2468773.jpg &
 vmware-user-suid-wrapper &
-copypaste &
-eng &
+echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf && setxkbmap us &
