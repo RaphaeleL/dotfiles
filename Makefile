@@ -211,6 +211,7 @@ tools:
 
 .PHONY: status
 status:
+	@ $(call pretty_print, OS, "$(RED)$(DISTRO)$(NC)")
 	@ $(call check_target,nvim,.config/nvim,unused)
 	@ $(call check_target,emacs,.emacs.d,unused)
 	@ $(call check_target,zsh plugins,.oh-my-zsh/plugins/,unused)
