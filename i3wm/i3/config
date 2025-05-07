@@ -11,8 +11,8 @@ floating_modifier $mod
 
 # Shortcut for Programms 
 bindsym $mod+e exec emacs-29.4-gtk+x11
-bindsym $mod+Return exec xfce4-terminal 
-bindsym $mod+Shift+Return exec ghostty 
+bindsym $mod+Shift+Return exec xfce4-terminal 
+bindsym $mod+Return exec ghostty 
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 
 # kill focused window
