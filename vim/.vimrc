@@ -30,7 +30,7 @@ set clipboard^=unnamed,unnamedplus
 set autochdir
 set viminfofile=NONE
 
-colorscheme habax 
+colorscheme default 
 syntax on 
 
 map <space>e :Lexplore<cr>
