@@ -213,6 +213,7 @@ tools:
 status:
 	@ $(call check_target,nvim,.config/nvim,unused)
 	@ $(call check_target,emacs,.emacs.d,unused)
+	@ $(call check_target,zsh plugins,.oh-my-zsh/plugins/,unused)
 	@ $(call check_target,tmux,.tmux.conf,tmux/.tmux.conf)
 	@ $(call check_target,zsh,.zshrc,zsh/.zshrc)
 	@ $(call check_target,vim,.vimrc,vim/.vimrc)
