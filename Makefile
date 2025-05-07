@@ -2,15 +2,17 @@
 ## Variables
 ###########################################################################
 
-ifeq ($(shell uname -s),Linux)
+OS = $(shell uname -s)
+DISTRO = $(shell . /etc/os-release && echo $$ID)
+MAKEFLAGS = --no-print-directory
+
+ifeq ($(OS),Linux)
 	DOTFILES_DIR := $(HOME)/dev/code/dotfiles
-else ifeq ($(shell uname -s),Darwin)
+else ifeq ($(OS),Darwin)
 	DOTFILES_DIR := $(HOME)/Projects/dotfiles
 else
 	DOTFILES_DIR := $(HOME)/dotfiles
 endif
-
-MAKEFLAGS = --no-print-directory
 
 YELLOW = \033[0;33m
 GREEN  = \033[0;32m
@@ -30,17 +32,37 @@ endef
 
 define do_target_git
     $(call pretty_print, $(1), "$(YELLOW)"FORCED"$(NC)"); \
-    rm -rf $(HOME)/$(2)
+    sudo rm -rf $(HOME)/$(2); \
+	mkdir -p $$(dirname $(HOME)/$(2)); \
     git clone --depth=1 $(3) $(HOME)/$(2) >/dev/null 2>&1
 endef
 
-define do_target
-	if diff -q $(HOME)/$(2) $(DOTFILES_DIR)/$(3) >/dev/null 2>&1; then \
-		$(call pretty_print, $(1), "$(GREEN)"OK"$(NC)"); \
+define check_target
+	if [ -L $(HOME)/$(2) ]; then \
+		if [ "$$(readlink -f $(HOME)/$(2))" = "$$(realpath $(DOTFILES_DIR)/$(3))" ]; then \
+			$(call pretty_print, $(1), "$(GREEN)LINK$(NC)"); \
+		else \
+			$(call pretty_print, $(1), "$(RED)WRONG LINK$(NC)"); \
+		fi; \
+	elif [ -e $(HOME)/$(2) ]; then \
+		$(call pretty_print, $(1), "$(YELLOW)GIT$(NC)"); \
 	else \
+		$(call pretty_print, $(1), "$(RED)MISSING$(NC)"); \
+	fi
+endef
+
+define do_target
+	if [ -L $(HOME)/$(2) ] && [ "$$(readlink -f $(HOME)/$(2))" = "$$(realpath $(DOTFILES_DIR)/$(3))" ]; then \
+		$(call pretty_print, $(1), "$(GREEN)"OK"$(NC)"); \
+	elif [ -e $(HOME)/$(2) ] || [ -L $(HOME)/$(2) ]; then \
 		$(call pretty_print, $(1), "$(YELLOW)"UPDATED"$(NC)"); \
 		rm -rf $(HOME)/$(2); \
-    	ln -s $(DOTFILES_DIR)/$(3) $(HOME)/$(2); \
+		mkdir -p $$(dirname $(HOME)/$(2)); \
+		ln -s $(DOTFILES_DIR)/$(3) $(HOME)/$(2); \
+	else \
+		$(call pretty_print, $(1), "$(YELLOW)"MISSING"$(NC)"); \
+		mkdir -p $$(dirname $(HOME)/$(2)); \
+		ln -s $(DOTFILES_DIR)/$(3) $(HOME)/$(2); \
 	fi
 endef
 
@@ -59,17 +81,17 @@ update_submodule:
 .PHONY: i3wm
 i3wm:
 	@ $(call do_target,$@,.config/i3/config,i3wm/i3/config)
-	@ $(call do_target,'i3status',.config/i3status/config,i3wm/i3status/config)
+	@ $(call do_target,$@ status,.config/i3status/config,i3wm/i3status/config)
 
 .PHONY: bspwm
 bspwm: polybar
 	@ $(call do_target,$@,.config/bspwm/bspwmrc,bspwm/bspwmrc)
-	@ $(call do_target,'sxhkd',.config/sxhkd/sxhkdrc,sxhkd/sxhkdrc)
+	@ $(call do_target,sxhkd,.config/sxhkd/sxhkdrc,sxhkd/sxhkdrc)
 
 .PHONY: polybar
 polybar:
 	@ $(call do_target,$@,.config/polybar/config.ini,config.ini)
-	@ $(call do_target,$@,.config/polybar/launch.sh,polybar/launch.sh)
+	@ $(call do_target,$@ launcher,.config/polybar/launch.sh,polybar/launch.sh)
 
 .PHONY: xterm
 xterm: 
@@ -84,13 +106,10 @@ vim:
 	@ $(call do_target,$@,.vimrc,vim/.vimrc)
 
 .PHONY: zsh
-zsh: zsh_plugins
+zsh:
 	@ $(call do_target,$@,.zshrc,zsh/.zshrc)
+	@ $(call do_target_git,$@ plugins,.oh-my-zsh/plugins/zsh-syntax-highlighting,https://github.com/zsh-users/zsh-syntax-highlighting)
 	
-.PHONY: zsh_plugins
-zsh_plugins: 
-	@ $(call do_target_git,$@,.oh-my-zsh/plugins/zsh-syntax-highlighting,https://github.com/zsh-users/zsh-syntax-highlighting)
-
 .PHONY: bash
 bash: 
 	@ $(call do_target,$@,.bash_profile_linux,bash/.bash_profile_linux)
@@ -113,33 +132,34 @@ nvim:
 
 .PHONY: install_fedora
 install_fedora:
-	@ $(call pretty_print, "dependencies", "$(YELLOW)"INSTALLED"$(NC)")
-	@ # TODO: Ghostty
-	@ # TODO: Dynamic Package Manager Selection (pacman, apt, ...) 
-	@ dnf install zsh tmux i3 zig git >/dev/null
+	@ $(call pretty_print, install packages, "$(YELLOW)"DNF"$(NC)")
+	@ sudo dnf copr enable pgdev/ghostty -y >/dev/null 2>/dev/null
+	@ sudo dnf install zsh tmux i3 zig git lazygit ghostty -y >/dev/null 2>/dev/null
 	@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 .PHONY: install_mac
 install_mac:
-	@ $(call pretty_print, "dependencies", "$(YELLOW)"INSTALLED"$(NC)")
-	@ # TODO: Ghostty
+	@ $(call pretty_print, install packages, "$(YELLOW)"BREW"$(NC)")
 	@ # TODO: Homebrew 
-	@ brew install --quiet zsh tmux zig git >/dev/null
+	@ brew install --quiet --cask ghostty >/dev/null
+	@ brew install --quiet zsh tmux zig git lazygit >/dev/null
 	@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 ###########################################################################
 ## Operating System
 ###########################################################################
 
-.PHONY: linux
-linux: install_fedora
+.PHONY: fedora 
+fedora: install_fedora
 	@ $(MAKE) nvim
 	@ $(MAKE) emacs
 	@ $(MAKE) tmux 
 	@ $(MAKE) zsh 
 	@ $(MAKE) i3wm 
+	@ $(MAKE) bspwm 
 	@ $(MAKE) ghostty
 	@ $(MAKE) vim
+	@ $(MAKE) xterm 
 
 .PHONY: mac
 mac: install_mac
@@ -149,3 +169,72 @@ mac: install_mac
 	@ $(MAKE) zsh 
 	@ $(MAKE) ghostty
 	@ $(MAKE) vim
+
+###########################################################################
+## Wrapper 
+###########################################################################
+
+.PHONY: help
+help:
+	@ echo ""
+	@ echo "  Available make targets:"
+	@ echo ""
+	@ echo "  auto ................. Detect OS automatically and install dependencies and setup everything"
+	@ echo "  fedora ............... Fedora: install dependencies and setup everything"
+	@ echo "  mac .................. macOS: install dependencies and setup everything"
+	@ echo ""
+	@ echo "  update_submodule .... Update git submodules (emacs, nvim)"
+	@ echo "  status .............. Check if dotfiles are correctly linked / cloned"
+	@ echo "  tools ............... Get the available and supported tools"
+	@ echo ""
+	@ echo ""
+
+.PHONY: tools
+tools:
+	@ echo ""
+	@ echo "  Supported Tools:"
+	@ echo ""
+	@ echo "  i3wm  ............. i3 window manager and i3status"
+	@ echo "  bspwm ............. BSPWM window manager with sxhkd"
+	@ echo "  polybar ........... Polybar status bar"
+	@ echo "  xterm ............. XTerm terminal configuration"
+	@ echo "  ghostty ........... Ghostty terminal emulator"
+	@ echo "  vim ............... Vim configuration"
+	@ echo "  zsh ............... Zsh shell configuration"
+	@ echo "  bash .............. Bash shell configuration"
+	@ echo "  tmux .............. Tmux configuration"
+	@ echo "  emacs ............. Emacs configuration"
+	@ echo "  nvim .............. Neovim configuration"
+	@ echo ""
+	@ echo "  Use 'make <tool_name>' to setup or update a specific tool"
+	@ echo ""
+
+.PHONY: status
+status:
+	@ $(call check_target,nvim,.config/nvim,unused)
+	@ $(call check_target,emacs,.emacs.d,unused)
+	@ $(call check_target,tmux,.tmux.conf,tmux/.tmux.conf)
+	@ $(call check_target,zsh,.zshrc,zsh/.zshrc)
+	@ $(call check_target,vim,.vimrc,vim/.vimrc)
+	@ $(call check_target,xterm,.Xresources,xterm/.Xresources)
+	@ $(call check_target,i3wm,.config/i3/config,i3wm/i3/config)
+	@ $(call check_target,i3wm status,.config/i3status/config,i3wm/i3status/config)
+	@ $(call check_target,polybar,.config/polybar/config.ini,config.ini)
+	@ $(call check_target,polybar launcher,.config/polybar/launch.sh,polybar/launch.sh)
+	@ $(call check_target,bspwm,.config/bspwm/bspwmrc,bspwm/bspwmrc)
+	@ $(call check_target,sxhkd,.config/sxhkd/sxhkdrc,sxhkd/sxhkdrc)
+	@ $(call check_target,ghostty,.config/ghostty/config,ghostty/config)
+
+.PHONY: auto
+auto:
+	@ if [ "$(OS)" = "Linux" ]; then \
+		if [ "$(DISTRO)" = "fedora" ]; then \
+			$(MAKE) fedora; \
+		else \
+			echo "$(OS) Distro ($(DISTRO)) is not supported"; \
+		fi; \
+	elif [ "$(OS)" = "Darwin" ]; then \
+		$(MAKE) mac; \
+	else \
+		echo "OS ($(OS)) is not supported"; \
+	fi
