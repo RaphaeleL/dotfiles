@@ -90,7 +90,7 @@ bspwm: polybar
 
 .PHONY: polybar
 polybar:
-	@ $(call do_target,$@,.config/polybar/config.ini,config.ini)
+	@ $(call do_target,$@,.config/polybar/config.ini,polybar/config.ini)
 	@ $(call do_target,$@ launcher,.config/polybar/launch.sh,polybar/launch.sh)
 
 .PHONY: xterm
