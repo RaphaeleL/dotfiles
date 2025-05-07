@@ -134,7 +134,7 @@ nvim:
 install_fedora:
 	@ $(call pretty_print, install packages, "$(YELLOW)"DNF"$(NC)")
 	@ sudo dnf copr enable pgdev/ghostty -y >/dev/null 2>/dev/null
-	@ sudo dnf install zsh tmux i3 zig git lazygit ghostty -y >/dev/null 2>/dev/null
+	@ sudo dnf install zsh tmux i3 bspwm sxhkd zig git lazygit ghostty -y >/dev/null 2>/dev/null
 	@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 .PHONY: install_mac
