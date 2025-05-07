@@ -180,13 +180,13 @@ help:
 	@ echo "  Available make targets:"
 	@ echo ""
 	@ echo "  auto ................. Detect OS automatically and install dependencies and setup everything"
-	@ echo "  fedora ............... Fedora: install dependencies and setup everything"
-	@ echo "  mac .................. macOS: install dependencies and setup everything"
+	@ echo "   fedora ............... - for Linux Fedora"
+	@ echo "   mac .................. - for macOS"
 	@ echo ""
-	@ echo "  update_submodule .... Update git submodules (emacs, nvim)"
 	@ echo "  status .............. Check if dotfiles are correctly linked / cloned"
 	@ echo "  tools ............... Get the available and supported tools"
 	@ echo ""
+	@ echo "  update_submodule .... Update git submodules (emacs, nvim)"
 	@ echo ""
 
 .PHONY: tools
