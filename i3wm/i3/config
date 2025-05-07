@@ -11,8 +11,8 @@ floating_modifier $mod
 
 # Shortcut for Programms 
 bindsym $mod+e exec emacs-29.4-gtk+x11
-bindsym $mod+Shift+Return exec xfce4-terminal 
 bindsym $mod+Return exec ghostty 
+# bindsym $mod+Shift+Return exec xfce4-terminal 
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 
 # kill focused window
@@ -106,15 +106,15 @@ default_floating_border pixel 0
 for_window [class="^.*"] border pixel 2
 
 # Gaps
-# gaps outer 1
-# gaps inner 10
+gaps outer 1
+gaps inner 10
 
 # Mouse
 focus_follows_mouse no
 
 # Wallpaper 
-# exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/Wallpaper-main/ &
-exec --no-startup-id xsetroot -solid "#000000" &
+exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/Wallpaper-main/ &
+#Check ansible access via ssh for root exec --no-startup-id xsetroot -solid "#000000" &
 
 # Autostart Stuff
 exec --no-startup-id vmware-user-suid-wrapper &
