@@ -1,6 +1,10 @@
 # Dotfiles
 
-This repository contains my dotfiles.
+This repository contains my dotfiles and dependencies for various operating systems and window managers. The goal is to provide a simple and efficient way to set up a development environment across different platforms, just with one Command.
+
+## Installation 
+
+Make sure you have [GNU Make](https://www.gnu.org/software/make/) installed, the rest of the dependencies will be installed automatically.
 
 ## Usage 
 
@@ -8,7 +12,7 @@ To install the dotfiles, run `make auto`. This will automatically install the do
 
 ## TODO
 
-- Linux: Support for more Linux Distros (Arch, Debian, Ubuntu, etc.)
+- Linux: Support for more Linux Distros ([Arch](https://archlinux.org/), [Debian](https://www.debian.org/), [Ubuntu](https://ubuntu.com/), etc.)
 - Linux: More X11 Window Manager ([AwesomeWM](https://awesomewm.org/), [DWM](https://dwm.suckless.org/), etc.)
 - Linux: Setup some [Wallpaper](https://github.com/RaphaeleL/wallpaper)
 - MacOS: Auto Install [Homebrew](https://brew.sh)
