@@ -23,6 +23,12 @@ NC     = \033[0m
 ## Helper Functions
 ###########################################################################
 
+PLATFORM := $(shell \
+	if [ "$(OS)" = "Linux" ] && [ "$(DISTRO)" = "fedora" ]; then echo "fedora"; \
+	elif [ "$(OS)" = "Darwin" ]; then echo "mac"; \
+	else echo "unsupported"; fi \
+)
+
 define pretty_print
     name_length=$$(echo "$(1)" | wc -c); \
     width=$$(expr 30 - $$name_length); \
@@ -230,28 +236,18 @@ status:
 
 .PHONY: support 
 support:
-	@ if [ "$(OS)" = "Linux" ]; then \
-		if [ "$(DISTRO)" = "fedora" ]; then \
-			$(call pretty_print, $(DISTRO) ($(OS)), "$(GREEN)YES$(NC)"); \
-		else \
-			$(call pretty_print, $(DISTRO) ($(OS)), "$(RED)NO$(NC)"); \
-		fi; \
-	elif [ "$(OS)" = "Darwin" ]; then \
-			$(call pretty_print, $(OS), "$(GREEN)YES$(NC)"); \
+	@ if [ "$(PLATFORM)" = "unsupported" ]; then \
+		$(call pretty_print, $(DISTRO) ($(OS)), "$(RED)NO$(NC)"); \
 	else \
-		$(call pretty_print, $(OS), "$(RED)NO$(NC)"); \
+		$(call pretty_print, $(PLATFORM) ($(OS)), "$(GREEN)YES$(NC)"); \
 	fi
 
 .PHONY: auto
 auto:
-	@ if [ "$(OS)" = "Linux" ]; then \
-		if [ "$(DISTRO)" = "fedora" ]; then \
-			$(MAKE) fedora; \
-		else \
-			echo "$(OS) Distro ($(DISTRO)) is not supported"; \
-		fi; \
-	elif [ "$(OS)" = "Darwin" ]; then \
+	@ if [ "$(PLATFORM)" = "fedora" ]; then \
+		$(MAKE) fedora; \
+	elif [ "$(PLATFORM)" = "mac" ]; then \
 		$(MAKE) mac; \
 	else \
-		echo "OS ($(OS)) is not supported"; \
+		echo "Your Platform is not supported yet."; \
 	fi
