@@ -183,6 +183,7 @@ help:
 	@ echo "   fedora ............... - for Linux Fedora"
 	@ echo "   mac .................. - for macOS"
 	@ echo ""
+	@ echo "  support ............. Check if the OS is supported"
 	@ echo "  status .............. Check if dotfiles are correctly linked / cloned"
 	@ echo "  tools ............... Get the available and supported tools"
 	@ echo ""
@@ -226,6 +227,20 @@ status:
 	@ $(call check_target,bspwm,.config/bspwm/bspwmrc,bspwm/bspwmrc)
 	@ $(call check_target,sxhkd,.config/sxhkd/sxhkdrc,sxhkd/sxhkdrc)
 	@ $(call check_target,ghostty,.config/ghostty/config,ghostty/config)
+
+.PHONY: support 
+support:
+	@ if [ "$(OS)" = "Linux" ]; then \
+		if [ "$(DISTRO)" = "fedora" ]; then \
+			$(call pretty_print, $(DISTRO) ($(OS)), "$(GREEN)YES$(NC)"); \
+		else \
+			$(call pretty_print, $(DISTRO) ($(OS)), "$(RED)NO$(NC)"); \
+		fi; \
+	elif [ "$(OS)" = "Darwin" ]; then \
+			$(call pretty_print, $(OS), "$(GREEN)YES$(NC)"); \
+	else \
+		$(call pretty_print, $(OS), "$(RED)NO$(NC)"); \
+	fi
 
 .PHONY: auto
 auto:
