@@ -3,7 +3,7 @@
 ###########################################################################
 
 OS = $(shell uname -s)
-DISTRO = $(shell . /etc/os-release && echo $$ID)
+DISTRO = $(shell . /etc/os-release 2> /dev/null && echo $$ID)
 MAKEFLAGS = --no-print-directory
 
 ifeq ($(OS),Linux)
