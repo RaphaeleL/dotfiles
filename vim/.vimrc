@@ -1,5 +1,5 @@
 imap kj <Esc>
-set nowrap
+set wrap
 set nonumber 
 set norelativenumber 
 set autowrite 
