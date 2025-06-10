@@ -35,7 +35,8 @@ cpu_usage {
 }
 
 memory {
-    format = "RAM: %used / %total"
+    # format = "RAM: %used / %total"
     # format = "RAM: %free %available (%used) / %total"
-    # format = "RAM:  %percentage_used used, %percentage_free free, %percentage_shared shared"
+    # format = "RAM: %percentage_used used, %percentage_free free, %percentage_shared shared"
+    format = "RAM: %percentage_used"
 }
