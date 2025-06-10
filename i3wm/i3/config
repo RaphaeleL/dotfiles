@@ -1,6 +1,5 @@
 # Base
 set $mod Mod1
-# font pango:monospace 8
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
@@ -106,15 +105,15 @@ default_floating_border pixel 0
 for_window [class="^.*"] border pixel 2
 
 # Gaps
-gaps outer 1
-gaps inner 10
+# gaps outer 1
+# gaps inner 10
 
 # Mouse
 focus_follows_mouse no
 
 # Wallpaper 
-exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/Wallpaper-main/ &
-#Check ansible access via ssh for root exec --no-startup-id xsetroot -solid "#000000" &
+# exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/Wallpaper-main/ &
+exec --no-startup-id xsetroot -solid "#000000" &
 
 # Autostart Stuff
 exec --no-startup-id vmware-user-suid-wrapper &
