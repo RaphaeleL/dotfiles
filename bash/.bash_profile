@@ -45,10 +45,8 @@ tms() { # Tmux Sessionizer
     if [[ -n "$1" ]]; then
         session_name="$1"
     else
-        echo 'Usage: tms <session_name>'
-        echo '   - session_name: is either a given or wanted Tmux Session'
-        echo '   - (there is tab completion)'
-        return
+        session_name=$(tmux list-sessions -F '#S' 2>/dev/null | fzf --height 40% --border --no-scrollbar --tac --no-mouse --pointer='' --no-info  --marker='' --prompt="Select tmux session: ")
+        [[ -z "$session_name" ]] && return
     fi
     tmux has-session -t="$session_name" 2>/dev/null
 
