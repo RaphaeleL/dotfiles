@@ -8,10 +8,11 @@ set $refresh_i3status killall -SIGUSR1 i3status
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# Shortcut for Programms 
-bindsym $mod+e exec emacs-29.4-gtk+x11
-bindsym $mod+Return exec xfce4-terminal 
-bindsym $mod+Shift+Return exec ghostty 
+# Shortcut for Programms
+bindsym $mod+Return exec xfce4-terminal		    # Terminal
+bindsym $mod+Shift+e exec emacs-29.4-gtk+x11	# Editor
+bindsym $mod+Shift+Return exec firefox		    # Browser
+
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 
 # kill focused window
@@ -29,7 +30,7 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# split 
+# split
 bindsym $mod+t split toggle
 
 # enter fullscreen mode for the focused container
@@ -93,28 +94,28 @@ bar {
     status_command i3status
     position top
     font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-    font pango:mono 8 
+    font pango:mono 8
 }
-# exec --no-startup-id ./$(HOME)/.config/polybar/launch.sh &
 
 # No Title Bar
 default_border pixel 0
 default_floating_border pixel 0
 
-# Focused Color 
+# Focused Color
 for_window [class="^.*"] border pixel 2
 
 # Gaps
-# gaps outer 1
-# gaps inner 10
+gaps outer 1
+gaps inner 5
 
 # Mouse
 focus_follows_mouse no
 
-# Wallpaper 
-# exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/Wallpaper-main/ &
-exec --no-startup-id xsetroot -solid "#000000" &
+# Wallpaper
+exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/Wallpaper-main/ &
+# exec --no-startup-id xsetroot -solid "#000000" &
 
 # Autostart Stuff
 exec --no-startup-id vmware-user-suid-wrapper &
 exec --no-startup-id echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf && setxkbmap us &
+exec --no-startup-id copypaste &
