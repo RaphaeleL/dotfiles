@@ -105,7 +105,8 @@ xterm:
 
 .PHONY: ghostty
 ghostty: 
-	@ $(call do_target,$@,.config/ghostty/config,ghostty/config)
+	# TODO: Depending on the OS
+	@ $(call do_target,$@,.config/ghostty/config,ghostty/config_linux)
 
 .PHONY: vim
 vim: 
@@ -118,6 +119,7 @@ zsh:
 	
 .PHONY: bash
 bash: 
+	# TODO: Depending on the OS
 	@ $(call do_target,$@,.bash_profile,bash/.bash_profile_linux)
 
 .PHONY: tmux
