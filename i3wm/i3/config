@@ -9,9 +9,9 @@ set $refresh_i3status killall -SIGUSR1 i3status
 floating_modifier $mod
 
 # Shortcut for Programms
-bindsym $mod+Return exec xfce4-terminal		    # Terminal
-bindsym $mod+Shift+e exec emacs-29.4-gtk+x11	# Editor
-bindsym $mod+Shift+Return exec firefox		    # Browser
+bindsym $mod+Return exec xfce4-terminal		        # Terminal
+bindsym $mod+Shift+Return exec emacs-29.4-gtk+x11	# Editor
+# TODO: Browser
 
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 
