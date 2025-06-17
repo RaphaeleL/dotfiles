@@ -16,8 +16,8 @@ endif
 
 YELLOW = \033[0;33m
 GREEN  = \033[0;32m
-RED    = \033[0;31m
-NC     = \033[0m
+RED	   = \033[0;31m
+NC	   = \033[0m
 
 ###########################################################################
 ## Helper Functions
@@ -30,17 +30,17 @@ PLATFORM := $(shell \
 )
 
 define pretty_print
-    name_length=$$(echo "$(1)" | wc -c); \
-    width=$$(expr 30 - $$name_length); \
-    dots=$$(printf '%*s' $$width | tr ' ' '.'); \
-    printf " %s %s %b\n" "$(1)" "$$dots" $(2)
+	name_length=$$(echo "$(1)" | wc -c); \
+	width=$$(expr 30 - $$name_length); \
+	dots=$$(printf '%*s' $$width | tr ' ' '.'); \
+	printf " %s %s %b\n" "$(1)" "$$dots" $(2)
 endef
 
 define do_target_git
-    $(call pretty_print, $(1), "$(YELLOW)"FORCED"$(NC)"); \
-    sudo rm -rf $(HOME)/$(2); \
+	$(call pretty_print, $(1), "$(YELLOW)"FORCED"$(NC)"); \
+	sudo rm -rf $(HOME)/$(2); \
 	mkdir -p $$(dirname $(HOME)/$(2)); \
-    git clone --depth=1 $(3) $(HOME)/$(2) >/dev/null 2>&1
+	git clone --depth=1 $(3) $(HOME)/$(2) >/dev/null 2>&1
 endef
 
 define check_target
@@ -105,8 +105,13 @@ xterm:
 
 .PHONY: ghostty
 ghostty:
-	# TODO: Depending on the OS
-	@ $(call do_target,$@,.config/ghostty/config,ghostty/config_linux)
+	@if [ "$(PLATFORM)" = "fedora" ]; then \
+		$(call do_target,$@,.config/ghostty/config,ghostty/config_linux); \
+	elif [ "$(PLATFORM)" = "mac" ]; then \
+		$(call do_target,$@,.config/ghostty/config,ghostty/config_macos); \
+	else \
+		echo "unsupported platform"; \
+	fi
 
 .PHONY: vim
 vim:
@@ -114,16 +119,15 @@ vim:
 
 .PHONY: zsh
 zsh:
-ifeq ($(OS),Linux)
-ifeq ($(DISTRO),fedora)
-	@$(call do_target,$@,.zshrc,zsh/.zshrc)
-endif
-else ifeq ($(OS),Darwin)
-	@$(call do_target,$@,.zshrc,zsh/.zshrc.mac)
-else
-	@echo "unsupported"
-endif
-	@$(call do_target_git,$@,plugins,.oh-my-zsh/plugins/zsh-syntax-highlighting,https://github.com/zsh-users/zsh-syntax-highlighting)
+	@if [ "$(PLATFORM)" = "fedora" ]; then \
+		$(call do_target,$@,.zshrc,zsh/.zshrc); \
+		$(call do_target_git,$@,plugins,.oh-my-zsh/plugins/zsh-syntax-highlighting,https://github.com/zsh-users/zsh-syntax-highlighting); \
+	elif [ "$(PLATFORM)" = "mac" ]; then \
+		$(call do_target,$@,.zshrc,zsh/.zshrc.mac); \
+		$(call do_target_git,$@,plugins,.oh-my-zsh/plugins/zsh-syntax-highlighting,https://github.com/zsh-users/zsh-syntax-highlighting); \
+	else \
+		echo "unsupported platform"; \
+	fi
 
 .PHONY: bash
 bash:
@@ -211,7 +215,7 @@ tools:
 	@ echo ""
 	@ echo "  Supported Tools:"
 	@ echo ""
-	@ echo "  i3wm  ............. i3 window manager and i3status"
+	@ echo "  i3wm	............. i3 window manager and i3status"
 	@ echo "  bspwm ............. BSPWM window manager with sxhkd"
 	@ echo "  polybar ........... Polybar status bar"
 	@ echo "  xterm ............. XTerm terminal configuration"
