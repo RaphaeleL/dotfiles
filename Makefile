@@ -77,10 +77,10 @@ endef
 ###########################################################################
 
 .PHONY: pretty_header
-pretty_header: 
+pretty_header:
 	@ $(call pretty_print, $(if $(CALLER),$(CALLER),$@))
 
-.PHONY: update_submodule 
+.PHONY: update_submodule
 update_submodule:
 	@ git submodule update --remote
 
@@ -100,38 +100,46 @@ polybar:
 	@ $(call do_target,$@ launcher,.config/polybar/launch.sh,polybar/launch.sh)
 
 .PHONY: xterm
-xterm: 
+xterm:
 	@ $(call do_target,$@,.Xresources,xterm/.Xresources)
 
 .PHONY: ghostty
-ghostty: 
+ghostty:
 	# TODO: Depending on the OS
 	@ $(call do_target,$@,.config/ghostty/config,ghostty/config_linux)
 
 .PHONY: vim
-vim: 
+vim:
 	@ $(call do_target,$@,.vimrc,vim/.vimrc)
 
 .PHONY: zsh
 zsh:
-	@ $(call do_target,$@,.zshrc,zsh/.zshrc)
-	@ $(call do_target_git,$@ plugins,.oh-my-zsh/plugins/zsh-syntax-highlighting,https://github.com/zsh-users/zsh-syntax-highlighting)
-	
+ifeq ($(OS),Linux)
+ifeq ($(DISTRO),fedora)
+	@$(call do_target,$@,.zshrc,zsh/.zshrc)
+endif
+else ifeq ($(OS),Darwin)
+	@$(call do_target,$@,.zshrc,zsh/.zshrc.mac)
+else
+	@echo "unsupported"
+endif
+	@$(call do_target_git,$@,plugins,.oh-my-zsh/plugins/zsh-syntax-highlighting,https://github.com/zsh-users/zsh-syntax-highlighting)
+
 .PHONY: bash
-bash: 
+bash:
 	# TODO: Depending on the OS
 	@ $(call do_target,$@,.bash_profile,bash/.bash_profile_linux)
 
 .PHONY: tmux
-tmux: 
+tmux:
 	@ $(call do_target,$@,.tmux.conf,tmux/.tmux.conf)
 
-.PHONY: emacs 
-emacs: 
+.PHONY: emacs
+emacs:
 	@ $(call do_target_git,$@,.emacs.d,https://github.com/RaphaeleL/.emacs.d)
 
 .PHONY: nvim
-nvim: 
+nvim:
 	@ $(call do_target_git,$@,.config/nvim,https://github.com/RaphaeleL/nvim)
 
 ###########################################################################
@@ -148,7 +156,7 @@ install_fedora:
 .PHONY: install_mac
 install_mac:
 	@ $(call pretty_print, install packages, "$(YELLOW)"BREW"$(NC)")
-	@ # TODO: Homebrew 
+	@ # TODO: Homebrew
 	@ brew install --quiet --cask ghostty >/dev/null
 	@ brew install --quiet zsh tmux zig git lazygit >/dev/null
 	@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -157,29 +165,29 @@ install_mac:
 ## Operating System
 ###########################################################################
 
-.PHONY: fedora 
+.PHONY: fedora
 fedora: install_fedora
 	@ $(MAKE) nvim
 	@ $(MAKE) emacs
-	@ $(MAKE) tmux 
-	@ $(MAKE) zsh 
-	@ $(MAKE) i3wm 
-	@ $(MAKE) bspwm 
+	@ $(MAKE) tmux
+	@ $(MAKE) zsh
+	@ $(MAKE) i3wm
+	@ $(MAKE) bspwm
 	@ $(MAKE) ghostty
 	@ $(MAKE) vim
-	@ $(MAKE) xterm 
+	@ $(MAKE) xterm
 
 .PHONY: mac
 mac: install_mac
 	@ $(MAKE) nvim
 	@ $(MAKE) emacs
-	@ $(MAKE) tmux 
-	@ $(MAKE) zsh 
+	@ $(MAKE) tmux
+	@ $(MAKE) zsh
 	@ $(MAKE) ghostty
 	@ $(MAKE) vim
 
 ###########################################################################
-## Wrapper 
+## Wrapper
 ###########################################################################
 
 .PHONY: help
@@ -236,7 +244,7 @@ status:
 	@ $(call check_target,sxhkd,.config/sxhkd/sxhkdrc,sxhkd/sxhkdrc)
 	@ $(call check_target,ghostty,.config/ghostty/config,ghostty/config)
 
-.PHONY: support 
+.PHONY: support
 support:
 	@ if [ "$(PLATFORM)" = "unsupported" ]; then \
 		$(call pretty_print, $(DISTRO) ($(OS)), "$(RED)NO$(NC)"); \
