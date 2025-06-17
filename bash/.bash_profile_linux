@@ -1,5 +1,6 @@
 # User Stuff
 export PS1='[\u@dev \[\e[1;34m\]\w\[\e[0m\]]\$ '
+# export PS1='[\u@dev \w\$ '
 
 # --- PROFILE ---
 export PATH
