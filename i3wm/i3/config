@@ -91,10 +91,11 @@ bindsym $mod+Shift+r mode "resize"
 
 # Bar
 bar {
+    # status_command i3blocks
     status_command i3status
     position top
     font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-    font pango:mono 8
+    font pango:Iosevka Nerd Font 9
 }
 
 # No Title Bar
