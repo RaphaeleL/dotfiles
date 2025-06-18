@@ -37,10 +37,20 @@ define pretty_print
 endef
 
 define do_target_git
-	$(call pretty_print, $(1), "$(YELLOW)"FORCED"$(NC)"); \
-	sudo rm -rf $(HOME)/$(2); \
-	mkdir -p $$(dirname $(HOME)/$(2)); \
-	git clone --depth=1 $(3) $(HOME)/$(2) >/dev/null 2>&1
+	if [ -d "$(HOME)/$(2)/.git" ]; then \
+		$(call pretty_print, $(1), "$(YELLOW)UPDATING$(NC)"); \
+		cd "$(HOME)/$(2)" && git pull --quiet >/dev/null 2>&1 || { printf "$(RED)Failed to update $(2)$(NC)\n"; exit 128; }; \
+	elif [ -d "$(HOME)/$(2)" ]; then \
+		$(call pretty_print, $(1), "$(YELLOW)REMOVING NON-GIT DIR$(NC)"); \
+		rm -rf "$(HOME)/$(2)"; \
+		$(call pretty_print, $(1), "$(YELLOW)CLONING$(NC)"); \
+		mkdir -p $$(dirname "$(HOME)/$(2)"); \
+		git clone --depth=1 $(4) "$(HOME)/$(2)" >/dev/null 2>&1 || { printf "$(RED)Clone failed for $(4)$(NC)\n"; exit 128; }; \
+	else \
+		$(call pretty_print, $(1), "$(YELLOW)CLONING$(NC)"); \
+		mkdir -p $$(dirname "$(HOME)/$(2)"); \
+		git clone --depth=1 $(4) "$(HOME)/$(2)" >/dev/null 2>&1 || { printf "$(RED)Clone failed for $(4)$(NC)\n"; exit 128; }; \
+	fi
 endef
 
 define check_target
