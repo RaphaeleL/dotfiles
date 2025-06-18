@@ -107,4 +107,7 @@ elif [[ "$(uname -s)" == "Linux" ]]; then       # Linux
         return
     fi
 
+	unset SSH_ASKPASS
+	unset GIT_ASKPASS
+
 fi
