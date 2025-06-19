@@ -39,7 +39,7 @@ alias remove="shred -f -n 512 --remove -x -z"
 # Custom Scripts
 fh() { # Fuzzy History
   local cmd
-  cmd=$(builtin fc -lnr 1 | fzf --height 40% --border --no-scrollbar --tac --no-mouse --pointer='' --no-info --prompt='' --marker='')
+  cmd=$(builtin fc -lnr 1 | fzf --height 40% --border --no-scrollbar --tac --no-mouse --pointer='> ' --no-info --prompt='' --marker=' ')
 
   if [[ -n $cmd ]]; then
     LBUFFER+="$cmd"
@@ -53,7 +53,7 @@ tms() { # Tmux Sessionizer
     if [[ -n "$1" ]]; then
         session_name="$1"
     else
-        session_name=$(tmux list-sessions -F '#S' 2>/dev/null | fzf-tmux --height 40% --border --no-scrollbar --tac --no-mouse --pointer='' --no-info  --marker='' --prompt="Select tmux session: ")
+        session_name=$(tmux list-sessions -F '#S' 2>/dev/null | fzf-tmux --height 40% --border --no-scrollbar --tac --no-mouse --pointer='> ' --no-info  --marker=' ' --prompt="Select tmux session: ")
         [[ -z "$session_name" ]] && return
     fi
     tmux has-session -t="$session_name" 2>/dev/null
