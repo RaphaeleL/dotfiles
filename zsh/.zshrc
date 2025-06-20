@@ -2,16 +2,17 @@
 
 # OMZ + Plugins
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
-plugins=(
-    git
-    zsh-syntax-highlighting
-)
+# ZSH_THEME="robbyrussell"
+# plugins=(
+#     git
+#     zsh-syntax-highlighting
+# )
 source $ZSH/oh-my-zsh.sh
 
 # Custom Prompt
-# export PS1=$'%n@%m:\e[0;36m%~\e[0m$
-# PROMPT="%n@dev %d>
+
+# export PS1='%{%}[%n@dev :: %~] %# %{%}'
+export PS1='%{%}[%n@dev %1~]%# %{%}'
 
 # ZSH Settings
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
@@ -25,7 +26,7 @@ export PATH
 export PATH="$HOME/bin:$PATH";
 export PATH="$HOME/.local/bin:$PATH"
 
-export EDITOR='nvim'
+export EDITOR='vim'
 
 # --- ALIAS ---
 
@@ -33,9 +34,8 @@ export EDITOR='nvim'
 alias ger='echo "LANG=de_DE.UTF-8" | sudo tee /etc/locale.conf && setxkbmap de'
 alias eng='echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf && setxkbmap us'
 alias grep='grep --color=always'
-alias ls="ls --color=always -Ghp"
-alias vim='nvim'
-alias vi='/usr/bin/vim'
+# alias ls="ls --color=always -Ghp"
+alias ls="ls --color=never -Ghp"
 
 # Special Commands simplified
 alias remove="shred -f -n 512 --remove -x -z"
@@ -55,7 +55,7 @@ tms() { # Tmux Sessionizer
     if [[ -n "$1" ]]; then
         session_name="$1"
     else
-        session_name=$(tmux list-sessions -F '#S' 2>/dev/null | fzf-tmux --height 40% --border --no-scrollbar --tac --no-mouse --pointer='' --no-info  --marker='' --prompt="Select tmux session: ")
+        session_name=$(tmux list-sessions -F '#S' 2>/dev/null | fzf-tmux --height 40% --border --no-scrollbar --tac --no-mouse --pointer='' --no-info  --marker='' --prompt="")
         [[ -z "$session_name" ]] && return
     fi
     tmux has-session -t="$session_name" 2>/dev/null

@@ -117,6 +117,7 @@ exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/Wallpaper-
 # exec --no-startup-id xsetroot -solid "#000000" &
 
 # Autostart Stuff
-exec --no-startup-id vmware-user-suid-wrapper &
-exec --no-startup-id echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf && setxkbmap us &
-exec --no-startup-id copypaste &
+exec --no-startup-id vmware-user
+exec --no-startup-id vmware-user-suid-wrapper
+exec --no-startup-id echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf && setxkbmap us
+exec --no-startup-id copypaste
