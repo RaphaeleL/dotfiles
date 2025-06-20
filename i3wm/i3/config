@@ -9,7 +9,9 @@ set $refresh_i3status killall -SIGUSR1 i3status
 floating_modifier $mod
 
 # Shortcut for Programms
-bindsym $mod+Return exec xfce4-terminal		    # Terminal
+# bindsym $mod+Return exec xfce4-terminal		    # Terminal
+# bindsym $mod+Return exec ghostty     		    # Terminal
+bindsym $mod+Return exec xterm        		    # Terminal
 bindsym $mod+Shift+Return exec emacs        	# Editor
 # TODO: Browser
 
