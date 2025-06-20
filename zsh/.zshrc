@@ -56,6 +56,7 @@ tms() { # Tmux Sessionizer
         session_name="$1"
     else
         session_name=$(tmux list-sessions -F '#S' 2>/dev/null | fzf-tmux --height 40% --border --no-scrollbar --tac --no-mouse --pointer='' --no-info  --marker='' --prompt="")
+		echo $session_name
         [[ -z "$session_name" ]] && return
     fi
     tmux has-session -t="$session_name" 2>/dev/null
@@ -88,7 +89,6 @@ zle -N fh
 bindkey "^R" fh
 
 bindkey -s ^o "tms\n"
-
 
 # setxkbmap -layout us,de -option grp:shifts_toggle,ctrl:nocaps,compose:ralt
 # xmodmap -e 'keycode 102 = Super_L'
