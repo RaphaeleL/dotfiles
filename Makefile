@@ -125,13 +125,13 @@ xterm:
 
 .PHONY: ghostty
 ghostty:
-	@if [ "$(PLATFORM)" = "fedora" ]; then \
-		$(call do_target,$@,.config/ghostty/config,ghostty/config_linux); \
-	elif [ "$(PLATFORM)" = "mac" ]; then \
-		$(call do_target,$@,.config/ghostty/config,ghostty/config_macos); \
-	else \
-		echo "unsupported platform"; \
-	fi
+ifeq ($(PLATFORM),fedora)
+	@$(call do_target,$@,.config/ghostty/config,ghostty/config_linux)
+else ifeq ($(PLATFORM),mac)
+	@$(call do_target,$@,.config/ghostty/config,ghostty/config_macos)
+else
+	@echo "unsupported platform"
+endif
 
 .PHONY: vim
 vim:
@@ -139,15 +139,15 @@ vim:
 
 .PHONY: zsh
 zsh:
-	@if [ "$(PLATFORM)" = "fedora" ]; then \
-		$(call do_target,$@,.zshrc,zsh/.zshrc); \
-		$(call do_target_git,$@,plugins,.oh-my-zsh/plugins/zsh-syntax-highlighting,https://github.com/zsh-users/zsh-syntax-highlighting); \
-	elif [ "$(PLATFORM)" = "mac" ]; then \
-		$(call do_target,$@,.zshrc,zsh/.zshrc.mac); \
-		$(call do_target_git,$@,plugins,.oh-my-zsh/plugins/zsh-syntax-highlighting,https://github.com/zsh-users/zsh-syntax-highlighting); \
-	else \
-		echo "unsupported platform"; \
-	fi
+ifeq ($(PLATFORM),fedora)
+	$(call do_target,$@,.zshrc,zsh/.zshrc); \
+	$(call do_target_git,$@,plugins,.oh-my-zsh/plugins/zsh-syntax-highlighting,https://github.com/zsh-users/zsh-syntax-highlighting); \
+else ifeq ($(PLATFORM),mac)
+	$(call do_target,$@,.zshrc,zsh/.zshrc.mac); \
+	$(call do_target_git,$@,plugins,.oh-my-zsh/plugins/zsh-syntax-highlighting,https://github.com/zsh-users/zsh-syntax-highlighting); \
+else
+	@echo "unsupported platform"
+endif
 
 .PHONY: bash
 bash:
