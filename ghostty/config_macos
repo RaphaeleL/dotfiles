@@ -18,9 +18,22 @@ link-url                       = true
 window-decoration              = true
 mouse-hide-while-typing        = true
 window-vsync                   = true
-theme                          = "Builtin Solarized Light"
-# theme                          = "Apple System Colors Light"
+
 # /Applications/Ghostty.app/Contents/Resources/ghostty/themes/
+
+# theme                          = "Atom"
+# theme                          = "GruvboxDark"
+# theme                          = "GruvboxLight"
+# theme                          = "idea"
+# theme                          = "LiquidCarbon"
+# theme                          = "dracula"
+# theme                          = "monokai-pro"
+theme                          = "NvimLight"
+# theme                          = "solarized-osaka-night"
+# theme                          = "Builtin Solarized Light"
+# theme                          = "Apple System Colors Light"
+# theme                          = "Nord"
+# theme                          = "gruber-darker"
 
 # Other
 clipboard-paste-protection     = true
