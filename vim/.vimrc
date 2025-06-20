@@ -1,13 +1,13 @@
 imap kj <Esc>
 set wrap
-set nonumber 
-set norelativenumber 
-set autowrite 
+set nonumber
+set norelativenumber
+set autowrite
 set ruler
-set showmode 
+set showmode
 set noswapfile
 set nowritebackup
-set nobackup 
+set nobackup
 set icon
 set hlsearch
 set incsearch
@@ -20,7 +20,7 @@ set background=dark
 set wildmenu
 set backspace=indent,eol,start
 set shiftwidth=2
-set autoindent 
+set autoindent
 set smartindent
 set softtabstop=2
 set tabstop=2
@@ -30,8 +30,8 @@ set clipboard^=unnamed,unnamedplus
 set autochdir
 set viminfofile=NONE
 
-colorscheme default 
-syntax on 
+colorscheme default
+syntax off
 
 map <space>e :Lexplore<cr>
 map <tab> :tabnext<cr>

@@ -6,31 +6,7 @@ xterm*Font				:   10x20
 xterm*scrollBar			:   false
 xterm*utf8				:   1
 
-*.background			:   #181818
-*.foreground			:   #FEFEEF
-*.color0				:   #2E3436
-*.color1				:   #A40000
-*.color2				:   #4E9A06
-*.color3				:   #C4A000
-*.color4				:   #3465A4
-*.color5				:   #75507B
-*.color6				:   #CE5C00
-*.color7				:   #BABDB9
-*.color8				:   #555753
-*.color9				:   #EF2929
-*.color10				:   #8AE234
-*.color11				:   #FCE94F
-*.color12				:   #729FCF
-*.color13				:   #AD7FA8
-*.color14				:   #FCAF3E
-*.color15				:   #EEEEEC
-
 Xft.dpi					:   96
 Xft.antialias			:   1
 Xft.hinting				:   1
 Xft.hintstyle			:   hintmedium
-
-! URxvt.perl-ext-common	:   resize-font,matcher
-! URxvt.keysym.C-minus	:   resize-font:smaller
-! URxvt.keysym.C-equal	:   resize-font:bigger
-! URxvt.keysym.C-0		:   resize-font:reset
