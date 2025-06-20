@@ -29,6 +29,13 @@ PLATFORM := $(shell \
 	else echo "unsupported"; fi \
 )
 
+.PHONY: check_dotfiles
+check_dotfiles:
+	@if [ ! -d "$(DOTFILES_DIR)" ]; then \
+		echo "[ERROR] dotfiles directory not found: $(DOTFILES_DIR)"; \
+		exit 1; \
+	fi
+
 define pretty_print
 	name_length=$$(echo "$(1)" | wc -c); \
 	width=$$(expr 30 - $$name_length); \
@@ -37,6 +44,7 @@ define pretty_print
 endef
 
 define do_target_git
+	@ $(MAKE) check_dotfiles
 	if [ -d "$(HOME)/$(2)/.git" ]; then \
 		$(call pretty_print, $(1), "$(YELLOW)UPDATING$(NC)"); \
 		cd "$(HOME)/$(2)" && git pull --quiet >/dev/null 2>&1 || { printf "$(RED)Failed to update $(2)$(NC)\n"; exit 128; }; \
@@ -54,6 +62,7 @@ define do_target_git
 endef
 
 define check_target
+	@ $(MAKE) check_dotfiles
 	if [ -L $(HOME)/$(2) ]; then \
 		if [ "$$(readlink -f $(HOME)/$(2))" = "$$(realpath $(DOTFILES_DIR)/$(3))" ]; then \
 			$(call pretty_print, $(1), "$(GREEN)LINK$(NC)"); \
@@ -68,6 +77,7 @@ define check_target
 endef
 
 define do_target
+	@ $(MAKE) check_dotfiles
 	if [ -L $(HOME)/$(2) ] && [ "$$(readlink -f $(HOME)/$(2))" = "$$(realpath $(DOTFILES_DIR)/$(3))" ]; then \
 		$(call pretty_print, $(1), "$(GREEN)"OK"$(NC)"); \
 	elif [ -e $(HOME)/$(2) ] || [ -L $(HOME)/$(2) ]; then \
@@ -259,7 +269,7 @@ status:
 	@ $(call check_target,ghostty,.config/ghostty/config,ghostty/config)
 
 .PHONY: support
-support:
+support: check_dotfiles
 	@ if [ "$(PLATFORM)" = "unsupported" ]; then \
 		$(call pretty_print, $(DISTRO) ($(OS)), "$(RED)NO$(NC)"); \
 	else \
@@ -267,7 +277,7 @@ support:
 	fi
 
 .PHONY: auto
-auto:
+auto: check_dotfiles
 	@ if [ "$(PLATFORM)" = "fedora" ]; then \
 		$(MAKE) fedora; \
 	elif [ "$(PLATFORM)" = "mac" ]; then \
