@@ -8,7 +8,8 @@
 # source $ZSH/oh-my-zsh.sh
 
 # export PS1=$'%n@%m:\e[0;36m%~\e[0m$ '
-export PS1=$'%n@%m:%~$ '
+# export PS1=$'%n@%m:%~$ '
+export PS1='%{%}[%n@dev %1~]%# %{%}'
 
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none

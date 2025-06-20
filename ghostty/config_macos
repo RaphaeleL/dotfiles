@@ -7,7 +7,7 @@ font-feature                   = -calt
 font-feature                   = -dlig
 font-feature                   = -ss05
 font-thicken                   = false
-font-size                      = 18
+font-size                      = 16
 window-inherit-font-size       = true
 
 # UI
@@ -18,8 +18,8 @@ link-url                       = true
 window-decoration              = true
 mouse-hide-while-typing        = true
 window-vsync                   = true
-# theme                          = "Builtin Solarized Light"
-theme                          = "Apple System Colors Light"
+theme                          = "Builtin Solarized Light"
+# theme                          = "Apple System Colors Light"
 # /Applications/Ghostty.app/Contents/Resources/ghostty/themes/
 
 # Other
