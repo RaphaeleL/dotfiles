@@ -39,6 +39,8 @@ alias ls="ls --color=never -Ghp"
 
 # Special Commands simplified
 alias remove="shred -f -n 512 --remove -x -z"
+alias fullscreen="xrandr --output Virtual1 --mode 1920x1080"
+alias halfscreen="xrandr --output Virtual1 --mode 1440x900"
 
 # Custom Scripts
 fh() { # Fuzzy History

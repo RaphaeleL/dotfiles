@@ -9,13 +9,13 @@ set $refresh_i3status killall -SIGUSR1 i3status
 floating_modifier $mod
 
 # Shortcut for Programms
-# bindsym $mod+Return exec xfce4-terminal		    # Terminal
-# bindsym $mod+Return exec ghostty     		    # Terminal
-bindsym $mod+Return exec xterm        		    # Terminal
-bindsym $mod+Shift+Return exec emacs        	# Editor
-# TODO: Browser
-
+# bindsym $mod+Return exec xfce4-terminal
+# bindsym $mod+Shift+Return exec xterm
+bindsym $mod+Return exec --no-startup-id xfce4-terminal
+bindsym $mod+Shift+Return exec --no-startup-id xterm
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run
+bindsym $mod+Shift+c exec --no-startup-id emacs
+bindsym $mod+Shift+b exec --no-startup-id firefox
 
 # kill focused window
 bindsym $mod+Shift+w kill
@@ -75,8 +75,8 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # Reload / Restart I3
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+v restart
+# bindsym $mod+Shift+c reload
+bindsym $mod+Shift+q restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 mode "resize" {
