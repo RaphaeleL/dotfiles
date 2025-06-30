@@ -1,7 +1,7 @@
 # Font
 freetype-load-flags            = no-hinting
 freetype-load-flags            = no-force-autohint
-font-family                    = Iosevka Nerd Font Mono 
+font-family                    = Iosevka Nerd Font Mono
 window-title-font-family       = Iosevka Nerd Font Mono
 font-feature                   = -calt
 font-feature                   = -dlig
@@ -15,11 +15,10 @@ adjust-cursor-thickness        = 3
 adjust-underline-position      = 3
 bold-is-bright                 = true
 link-url                       = true
-window-decoration              = false 
+window-decoration              = true
 mouse-hide-while-typing        = true
 window-vsync                   = true
-# theme                          = "Builtin Solarized Light"
-theme                          = "gruber-darker"
+theme                          = "NvimLight"
 
 # Other
 clipboard-paste-protection     = true
@@ -32,5 +31,5 @@ shell-integration-features     = no-cursor,sudo,title
 confirm-close-surface          = false
 
 # Keybind's
-keybind                        = alt+r=reload_config
+keybind                        = alt+r=reload_confjg
 keybind                        = alt+n=new_tab
