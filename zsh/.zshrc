@@ -1,13 +1,13 @@
 # --- ZSH ---
 
 # OMZ + Plugins
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="robbyrussell"
 # plugins=(
 #     git
 #     zsh-syntax-highlighting
 # )
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 # Custom Prompt
 
@@ -19,6 +19,13 @@ export PS1='%{%}[%n@dev %1~]%# %{%}'
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+
+# zstyle ':completion:*:*:kill:*:processes' list-colors '...'
+# zstyle ':completion:*:*:ls:*' list-colors ''
+# zstyle ':completion:*' list-colors ''
+#
+# unset LS_COLORS
+# unset LSCOLORS
 
 # --- PROFILE ---
 
@@ -35,12 +42,14 @@ alias ger='echo "LANG=de_DE.UTF-8" | sudo tee /etc/locale.conf && setxkbmap de'
 alias eng='echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf && setxkbmap us'
 alias grep='grep --color=always'
 # alias ls="ls --color=always -Ghp"
-alias ls="ls --color=never -Ghp"
+alias ls="ls --color=never -hp"
+# alias em="emacs -nw -q -l ~/.emacs.d/init.term.el"
 
 # Special Commands simplified
 alias remove="shred -f -n 512 --remove -x -z"
 alias fullscreen="xrandr --output Virtual1 --mode 1920x1080"
-alias halfscreen="xrandr --output Virtual1 --mode 1440x900"
+# alias fullscreen194="xrandr --output Virtual1 --mode 1920x1040"
+alias halfscreen="xrandr --output Virtual1 --mode 1600x900"
 
 # Custom Scripts
 fh() { # Fuzzy History
@@ -78,6 +87,8 @@ _tms_complete() { # Tab Complete TMS with exisiting Tmux Sessions
     sessions=("${(@f)$(tmux list-sessions -F '#S' 2>/dev/null)}")
     compadd -a sessions
 }
+autoload -U compinit
+compinit
 compdef _tms_complete tms
 
 ccat() {
