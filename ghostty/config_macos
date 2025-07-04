@@ -28,12 +28,12 @@ window-vsync                   = true
 # theme                          = "LiquidCarbon"
 # theme                          = "dracula"
 # theme                          = "monokai-pro"
-theme                          = "NvimLight"
+# theme                          = "NvimLight"
 # theme                          = "solarized-osaka-night"
 # theme                          = "Builtin Solarized Light"
 # theme                          = "Apple System Colors Light"
 # theme                          = "Nord"
-# theme                          = "gruber-darker"
+theme                          = "gruber-darker"
 
 # Other
 clipboard-paste-protection     = true
