@@ -1,31 +1,24 @@
 # --- ZSH ---
 
 # OMZ + Plugins
-# export ZSH="$HOME/.oh-my-zsh"
-# ZSH_THEME="robbyrussell"
-# plugins=(
-#     git
-#     zsh-syntax-highlighting
-# )
-# source $ZSH/oh-my-zsh.sh
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+plugins=(
+    git
+    zsh-syntax-highlighting
+)
+source $ZSH/oh-my-zsh.sh
 
 # Custom Prompt
 
 # export PS1='%{%}[%n@dev :: %~] %# %{%}'
-export PS1='%{%}[%n@dev %1~]%# %{%}'
+# export PS1='%{%}[%n@dev %1~]%# %{%}'
 
 # ZSH Settings
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
-
-# zstyle ':completion:*:*:kill:*:processes' list-colors '...'
-# zstyle ':completion:*:*:ls:*' list-colors ''
-# zstyle ':completion:*' list-colors ''
-#
-# unset LS_COLORS
-# unset LSCOLORS
 
 # --- PROFILE ---
 
@@ -48,8 +41,9 @@ alias ls="ls --color=never -hp"
 # Special Commands simplified
 alias remove="shred -f -n 512 --remove -x -z"
 alias fullscreen="xrandr --output Virtual1 --mode 1920x1080"
-# alias fullscreen194="xrandr --output Virtual1 --mode 1920x1040"
 alias halfscreen="xrandr --output Virtual1 --mode 1600x900"
+alias smallscreen="xrandr --output Virtual1 --mode 1366x768"
+alias longscreen='xrandr --output Virtual1 --mode 1400x1050'
 
 # Custom Scripts
 fh() { # Fuzzy History
