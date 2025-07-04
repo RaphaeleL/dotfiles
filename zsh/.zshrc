@@ -56,49 +56,10 @@ fh() { # Fuzzy History
   fi
 }
 
-tms() { # Tmux Sessionizer
-    if [[ -n "$1" ]]; then
-        session_name="$1"
-    else
-        session_name=$(tmux list-sessions -F '#S' 2>/dev/null | fzf-tmux --height 40% --border --no-scrollbar --tac --no-mouse --pointer='' --no-info  --marker='' --prompt="")
-		echo $session_name
-        [[ -z "$session_name" ]] && return
-    fi
-    tmux has-session -t="$session_name" 2>/dev/null
+# --- Keybindings ---
 
-    if [[ $? -ne 0 ]]; then
-        TMUX='' tmux new-session -d -s "$session_name"
-    fi
-
-    if [[ -z "$TMUX" ]]; then
-        tmux attach -t "$session_name"
-    else
-        tmux switch-client -t "$session_name"
-    fi
-}
-_tms_complete() { # Tab Complete TMS with exisiting Tmux Sessions
-    local -a sessions
-    sessions=("${(@f)$(tmux list-sessions -F '#S' 2>/dev/null)}")
-    compadd -a sessions
-}
-autoload -U compinit
-compinit
-compdef _tms_complete tms
-
-ccat() {
-	# NOTE: ccat <start> <end> <file>
-    tail -n "+$1" $3 | head -n "$(($2 - $1 + 1))"
-}
-
-# --- Bind Functions to Keys ---
-
-zle -N fh
-bindkey "^R" fh
-
+bindkey -s ^R "fh\n"
 bindkey -s ^o "tms\n"
-
-# setxkbmap -layout us,de -option grp:shifts_toggle,ctrl:nocaps,compose:ralt
-# xmodmap -e 'keycode 102 = Super_L'
 
 # --- OS Specific ---
 
