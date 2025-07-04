@@ -1,15 +1,15 @@
 # --- ZSH ---
-# export ZSH="$HOME/.oh-my-zsh"
-# ZSH_THEME="robbyrussell"
-# plugins=(
-#     git
-#     zsh-syntax-highlighting
-# )
-# source $ZSH/oh-my-zsh.sh
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+plugins=(
+    git
+    zsh-syntax-highlighting
+)
+source $ZSH/oh-my-zsh.sh
 
 # export PS1=$'%n@%m:\e[0;36m%~\e[0m$ '
 # export PS1=$'%n@%m:%~$ '
-export PS1='%{%}[%n@%m %1~]%# %{%}'
+# export PS1='%{%}[%n@%m %1~]%# %{%}'
 
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none
@@ -29,6 +29,7 @@ export EDITOR='nvim'
 
 # Basic
 alias grep='grep --color=always'
+alias ls='eza'
 
 # Special Commands simplified
 alias remove="shred -f -n 512 --remove -x -z"
@@ -43,34 +44,11 @@ fh() { # Fuzzy History
     zle reset-prompt
   fi
 }
-zle -N fh
-bindkey "^R" fh
 
-tms() { # Tmux Sessionizer
-    if [[ -n "$1" ]]; then
-        session_name="$1"
-    else
-        session_name=$(tmux list-sessions -F '#S' 2>/dev/null | fzf-tmux --height 40% --border --no-scrollbar --tac --no-mouse --pointer='> ' --no-info  --marker=' ' --prompt="Select tmux session: ")
-        [[ -z "$session_name" ]] && return
-    fi
-    tmux has-session -t="$session_name" 2>/dev/null
+# --- Keybindings ---
 
-    if [[ $? -ne 0 ]]; then
-        TMUX='' tmux new-session -d -s "$session_name"
-    fi
-
-    if [[ -z "$TMUX" ]]; then
-        tmux attach -t "$session_name"
-    else
-        tmux switch-client -t "$session_name"
-    fi
-}
-_tms_complete() { # Tab Complete TMS with exisiting Tmux Sessions
-    local -a sessions
-    sessions=("${(@f)$(tmux list-sessions -F '#S' 2>/dev/null)}")
-    compadd -a sessions
-}
-# compdef _tms_complete tms
+bindkey -s ^R "fh\n"
+bindkey -s ^o "tms\n"
 
 # --- OS Specific ---
 
