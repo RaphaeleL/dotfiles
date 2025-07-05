@@ -2,6 +2,34 @@
 
 TS_SEARCH_PATHS=("$HOME/Projects/" "$HOME/.config" "$HOME/dev/fco" "$HOME/dev/code" "$HOME/dev/phd" ) 
 
+# Parse command line arguments
+parse_args() {
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -c|--create)
+                if [[ -n "$2" && "$2" != -* ]]; then
+                    SESSION_NAME="$2"
+                    shift 2
+                else
+                    echo "Error: -c requires a session name" >&2
+                    exit 1
+                fi
+                ;;
+            -h|--help)
+                echo "Usage: $0 [-c|--create <session_name>]"
+                echo "  -c, --create <session_name>  Create/attach to session with given name"
+                echo "  -h, --help                   Show this help message"
+                exit 0
+                ;;
+            *)
+                echo "Unknown option: $1" >&2
+                echo "Use -h for help" >&2
+                exit 1
+                ;;
+        esac
+    done
+}
+
 is_tmux_running() {
     tmux_running=$(pgrep tmux)
 
@@ -79,17 +107,50 @@ hydrate() {
 }
 
 main() {
-    selected=$(find_dirs | fzf)
+    # Parse command line arguments
+    parse_args "$@"
+    
+    # If session name is provided via -c flag, use it directly
+    if [[ -n "$SESSION_NAME" ]]; then
+        selected_name="$SESSION_NAME"
+        
+        # Check if the session name corresponds to an existing directory
+        for entry in "${TS_SEARCH_PATHS[@]}"; do
+            if [[ "$entry" =~ ^([^:]+):([0-9]+)$ ]]; then
+                path="${BASH_REMATCH[1]}"
+                depth="${BASH_REMATCH[2]}"
+            else
+                path="$entry"
+            fi
+            
+            # Look for exact match or directory with matching basename
+            if [[ -d "$path/$selected_name" ]]; then
+                selected="$path/$selected_name"
+                break
+            elif [[ "$(basename "$path")" == "$selected_name" ]]; then
+                selected="$path"
+                break
+            fi
+        done
+        
+        # If no matching directory found, use current directory
+        if [[ -z "$selected" ]]; then
+            selected="$(pwd)"
+        fi
+    else
+        # Original fzf behavior
+        selected=$(find_dirs | fzf)
 
-    if [[ -z $selected ]]; then
-        exit 0
+        if [[ -z $selected ]]; then
+            exit 0
+        fi
+
+        if [[ "$selected" =~ ^\[TMUX\]\ (.+)$ ]]; then
+            selected="${BASH_REMATCH[1]}"
+        fi
+
+        selected_name=$(basename "$selected" | tr . _)
     fi
-
-    if [[ "$selected" =~ ^\[TMUX\]\ (.+)$ ]]; then
-        selected="${BASH_REMATCH[1]}"
-    fi
-
-    selected_name=$(basename "$selected" | tr . _)
 
     if ! is_tmux_running; then
         tmux new-session -ds "$selected_name" -c "$selected"
@@ -104,5 +165,5 @@ main() {
     switch_to "$selected_name"
 }
 
-main
+main "$@"
 
