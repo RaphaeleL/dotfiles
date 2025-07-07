@@ -7,7 +7,7 @@ font-feature                   = -calt
 font-feature                   = -dlig
 font-feature                   = -ss05
 font-thicken                   = false
-font-size                      = 16
+font-size                      = 18
 window-inherit-font-size       = true
 
 # UI
