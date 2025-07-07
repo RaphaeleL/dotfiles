@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TS_SEARCH_PATHS=("$HOME/Projects/" "$HOME/.config" "$HOME/dev/fco" "$HOME/dev/code" "$HOME/dev/phd" ) 
+TS_SEARCH_PATHS=("$HOME/Projects/" "$HOME/.config" "$HOME/dev/fco" "$HOME/dev/fco/develop" "$HOME/dev/fco/" "$HOME/dev/code" "$HOME/dev/phd" ) 
 
 # Parse command line arguments
 parse_args() {
