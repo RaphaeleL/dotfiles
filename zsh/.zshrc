@@ -37,6 +37,7 @@ alias grep='grep --color=always'
 # alias ls="ls --color=always -Ghp"
 alias ls="ls --color=never -hp"
 alias em="emacs -q -l ~/.emacs.d/init.term.el"
+alias emt="emacs -q -l ~/.emacs.d/init.term.el -nw"
 
 # Special Commands simplified
 alias remove="shred -f -n 512 --remove -x -z"
