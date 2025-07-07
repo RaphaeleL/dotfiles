@@ -140,11 +140,11 @@ vim:
 .PHONY: zsh
 zsh:
 ifeq ($(PLATFORM),fedora)
-	$(call do_target,$@,.zshrc,zsh/.zshrc); \
-	$(call do_target_git,$@,plugins,.oh-my-zsh/plugins/zsh-syntax-highlighting,https://github.com/zsh-users/zsh-syntax-highlighting); \
+	@$(call do_target,$@,.zshrc,zsh/.zshrc)
+	@$(call do_target_git,$@,plugins,.oh-my-zsh/plugins/zsh-syntax-highlighting,https://github.com/zsh-users/zsh-syntax-highlighting)
 else ifeq ($(PLATFORM),mac)
-	$(call do_target,$@,.zshrc,zsh/.zshrc.mac); \
-	$(call do_target_git,$@,plugins,.oh-my-zsh/plugins/zsh-syntax-highlighting,https://github.com/zsh-users/zsh-syntax-highlighting); \
+	@$(call do_target,$@,.zshrc,zsh/.zshrc.mac)
+	@$(call do_target_git,$@,plugins,.oh-my-zsh/plugins/zsh-syntax-highlighting,https://github.com/zsh-users/zsh-syntax-highlighting)
 else
 	@echo "unsupported platform"
 endif
