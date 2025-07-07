@@ -36,14 +36,14 @@ alias eng='echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf && setxkbmap us'
 alias grep='grep --color=always'
 # alias ls="ls --color=always -Ghp"
 alias ls="ls --color=never -hp"
-# alias em="emacs -q -l ~/.emacs.d/init.term.el"
-em() {
-    if [ $# -eq 0 ]; then
-        emacs -q -l ~/.emacs.d/init.term.el & 
-    else
-        emacs -q -l ~/.emacs.d/init.term.el "$@" &
-    fi
-}
+alias em="emacs -q -l ~/.emacs.d/init.term.el"
+# em() {
+#     if [ $# -eq 0 ]; then
+#         emacs -q -l ~/.emacs.d/init.term.el & 
+#     else
+#         emacs -q -l ~/.emacs.d/init.term.el "$@" &
+#     fi
+# }
 
 # Special Commands simplified
 alias remove="shred -f -n 512 --remove -x -z"
