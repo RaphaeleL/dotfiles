@@ -46,8 +46,8 @@ fh() { # Fuzzy History
 }
 
 # --- Keybindings ---
-
-bindkey -s ^R "fh\n"
+zle -N fh
+bindkey "^R" fh
 bindkey -s ^o "tms\n"
 
 # --- OS Specific ---
