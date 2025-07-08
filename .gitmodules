@@ -4,3 +4,6 @@
 [submodule "emacs"]
 	path = emacs
 	url = https://github.com/RaphaeleL/.emacs.d
+[submodule "tms"]
+	path = tms
+	url = git@github.com:RaphaeleL/tms
