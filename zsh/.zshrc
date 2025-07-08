@@ -37,6 +37,7 @@ alias grep='grep --color=always'
 # alias ls="ls --color=always -Ghp"
 alias ls="ls --color=never -hp"
 alias em="emacs -q -l ~/.emacs.d/_term/init.el"
+alias sizes="du -sh ./* | sort"
 # em() {
 #     if [ $# -eq 0 ]; then
 #         emacs -q -l ~/.emacs.d/init.term.el &
