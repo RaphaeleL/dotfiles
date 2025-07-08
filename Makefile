@@ -157,7 +157,7 @@ bash:
 .PHONY: tmux
 tmux:
 	@ $(call do_target,$@,.tmux.conf,tmux/.tmux.conf)
-	@ $(call do_target,$@,.local/bin/tms,tmux/tms)
+	@ $(call do_target,$@,.local/bin/tms,tms/tms)
 
 .PHONY: emacs
 emacs:
