@@ -15,10 +15,20 @@ adjust-cursor-thickness        = 3
 adjust-underline-position      = 3
 bold-is-bright                 = true
 link-url                       = true
-window-decoration              = true
 mouse-hide-while-typing        = true
 window-vsync                   = true
-theme                          = "NvimLight"
+theme                          = "gruber-darker"
+
+window-decoration              = false
+gtk-titlebar                   = false
+
+# window-decoration = false
+# gtk-custom-css = ./custom.css
+# .window {
+#   padding: 0
+# }
+
+# /usr/share/ghostty/themes
 
 # Other
 clipboard-paste-protection     = true
@@ -31,5 +41,5 @@ shell-integration-features     = no-cursor,sudo,title
 confirm-close-surface          = false
 
 # Keybind's
-keybind                        = alt+r=reload_confjg
+keybind                        = alt+r=reload_config
 keybind                        = alt+n=new_tab
