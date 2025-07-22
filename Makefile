@@ -253,12 +253,12 @@ tools:
 
 .PHONY: status
 status:
-	@ $(call pretty_print, OS, "$(RED)$(DISTRO)$(NC)")
+	@ $(call pretty_print, OS, "$(GREEN)$(OS)$(NC)")
 	@ $(call check_target,nvim,.config/nvim,unused)
 	@ $(call check_target,emacs,.emacs.d,unused)
 	@ $(call check_target,zsh plugins,.oh-my-zsh/plugins/,unused)
 	@ $(call check_target,tmux,.tmux.conf,tmux/.tmux.conf)
-	@ $(call check_target,zsh,.zshrc,zsh/.zshrc)
+	@ $(call check_target,zsh,.zshrc,zsh/.zshrc.mac)
 	@ $(call check_target,vim,.vimrc,vim/.vimrc)
 	@ $(call check_target,xterm,.Xresources,xterm/.Xresources)
 	@ $(call check_target,i3wm,.config/i3/config,i3wm/i3/config)
@@ -267,7 +267,7 @@ status:
 	@ $(call check_target,polybar launcher,.config/polybar/launch.sh,polybar/launch.sh)
 	@ $(call check_target,bspwm,.config/bspwm/bspwmrc,bspwm/bspwmrc)
 	@ $(call check_target,sxhkd,.config/sxhkd/sxhkdrc,sxhkd/sxhkdrc)
-	@ $(call check_target,ghostty,.config/ghostty/config,ghostty/config)
+	@ $(call check_target,ghostty,.config/ghostty/config,ghostty/config_macos)
 
 .PHONY: support
 support: check_dotfiles
