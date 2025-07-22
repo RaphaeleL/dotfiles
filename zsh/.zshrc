@@ -38,12 +38,12 @@ alias ls="ls --color=never -hp" # alias ls="ls --color=always -Ghp"
 alias em="emacs -q -l ~/.emacs.d/init.term.el"
 alias sizes="du -sh ./* | sort"
 alias remove="shred -f -n 512 --remove -x -z"
+
 alias fullscreen="xrandr --output Virtual1 --mode 1920x1080"
 alias fullscreen2="xrandr --output Virtual1 --mode 1920x1200"
 alias halfscreen="xrandr --output Virtual1 --mode 1600x900"
 alias smallscreen="xrandr --output Virtual1 --mode 1366x768"
-alias longscreen='xrandr --output Virtual1 --mode 1400x1050'
-# alias xt="xterm -fa 'Iosevka Nerd Font Mono' -fs 12 -bg '#181818' -fg white"
+alias workstation='xrandr --output Virtual1 --mode 1680x1050'
 
 # Custom Scripts
 fh() { # Fuzzy History
