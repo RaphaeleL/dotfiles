@@ -45,6 +45,9 @@ shell-integration              = bash
 shell-integration-features     = no-cursor,sudo,title
 confirm-close-surface          = false
 
+macos-titlebar-proxy-icon = hidden
+title = " "
+
 # Keybind's
 keybind                        = alt+r=reload_config
 keybind                        = alt+n=new_tab
