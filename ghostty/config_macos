@@ -5,8 +5,8 @@ font-family                    = Iosevka Nerd Font Mono
 window-title-font-family       = Iosevka Nerd Font Mono
 font-feature                   = -calt
 font-feature                   = -dlig
-font-feature                   = -ss05
 font-thicken                   = false
+font-feature                   = -ss05
 font-size                      = 18
 window-inherit-font-size       = true
 
@@ -30,10 +30,10 @@ window-vsync                   = true
 # theme                          = "monokai-pro"
 # theme                          = "NvimLight"
 # theme                          = "solarized-osaka-night"
-# theme                          = "Builtin Solarized Light"
+theme                          = "Builtin Solarized Light"
 # theme                          = "Apple System Colors Light"
 # theme                          = "Nord"
-theme                          = "gruber-darker"
+# theme                          = "gruber-darker"
 
 # Other
 clipboard-paste-protection     = true
