@@ -152,7 +152,7 @@ endif
 .PHONY: bash
 bash:
 	# TODO: Depending on the OS
-	@ $(call do_target,$@,.bash_profile,bash/.bash_profile_linux)
+	@ $(call do_target,$@,.bash_profile,bash/.bash_profile)
 
 .PHONY: tmux
 tmux:
