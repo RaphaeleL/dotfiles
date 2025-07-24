@@ -1,4 +1,7 @@
+####################################################
 # Font
+####################################################
+
 freetype-load-flags            = no-hinting
 freetype-load-flags            = no-force-autohint
 font-family                    = Iosevka Nerd Font Mono
@@ -10,7 +13,43 @@ font-feature                   = -ss05
 font-size                      = 18
 window-inherit-font-size       = true
 
+####################################################
+# Basic Settings 
+####################################################
+
+clipboard-paste-protection     = true
+clipboard-trim-trailing-spaces = true
+copy-on-select                 = true
+quit-after-last-window-closed  = false
+scrollback-limit               = 4200
+shell-integration              = bash 
+shell-integration-features     = no-cursor,sudo,title
+confirm-close-surface          = false
+
+macos-non-native-fullscreen    = true
+macos-titlebar-proxy-icon      = hidden
+title                          = " "
+
+####################################################
+# Keybind's
+####################################################
+
+keybind                        = alt+r=reload_config          # Basics
+keybind                        = ctrl+n=new_tab               # Tab
+keybind                        = ctrl+c=close_tab 
+keybind                        = ctrl+h=previous_tab
+keybind                        = ctrl+l=next_tab
+keybind                        = cmd+shift+s=new_split:right  # Split
+keybind                        = cmd+shift+d=new_split:down
+keybind                        = cmd+shift+j=goto_split:down
+keybind                        = cmd+shift+k=goto_split:up
+keybind                        = cmd+shift+h=goto_split:left
+keybind                        = cmd+shift+l=goto_split:right
+
+####################################################
 # UI
+####################################################
+
 adjust-cursor-thickness        = 3
 adjust-underline-position      = 3
 bold-is-bright                 = true
@@ -20,7 +59,6 @@ mouse-hide-while-typing        = true
 window-vsync                   = true
 
 # /Applications/Ghostty.app/Contents/Resources/ghostty/themes/
-
 # theme                          = "Atom"
 # theme                          = "GruvboxDark"
 # theme                          = "GruvboxLight"
@@ -35,19 +73,3 @@ theme                          = "Builtin Solarized Light"
 # theme                          = "Nord"
 # theme                          = "gruber-darker"
 
-# Other
-clipboard-paste-protection     = true
-clipboard-trim-trailing-spaces = true
-copy-on-select                 = true
-quit-after-last-window-closed  = false
-scrollback-limit               = 4200
-shell-integration              = bash 
-shell-integration-features     = no-cursor,sudo,title
-confirm-close-surface          = false
-
-macos-titlebar-proxy-icon = hidden
-title = " "
-
-# Keybind's
-keybind                        = alt+r=reload_config
-keybind                        = alt+n=new_tab

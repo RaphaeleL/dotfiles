@@ -27,7 +27,8 @@ alias remove="shred -f -n 512 --remove -x -z"
 alias sizes="du -sh * | gsort -hr"
 alias perms="stat -f '%N %A' *"
 alias calc="numi-cli"
-
+alias em="emacs -q -l ~/.emacs.d/init.term.el"
+alias emt="emacs -q -l ~/.emacs.d/init.term.el -nw"
 
 # --- OS --- 
 #
