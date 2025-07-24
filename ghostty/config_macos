@@ -34,10 +34,10 @@ title                          = " "
 # Keybind's
 ####################################################
 
-keybind                        = alt+r=reload_config          # Basics
-keybind                        = ctrl+h=previous_tab          # Tab
+keybind                        = alt+r=reload_config
+keybind                        = ctrl+h=previous_tab
 keybind                        = ctrl+l=next_tab
-keybind                        = cmd+d=new_split:right        # Split
+keybind                        = cmd+d=new_split:right
 keybind                        = cmd+shift+d=new_split:down
 keybind                        = cmd+shift+j=goto_split:down
 keybind                        = cmd+shift+k=goto_split:up
