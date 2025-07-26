@@ -151,8 +151,13 @@ endif
 
 .PHONY: bash
 bash:
-	# TODO: Depending on the OS
+ifeq ($(PLATFORM),fedora)
+	@ $(call do_target,$@,.bash_profile,bash/.bash_profile_linux)
+else ifeq ($(PLATFORM),mac)
 	@ $(call do_target,$@,.bash_profile,bash/.bash_profile)
+else
+	@echo "unsupported platform"
+endif
 
 .PHONY: tmux
 tmux:
