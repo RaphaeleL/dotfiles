@@ -1,5 +1,6 @@
 # --- PROMPT --- 
-export PS1='[\u@\h \W]\$ '
+# export PS1='[\u@\h \W]\$ '
+export PS1='[\u@\e[0;31m\h\e[m \W]\$ '
 
 # --- BASE --- 
 export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -11,8 +12,6 @@ export EDITOR="/usr/bin/vim"
 export PATH
 export PATH="$HOME/bin:$PATH";
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="/usr/local/go/bin$HOME/.local/bin:$PATH"
-export PATH="$HOME/bin:$PATH";
 export PATH="$HOME/go/bin:$PATH";
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
@@ -27,14 +26,14 @@ alias remove="shred -f -n 512 --remove -x -z"
 alias sizes="du -sh * | gsort -hr"
 alias perms="stat -f '%N %A' *"
 alias calc="numi-cli"
+
+# Emacs 
 alias em="emacs -q -l ~/.emacs.d/init.term.el"
 alias emt="emacs -q -l ~/.emacs.d/init.term.el -nw"
 
-# --- OS --- 
-#
-if [[ "$(uname -s)" == "Darwin" ]]; then        # MacOS
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
+# --- HOMEBREW --- 
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # --- AUTO GENERATRED --- 
 
