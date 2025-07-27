@@ -1,5 +1,5 @@
 ####################################################
-# Font
+# UI
 ####################################################
 
 freetype-load-flags            = no-hinting
@@ -12,6 +12,8 @@ font-thicken                   = false
 font-feature                   = -ss05
 font-size                      = 18
 window-inherit-font-size       = true
+window-width                   = 84
+window-height                  = 30
 
 ####################################################
 # Basic Settings 
