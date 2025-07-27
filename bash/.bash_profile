@@ -1,6 +1,6 @@
 # --- PROMPT --- 
 # export PS1='[\u@\h \W]\$ '
-export PS1='[\u@\e[0;31m\h\e[m \W]\$ '
+export PS1='[\u@\[\e[0;31m\]\h\[\e[m\] \W]\$ '
 
 # --- BASE --- 
 export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -30,6 +30,13 @@ alias calc="numi-cli"
 # Emacs 
 alias em="emacs -q -l ~/.emacs.d/init.term.el"
 alias emt="emacs -q -l ~/.emacs.d/init.term.el -nw"
+
+# --- KEYBOARD SHORTCUTS --- 
+
+# HOW THE FUCK
+
+# bind -x '"\C-r": fh'
+bind -x '"\C-t": "tms"'
 
 # --- HOMEBREW --- 
 
