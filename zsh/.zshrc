@@ -2,7 +2,7 @@
 
 # OMZ + Plugins
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="own-theme"
+ZSH_THEME="robbyrussell"
 plugins=(
     git
     zsh-syntax-highlighting
