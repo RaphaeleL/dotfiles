@@ -2,17 +2,17 @@
 
 # OMZ + Plugins
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 plugins=(
     git
-    zsh-syntax-highlighting
+    # zsh-syntax-highlighting
 )
 source $ZSH/oh-my-zsh.sh
 
 # Custom Prompt
 
 # export PS1='%{%}[%n@dev :: %~] %# %{%}'
-# export PS1='%{%}[%n@dev %1~]%# %{%}'
+export PS1='%{%}[%n@dev %1~]%# %{%}'
 
 # ZSH Settings
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
