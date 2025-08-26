@@ -1,22 +1,6 @@
 # --- ZSH ---
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
-plugins=(
-    git
-    zsh-syntax-highlighting
-)
-source $ZSH/oh-my-zsh.sh
 
-# export PS1=$'%n@%m:\e[0;36m%~\e[0m$ '
-; export PS1=$'[%n@%m:\e[0;36m%~\e[0m]$ '
-# export PS1=$'%n@%m:%~$ '
-# export PS1=$'[%n@%m %1~]%# '
-
-
-(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[path]=none
-ZSH_HIGHLIGHT_STYLES[path_prefix]=none
-export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+export PS1=$'[%n@%m:\e[0;31m%~\e[0m]$ '
 
 # --- PROFILE ---
 
@@ -33,38 +17,12 @@ export EDITOR='vim'
 # Basic
 alias grep='grep --color=always'
 alias em="emacs -q -l ~/.emacs.d/init.term.el"
+alias emt="emacs -nw -q -l ~/.emacs.d/init.term.el"
 
 # Special Commands simplified
 alias remove="shred -f -n 512 --remove -x -z"
 
-# Custom Scripts
-fh() { # Fuzzy History
-  local cmd
-  cmd=$(builtin fc -lnr 1 | fzf --height 40% --border --no-scrollbar --tac --no-mouse --pointer='> ' --no-info --prompt='Command> ' --marker=' ' --color=fg:-1,bg:-1,hl:-1,fg+:-1,bg+:-1,hl+:-1,info:-1,prompt:-1,pointer:-1,marker:-1,spinner:-1,header:-1)
-
-  if [[ -n $cmd ]]; then
-    LBUFFER+="$cmd"
-    zle reset-prompt
-  fi
-}
-
-# --- Keybindings ---
-zle -N fh
-bindkey "^R" fh
-bindkey -s ^o "tms\n"
-
 # --- OS Specific ---
 
-if [[ "$(uname -s)" == "Darwin" ]]; then        # MacOS
-
-    # Homebrew
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-
-elif [[ "$(uname -s)" == "Linux" ]]; then       # Linux
-
-    # Test for TRAMP Emacs
-    if [[ $- != *i* ]]; then
-        return
-    fi
-
-fi
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
