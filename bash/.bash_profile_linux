@@ -6,8 +6,9 @@ export PS1='[\u@dev \[\e[1;34m\]\w\[\e[0m\]]\$ '
 export PATH
 export PATH="$HOME/bin:$PATH";
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
-export PATH=$PATH:~/.local/bin
+export PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
 export EDITOR='nvim'
 
