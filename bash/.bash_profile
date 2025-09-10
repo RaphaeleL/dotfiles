@@ -16,6 +16,10 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
 # --- Alias' --- 
 
 # Basic
@@ -33,9 +37,21 @@ alias emt="emacs -q -l ~/.emacs.d/init.term.el -nw"
 
 # --- KEYBOARD SHORTCUTS --- 
 
-# HOW THE FUCK
+fh() {
+  local cmd
+  cmd=$(HISTTIMEFORMAT= history \
+        | tac \
+        | fzf --height 40% --border --no-scrollbar --tac \
+              --no-mouse --pointer='>' --no-info \
+              --prompt='Command> ' --marker='x' \
+        | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+//')
 
-# bind -x '"\C-r": fh'
+  if [[ -n $cmd ]]; then
+    eval "$cmd"
+  fi
+}
+
+bind -x '"\C-r": fh'
 bind -x '"\C-t": "tms"'
 
 # --- HOMEBREW --- 
