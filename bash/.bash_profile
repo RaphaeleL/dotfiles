@@ -33,7 +33,7 @@ alias calc="numi-cli"
 
 # Emacs 
 alias em="emacs -q -l ~/.emacs.d/init.term.el"
-alias emt="emacs -q -l ~/.emacs.d/init.term.el -nw"
+# alias emt="emacs -q -l ~/.emacs.d/init.term.el -nw"
 
 # --- KEYBOARD SHORTCUTS --- 
 

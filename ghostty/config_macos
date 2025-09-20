@@ -63,13 +63,14 @@ window-vsync                   = true
 # theme                          = "dracula"
 # theme                          = "Monokai Pro"
 # theme                          = "solarized-osaka-night"
-# theme                          = "Builtin Solarized Light"
+theme                          = "Builtin Solarized Light"
 # theme                          = "Apple System Colors Light"
-theme                          = "Nord"
+# theme                          = "Nord"
 # theme                          = "gruber-darker"
 # theme                          = "rose-pine"
 
-background                     = "#181818"
+# background                     = "#181818"
 # background                     = "#fdf6e3"
+background                     = "#f6f5fk"
 
 
