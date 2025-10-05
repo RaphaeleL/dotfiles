@@ -45,6 +45,7 @@ keybind                        = cmd+shift+j=goto_split:down
 keybind                        = cmd+shift+k=goto_split:up
 keybind                        = cmd+shift+h=goto_split:left
 keybind                        = cmd+shift+l=goto_split:right
+# keybind                         = globak:kmd+backquote=toggle_quick_terminal
 
 ####################################################
 # UI
@@ -62,15 +63,19 @@ window-vsync                   = true
 # theme                          = "GruvboxDark"
 # theme                          = "dracula"
 # theme                          = "Monokai Pro"
-# theme                          = "solarized-osaka-night"
+# theme                          = "Solarized Osaka Night"
 theme                          = "Builtin Solarized Light"
 # theme                          = "Apple System Colors Light"
 # theme                          = "Nord"
-# theme                          = "gruber-darker"
+# theme                          = "Gruber Darker"
 # theme                          = "rose-pine"
+# theme                          = "Atom One Dark"
 
 # background                     = "#181818"
 # background                     = "#fdf6e3"
-background                     = "#f6f5fk"
+# background                     = "#f6f5f2"
+# background                     = "#fdf6e3"
+foreground                       = #000000
+selection-foreground             = #000000
 
 

@@ -1,6 +1,8 @@
 # --- PROMPT --- 
 # export PS1='[\u@\h \W]\$ '
-export PS1='[\u@\[\e[0;31m\]\h\[\e[m\] \W]\$ '
+# export PS1='[\u@\[\e[0;31m\]\h\[\e[m\] \W]\$ '
+# export PS1='\u@\h:\[\e[33m\]\w\[\e[0m\]\$ '
+export PS1='\w> '
 
 # --- BASE --- 
 export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -30,10 +32,12 @@ alias remove="shred -f -n 512 --remove -x -z"
 alias sizes="du -sh * | gsort -hr"
 alias perms="stat -f '%N %A' *"
 alias calc="numi-cli"
+alias ls="ls -AFh"
+alias ll="ls -AFhal"
 
 # Emacs 
 alias em="emacs -q -l ~/.emacs.d/init.term.el"
-# alias emt="emacs -q -l ~/.emacs.d/init.term.el -nw"
+alias emt="emacs -q -l ~/.emacs.d/init.term.el -nw"
 
 # --- KEYBOARD SHORTCUTS --- 
 
@@ -47,6 +51,9 @@ fh() {
         | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+//')
 
   if [[ -n $cmd ]]; then
+    READLINE_LINE=$cmd
+    READLINE_POINT=${#cmd}
+    history -s "$cmd"
     eval "$cmd"
   fi
 }
@@ -64,5 +71,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 . "$HOME/.cargo/env"
-
 

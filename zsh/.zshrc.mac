@@ -1,6 +1,7 @@
 # --- ZSH ---
 
-export PS1=$'[%n@%m:\e[0;31m%~\e[0m]$ '
+; export PS1=$'[%n@%m:\e[0;31m%~\e[0m]$ '
+export PS1='%~> '
 
 # --- PROFILE ---
 
@@ -22,9 +23,31 @@ export EDITOR='vim'
 alias grep='grep --color=always'
 alias em="emacs -q -l ~/.emacs.d/init.term.el"
 alias emt="emacs -nw -q -l ~/.emacs.d/init.term.el"
+alias calc="numi-cli"
+alias ls="ls -AFh"
+alias ll="ls -AFhali"
 
 # Special Commands simplified
 alias remove="shred -f -n 512 --remove -x -z"
+alias sizes="du -sh * | gsort -hr"
+alias perms="stat -f '%N %A' *"
+
+# Custom Scripts
+fh() { # Fuzzy History
+  local cmd
+  cmd=$(builtin fc -lnr 1 | fzf --height 40% --border --no-scrollbar --tac --no-mouse --pointer='' --no-info --prompt='' --marker='')
+
+  if [[ -n $cmd ]]; then
+    LBUFFER+="$cmd"
+    zle reset-prompt
+  fi
+}
+
+# --- Keybindings ---
+zle -N fh
+bindkey "^R" fh
+bindkey -s ^o "tms\n"
+bindkey -e
 
 # --- OS Specific ---
 
