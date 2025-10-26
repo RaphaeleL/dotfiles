@@ -4,19 +4,19 @@
 
 freetype-load-flags            = no-hinting
 freetype-load-flags            = no-force-autohint
-font-family                    = Iosevka Nerd Font Mono
-window-title-font-family       = Iosevka Nerd Font Mono
-font-feature                   = -calt
-font-feature                   = -dlig
-font-thicken                   = false
-font-feature                   = -ss05
-font-size                      = 18
+font-family                    = SF Mono Regular # Iosevka Nerd Font Mono
+window-title-font-family       = SF Mono Regular # Iosevka Nerd Font Mono
+# font-feature                   = -calt
+# font-feature                   = -dlig
+# font-feature                   = -ss05
+font-thicken                   = true
+font-size                      = 14
 window-inherit-font-size       = true
-window-width                   = 84
-window-height                  = 30
+window-width                   = 105
+window-height                  = 32
 
 ####################################################
-# Basic Settings 
+# Basic Settings
 ####################################################
 
 clipboard-paste-protection     = true
@@ -30,7 +30,7 @@ confirm-close-surface          = false
 
 macos-non-native-fullscreen    = true
 macos-titlebar-proxy-icon      = hidden
-title                          = " "
+# title                          = ""
 
 ####################################################
 # Keybind's
@@ -45,37 +45,38 @@ keybind                        = cmd+shift+j=goto_split:down
 keybind                        = cmd+shift+k=goto_split:up
 keybind                        = cmd+shift+h=goto_split:left
 keybind                        = cmd+shift+l=goto_split:right
-# keybind                         = globak:kmd+backquote=toggle_quick_terminal
 
 ####################################################
 # UI
 ####################################################
 
-adjust-cursor-thickness        = 3
-adjust-underline-position      = 3
-bold-is-bright                 = true
-link-url                       = true
-window-decoration              = true
-mouse-hide-while-typing        = true
-window-vsync                   = true
+adjust-cursor-thickness          = 3
+adjust-underline-position        = 3
+bold-is-bright                   = true
+link-url                         = true
+window-decoration                = true
+mouse-hide-while-typing          = true
+window-vsync                     = true
 
 # /Applications/Ghostty.app/Contents/Resources/ghostty/themes/
-# theme                          = "GruvboxDark"
+# theme                          = "Gruvbox Dark"
 # theme                          = "dracula"
 # theme                          = "Monokai Pro"
 # theme                          = "Solarized Osaka Night"
-theme                          = "Builtin Solarized Light"
-# theme                          = "Apple System Colors Light"
+# theme                          = "Builtin Solarized Light"
+# theme                          = "Monokai Pro Light Sun"
+# theme                          = "Zenwritten Light"
+# theme                          = "Terminal Basic"
+theme                          = "Apple System Colors Light"
 # theme                          = "Nord"
 # theme                          = "Gruber Darker"
-# theme                          = "rose-pine"
+# theme                          = "Rose Pine"
 # theme                          = "Atom One Dark"
 
 # background                     = "#181818"
 # background                     = "#fdf6e3"
 # background                     = "#f6f5f2"
 # background                     = "#fdf6e3"
-foreground                       = #000000
-selection-foreground             = #000000
-
-
+background                     = "#ffffff"
+foreground                     = #000000
+# selection-foreground             = #000000
