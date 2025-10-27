@@ -10,3 +10,10 @@ Xft.dpi					:   96
 Xft.antialias			:   1
 Xft.hinting				:   1
 Xft.hintstyle			:   hintmedium
+
+! copy & paste
+XTerm*selectToClipboard: true
+XTerm*VT100.translations: #override \
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
+

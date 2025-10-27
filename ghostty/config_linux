@@ -22,11 +22,11 @@ theme                          = "gruber-darker"
 window-decoration              = false
 gtk-titlebar                   = false
 
-# window-decoration = false
+window-decoration = false
 # gtk-custom-css = ./custom.css
-# .window {
-#   padding: 0
-# }
+#.window {
+#  padding: 0
+#}
 
 # /usr/share/ghostty/themes
 
