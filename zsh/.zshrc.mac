@@ -1,6 +1,5 @@
 # --- ZSH ---
 
-# export PS1=$'[%n@%m:\e[0;31m%~\e[0m]$ '
 export PS1='%~> '
 
 # --- PROFILE ---
@@ -43,6 +42,24 @@ fh() { # Fuzzy History
   fi
 }
 
+# Swap Command ⌘ and Option ⌥ globally
+hhkb-swap-cmd-alt() {
+  hidutil property --set '{
+    "UserKeyMapping":[
+      {"HIDKeyboardModifierMappingSrc":0x7000000E2, "HIDKeyboardModifierMappingDst":0x7000000E3},
+      {"HIDKeyboardModifierMappingSrc":0x7000000E3, "HIDKeyboardModifierMappingDst":0x7000000E2},
+      {"HIDKeyboardModifierMappingSrc":0x7000000E6, "HIDKeyboardModifierMappingDst":0x7000000E7},
+      {"HIDKeyboardModifierMappingSrc":0x7000000E7, "HIDKeyboardModifierMappingDst":0x7000000E6}
+    ]
+  }'
+  echo "Swapped Command ⌘ and Option ⌥ keys."
+}
+
+hhkb-reset-cmd-alt() {
+  hidutil property --set '{"UserKeyMapping":[]}'
+  echo "Reset Command ⌘ and Option ⌥ to default."
+}
+
 # --- Keybindings ---
 zle -N fh
 bindkey "^R" fh
@@ -50,6 +67,4 @@ bindkey -s ^o "tms\n"
 bindkey -e
 
 # --- OS Specific ---
-
-# Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
