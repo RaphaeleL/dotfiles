@@ -9,10 +9,8 @@ set $refresh_i3status killall -SIGUSR1 i3status
 floating_modifier $mod
 
 # Shortcut for Programms
-# bindsym $mod+Return exec xfce4-terminal
-# bindsym $mod+Shift+Return exec xterm
 bindsym $mod+Return exec --no-startup-id xfce4-terminal
-bindsym $mod+Shift+Return exec --no-startup-id xterm
+# bindsym $mod+Shift+Return exec --no-startup-id xterm -bg "#181818" -fg "#B6B8AD"
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 bindsym $mod+Shift+c exec --no-startup-id emacs
 bindsym $mod+Shift+b exec --no-startup-id firefox
@@ -36,7 +34,7 @@ bindsym $mod+Shift+l move right
 bindsym $mod+t split toggle
 
 # enter fullscreen mode for the focused container
-bindsym $mod+Shift+f fullscreen toggle
+bindsym $mod+Shift+Return fullscreen toggle
 
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -108,15 +106,15 @@ default_floating_border pixel 0
 for_window [class="^.*"] border pixel 2
 
 # Gaps
-gaps outer 1
-gaps inner 5
+# gaps outer 1
+# gaps inner 5
 
 # Mouse
 focus_follows_mouse no
 
 # Wallpaper
-exec --no-startup-id feh --bg-fill --recursive --randomize ~/Pictures/Wallpaper-main/ &
-# exec --no-startup-id xsetroot -solid "#000000" &
+# exec --no-startup-id feh --bg-fill ~/Pictures/Wallpaper-main/pexels-ragga-muffin-2468773.jpg &
+exec --no-startup-id xsetroot -solid "#000000" &
 
 # Autostart Stuff
 exec --no-startup-id vmware-user

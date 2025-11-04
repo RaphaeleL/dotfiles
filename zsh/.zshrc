@@ -12,7 +12,10 @@ source $ZSH/oh-my-zsh.sh
 # Custom Prompt
 
 # export PS1='%{%}[%n@dev :: %~] %# %{%}'
-export PS1='%{%}[%n@dev %1~]%# %{%}'
+export PS1='[%n@dev%f %1~]%# '
+# export PS1='[%n@%m%f %1~]%# '
+# export PS1='[%n@%F{red}%m%f %1~]%# '
+# export PS1='%m%f %~> '
 
 # ZSH Settings
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
@@ -37,6 +40,7 @@ alias grep='grep --color=always'
 alias ls="ls --color=never -hp" # alias ls="ls --color=always -Ghp"
 
 alias em="emacs -q -l ~/.emacs.d/init.term.el"
+alias emt="emacs -nw -q -l ~/.emacs.d/init.term.el"
 alias sizes="du -sh ./* | sort"
 alias remove="shred -f -n 512 --remove -x -z"
 
@@ -45,6 +49,7 @@ alias fullscreen2="xrandr --output Virtual1 --mode 1920x1200"
 alias halfscreen="xrandr --output Virtual1 --mode 1600x900"
 alias smallscreen="xrandr --output Virtual1 --mode 1366x768"
 alias workstation='xrandr --output Virtual1 --mode 1680x1050'
+alias workmonitor='xrandr --output Virtual1 --mode "1912x1054_60.00"'
 
 # Custom Scripts
 fh() { # Fuzzy History
@@ -55,6 +60,29 @@ fh() { # Fuzzy History
     LBUFFER+="$cmd"
     zle reset-prompt
   fi
+}
+
+ccms_tms_prep() {
+  local session="ccms"
+  local dir="$HOME/dev/fco/ccms/"
+
+  # start session in detached mode
+  tmux new-session -d -s "$session" -c "$dir" -n dev
+
+  # create the other windows
+  tmux new-window -t "$session:" -n rhel8    -c "$dir"
+  tmux new-window -t "$session:" -n alma8    -c "$dir"
+  tmux new-window -t "$session:" -n machines -c "$dir"
+  tmux new-window -t "$session:" -n test     -c "$dir"
+  tmux new-window -t "$session:" -n shell    -c "$dir"
+  tmux new-window -t "$session:" -n git      -c "$dir"
+  tmux new-window -t "$session:" -n ksbuild8 -c "$dir"
+
+  # kill the default (unnamed) window if it exists
+  tmux kill-window -t "$session:0" 2>/dev/null
+
+  # attach to the session
+  tmux attach -t "$session"
 }
 
 # --- Keybindings ---
