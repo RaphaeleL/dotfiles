@@ -8,7 +8,7 @@
 	ui = auto
 [alias]
 	tree = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -n 10
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   log2 = log --pretty=format:'%h %an <%ae> %s'
 	stat = diff --shortstat 
 	client = !lazygit 
@@ -16,3 +16,4 @@
 	rebase = false
 [init]
 	defaultBranch = main
+
