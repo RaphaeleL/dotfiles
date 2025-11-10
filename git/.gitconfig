@@ -1,18 +1,38 @@
 [user]
-	email = raphaele.salvatore@outlook.de
+    email = raphaele.salvatore@outlook.de
     username = RaphaeleL 
-	name = Raphaele Salvatore Licciardo
+    name = Raphaele Salvatore Licciardo
 [github]
     user = RaphaeleL 
 [color]
-	ui = auto
+    ui = auto
 [alias]
-	tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit #-n 10
-    lg = log --pretty=format:'%h %an <%ae> %s'
-	stat = diff --shortstat 
-	client = !lazygit 
+    a = add
+    d = diff
+    co = checkout
+    ci = commit
+    ca = commit -a
+    ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
+    pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
+    st = status
+    br = branch
+    ba = branch -a
+    bm = branch --merged
+    bn = branch --no-merged
+
+    tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit #-n 10
+    hist = log --pretty=format:'%h %cd %cn [%ae] %s' --date=relative
+    stat = diff --shortstat
+    client = !lazygit
+
+    find = "!f() { \
+        query=\"$*\"; \
+        commit=$(git hist --grep=\"$query\" | fzf | awk '{print $1}'); \
+        [ -n \"$commit\" ] && git diff ${commit}^ ${commit}; \
+        }; f"
+
 [pull]
-	rebase = false
+    rebase = false
 [init]
-	defaultBranch = main
+    defaultBranch = main
 
