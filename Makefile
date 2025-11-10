@@ -172,9 +172,10 @@ emacs:
 nvim:
 	@ $(call do_target_git,$@,.config/nvim,https://github.com/RaphaeleL/nvim)
 
-.PHONY: lazygit
+.PHONY: git
 lazygit:
 	@ $(call do_target,$@,.config/lazygit/config.yml,lazygit/config.yml)
+	# @ $(call do_target,$@,.config/git/.gitconfig,.gitconfig)
 
 ###########################################################################
 ## Installations of Dependencies depending on the OS
@@ -210,6 +211,7 @@ fedora: install_fedora
 	@ $(MAKE) ghostty
 	@ $(MAKE) vim
 	@ $(MAKE) xterm
+	@ $(MAKE) lazygit
 
 .PHONY: mac
 mac: install_mac
@@ -219,6 +221,7 @@ mac: install_mac
 	@ $(MAKE) zsh
 	@ $(MAKE) ghostty
 	@ $(MAKE) vim
+	@ $(MAKE) lazygit
 
 ###########################################################################
 ## Wrapper
@@ -256,6 +259,7 @@ tools:
 	@ echo "  tmux .............. Tmux configuration"
 	@ echo "  emacs ............. Emacs configuration"
 	@ echo "  nvim .............. Neovim configuration"
+	@ echo "  lazygit ........... Lazygit configuration"
 	@ echo ""
 	@ echo "  Use 'make <tool_name>' to setup or update a specific tool"
 	@ echo ""
