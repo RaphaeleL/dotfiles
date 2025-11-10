@@ -172,6 +172,10 @@ emacs:
 nvim:
 	@ $(call do_target_git,$@,.config/nvim,https://github.com/RaphaeleL/nvim)
 
+.PHONY: lazygit
+lazygit:
+	@ $(call do_target,$@,.config/lazygit/config.yml,lazygit/config.yml)
+
 ###########################################################################
 ## Installations of Dependencies depending on the OS
 ###########################################################################

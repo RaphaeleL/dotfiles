@@ -12,10 +12,11 @@ source $ZSH/oh-my-zsh.sh
 # Custom Prompt
 
 # export PS1='%{%}[%n@dev :: %~] %# %{%}'
-export PS1='[%n@dev%f %1~]%# '
+# export PS1='[%n@dev%f %1~]%# '
 # export PS1='[%n@%m%f %1~]%# '
 # export PS1='[%n@%F{red}%m%f %1~]%# '
 # export PS1='%m%f %~> '
+export PS1='%~> '
 
 # ZSH Settings
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
