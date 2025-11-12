@@ -30,19 +30,19 @@ alias ll="ls -AFhali"
 alias remove="shred -f -n 512 --remove -x -z"
 alias sizes="du -sh * | gsort -hr"
 alias perms="stat -f '%N %A' *"
+alias lang="osascript -e 'tell application \"System Events\" to key code 49 using {control down, option down}'"
 
 # Custom Scripts
 fh() { # Fuzzy History
   local cmd
   cmd=$(builtin fc -lnr 1 | fzf --height 40% --border --no-scrollbar --tac --no-mouse --pointer='' --no-info --prompt='' --marker='')
-
   if [[ -n $cmd ]]; then
     LBUFFER+="$cmd"
     zle reset-prompt
   fi
 }
 
-# Swap Command ⌘ and Option ⌥ globally
+# HHKB Stuff
 hhkb-swap-cmd-alt() {
   hidutil property --set '{
     "UserKeyMapping":[
@@ -52,12 +52,9 @@ hhkb-swap-cmd-alt() {
       {"HIDKeyboardModifierMappingSrc":0x7000000E7, "HIDKeyboardModifierMappingDst":0x7000000E6}
     ]
   }'
-  echo "Swapped Command ⌘ and Option ⌥ keys."
 }
-
 hhkb-reset-cmd-alt() {
   hidutil property --set '{"UserKeyMapping":[]}'
-  echo "Reset Command ⌘ and Option ⌥ to default."
 }
 
 # --- Keybindings ---
