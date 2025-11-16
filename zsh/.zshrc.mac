@@ -20,8 +20,6 @@ export EDITOR='vim'
 
 # Basic
 alias grep='grep --color=always'
-alias em="emacs -q -l ~/.emacs.d/init.term.el"
-alias emt="emacs -nw -q -l ~/.emacs.d/init.term.el"
 alias calc="numi-cli"
 alias ls="ls -Fh"
 alias ll="ls -AFhali"
@@ -43,18 +41,22 @@ fh() { # Fuzzy History
 }
 
 # HHKB Stuff
-hhkb-swap-cmd-alt() {
-  hidutil property --set '{
-    "UserKeyMapping":[
-      {"HIDKeyboardModifierMappingSrc":0x7000000E2, "HIDKeyboardModifierMappingDst":0x7000000E3},
-      {"HIDKeyboardModifierMappingSrc":0x7000000E3, "HIDKeyboardModifierMappingDst":0x7000000E2},
-      {"HIDKeyboardModifierMappingSrc":0x7000000E6, "HIDKeyboardModifierMappingDst":0x7000000E7},
-      {"HIDKeyboardModifierMappingSrc":0x7000000E7, "HIDKeyboardModifierMappingDst":0x7000000E6}
-    ]
-  }'
-}
-hhkb-reset-cmd-alt() {
-  hidutil property --set '{"UserKeyMapping":[]}'
+hhkb-toggle-cmd-alt() {
+  local count
+  count=$(hidutil property --get "UserKeyMapping" | grep -c "HIDKeyboardModifierMappingSrc")
+
+  if [ "$count" -eq 0 ]; then
+    hidutil property --set '{
+      "UserKeyMapping":[
+        {"HIDKeyboardModifierMappingSrc":0x7000000E2, "HIDKeyboardModifierMappingDst":0x7000000E3},
+        {"HIDKeyboardModifierMappingSrc":0x7000000E3, "HIDKeyboardModifierMappingDst":0x7000000E2},
+        {"HIDKeyboardModifierMappingSrc":0x7000000E6, "HIDKeyboardModifierMappingDst":0x7000000E7},
+        {"HIDKeyboardModifierMappingSrc":0x7000000E7, "HIDKeyboardModifierMappingDst":0x7000000E6}
+      ]
+    }'
+  else
+    hidutil property --set '{"UserKeyMapping":[]}'
+  fi
 }
 
 # --- Keybindings ---
