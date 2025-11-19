@@ -17,3 +17,4 @@ XTerm*VT100.translations: #override \
   Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
   Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
 
+! xrdb -load .Xresources
