@@ -15,6 +15,17 @@ typedef struct {
     bool dry_run;
 } Config;
 
+// Summary tracking
+typedef struct {
+    int total;
+    int success;
+    int skipped;
+    int failed;
+    char** messages;
+    int msg_count;
+    int msg_capacity;
+} Summary;
+
 // Colors
 #define YELLOW "\033[0;33m"
 #define GREEN  "\033[0;32m"
@@ -27,6 +38,108 @@ typedef struct {
 #define NC     "\033[0m"
 
 Config config = {0};
+Summary summary = {0};
+
+// Forward declarations
+void print_header(const char* text);
+void summary_add(const char* message);
+
+void summary_add(const char* message) {
+    if (summary.msg_count >= summary.msg_capacity) {
+        summary.msg_capacity = summary.msg_capacity == 0 ? 16 : summary.msg_capacity * 2;
+        summary.messages = realloc(summary.messages, summary.msg_capacity * sizeof(char*));
+    }
+    summary.messages[summary.msg_count++] = strdup(message);
+}
+
+void summary_print() {
+    print_header("Installation Summary");
+    
+    printf(BOLD "Statistics:" NC "\n");
+    printf("  Total:    %d\n", summary.total);
+    printf("  " GREEN "✓ Success: %d" NC "\n", summary.success);
+    printf("  " YELLOW "⚠ Skipped: %d" NC "\n", summary.skipped);
+    printf("  " RED "✗ Failed:  %d" NC "\n\n", summary.failed);
+    
+    if (summary.msg_count > 0) {
+        printf(BOLD "Details:" NC "\n");
+        for (int i = 0; i < summary.msg_count; i++) {
+            printf("  %s\n", summary.messages[i]);
+        }
+        printf("\n");
+    }
+    
+    if (summary.failed > 0 || summary.skipped > 0) {
+        printf(DIM "View full logs: " NC "cat /tmp/dotfiles-install.log\n\n");
+    }
+    
+    // Cleanup
+    for (int i = 0; i < summary.msg_count; i++) {
+        free(summary.messages[i]);
+    }
+    free(summary.messages);
+}
+
+void backup_file(const char* path) {
+    if (config.dry_run) return;
+    
+    struct stat st;
+    if (lstat(path, &st) != 0) return; // File doesn't exist, no backup needed
+    
+    time_t now = time(NULL);
+    struct tm* lt = localtime(&now);
+    char timestamp[32];
+    strftime(timestamp, sizeof(timestamp), "%Y%m%d_%H%M%S", lt);
+    
+    char backup_path[PATH_MAX];
+    snprintf(backup_path, sizeof(backup_path), "%s.backup_%s", path, timestamp);
+    
+    if (S_ISLNK(st.st_mode)) {
+        // Backup symlink
+        char target[PATH_MAX];
+        ssize_t len = readlink(path, target, sizeof(target) - 1);
+        if (len > 0) {
+            target[len] = '\0';
+            symlink(target, backup_path);
+        }
+    } else {
+        // Backup regular file/directory
+        Cmd cp = {0};
+        push(&cp, "cp", "-r", path, backup_path);
+        run_always(&cp);
+    }
+}
+
+void check_homebrew() {
+    if (strcmp(config.platform, "mac") != 0) return;
+    
+    // Check if brew exists
+    if (system("command -v brew >/dev/null 2>&1") == 0) {
+        printf("  " GREEN "✓ Homebrew detected" NC "\n\n");
+        return;
+    }
+    
+    printf("  " YELLOW "⚠ Homebrew not found" NC "\n");
+    
+    if (config.dry_run) {
+        printf("  " DIM "→ Would install Homebrew" NC "\n\n");
+        return;
+    }
+    
+    printf("  " DIM "→ Installing Homebrew..." NC "\n");
+    int result = system("/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"");
+    
+    if (result == 0) {
+        printf("  " GREEN "✓ Homebrew installed" NC "\n\n");
+        summary.success++;
+        summary_add(GREEN "✓" NC " Homebrew installed");
+    } else {
+        printf("  " RED "✗ Homebrew installation failed" NC "\n\n");
+        summary.failed++;
+        summary_add(RED "✗" NC " Homebrew installation failed");
+    }
+    summary.total++;
+}
 
 void detect_platform() {
     config.home = getenv("HOME");
@@ -131,6 +244,8 @@ char* get_symlink_target(const char* path) {
 void do_symlink(const char* name, const char* target_rel, const char* source_rel) {
     if (!check_dotfiles()) return;
     
+    summary.total++;
+    
     static char target_full[PATH_MAX];
     static char source_full[PATH_MAX];
     snprintf(target_full, sizeof(target_full), "%s/%s", config.home, target_rel);
@@ -139,6 +254,10 @@ void do_symlink(const char* name, const char* target_rel, const char* source_rel
     char* source_real = get_real_path(source_full);
     if (!source_real) {
         pretty_print(name, RED "✗ missing" NC);
+        summary.failed++;
+        char msg[256];
+        snprintf(msg, sizeof(msg), RED "✗" NC " %s - source missing", name);
+        summary_add(msg);
         return;
     }
     
@@ -152,6 +271,7 @@ void do_symlink(const char* name, const char* target_rel, const char* source_rel
             char* link_real = get_real_path(link_target);
             if (link_real && strcmp(link_real, source_real) == 0) {
                 pretty_print(name, GREEN "✓ linked" NC);
+                summary.success++;
                 return;
             }
         }
@@ -159,6 +279,8 @@ void do_symlink(const char* name, const char* target_rel, const char* source_rel
     
     if (target_exists || is_symlink) {
         pretty_print(name, YELLOW "↻ updating" NC);
+        backup_file(target_full);
+        
         if (!config.dry_run) {
             Cmd rm = {0};
             push(&rm, "rm", "-rf", target_full);
@@ -173,6 +295,10 @@ void do_symlink(const char* name, const char* target_rel, const char* source_rel
             free(target_dir);
             
             symlink(source_full, target_full);
+            summary.success++;
+            char msg[256];
+            snprintf(msg, sizeof(msg), YELLOW "↻" NC " %s - updated", name);
+            summary_add(msg);
         }
     } else {
         pretty_print(name, CYAN "✚ linking" NC);
@@ -186,6 +312,10 @@ void do_symlink(const char* name, const char* target_rel, const char* source_rel
             free(target_dir);
             
             symlink(source_full, target_full);
+            summary.success++;
+            char msg[256];
+            snprintf(msg, sizeof(msg), CYAN "✚" NC " %s - linked", name);
+            summary_add(msg);
         }
     }
 }
@@ -319,7 +449,7 @@ void setup_lazygit() {
 }
 
 void install_fedora() {
-    print_header("📦 Installing Packages (DNF)");
+    print_header("Installing Packages (DNF)");
     if (!config.dry_run) {
         printf("  " DIM "→ Enabling ghostty COPR..." NC "\n");
         Cmd copr = {0};
@@ -360,7 +490,10 @@ void install_fedora() {
 }
 
 void install_mac() {
-    print_header("🍺 Installing Packages (Homebrew)");
+    print_header("Installing Packages (Homebrew)");
+    
+    check_homebrew();
+    
     if (!config.dry_run) {
         printf("  " DIM "→ Installing cask packages..." NC "\n");
         Cmd cask = {0};
@@ -402,7 +535,7 @@ void install_mac() {
 void setup_fedora() {
     install_fedora();
     
-    print_header("🔧 Setting Up Configurations");
+    print_header("Setting Up Configurations");
     setup_nvim();
     setup_emacs();
     setup_tmux();
@@ -415,12 +548,14 @@ void setup_fedora() {
     setup_lazygit();
     
     printf("\n" BOLD GREEN "✓ Setup complete!" NC "\n\n");
+    
+    summary_print();
 }
 
 void setup_mac() {
     install_mac();
     
-    print_header("🔧 Setting Up Configurations");
+    print_header("Setting Up Configurations");
     setup_nvim();
     setup_emacs();
     setup_tmux();
@@ -430,6 +565,8 @@ void setup_mac() {
     setup_lazygit();
     
     printf("\n" BOLD GREEN "✓ Setup complete!" NC "\n\n");
+    
+    summary_print();
 }
 
 void print_help() {
@@ -462,7 +599,7 @@ void print_help() {
 }
 
 void print_tools() {
-    print_header("🛠 Available Tools");
+    print_header("Available Tools");
     
     printf(BOLD "Window Managers:" NC "\n");
     printf("  • i3wm       i3 window manager and i3status\n");
@@ -491,7 +628,7 @@ void print_tools() {
 }
 
 void print_status() {
-    print_header("📊 Configuration Status");
+    print_header("Configuration Status");
     
     printf(BOLD "System:" NC "\n");
     printf("  OS:          %s\n", config.os);
@@ -517,7 +654,7 @@ void print_status() {
 }
 
 void check_support() {
-    print_header("🔍 Platform Support");
+    print_header("Platform Support");
     
     if (strcmp(config.platform, "unsupported") == 0) {
         printf("  Platform:    " RED "✗ Not supported" NC "\n");
