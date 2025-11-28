@@ -40,7 +40,17 @@ fh() { # Fuzzy History
   fi
 }
 
-# HHKB Stuff
+# Emacs Stuff
+em()   { emacs "$@" & }           # GUI Emacs
+emd()  { emacsclient -c "$@" & }  # GUI Emacs with a Daemon running
+emdaemon() { emacs --daemon }     # Start the Emacs Daemon
+
+# Complex Lines more easily
+pk () { # Process Kill
+    pgrep -f $1 | grep -v grep | awk '{print $1}' | xargs kill -9
+}
+
+# HHKB Keyboard
 hhkb-toggle-cmd-alt() {
   local count
   count=$(hidutil property --get "UserKeyMapping" | grep -c "HIDKeyboardModifierMappingSrc")
