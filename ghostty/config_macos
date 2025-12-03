@@ -6,11 +6,11 @@ freetype-load-flags            = no-hinting
 freetype-load-flags            = no-force-autohint
 font-family                    = SF Mono Regular # Iosevka Nerd Font Mono
 window-title-font-family       = SF Mono Regular # Iosevka Nerd Font Mono
-# font-feature                   = -calt
-# font-feature                   = -dlig
-# font-feature                   = -ss05
+font-feature                   = -calt
+font-feature                   = -dlig
+font-feature                   = -ss05
 font-thicken                   = true
-font-size                      = 14
+font-size                      = 16
 window-inherit-font-size       = true
 window-width                   = 105
 window-height                  = 32
@@ -59,17 +59,19 @@ mouse-hide-while-typing          = true
 window-vsync                     = true
 
 # /Applications/Ghostty.app/Contents/Resources/ghostty/themes/
+
+theme                          = "Builtin Solarized Light"
+# theme                          = "Apple System Colors Light"
+# theme                          = "Gruber Darker"
+
 # theme                          = "Gruvbox Dark"
 # theme                          = "dracula"
 # theme                          = "Monokai Pro"
 # theme                          = "Solarized Osaka Night"
-# theme                          = "Builtin Solarized Light"
 # theme                          = "Monokai Pro Light Sun"
 # theme                          = "Zenwritten Light"
 # theme                          = "Terminal Basic"
-theme                          = "Apple System Colors Light"
 # theme                          = "Nord"
-# theme                          = "Gruber Darker"
 # theme                          = "Rose Pine"
 # theme                          = "Atom One Dark"
 
@@ -77,6 +79,6 @@ theme                          = "Apple System Colors Light"
 # background                     = "#fdf6e3"
 # background                     = "#f6f5f2"
 # background                     = "#fdf6e3"
-background                     = "#ffffff"
-foreground                     = #000000
+# background                     = "#ffffff"
+# foreground                     = #000000
 # selection-foreground             = #000000
