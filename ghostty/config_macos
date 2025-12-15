@@ -12,8 +12,8 @@ font-feature                   = -ss05
 font-thicken                   = true
 font-size                      = 16
 window-inherit-font-size       = true
-window-width                   = 105
-window-height                  = 32
+window-width                   = 83
+window-height                  = 41
 
 ####################################################
 # Basic Settings
