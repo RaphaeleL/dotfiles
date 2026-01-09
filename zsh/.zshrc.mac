@@ -43,6 +43,10 @@ alias ls="ls -Fh"
 alias ll="ls -AF -hali"
 pipestatus() { echo $pipestatus }
 
+# Vim Stuff
+alias vi="$(which vim)"
+alias vim="nvim"
+
 # Special Commands simplified
 alias remove="shred -f -n 512 --remove -x -z"
 alias sizes="du -sh * | gsort -hr"
@@ -50,13 +54,12 @@ alias perms="stat -f '%N %A' *"
 alias lang="osascript -e 'tell application \"System Events\" to key code 49 using {control down, option down}'"
 
 # Custom Scripts
-fh() { # Fuzzy History
+fh() {
   local cmd
-  cmd=$(builtin fc -lnr 1 | fzf --height 40% --border --no-scrollbar --tac --no-mouse --pointer='' --no-info --prompt='' --marker='')
-  if [[ -n $cmd ]]; then
-    LBUFFER+="$cmd"
-    zle reset-prompt
-  fi
+  cmd=$(fc -lnr 1 | sed 's/^[[:space:]]*//' | \
+        fzf --height 40% --border --tac --no-mouse --no-info)
+  [[ -n $cmd ]] && LBUFFER+="$cmd"
+  zle redisplay
 }
 
 # Emacs Stuff
@@ -89,10 +92,33 @@ hhkb-toggle-cmd-alt() {
 }
 
 # --- Keybindings ---
+
 zle -N fh
 bindkey "^R" fh
 bindkey -s ^o "tms\n"
 bindkey -e
 
 # --- OS Specific ---
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# --- HISTORY ---
+
+ulimit -n 8192                 # Increase file descriptor limit
+HISTSIZE=100000                # Number of commands kept in memory
+SAVEHIST=100000                # Number of commands saved to the history file
+HISTFILE=~/.zsh_history        # History file location (optional, this is the default)
+setopt APPEND_HISTORY          # Append instead of overwrite
+setopt INC_APPEND_HISTORY      # Write to history immediately
+setopt SHARE_HISTORY           # Share history across terminals
+setopt HIST_IGNORE_ALL_DUPS    # Remove older duplicate entries
+setopt HIST_REDUCE_BLANKS      # Remove superfluous blanks
+setopt HIST_VERIFY             # Edit before executing history expansions
+setopt EXTENDED_HISTORY        # Timestamp each command in history
+setopt HIST_EXPIRE_DUPS_FIRST  # Drop duplicates before unique commands
+setopt HIST_FIND_NO_DUPS       # No dupes during history search
+setopt HIST_SAVE_NO_DUPS       # Don’t write dupes to file
+setopt HIST_IGNORE_SPACE       # Commands starting with space aren’t saved
+setopt HIST_NO_STORE           # Don’t store `history`, `fc`, etc.
+setopt HIST_FCNTL_LOCK         # Lock history file during write
+
