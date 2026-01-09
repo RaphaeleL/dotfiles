@@ -27,7 +27,8 @@ export EDITOR='nvim'
 alias grep='grep --color=always'
 alias calc="numi-cli"
 alias ls="ls -Fh"
-alias ll="ls -AFhali"
+alias ll="ls -AF -hali"
+pipestatus() { echo $pipestatus }
 
 # Special Commands simplified
 alias remove="shred -f -n 512 --remove -x -z"
@@ -46,33 +47,14 @@ fh() { # Fuzzy History
 }
 
 # Emacs Stuff
-em() { # GUI Emacs
-    emacs "$@" >/dev/null 2>&1 &
-    disown
-}
-
-emd() { # GUI Emacs with Daemon
-    emacsclient -c "$@" >/dev/null 2>&1 &
-    disown
-}
-
-emt() { # TTY Emacs
-    emacs "$@" -nw
-}
-
-emdt() { # TTY Emacs with Daemon
-    emacsclient -c --nw "$@"
-}
-
-emdaemon() { # Start Emacs Daemon
-    emacs --daemon >/dev/null 2>&1 &
-    disown
-}
+em() { emacs "$@" >/dev/null 2>&1 &; disown } # GUI Emacs
+emd() { emacsclient -c "$@" >/dev/null 2>&1 &; disown } # GUI Emacs with Daemon
+emt() { emacs "$@" -nw } # TTY Emacs
+emdt() { emacsclient -c --nw "$@" } # TTY Emacs with Daemon
+emdaemon() { emacs --daemon >/dev/null 2>&1 & disown } # Start Emacs Daemon
 
 # Complex Lines more easily
-pk () { # Process Kill
-    pgrep -f $1 | grep -v grep | awk '{print $1}' | xargs kill -9
-}
+pk () { pgrep -f $1 | grep -v grep | awk '{print $1}' | xargs kill -9 } # Process Kill
 
 # HHKB Keyboard
 hhkb-toggle-cmd-alt() {
