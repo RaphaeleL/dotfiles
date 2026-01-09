@@ -1,9 +1,10 @@
-# --- ZSH ---
+# --- PS1 ---
 
 # export PS1='%{%}[%n@dev :: %~] %# %{%}'
 # export PS1='[%n@dev%f %1~]%# '
 # export PS1='[%n@%m%f %1~]%# '
 # export PS1='[%n@%F{red}%m%f %1~]%# '
+# export PS1='[%n@%m%f %~]%# '
 export PS1='%~> '
 
 # --- PROFILE ---
