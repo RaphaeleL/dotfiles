@@ -4,16 +4,16 @@
 
 freetype-load-flags            = no-hinting
 freetype-load-flags            = no-force-autohint
-font-family                    = SF Mono Regular # Iosevka Nerd Font Mono
-window-title-font-family       = SF Mono Regular # Iosevka Nerd Font Mono
+font-family                    = SF Mono Regular
+window-title-font-family       = SF Mono Regular
 font-feature                   = -calt
 font-feature                   = -dlig
 font-feature                   = -ss05
 font-thicken                   = true
 font-size                      = 16
 window-inherit-font-size       = true
-window-width                   = 83
-window-height                  = 41
+window-width                   = 100
+window-height                  = 32
 
 ####################################################
 # Basic Settings
@@ -60,9 +60,11 @@ window-vsync                     = true
 
 # /Applications/Ghostty.app/Contents/Resources/ghostty/themes/
 
-theme                          = "Builtin Solarized Light"
-# theme                          = "Apple System Colors Light"
+# theme                          = "Builtin Solarized Light"
+theme                          = "Apple System Colors Light"
+# theme                          = "Apple System Colors"
 # theme                          = "Gruber Darker"
+# theme                          = "Rose Pine"
 
 # theme                          = "Gruvbox Dark"
 # theme                          = "dracula"
@@ -72,7 +74,6 @@ theme                          = "Builtin Solarized Light"
 # theme                          = "Zenwritten Light"
 # theme                          = "Terminal Basic"
 # theme                          = "Nord"
-# theme                          = "Rose Pine"
 # theme                          = "Atom One Dark"
 
 # background                     = "#181818"
