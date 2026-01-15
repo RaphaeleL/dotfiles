@@ -434,6 +434,7 @@ void setup_bash() {
 
 void setup_tmux() {
     do_symlink("tmux", ".tmux.conf", "tmux/.tmux.conf");
+    do_symlink("tms", ".local/bin/tms", "tms/tms");
 }
 
 void setup_emacs() {
