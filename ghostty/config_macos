@@ -4,8 +4,8 @@
 
 freetype-load-flags            = no-hinting
 freetype-load-flags            = no-force-autohint
-font-family                    = SF Mono Regular
-window-title-font-family       = SF Mono Regular
+font-family                    = SF Mono
+window-title-font-family       = SF Mono
 font-feature                   = -calt
 font-feature                   = -dlig
 font-feature                   = -ss05
@@ -30,17 +30,21 @@ confirm-close-surface          = false
 
 macos-non-native-fullscreen    = true
 macos-titlebar-proxy-icon      = hidden
-# title                          = ""
 
 ####################################################
 # Keybind's
 ####################################################
 
 keybind                        = alt+r=reload_config
+
 keybind                        = ctrl+h=previous_tab
 keybind                        = ctrl+l=next_tab
+
 keybind                        = cmd+d=new_split:right
 keybind                        = cmd+shift+d=new_split:down
+
+keybind                        = cmd+shift+p=toggle_command_palette
+
 keybind                        = cmd+shift+j=goto_split:down
 keybind                        = cmd+shift+k=goto_split:up
 keybind                        = cmd+shift+h=goto_split:left
@@ -60,8 +64,9 @@ window-vsync                     = true
 
 # /Applications/Ghostty.app/Contents/Resources/ghostty/themes/
 
+theme = "light:Apple System Colors Light,dark:Rose Pine"
 # theme                          = "Builtin Solarized Light"
-theme                          = "Apple System Colors Light"
+# theme                          = "Apple System Colors Light"
 # theme                          = "Apple System Colors"
 # theme                          = "Gruber Darker"
 # theme                          = "Rose Pine"
@@ -83,3 +88,8 @@ theme                          = "Apple System Colors Light"
 # background                     = "#ffffff"
 # foreground                     = #000000
 # selection-foreground             = #000000
+
+# theme = Rose Pine Moon
+# background = 000000
+# background-opacity = 0.85
+# background-blur = true 
