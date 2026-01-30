@@ -64,12 +64,12 @@ window-vsync                     = true
 
 # /Applications/Ghostty.app/Contents/Resources/ghostty/themes/
 
-theme = "light:Apple System Colors Light,dark:Rose Pine"
+# theme = "light:Apple System Colors Light,dark:Rose Pine"
 # theme                          = "Builtin Solarized Light"
 # theme                          = "Apple System Colors Light"
 # theme                          = "Apple System Colors"
 # theme                          = "Gruber Darker"
-# theme                          = "Rose Pine"
+theme                          = "Rose Pine"
 
 # theme                          = "Gruvbox Dark"
 # theme                          = "dracula"
@@ -91,5 +91,5 @@ theme = "light:Apple System Colors Light,dark:Rose Pine"
 
 # theme = Rose Pine Moon
 # background = 000000
-# background-opacity = 0.85
-# background-blur = true 
+background-opacity = 0.85
+background-blur = true 
