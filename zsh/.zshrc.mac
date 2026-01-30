@@ -1,7 +1,12 @@
 # --- THEME ---
 
 is_dark_mode() {
-  defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark
+  # NOTE: the following line is commented out to always enable dark mode settings
+  #       if it's enabled, it will check the system appearance instead. Based on 
+  #       this boolean, different settings will be applied below. Like different
+  #       aliases for `ls` command or enabling oh-my-zsh.
+  # defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark
+  true
 }
 
 # --- PS1 ---
