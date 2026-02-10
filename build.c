@@ -1,5 +1,5 @@
-#define SHL_IMPLEMENTATION
-#define SHL_STRIP_PREFIX
+#define QOL_IMPLEMENTATION
+#define QOL_STRIP_PREFIX
 #include "./build.h"
 
 #include <unistd.h>
@@ -26,17 +26,6 @@ typedef struct {
     int msg_capacity;
 } Summary;
 
-// Colors
-#define YELLOW "\033[0;33m"
-#define GREEN  "\033[0;32m"
-#define RED    "\033[0;31m"
-#define BLUE   "\033[0;34m"
-#define CYAN   "\033[0;36m"
-#define MAGENTA "\033[0;35m"
-#define BOLD   "\033[1m"
-#define DIM    "\033[2m"
-#define NC     "\033[0m"
-
 Config config = {0};
 Summary summary = {0};
 
@@ -55,23 +44,23 @@ void summary_add(const char* message) {
 void summary_print() {
     print_header("Installation Summary");
     
-    printf(BOLD "Statistics:" NC "\n");
-    printf("  Total:    %d\n", summary.total);
-    printf("  " GREEN "✓ Success: %d" NC "\n", summary.success);
-    printf("  " YELLOW "⚠ Skipped: %d" NC "\n", summary.skipped);
-    printf("  " RED "✗ Failed:  %d" NC "\n\n", summary.failed);
+    printf(BOLD "Statistics:" RESET "\n");
+    printf("  Total:   %d\n", summary.total);
+    printf("  " FG_GREEN "Success: %d" RESET "\n", summary.success);
+    printf("  " FG_YELLOW "Skipped: %d" RESET "\n", summary.skipped);
+    printf("  " FG_RED "Failed:  %d" RESET "\n\n", summary.failed);
     
     if (summary.msg_count > 0) {
-        printf(BOLD "Details:" NC "\n");
+        printf(BOLD "Details:" RESET "\n");
         for (int i = 0; i < summary.msg_count; i++) {
             printf("  %s\n", summary.messages[i]);
         }
         printf("\n");
     }
     
-    if (summary.failed > 0 || summary.skipped > 0) {
-        printf(DIM "View full logs: " NC "cat /tmp/dotfiles-install.log\n\n");
-    }
+    // if (summary.failed > 0 || summary.skipped > 0) {
+    //     printf(DIM "View full logs: " RESET "cat /tmp/dotfiles-install.log\n\n");
+    // }
     
     // Cleanup
     for (int i = 0; i < summary.msg_count; i++) {
@@ -115,28 +104,28 @@ void check_homebrew() {
     
     // Check if brew exists
     if (system("command -v brew >/dev/null 2>&1") == 0) {
-        printf("  " GREEN "✓ Homebrew detected" NC "\n\n");
+        printf("  " FG_GREEN "✓ Homebrew detected" RESET "\n\n");
         return;
     }
     
-    printf("  " YELLOW "⚠ Homebrew not found" NC "\n");
+    printf("  " FG_YELLOW "⚠ Homebrew not found" RESET "\n");
     
     if (config.dry_run) {
-        printf("  " DIM "→ Would install Homebrew" NC "\n\n");
+        printf("  " DIM "→ Would install Homebrew" RESET "\n\n");
         return;
     }
     
-    printf("  " DIM "→ Installing Homebrew..." NC "\n");
+    printf("  " DIM "→ Installing Homebrew..." RESET "\n");
     int result = system("/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"");
     
     if (result == 0) {
-        printf("  " GREEN "✓ Homebrew installed" NC "\n\n");
+        printf("  " FG_GREEN "✓ Homebrew installed" RESET "\n\n");
         summary.success++;
-        summary_add(GREEN "✓" NC " Homebrew installed");
+        summary_add(FG_GREEN "✓" RESET " Homebrew installed");
     } else {
-        printf("  " RED "✗ Homebrew installation failed" NC "\n\n");
+        printf("  " FG_RED "✗ Homebrew installation failed" RESET "\n\n");
         summary.failed++;
-        summary_add(RED "✗" NC " Homebrew installation failed");
+        summary_add(FG_RED "✗" RESET " Homebrew installation failed");
     }
     summary.total++;
 }
@@ -193,12 +182,12 @@ void detect_platform() {
 
 void print_header(const char* text) {
     // int len = strlen(text);
-    // printf("\n" BOLD CYAN "╭");
+    // printf("\n" BOLD FG_CYAN "╭");
     // for (int i = 0; i < len + 2; i++) printf("─");
-    printf(BOLD CYAN "\n%s\n\n"NC, text);
+    printf(BOLD FG_CYAN "\n%s\n\n"RESET, text);
     // printf("╮\n│ %s   │\n╰", text);
     // for (int i = 0; i < len + 2; i++) printf("─");
-    // printf("╯" NC "\n\n");
+    // printf("╯" RESET "\n\n");
 }
 
 void pretty_print(const char* name, const char* status) {
@@ -206,12 +195,12 @@ void pretty_print(const char* name, const char* status) {
     int width = 35 - name_length;
     if (width < 0) width = 0;
     
-    printf("  " BOLD "%s" NC " ", name);
+    printf("  " BOLD "%s" RESET " ", name);
     printf(DIM);
     for (int i = 0; i < width; i++) {
         printf("·");
     }
-    printf(NC " %s\n", status);
+    printf(RESET " %s\n", status);
 }
 
 bool check_dotfiles() {
@@ -253,10 +242,10 @@ void do_symlink(const char* name, const char* target_rel, const char* source_rel
     
     char* source_real = get_real_path(source_full);
     if (!source_real) {
-        pretty_print(name, RED "✗ missing" NC);
+        pretty_print(name, FG_RED "✗ missing" RESET);
         summary.failed++;
         char msg[256];
-        snprintf(msg, sizeof(msg), RED "✗" NC " %s - source missing", name);
+        snprintf(msg, sizeof(msg), FG_RED "✗" RESET " %s - source missing", name);
         summary_add(msg);
         return;
     }
@@ -270,7 +259,7 @@ void do_symlink(const char* name, const char* target_rel, const char* source_rel
         if (link_target) {
             char* link_real = get_real_path(link_target);
             if (link_real && strcmp(link_real, source_real) == 0) {
-                pretty_print(name, GREEN "✓ linked" NC);
+                pretty_print(name, FG_GREEN "✓ linked" RESET);
                 summary.success++;
                 return;
             }
@@ -278,7 +267,7 @@ void do_symlink(const char* name, const char* target_rel, const char* source_rel
     }
     
     if (target_exists || is_symlink) {
-        pretty_print(name, YELLOW "↻ updating" NC);
+        pretty_print(name, FG_YELLOW "↻ updating" RESET);
         backup_file(target_full);
         
         if (!config.dry_run) {
@@ -297,11 +286,11 @@ void do_symlink(const char* name, const char* target_rel, const char* source_rel
             symlink(source_full, target_full);
             summary.success++;
             char msg[256];
-            snprintf(msg, sizeof(msg), YELLOW "↻" NC " %s - updated", name);
+            snprintf(msg, sizeof(msg), FG_YELLOW "↻" RESET " %s - updated", name);
             summary_add(msg);
         }
     } else {
-        pretty_print(name, CYAN "✚ linking" NC);
+        pretty_print(name, FG_CYAN "✚ linking" RESET);
         if (!config.dry_run) {
             char* target_dir = strdup(target_full);
             char* last_slash = strrchr(target_dir, '/');
@@ -314,7 +303,7 @@ void do_symlink(const char* name, const char* target_rel, const char* source_rel
             symlink(source_full, target_full);
             summary.success++;
             char msg[256];
-            snprintf(msg, sizeof(msg), CYAN "✚" NC " %s - linked", name);
+            snprintf(msg, sizeof(msg), FG_CYAN "✚" RESET " %s - linked", name);
             summary_add(msg);
         }
     }
@@ -334,16 +323,16 @@ void do_git_clone(const char* name, const char* target_rel, const char* repo_url
     bool target_exists = (stat(target_full, &st) == 0);
     
     if (git_exists) {
-        pretty_print(name, BLUE "↻ updating" NC);
+        pretty_print(name, FG_BLUE "↻ updating" RESET);
         if (!config.dry_run) {
             Cmd pull = {0};
             push(&pull, "git", "-C", target_full, "pull", "--quiet");
             if (!run_always(&pull)) {
-                pretty_print(name, RED "✗ update failed" NC);
+                pretty_print(name, FG_RED "✗ update failed" RESET);
             }
         }
     } else if (target_exists) {
-        pretty_print(name, YELLOW "⚠ cleaning" NC);
+        pretty_print(name, FG_YELLOW "⚠ cleaning" RESET);
         if (!config.dry_run) {
             Cmd rm = {0};
             push(&rm, "rm", "-rf", target_full);
@@ -360,13 +349,13 @@ void do_git_clone(const char* name, const char* target_rel, const char* repo_url
             Cmd clone = {0};
             push(&clone, "git", "clone", "--quiet", "--depth=1", repo_url, target_full);
             if (!run_always(&clone)) {
-                pretty_print(name, RED "✗ clone failed" NC);
+                pretty_print(name, FG_RED "✗ clone failed" RESET);
             } else {
-                pretty_print(name, GREEN "✓ cloned" NC);
+                pretty_print(name, FG_GREEN "✓ cloned" RESET);
             }
         }
     } else {
-        pretty_print(name, CYAN "⬇ cloning" NC);
+        pretty_print(name, FG_CYAN "⬇ cloning" RESET);
         if (!config.dry_run) {
             char* target_dir = strdup(target_full);
             char* last_slash = strrchr(target_dir, '/');
@@ -379,7 +368,7 @@ void do_git_clone(const char* name, const char* target_rel, const char* repo_url
             Cmd clone = {0};
             push(&clone, "git", "clone", "--quiet", "--depth=1", repo_url, target_full);
             if (!run_always(&clone)) {
-                pretty_print(name, RED "✗ clone failed" NC);
+                pretty_print(name, FG_RED "✗ clone failed" RESET);
             }
         }
     }
@@ -452,30 +441,30 @@ void setup_lazygit() {
 void install_fedora() {
     print_header("Installing Packages (DNF)");
     if (!config.dry_run) {
-        printf("  " DIM "→ Enabling ghostty COPR..." NC "\n");
+        printf("  " DIM "→ Enabling ghostty COPR..." RESET "\n");
         Cmd copr = {0};
         push(&copr, "sudo", "dnf", "copr", "enable", "pgdev/ghostty", "-y", ">/tmp/dotfiles-install.log", "2>&1");
         bool copr_ok = run_always(&copr);
         if (!copr_ok) {
-            printf("  " YELLOW "  ⚠ COPR might already be enabled (continuing...)" NC "\n");
+            printf("  " FG_YELLOW "  ⚠ COPR might already be enabled (continuing...)" RESET "\n");
         }
         
-        printf("  " DIM "→ Installing packages..." NC "\n");
+        printf("  " DIM "→ Installing packages..." RESET "\n");
         Cmd install = {0};
         push(&install, "sudo", "dnf", "install", "zsh", "tmux", "i3", "bspwm", 
              "sxhkd", "zig", "git", "lazygit", "ghostty", "-y", ">>/tmp/dotfiles-install.log", "2>&1");
         bool install_ok = run_always(&install);
         if (!install_ok) {
-            printf("  " YELLOW "  ⚠ Some packages might already be installed (continuing...)" NC "\n");
+            printf("  " FG_YELLOW "  ⚠ Some packages might already be installed (continuing...)" RESET "\n");
         }
         
-        printf("  " DIM "→ Checking Oh My Zsh..." NC "\n");
+        printf("  " DIM "→ Checking Oh My Zsh..." RESET "\n");
         char omz_path[PATH_MAX];
         snprintf(omz_path, sizeof(omz_path), "%s/.oh-my-zsh", config.home);
         if (access(omz_path, F_OK) == 0) {
-            printf("  " GREEN "  ✓ Oh My Zsh already installed" NC "\n");
+            printf("  " FG_GREEN "  ✓ Oh My Zsh already installed" RESET "\n");
         } else {
-            printf("  " DIM "  → Installing Oh My Zsh..." NC "\n");
+            printf("  " DIM "  → Installing Oh My Zsh..." RESET "\n");
             Cmd omz = {0};
             push(&omz, "sh", "-c", 
                  "\"RUNZSH=no CHSH=no $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\"", 
@@ -484,9 +473,9 @@ void install_fedora() {
         }
         printf("\n");
     } else {
-        printf("  " DIM "→ Would enable ghostty COPR" NC "\n");
-        printf("  " DIM "→ Would install: zsh, tmux, i3, bspwm, sxhkd, zig, git, lazygit, ghostty" NC "\n");
-        printf("  " DIM "→ Would install Oh My Zsh" NC "\n\n");
+        printf("  " DIM "→ Would enable ghostty COPR" RESET "\n");
+        printf("  " DIM "→ Would install: zsh, tmux, i3, bspwm, sxhkd, zig, git, lazygit, ghostty" RESET "\n");
+        printf("  " DIM "→ Would install Oh My Zsh" RESET "\n\n");
     }
 }
 
@@ -496,29 +485,29 @@ void install_mac() {
     check_homebrew();
     
     if (!config.dry_run) {
-        printf("  " DIM "→ Installing cask packages..." NC "\n");
+        printf("  " DIM "→ Installing cask packages..." RESET "\n");
         Cmd cask = {0};
         push(&cask, "brew", "install", "--quiet", "--cask", "ghostty", ">/tmp/dotfiles-install.log", "2>&1");
         bool cask_ok = run_always(&cask);
         if (!cask_ok) {
-            printf("  " YELLOW "  ⚠ Ghostty might already be installed (continuing...)" NC "\n");
+            printf("  " FG_YELLOW "  ⚠ Ghostty might already be installed (continuing...)" RESET "\n");
         }
         
-        printf("  " DIM "→ Installing packages..." NC "\n");
+        printf("  " DIM "→ Installing packages..." RESET "\n");
         Cmd install = {0};
         push(&install, "brew", "install", "--quiet", "zsh", "tmux", "zig", "git", "lazygit", ">>/tmp/dotfiles-install.log", "2>&1");
         bool install_ok = run_always(&install);
         if (!install_ok) {
-            printf("  " YELLOW "  ⚠ Some packages might already be installed (continuing...)" NC "\n");
+            printf("  " FG_YELLOW "  ⚠ Some packages might already be installed (continuing...)" RESET "\n");
         }
         
-        printf("  " DIM "→ Checking Oh My Zsh..." NC "\n");
+        printf("  " DIM "→ Checking Oh My Zsh..." RESET "\n");
         static char omz_path[PATH_MAX];
         snprintf(omz_path, sizeof(omz_path), "%s/.oh-my-zsh", config.home);
         if (access(omz_path, F_OK) == 0) {
-            printf("  " GREEN "  ✓ Oh My Zsh already installed" NC "\n");
+            printf("  " FG_GREEN "  ✓ Oh My Zsh already installed" RESET "\n");
         } else {
-            printf("  " DIM "  → Installing Oh My Zsh..." NC "\n");
+            printf("  " DIM "  → Installing Oh My Zsh..." RESET "\n");
             Cmd omz = {0};
             push(&omz, "sh", "-c", 
                  "\"RUNZSH=no CHSH=no $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\"",
@@ -527,9 +516,9 @@ void install_mac() {
         }
         printf("\n");
     } else {
-        printf("  " DIM "→ Would install cask: ghostty" NC "\n");
-        printf("  " DIM "→ Would install: zsh, tmux, zig, git, lazygit" NC "\n");
-        printf("  " DIM "→ Would install Oh My Zsh" NC "\n\n");
+        printf("  " DIM "→ Would install cask: ghostty" RESET "\n");
+        printf("  " DIM "→ Would install: zsh, tmux, zig, git, lazygit" RESET "\n");
+        printf("  " DIM "→ Would install Oh My Zsh" RESET "\n\n");
     }
 }
 
@@ -548,7 +537,7 @@ void setup_fedora() {
     setup_xterm();
     setup_lazygit();
     
-    printf("\n" BOLD GREEN "✓ Setup complete!" NC "\n\n");
+    printf("\n" BOLD FG_GREEN "✓ Setup complete!" RESET "\n\n");
     
     summary_print();
 }
@@ -565,79 +554,79 @@ void setup_mac() {
     setup_vim();
     setup_lazygit();
     
-    printf("\n" BOLD GREEN "✓ Setup complete!" NC "\n\n");
+    printf("\n" BOLD FG_GREEN "✓ Setup complete!" RESET "\n\n");
     
     summary_print();
 }
 
 void print_help() {
     printf("\n");
-    printf(BOLD CYAN "Dotfiles Manager" NC " - Automated configuration deployment\n\n");
+    printf(BOLD FG_CYAN "Dotfiles Manager" RESET " - Automated configuration deployment\n\n");
     
-    printf(BOLD "Usage:" NC "\n");
+    printf(BOLD "Usage:" RESET "\n");
     printf("  ./build [--dry-run] <command>\n\n");
     
-    printf(BOLD "Commands:" NC "\n");
-    printf("  " BOLD "auto" NC "       Install and setup everything based on the OS\n");
-    printf("  " BOLD "fedora" NC "     Setup for GNU/Linux Fedora\n");
-    printf("  " BOLD "mac" NC "        Setup for macOS\n");
-    printf("  " BOLD "support" NC "    Check if the OS is supported\n");
-    printf("  " BOLD "status" NC "     Check current configuration status\n");
-    printf("  " BOLD "tools" NC "      List available tools\n");
-    printf("  " BOLD "help" NC "       Show this help message\n\n");
+    printf(BOLD "Commands:" RESET "\n");
+    printf("  " BOLD "auto" RESET "       Install and setup everything based on the OS\n");
+    printf("  " BOLD "fedora" RESET "     Setup for GNU/Linux Fedora\n");
+    printf("  " BOLD "mac" RESET "        Setup for macOS\n");
+    printf("  " BOLD "support" RESET "    Check if the OS is supported\n");
+    printf("  " BOLD "status" RESET "     Check current configuration status\n");
+    printf("  " BOLD "tools" RESET "      List available tools\n");
+    printf("  " BOLD "help" RESET "       Show this help message\n\n");
     
-    printf(BOLD "Individual Tools:" NC "\n");
+    printf(BOLD "Individual Tools:" RESET "\n");
     printf("  i3wm, bspwm, polybar, xterm, ghostty, vim, zsh, bash\n");
     printf("  tmux, emacs, nvim, lazygit\n\n");
     
-    printf(BOLD "Options:" NC "\n");
-    printf("  " BOLD "--dry-run" NC "  Preview changes without modifying files\n\n");
+    printf(BOLD "Options:" RESET "\n");
+    printf("  " BOLD "--dry-run" RESET "  Preview changes without modifying files\n\n");
     
-    printf(BOLD "Examples:" NC "\n");
-    printf("  ./build --dry-run auto   " DIM "# Test full setup" NC "\n");
-    printf("  ./build mac              " DIM "# Install on macOS" NC "\n");
-    printf("  ./build nvim             " DIM "# Setup only Neovim" NC "\n\n");
+    printf(BOLD "Examples:" RESET "\n");
+    printf("  ./build --dry-run auto   " DIM "# Test full setup" RESET "\n");
+    printf("  ./build mac              " DIM "# Install on macOS" RESET "\n");
+    printf("  ./build nvim             " DIM "# Setup only Neovim" RESET "\n\n");
 }
 
 void print_tools() {
     print_header("Available Tools");
     
-    printf(BOLD "Window Managers:" NC "\n");
+    printf(BOLD "Window Managers:" RESET "\n");
     printf("  • i3wm       i3 window manager and i3status\n");
     printf("  • bspwm      BSPWM window manager with sxhkd\n");
     printf("  • polybar    Polybar status bar\n\n");
     
-    printf(BOLD "Terminals:" NC "\n");
+    printf(BOLD "Terminals:" RESET "\n");
     printf("  • xterm      XTerm terminal configuration\n");
     printf("  • ghostty    Ghostty terminal emulator\n\n");
     
-    printf(BOLD "Editors:" NC "\n");
+    printf(BOLD "Editors:" RESET "\n");
     printf("  • vim        Vim configuration\n");
     printf("  • nvim       Neovim configuration (git)\n");
     printf("  • emacs      Emacs configuration (git)\n\n");
     
-    printf(BOLD "Shells:" NC "\n");
+    printf(BOLD "Shells:" RESET "\n");
     printf("  • zsh        Zsh shell configuration\n");
     printf("  • bash       Bash shell configuration\n\n");
     
-    printf(BOLD "Tools:" NC "\n");
+    printf(BOLD "Tools:" RESET "\n");
     printf("  • tmux       Tmux configuration\n");
     printf("  • lazygit    Lazygit configuration\n\n");
     
-    printf(DIM "Use './build <tool_name>' to setup a specific tool\n" NC);
+    printf(DIM "Use './build <tool_name>' to setup a specific tool\n" RESET);
     printf("\n");
 }
 
 void print_status() {
     print_header("Configuration Status");
     
-    printf(BOLD "System:" NC "\n");
+    printf(BOLD "System:" RESET "\n");
     printf("  OS:          %s\n", config.os);
     printf("  Platform:    %s\n", config.platform);
     printf("  Dotfiles:    %s\n", config.dotfiles_dir);
     printf("  Home:        %s\n\n", config.home);
     
-    printf(BOLD "Configurations:" NC "\n");
+    printf(BOLD "Configurations:" RESET "\n");
     setup_nvim();
     setup_emacs();
     setup_tmux();
@@ -658,21 +647,22 @@ void check_support() {
     print_header("Platform Support");
     
     if (strcmp(config.platform, "unsupported") == 0) {
-        printf("  Platform:    " RED "✗ Not supported" NC "\n");
+        printf("  Platform:    " FG_RED "✗ Not supported" RESET "\n");
         printf("  OS:          %s\n", config.os);
         if (config.distro && strlen(config.distro) > 0) {
             printf("  Distro:      %s\n", config.distro);
         }
         printf("\n  Supported platforms: Fedora, macOS\n\n");
     } else {
-        printf("  Platform:    " GREEN "✓ Supported" NC "\n");
+        printf("  Platform:    " FG_GREEN "✓ Supported" RESET "\n");
         printf("  Detected:    %s (%s)\n", config.platform, config.os);
         printf("  Dotfiles:    %s\n\n", config.dotfiles_dir);
     }
 }
 
 int main(int argc_orig, char** argv_orig) {
-    init_logger(LOG_ERROR, false, true);
+    init_logger(.level=LOG_ERRO, .time=true, .color=true, .time_color=!true);
+
     auto_rebuild_plus(__FILE__, "build.h");
     
     detect_platform();
@@ -691,7 +681,7 @@ int main(int argc_orig, char** argv_orig) {
     
     if (strcmp(cmd, "--dry-run") == 0) {
         config.dry_run = true;
-        printf(YELLOW "⚠ DRY-RUN MODE - No files will be modified\n" NC);
+        printf(FG_YELLOW "⚠ DRY-RUN MODE - No files will be modified\n" RESET);
         if (argc > 0) {
             cmd = shift(argc, argv);
         } else {
