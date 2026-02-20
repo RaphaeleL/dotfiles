@@ -37,8 +37,8 @@ macos-titlebar-proxy-icon      = hidden
 
 keybind                        = alt+r=reload_config
 
-keybind                        = ctrl+h=previous_tab
-keybind                        = ctrl+l=next_tab
+# keybind                        = ctrl+h=previous_tab
+# keybind                        = ctrl+l=next_tab
 
 keybind                        = cmd+d=new_split:right
 keybind                        = cmd+shift+d=new_split:down
@@ -91,5 +91,5 @@ theme                          = "Rose Pine"
 
 # theme = Rose Pine Moon
 # background = 000000
-background-opacity = 0.85
-background-blur = true 
+# background-opacity = 0.85
+# background-blur = true 
