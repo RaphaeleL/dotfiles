@@ -4,8 +4,8 @@
 
 freetype-load-flags            = no-hinting
 freetype-load-flags            = no-force-autohint
-font-family                    = SF Mono
-window-title-font-family       = SF Mono
+font-family                    = Lilex Nerd Font Mono 
+window-title-font-family       = Lilex Nerd Font Mono
 font-feature                   = -calt
 font-feature                   = -dlig
 font-feature                   = -ss05
@@ -43,7 +43,7 @@ keybind                        = alt+r=reload_config
 keybind                        = cmd+d=new_split:right
 keybind                        = cmd+shift+d=new_split:down
 
-keybind                        = cmd+shift+p=toggle_command_palette
+# keybind                        = cmd+shift+p=toggle_command_palette
 
 keybind                        = cmd+shift+j=goto_split:down
 keybind                        = cmd+shift+k=goto_split:up
@@ -70,6 +70,7 @@ window-vsync                     = true
 # theme                          = "Apple System Colors"
 # theme                          = "Gruber Darker"
 theme                          = "Rose Pine"
+# theme                          = "urban"
 
 # theme                          = "Gruvbox Dark"
 # theme                          = "dracula"
@@ -91,5 +92,5 @@ theme                          = "Rose Pine"
 
 # theme = Rose Pine Moon
 # background = 000000
-# background-opacity = 0.85
-# background-blur = true 
+background-opacity = 0.95
+background-blur = true 
