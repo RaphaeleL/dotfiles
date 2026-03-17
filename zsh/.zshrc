@@ -1,111 +1,168 @@
-# --- ZSH ---
-
-# OMZ + Plugins
-export ZSH="$HOME/.oh-my-zsh"
-# ZSH_THEME="robbyrussell"
-plugins=(
-    git
-    # zsh-syntax-highlighting
-)
-source $ZSH/oh-my-zsh.sh
-
-# Custom Prompt
-
-# export PS1='%{%}[%n@dev :: %~] %# %{%}'
-# export PS1='[%n@dev%f %1~]%# '
-# export PS1='[%n@%m%f %1~]%# '
-# export PS1='[%n@%F{red}%m%f %1~]%# '
-# export PS1='%m%f %~> '
-export PS1='%~> '
-
-# ZSH Settings
-(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[path]=none
-ZSH_HIGHLIGHT_STYLES[path_prefix]=none
-export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
-
 # --- PROFILE ---
 
-export PATH
-export PATH="$HOME/bin:$PATH";
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
-
+export PATH="$HOME/.local/bin/:$PATH";
 export EDITOR='vim'
+
+# --- THEME ---
+
+use_omz() { 
+    # defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark
+    false 
+}
+
+if use_omz; then
+    export ZSH="$HOME/.oh-my-zsh"
+    export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+    (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
+    ZSH_HIGHLIGHT_STYLES[path]=none
+    ZSH_HIGHLIGHT_STYLES[path_prefix]=none
+    ZSH_THEME="robbyrussell"
+    plugins=()
+    source $ZSH/oh-my-zsh.sh
+    autoload -U add-zsh-hook
+    add-zsh-hook precmd load_syntax_highlighting
+    load_syntax_highlighting() {
+        source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        add-zsh-hook -d precmd load_syntax_highlighting
+    }
+    alias ls="eza -F"
+    alias ll="eza -AF -ali"
+else
+    export PS1='%~> '
+    alias ls="ls -FG"
+    alias ll="ls -AF -aliG"
+fi
 
 # --- ALIAS ---
 
-alias ger='echo "LANG=de_DE.UTF-8" | sudo tee /etc/locale.conf && setxkbmap de'
-alias eng='echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf && setxkbmap us'
 alias grep='grep --color=always'
-alias ls="ls --color=never -hp" # alias ls="ls --color=always -Ghp"
+alias path='echo "$PATH" | tr ":" "\n"' # Pretty Print the Path
+alias sizes="du -sh ./* | sort" # get the sizes
+alias remove="shred -f -n 512 --remove -x -z" # absolutely remove it
+alias tmp='cd "$(mktemp -d)"' # Quick temp dir
+mkcd() { mkdir -p "$1" && cd "$1" } # Create and Jump a Dir 
+hist() { history | grep -i "$1" } # Grep the History
+ff() { find . -type f -iname "*$1*" 2>/dev/null } # Faster Find File
+fd() { find . -type d -iname "*$1*" 2>/dev/null } # Faster Find Dir
+up() { cd "$(printf '../%.0s' $(seq 1 ${1:-1}))"; } # Faster Dir Up's
+backup() { cp -r "$1" "$1.bak.$(date +%s)"; } # Quick backup
+port(){ lsof -i :"$1" } # used port
 
-alias em="emacs -q -l ~/.emacs.d/init.term.el"
-alias emt="emacs -nw -q -l ~/.emacs.d/init.term.el"
-alias sizes="du -sh ./* | sort"
-alias remove="shred -f -n 512 --remove -x -z"
+pk () { pgrep -if $1 | grep -v grep | awk '{print $1}' | xargs kill -9 } # Kill Process
+p () { pgrep -if $1 | grep -v grep } # List Process
 
-alias fullscreen="xrandr --output Virtual1 --mode 1920x1080"
-alias fullscreen2="xrandr --output Virtual1 --mode 1920x1200"
-alias halfscreen="xrandr --output Virtual1 --mode 1600x900"
-alias smallscreen="xrandr --output Virtual1 --mode 1366x768"
-alias workstation='xrandr --output Virtual1 --mode 1680x1050'
-alias workmonitor='xrandr --output Virtual1 --mode "1912x1054_60.00"'
+em() { emacs "$@" >/dev/null 2>&1 &; disown } # GUI Emacs
+emd() { emacsclient -c "$@" >/dev/null 2>&1 &; disown } # GUI Emacs with Daemon
+emt() { emacs "$@" -nw } # TTY Emacs
+emdt() { emacsclient -c --nw "$@" } # TTY Emacs with Daemon
+emdaemon() { emacs --daemon >/dev/null 2>&1 & disown } # Start Emacs Daemon
 
-# Custom Scripts
-fh() { # Fuzzy History
-  local cmd
-  cmd=$(builtin fc -lnr 1 | fzf --height 40% --border --no-scrollbar --tac --no-mouse --pointer='' --no-info --prompt='' --marker='')
-
-  if [[ -n $cmd ]]; then
-    LBUFFER+="$cmd"
-    zle reset-prompt
-  fi
+compress() { tar -czf "$1.tar.gz" "$1" }
+extract () {
+    case $1 in
+        *.tar.bz2) tar xjf "$1" ;;
+        *.tar.gz)  tar xzf "$1" ;;
+        *.bz2)     bunzip2 "$1" ;;
+        *.rar)     unrar x "$1" ;;
+        *.gz)      gunzip "$1" ;;
+        *.tar)     tar xf "$1" ;;
+        *.tbz2)    tar xjf "$1" ;;
+        *.tgz)     tar xzf "$1" ;;
+        *.zip)     unzip "$1" ;;
+        *.Z)       uncompress "$1" ;;
+        *.7z)      7z x "$1" ;;
+        *) echo "cannot extract '$1'" ;;
+    esac
 }
 
-ccms_tms_prep() {
-  local session="ccms"
-  local dir="$HOME/dev/fco/ccms/"
+# prep() {
+#   local session=$1
+#
+#   tmux rename-window -t "$session:1"    dev
+#   tmux new-window    -t "$session: " -n git
+#   tmux new-window    -t "$session: " -n macosx
+#   tmux new-window    -t "$session: " -n solaris
+#   tmux new-window    -t "$session: " -n linux
+#
+#   tmux send-keys -t "$session:git" 'git client'           C-m
+#   tmux send-keys -t "$session:dev" 'fsv_get_all_ssh_keys' C-m
+# }
 
-  # start session in detached mode
-  tmux new-session -d -s "$session" -c "$dir" -n dev
-
-  # create the other windows
-  tmux new-window -t "$session:" -n rhel8    -c "$dir"
-  tmux new-window -t "$session:" -n alma8    -c "$dir"
-  tmux new-window -t "$session:" -n machines -c "$dir"
-  tmux new-window -t "$session:" -n test     -c "$dir"
-  tmux new-window -t "$session:" -n shell    -c "$dir"
-  tmux new-window -t "$session:" -n git      -c "$dir"
-  tmux new-window -t "$session:" -n ksbuild8 -c "$dir"
-
-  # kill the default (unnamed) window if it exists
-  tmux kill-window -t "$session:0" 2>/dev/null
-
-  # attach to the session
-  tmux attach -t "$session"
+fh() {
+    local cmd
+    cmd=$(fc -lnr 1 | sed 's/^[[:space:]]*//' | fzf --height 40% --border --tac --no-mouse --no-info)
+    [[ -n $cmd ]] && LBUFFER+="$cmd"
+    zle redisplay
 }
 
-# --- Keybindings ---
-zle -N fh
-bindkey "^R" fh
-bindkey -s ^o "tms\n"
+# --- KEYBINDINGS ---
+
+zle -N fh                     # Register the shell function `fh` as a ZLE (Zsh Line Editor) widget so it can be bound to keys.
+bindkey -e                    # Enable Emacs-style keybindings in Zsh (e.g., Ctrl-A, Ctrl-E, Ctrl-R behavior).
+bindkey "^R" fh               # Bind Ctrl-R to the custom ZLE widget `fh` (overrides the default history search).
+bindkey -s ^o "tms\n"         # Bind Ctrl-O to send the literal string "tms" followed by Enter (runs the `tms` command).
+bindkey -s ^h "fsv_connect\n" # Bind Ctrl-H to send the string "fsv_connect" followed by Enter (runs that command).
 
 # --- OS Specific ---
 
-if [[ "$(uname -s)" == "Darwin" ]]; then        # MacOS
+eval "$(/opt/homebrew/bin/brew shellenv)"
+theme() {
+    # Toggle macOS dark mode
+    osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
 
-    # Homebrew
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-
-elif [[ "$(uname -s)" == "Linux" ]]; then       # Linux
-
-    # Test for TRAMP Emacs
-    if [[ $- != *i* ]]; then
-        return
+    # Detect new mode
+    dark=$(osascript -e 'tell application "System Events" to tell appearance preferences to get dark mode')
+    if [ "$dark" = "true" ]; then
+        profile="Clear Dark"
+    else
+        profile="Clear Light"
     fi
 
-	unset SSH_ASKPASS
-	unset GIT_ASKPASS
+    osascript <<EOD
+tell application "Terminal"
+    set theProfile to first settings set whose name is "$profile"
 
-fi
+    # Change default profile for new windows
+    set default settings to theProfile
+
+    # Change profile for all windows and tabs
+    repeat with w in windows
+        repeat with t in tabs of w
+            try
+                set current settings of t to theProfile
+            end try
+        end repeat
+    end repeat
+end tell
+EOD
+}
+
+# --- HISTORY ---
+
+ulimit -n 8192                 # Increase file descriptor limit
+HISTSIZE=100000                # Number of commands kept in memory
+SAVEHIST=100000                # Number of commands saved to the history file
+HISTFILE=~/.zsh_history        # History file location (optional, this is the default)
+setopt APPEND_HISTORY          # Append instead of overwrite
+setopt INC_APPEND_HISTORY      # Write to history immediately
+setopt SHARE_HISTORY           # Share history across terminals
+setopt HIST_IGNORE_ALL_DUPS    # Remove older duplicate entries
+setopt HIST_REDUCE_BLANKS      # Remove superfluous blanks
+setopt HIST_VERIFY             # Edit before executing history expansions
+setopt EXTENDED_HISTORY        # Timestamp each command in history
+setopt HIST_EXPIRE_DUPS_FIRST  # Drop duplicates before unique commands
+setopt HIST_FIND_NO_DUPS       # No dupes during history search
+setopt HIST_SAVE_NO_DUPS       # Don’t write dupes to file
+setopt HIST_IGNORE_SPACE       # Commands starting with space aren’t saved
+setopt HIST_NO_STORE           # Don’t store `history`, `fc`, etc.
+setopt HIST_FCNTL_LOCK         # Lock history file during write
+setopt CHASE_LINKS             # Resolve the real physical path
+
+# --- AUTO GENERATED ---
+
+# bun completions
+[ -s "/Users/xcxa1b9/.bun/_bun" ] && source "/Users/xcxa1b9/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
