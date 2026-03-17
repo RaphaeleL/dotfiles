@@ -409,11 +409,7 @@ void setup_vim() {
 }
 
 void setup_zsh() {
-    if (strcmp(config.platform, "mac") == 0) {
-        do_symlink("zsh", ".zshrc", "zsh/.zshrc.mac");
-    } else {
-        do_symlink("zsh", ".zshrc", "zsh/.zshrc");
-    }
+    do_symlink("zsh", ".zshrc", "zsh/.zshrc");
     do_symlink("zsh plugins", ".oh-my-zsh/plugins/", "zsh/plugins");
 }
 
