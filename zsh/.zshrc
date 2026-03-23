@@ -35,6 +35,7 @@ fi
 
 # --- ALIAS ---
 
+alias icloud='cd "/Users/raphaele/Library/Mobile Documents/com~apple~CloudDocs/"'
 alias grep='grep --color=always'
 alias path='echo "$PATH" | tr ":" "\n"' # Pretty Print the Path
 alias sizes="du -sh ./* | sort" # get the sizes
