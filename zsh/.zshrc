@@ -76,18 +76,23 @@ extract () {
     esac
 }
 
-# prep() {
-#   local session=$1
-#
-#   tmux rename-window -t "$session:1"    dev
-#   tmux new-window    -t "$session: " -n git
-#   tmux new-window    -t "$session: " -n macosx
-#   tmux new-window    -t "$session: " -n solaris
-#   tmux new-window    -t "$session: " -n linux
-#
-#   tmux send-keys -t "$session:git" 'git client'           C-m
-#   tmux send-keys -t "$session:dev" 'fsv_get_all_ssh_keys' C-m
-# }
+prep() {
+    local session=$1
+
+    tmux rename-window -t "$session:1" dev
+
+    tmux new-window -t "$session:" -n build
+    tmux new-window -t "$session:" -n test -c "test"
+    tmux new-window -t "$session:" -n git
+    tmux new-window -t "$session:" -n ssh
+    tmux new-window -t "$session:" -n log 
+    
+    # TODO: still not working as i wish
+    # tmux send-keys -t "$session:build.0" 'make all -B -j' C-m
+    # tmux send-keys -t "$session:test.0" 'make all -B -j' C-m
+    # tmux send-keys -t "$session:git.0" 'git status' C-m
+
+}
 
 fh() {
     local cmd
