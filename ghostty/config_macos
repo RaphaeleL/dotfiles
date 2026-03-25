@@ -65,19 +65,17 @@ window-vsync                     = true
 # /Applications/Ghostty.app/Contents/Resources/ghostty/themes/
 
 # theme = "light:Apple System Colors Light,dark:Rose Pine"
-# theme                          = "Builtin Solarized Light"
+# theme                          = "Selenized Light"
 # theme                          = "Apple System Colors Light"
-# theme                          = "Apple System Colors"
 # theme                          = "Gruber Darker"
-theme                          = "Rose Pine"
-# theme                          = "urban"
+# theme                          = "Rose Pine"
 
 # theme                          = "Gruvbox Dark"
 # theme                          = "dracula"
 # theme                          = "Monokai Pro"
 # theme                          = "Solarized Osaka Night"
 # theme                          = "Monokai Pro Light Sun"
-# theme                          = "Zenwritten Light"
+theme                          = "Zenwritten Light"
 # theme                          = "Terminal Basic"
 # theme                          = "Nord"
 # theme                          = "Atom One Dark"
