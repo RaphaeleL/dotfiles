@@ -170,7 +170,7 @@ void detect_platform() {
     } else if (strcmp(config.os, "Darwin") == 0) {
         config.platform = "mac";
         static char dotfiles_mac[PATH_MAX];
-        snprintf(dotfiles_mac, sizeof(dotfiles_mac), "%s/Projects/dotfiles", config.home);
+        snprintf(dotfiles_mac, sizeof(dotfiles_mac), "%s/workspace/dotfiles", config.home);
         config.dotfiles_dir = dotfiles_mac;
     } else {
         config.platform = "unsupported";
