@@ -7,7 +7,7 @@ export EDITOR='vim'
 
 use_omz() { 
     # defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark
-    false 
+    true 
 }
 
 if use_omz; then
