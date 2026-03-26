@@ -1,14 +1,15 @@
 # --- PROFILE ---
 
 export PATH="$HOME/.local/bin/:$PATH";
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # --- THEME ---
 
 use_omz() { 
-    # defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark
-    true 
+    defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark
 }
+
+# export PS1="%n@%m %1~ %# " # default prompt
 
 if use_omz; then
     export ZSH="$HOME/.oh-my-zsh"
@@ -29,8 +30,8 @@ if use_omz; then
     alias ll="eza -AF -ali"
 else
     export PS1='%~> '
-    alias ls="ls -FG"
-    alias ll="ls -AF -aliG"
+    alias ls="ls -F --color=never"
+    alias ll="ls -AF -ali --color=never"
 fi
 
 # --- ALIAS ---
@@ -41,6 +42,7 @@ alias path='echo "$PATH" | tr ":" "\n"' # Pretty Print the Path
 alias sizes="du -sh ./* | sort" # get the sizes
 alias remove="shred -f -n 512 --remove -x -z" # absolutely remove it
 alias tmp='cd "$(mktemp -d)"' # Quick temp dir
+alias back='cd -' # quick go to last dir 
 mkcd() { mkdir -p "$1" && cd "$1" } # Create and Jump a Dir 
 hist() { history | grep -i "$1" } # Grep the History
 ff() { find . -type f -iname "*$1*" 2>/dev/null } # Faster Find File
@@ -112,36 +114,36 @@ bindkey -s ^h "fsv_connect\n" # Bind Ctrl-H to send the string "fsv_connect" fol
 # --- OS Specific ---
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
-theme() {
-    # Toggle macOS dark mode
-    osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
-
-    # Detect new mode
-    dark=$(osascript -e 'tell application "System Events" to tell appearance preferences to get dark mode')
-    if [ "$dark" = "true" ]; then
-        profile="Clear Dark"
-    else
-        profile="Clear Light"
-    fi
-
-    osascript <<EOD
-tell application "Terminal"
-    set theProfile to first settings set whose name is "$profile"
-
-    # Change default profile for new windows
-    set default settings to theProfile
-
-    # Change profile for all windows and tabs
-    repeat with w in windows
-        repeat with t in tabs of w
-            try
-                set current settings of t to theProfile
-            end try
-        end repeat
-    end repeat
-end tell
-EOD
-}
+# theme() {
+#     # Toggle macOS dark mode
+#     osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
+#
+#     # Detect new mode
+#     dark=$(osascript -e 'tell application "System Events" to tell appearance preferences to get dark mode')
+#     if [ "$dark" = "true" ]; then
+#         profile="Clear Dark"
+#     else
+#         profile="Clear Light"
+#     fi
+#
+#     osascript <<EOD
+# tell application "Terminal"
+#     set theProfile to first settings set whose name is "$profile"
+#
+#     # Change default profile for new windows
+#     set default settings to theProfile
+#
+#     # Change profile for all windows and tabs
+#     repeat with w in windows
+#         repeat with t in tabs of w
+#             try
+#                 set current settings of t to theProfile
+#             end try
+#         end repeat
+#     end repeat
+# end tell
+# EOD
+# }
 
 # --- HISTORY ---
 
