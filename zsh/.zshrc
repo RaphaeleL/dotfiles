@@ -5,11 +5,9 @@ export EDITOR='nvim'
 
 # --- THEME ---
 
-use_omz() { 
+use_omz() {
     defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark
 }
-
-# export PS1="%n@%m %1~ %# " # default prompt
 
 if use_omz; then
     export ZSH="$HOME/.oh-my-zsh"
@@ -29,9 +27,10 @@ if use_omz; then
     alias ls="eza -F"
     alias ll="eza -AF -ali"
 else
+    # export PS1="%n@%m %1~ %# " # default prompt
     export PS1='%~> '
-    alias ls="ls -F --color=never"
-    alias ll="ls -AF -ali --color=never"
+    alias ls="ls -FG --color=never"
+    alias ll="ls -AFG -ali --color=never"
 fi
 
 # --- ALIAS ---
@@ -42,13 +41,13 @@ alias path='echo "$PATH" | tr ":" "\n"' # Pretty Print the Path
 alias sizes="du -sh ./* | sort" # get the sizes
 alias remove="shred -f -n 512 --remove -x -z" # absolutely remove it
 alias tmp='cd "$(mktemp -d)"' # Quick temp dir
-alias back='cd -' # quick go to last dir 
-mkcd() { mkdir -p "$1" && cd "$1" } # Create and Jump a Dir 
+alias back='cd -' # quick go to last dir
+mkcd() { mkdir -p "$1" && cd "$1" } # Create and Jump a Dir
 hist() { history | grep -i "$1" } # Grep the History
 ff() { find . -type f -iname "*$1*" 2>/dev/null } # Faster Find File
 fd() { find . -type d -iname "*$1*" 2>/dev/null } # Faster Find Dir
 up() { cd "$(printf '../%.0s' $(seq 1 ${1:-1}))"; } # Faster Dir Up's
-backup() { cp -r "$1" "$1.bak.$(date +%s)"; } # Quick backup
+backup() { cp -r "$1" "$1.bak.$(date +%s)" } # Quick backup
 port(){ lsof -i :"$1" } # used port
 
 pk () { pgrep -if $1 | grep -v grep | awk '{print $1}' | xargs kill -9 } # Kill Process
@@ -87,8 +86,8 @@ prep() {
     tmux new-window -t "$session:" -n test -c "test"
     tmux new-window -t "$session:" -n git
     tmux new-window -t "$session:" -n ssh
-    tmux new-window -t "$session:" -n log 
-    
+    tmux new-window -t "$session:" -n log
+
     # TODO: still not working as i wish
     # tmux send-keys -t "$session:build.0" 'make all -B -j' C-m
     # tmux send-keys -t "$session:test.0" 'make all -B -j' C-m
