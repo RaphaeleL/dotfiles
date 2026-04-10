@@ -22,6 +22,7 @@ window-padding-x               = 10
 window-padding-y               = 10
 macos-non-native-fullscreen    = true
 macos-titlebar-proxy-icon      = hidden
+macos-titlebar-style           = tabs
 adjust-cursor-thickness        = 3
 adjust-underline-position      = 3
 link-url                       = true
@@ -48,8 +49,8 @@ window-vsync                   = true
 # theme                          = "Atom One Dark"
 theme                          = "Ghostty Default Style Dark"
 background                     = "#181818"
-background-opacity             = 0.95
-background-blur                = false
+background-opacity             = 0.93
+background-blur                = true 
 
 ####################################################
 # Keybind's
