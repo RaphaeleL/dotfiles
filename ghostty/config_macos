@@ -23,10 +23,11 @@ macos-titlebar-proxy-icon   = hidden
 macos-titlebar-style        = tabs
 adjust-cursor-thickness     = 3
 adjust-underline-position   = 3
-link-url                    = true
+link-url                    = false 
 mouse-hide-while-typing     = true
 macos-non-native-fullscreen = visible-menu
-window-vsync                = true
+window-width                = 100
+window-height               = 32
 
 ####################################################
 ### Theme ##########################################
@@ -50,7 +51,7 @@ window-vsync                = true
 # theme               = "Nord"
 # theme               = "Atom One Dark"
 theme               = "Ghostty Default Style Dark"
-background          = "#181818"
+# background          = "#181818"
 # background-opacity  = 0.93
 # background-blur     = true 
 
