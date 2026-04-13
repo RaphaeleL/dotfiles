@@ -12,6 +12,8 @@ use_omz() {
     if [ "$TERM_PROGRAM" = "Apple_Terminal" ]; then return 1; fi
     # ghostty is with omz
     if [ "$TERM_PROGRAM" = "ghostty" ] || [ "$TERM_PROGRAM" = "Ghostty" ]; then return 0; fi
+    # tmux is without omz
+    # if [ "$TERM_PROGRAM" = "tmux" ]; then return 1; fi
     # we haven't returned so far and use different terminal
     # if macos: make omz depending on the current dark/light mode
     if [ "$(uname)" = "Darwin" ]; then
