@@ -42,7 +42,7 @@ alias sizes="du -sh ./* | sort" # get the sizes
 alias remove="shred -f -n 512 --remove -x -z" # absolutely remove it
 alias tmp='cd "$(mktemp -d)"' # Quick temp dir
 alias back='cd -' # quick go to last dir
-alias w='watch -t -n 1 -c' # quick watch
+alias w='watch -t -n 1' # quick watch
 mkcd() { mkdir -p "$1" && cd "$1" } # Create and Jump a Dir
 hist() { history | grep -i "$1" } # Grep the History
 ff() { find . -type f -iname "*$1*" 2>/dev/null } # Faster Find File
