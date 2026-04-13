@@ -6,17 +6,20 @@
 [rebase]
 	pull = true
 [color]
-	ui = always
+	ui = auto 
 [alias]
 
-    # visual commit graph
-    graph = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-
-    # show the recent history (n commits) 
+    # show the recent n commits as a graph
     recent = "!f() { \
-            n=${1:-10}; \
-            git --no-pager log --pretty=format:'%h %cd %cn [%ae] %s' --date=relative -n \"$n\"; \
-        }; f"
+        n=${1:-10}; \
+        git --no-pager log --graph --pretty=format:'%C(yellow)%h%Creset %C(white)%<(50,trunc)%s%Creset %C(blue)%<(18,trunc)%cn%Creset %C(green)%<(12,trunc)%cd%Creset' --date=relative -n \"$n\"; \
+    }; f"
+
+    # show the recent n commits as a graph and some additional information
+    timeline = "!f() { \
+        n=${1:-10}; \
+        git --no-pager log --decorate=short --graph --pretty=format:'%C(yellow)%h%Creset %C(white)%<(50,trunc)%s%Creset %C(blue)%<(18,trunc)%cn%Creset %C(green)%<(12,trunc)%cd%Creset %C(auto)%d%Creset' --date=relative -n \"$n\"; \
+    }; f"
 
     # diff summary stats
     diffstat = !git --no-pager diff --shortstat
