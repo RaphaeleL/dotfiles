@@ -15,14 +15,12 @@ confirm-close-surface          = false
 
 font-family                 = Lilex Nerd Font Mono 
 window-title-font-family    = Lilex Nerd Font Mono
-font-size                   = 16
+font-size                   = 14
 window-padding-x            = 10
 window-padding-y            = 10
 macos-non-native-fullscreen = true
 macos-titlebar-proxy-icon   = hidden
 macos-titlebar-style        = tabs
-adjust-cursor-thickness     = 3
-adjust-underline-position   = 3
 link-url                    = false 
 mouse-hide-while-typing     = true
 macos-non-native-fullscreen = visible-menu
