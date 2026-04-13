@@ -180,6 +180,7 @@ setopt HIST_IGNORE_SPACE       # Commands starting with space aren’t saved
 setopt HIST_NO_STORE           # Don’t store `history`, `fc`, etc.
 setopt HIST_FCNTL_LOCK         # Lock history file during write
 setopt CHASE_LINKS             # Resolve the real physical path
+setopt NULL_GLOB               # Enable nullglob behavior
 
 # --- AUTO GENERATED ---
 
