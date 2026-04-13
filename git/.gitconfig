@@ -1,38 +1,26 @@
 [user]
-    email = raphaele.salvatore@outlook.de
-    username = RaphaeleL 
-    name = Raphaele Salvatore Licciardo
-[github]
-    user = RaphaeleL 
-[color]
-    ui = auto
+	name = Raphaele Licciardo
+	email = raphaele.licciardo@atruvia.de
 [alias]
-    a = add
-    d = diff
-    co = checkout
-    ci = commit
-    ca = commit -a
-    ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
-    pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
-    st = status
-    br = branch
-    ba = branch -a
-    bm = branch --merged
-    bn = branch --no-merged
-
-    tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit #-n 10
-    hist = log --pretty=format:'%h %cd %cn [%ae] %s' --date=relative
-    stat = diff --shortstat
     client = !lazygit
+[rebase]
+	pull = true
+[color]
+	ui = always
+[alias]
 
-    find = "!f() { \
-        query=\"$*\"; \
-        commit=$(git hist --grep=\"$query\" | fzf | awk '{print $1}'); \
-        [ -n \"$commit\" ] && git diff ${commit}^ ${commit}; \
+    # visual commit graph
+    graph = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+    # show the recent history (n commits) 
+    recent = "!f() { \
+            n=${1:-10}; \
+            git --no-pager log --pretty=format:'%h %cd %cn [%ae] %s' --date=relative -n \"$n\"; \
         }; f"
 
-[pull]
-    rebase = false
-[init]
-    defaultBranch = main
+    # diff summary stats
+    diffstat = !git --no-pager diff --shortstat
+
+    # open lazygit UI
+    client = !lazygit
 
