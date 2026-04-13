@@ -6,7 +6,20 @@ export EDITOR='nvim'
 # --- THEME ---
 
 use_omz() {
-    defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark
+    # iterm is without omz
+    if [ "$TERM_PROGRAM" = "iTerm.app" ]; then return 1; fi
+    # apple terminal is without omz 
+    if [ "$TERM_PROGRAM" = "Apple_Terminal" ]; then return 1; fi
+    # ghostty is with omz
+    if [ "$TERM_PROGRAM" = "ghostty" ] || [ "$TERM_PROGRAM" = "Ghostty" ]; then return 0; fi
+    # we haven't returned so far and use different terminal
+    # if macos: make omz depending on the current dark/light mode
+    if [ "$(uname)" = "Darwin" ]; then
+        defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark
+        return $?
+    fi
+    # default is without omz 
+    return 1
 }
 
 if use_omz; then
