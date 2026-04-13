@@ -45,7 +45,7 @@ else
     # export PS1="%n@%m %1~ %# " # default prompt
     export PS1='%~> '
     alias ls="ls -FG --color=never"
-    alias ll="ls -AFG -ali --color=never"
+    alias ll="ls -AFGh -ali --color=never"
 fi
 
 # --- ALIAS ---
