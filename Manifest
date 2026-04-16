@@ -4,13 +4,17 @@ tmux|.tmux.conf|tmux/.tmux.conf|link|all
 zsh|.zshrc|zsh/.zshrc|link|all
 vim|.vimrc|vim/.vimrc|link|all
 
-nvim|.config/nvim|https://github.com/RaphaeleL/nvim|git|all
+nvim|.config/nvim|nvim|link|all
 emacs|.emacs.d|https://github.com/RaphaeleL/.emacs.d|git|all
 
 ghostty|.config/ghostty/config|ghostty/config|link|all
 
+kitty|.config/kitty/kitty.conf|kitty/kitty-linux.conf|link|linux
+kitty-macos|.config/kitty/kitty.conf|kitty/kitty-macos.conf|link|macos
+
 i3|.config/i3/config|i3wm/i3/config|link|linux
 i3status|.config/i3status/config|i3wm/i3status/config|link|linux
+
 bspwm|.config/bspwm/bspwmrc|bspwm/bspwmrc|link|linux
 sxhkd|.config/sxhkd/sxhkdrc|sxhkd/sxhkdrc|link|linux
 
@@ -18,3 +22,16 @@ polybar|.config/polybar/config.ini|polybar/config.ini|link|linux
 polybar-launch|.config/polybar/launch.sh|polybar/launch.sh|link|linux
 
 lazygit|.config/lazygit/config.yml|lazygit/config.yml|link|all
+
+picom|.config/picom/picom.conf|picom/picom.conf|link|linux
+starship|.config/starship.toml|starship/starship.toml|link|all
+
+tmux-tools|.local/bin/tms|tms/tms|link|all
+
+vscode-settings|.config/Code/User/settings.json|vscode/settings.json|link|all
+vscode-keybindings|.config/Code/User/keybindings.json|vscode/keybindings.json|link|all
+
+xterm|.Xresources|xterm/.Xresources|link|linux
+
+git-move|.local/bin/git-move|git/move.sh|link|all
+
