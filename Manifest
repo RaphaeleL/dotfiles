@@ -7,7 +7,7 @@ vim|.vimrc|vim/.vimrc|link|all
 nvim|.config/nvim|https://github.com/RaphaeleL/nvim|git|all
 emacs|.emacs.d|https://github.com/RaphaeleL/.emacs.d|git|all
 
-ghostty|.config/ghostty/config|ghostty/config_linux|link|linux
+ghostty|.config/ghostty/config|ghostty/config|link|all
 
 i3|.config/i3/config|i3wm/i3/config|link|linux
 i3status|.config/i3status/config|i3wm/i3status/config|link|linux
