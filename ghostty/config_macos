@@ -15,9 +15,10 @@ confirm-close-surface          = false
 
 font-family                 = Lilex Nerd Font Mono 
 window-title-font-family    = Lilex Nerd Font Mono
-font-size                   = 14
-window-padding-x            = 10
-window-padding-y            = 10
+font-size                   = 16
+window-padding-x            = 2
+window-padding-y            = 2
+window-padding-balance      = true
 macos-non-native-fullscreen = true
 macos-titlebar-proxy-icon   = hidden
 macos-titlebar-style        = tabs
@@ -34,24 +35,21 @@ window-height               = 32
 # Location of the Theme's are under 
 # /Applications/Ghostty.app/Contents/Resources/ghostty/themes/
 
-# theme               = "light:Apple System Colors Light,dark:Rose Pine"
-# theme               = "Selenized Light"
-# theme               = "Apple System Colors Light"
-# theme               = "Gruber Darker"
-# theme               = "Rose Pine"
-# theme               = "Gruvbox Dark"
-# theme               = "Dracula+"
-# theme               = "Monokai Pro"
-# theme               = "Solarized Osaka Night"
-# theme               = "Monokai Pro Light Sun"
-# theme               = "Zenwritten Light"
-# theme               = "Terminal Basic"
-# theme               = "Nord"
-# theme               = "Atom One Dark"
-theme               = "Ghostty Default Style Dark"
-# background          = "#181818"
-# background-opacity  = 0.93
-# background-blur     = true 
+# theme = "light:Zenwritten Light,dark:Rose Pine"
+# theme = "Gruber Darker"
+# theme = "Rose Pine"
+# theme = "Dracula+"
+# theme = "Solarized Osaka Night"
+# theme = "Monokai Pro Light Sun"
+# theme = "Monokai Pro"
+# theme = "Zenwritten Light"
+# theme = "Nord"
+theme = "Ghostty Default Style Dark"
+# background           = "#181818"
+# background-opacity   = 0.93
+# background-blur      = true 
+selection-background = #553b48
+selection-foreground = #ffffff
 
 ####################################################
 ### Keybind's ######################################
@@ -64,4 +62,7 @@ keybind = cmd+shift+j=goto_split:down
 keybind = cmd+shift+k=goto_split:up
 keybind = cmd+shift+h=goto_split:left
 keybind = cmd+shift+l=goto_split:right
+
+# quick-terminal-animation-duration = 0
+# keybind = global:alt+backquote=toggle_quick_terminal
 
