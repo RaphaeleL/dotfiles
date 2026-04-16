@@ -1,0 +1,20 @@
+# name|target|source|type|os
+
+tmux|.tmux.conf|tmux/.tmux.conf|link|all
+zsh|.zshrc|zsh/.zshrc|link|all
+vim|.vimrc|vim/.vimrc|link|all
+
+nvim|.config/nvim|https://github.com/RaphaeleL/nvim|git|all
+emacs|.emacs.d|https://github.com/RaphaeleL/.emacs.d|git|all
+
+ghostty|.config/ghostty/config|ghostty/config_linux|link|linux
+
+i3|.config/i3/config|i3wm/i3/config|link|linux
+i3status|.config/i3status/config|i3wm/i3status/config|link|linux
+bspwm|.config/bspwm/bspwmrc|bspwm/bspwmrc|link|linux
+sxhkd|.config/sxhkd/sxhkdrc|sxhkd/sxhkdrc|link|linux
+
+polybar|.config/polybar/config.ini|polybar/config.ini|link|linux
+polybar-launch|.config/polybar/launch.sh|polybar/launch.sh|link|linux
+
+lazygit|.config/lazygit/config.yml|lazygit/config.yml|link|all
