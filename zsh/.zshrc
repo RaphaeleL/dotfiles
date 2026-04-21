@@ -6,22 +6,41 @@ export EDITOR='nvim'
 # --- THEME ---
 
 use_omz() {
-    # iterm is without omz
-    if [ "$TERM_PROGRAM" = "iTerm.app" ]; then return 1; fi
-    # apple terminal is without omz 
-    if [ "$TERM_PROGRAM" = "Apple_Terminal" ]; then return 1; fi
-    # ghostty is with omz
-    if [ "$TERM_PROGRAM" = "ghostty" ] || [ "$TERM_PROGRAM" = "Ghostty" ]; then return 0; fi
-    # tmux is without omz
-    # if [ "$TERM_PROGRAM" = "tmux" ]; then return 1; fi
-    # we haven't returned so far and use different terminal
-    # if macos: make omz depending on the current dark/light mode
-    if [ "$(uname)" = "Darwin" ]; then
-        defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark
-        return $?
-    fi
-    # default is without omz 
-    return 1
+    # this function decides whether to use an Oh My Zsh based settings or stay in a 
+    # rather Plain and basic version of it. 
+
+    local PLAIN=1
+    local FANCY=0
+
+    [ -n "$SSH_CONNECTION" ] && return $PLAIN
+    [ -n "$TMUX" ] && return $PLAIN
+
+    case "$TERM_PROGRAM" in
+        iTerm.app) return $FANCY ;;
+        Apple_Terminal) return $PLAIN ;;
+        ghostty) return $FANCY ;;
+        vscode) return $PLAIN ;;
+    esac
+
+    case "$TERM" in
+        linux) return $PLAIN ;;
+        xterm*|screen*|tmux*) return $FANCY ;;
+    esac
+
+    # we haven't returned out yet, thereby it must be a different terminal then above,
+    # and thereby we are making it os depending.
+    case "$(uname)" in
+        Darwin) # macos -> depending on the current dark/light mode
+            defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark
+            return $?
+            ;;
+        Linux) # linux -> default to fancy 
+            return $FANCY
+            ;;
+    esac
+
+    # still havn't returned out yet, so the default is plain 
+    return $PLAIN
 }
 
 if use_omz; then
@@ -54,11 +73,11 @@ alias icloud='cd "/Users/raphaele/Library/Mobile Documents/com~apple~CloudDocs/"
 alias grep='grep --color=always'
 alias path='echo "$PATH" | tr ":" "\n"' # Pretty Print the Path
 alias sizes="du -sh ./* | sort" # get the sizes
-alias remove="shred -f -n 512 --remove -x -z" # absolutely remove it
+alias remove="shred -f -n 512 --remove -x -z" # absolutely remove it (not reliable on modern filesystems (APFS, SSDs))
 alias tmp='cd "$(mktemp -d)"' # Quick temp dir
 alias back='cd -' # quick go to last dir
 alias w='watch -t -n 1' # quick watch
-mkcd() { mkdir -p "$1" && cd "$1" } # Create and Jump a Dir
+mkcd() { [ -n "$1" ] && mkdir -p "$1" && cd "$1" } # Create and Jump a Dir
 hist() { history | grep -i "$1" } # Grep the History
 ff() { find . -type f -iname "*$1*" 2>/dev/null } # Faster Find File
 fd() { find . -type d -iname "*$1*" 2>/dev/null } # Faster Find Dir
@@ -66,8 +85,8 @@ up() { cd "$(printf '../%.0s' $(seq 1 ${1:-1}))"; } # Faster Dir Up's
 backup() { cp -r "$1" "$1.bak.$(date +%s)" } # Quick backup
 port(){ lsof -i :"$1" } # used port
 
-pk () { pgrep -if $1 | grep -v grep | awk '{print $1}' | xargs kill -9 } # Kill Process
-p () { pgrep -if $1 | grep -v grep } # List Process
+pk () { pgrep -if -- "$1" | grep -v grep | awk '{print $1}' | xargs kill -9 } # Kill Process
+p () { pgrep -if -- "$1" | grep -v grep } # List Process
 
 em() { emacs "$@" >/dev/null 2>&1 &; disown } # GUI Emacs
 emd() { emacsclient -c "$@" >/dev/null 2>&1 &; disown } # GUI Emacs with Daemon
@@ -77,6 +96,7 @@ emdaemon() { emacs --daemon >/dev/null 2>&1 & disown } # Start Emacs Daemon
 
 compress() { tar -czf "$1.tar.gz" "$1" }
 extract () {
+    [ -f "$1" ] || { echo "file not found"; return 1; }
     case $1 in
         *.tar.bz2) tar xjf "$1" ;;
         *.tar.gz)  tar xzf "$1" ;;
@@ -128,37 +148,7 @@ bindkey -s ^h "fsv_connect\n" # Bind Ctrl-H to send the string "fsv_connect" fol
 
 # --- OS Specific ---
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-# theme() {
-#     # Toggle macOS dark mode
-#     osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
-#
-#     # Detect new mode
-#     dark=$(osascript -e 'tell application "System Events" to tell appearance preferences to get dark mode')
-#     if [ "$dark" = "true" ]; then
-#         profile="Clear Dark"
-#     else
-#         profile="Clear Light"
-#     fi
-#
-#     osascript <<EOD
-# tell application "Terminal"
-#     set theProfile to first settings set whose name is "$profile"
-#
-#     # Change default profile for new windows
-#     set default settings to theProfile
-#
-#     # Change profile for all windows and tabs
-#     repeat with w in windows
-#         repeat with t in tabs of w
-#             try
-#                 set current settings of t to theProfile
-#             end try
-#         end repeat
-#     end repeat
-# end tell
-# EOD
-# }
+[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # --- HISTORY ---
 
