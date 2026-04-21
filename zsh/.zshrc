@@ -79,8 +79,8 @@ alias back='cd -' # quick go to last dir
 alias w='watch -t -n 1' # quick watch
 mkcd() { [ -n "$1" ] && mkdir -p "$1" && cd "$1" } # Create and Jump a Dir
 hist() { history | grep -i "$1" } # Grep the History
-ff() { find . -type f -iname "*$1*" 2>/dev/null } # Faster Find File
-fd() { find . -type d -iname "*$1*" 2>/dev/null } # Faster Find Dir
+ff() { find . -type f -iname "*$1*" 2>/dev/null } # Easier way to find files
+fd() { find . -type d -iname "*$1*" 2>/dev/null } # Easier way to find dirs
 up() { cd "$(printf '../%.0s' $(seq 1 ${1:-1}))"; } # Faster Dir Up's
 backup() { cp -r "$1" "$1.bak.$(date +%s)" } # Quick backup
 port(){ lsof -i :"$1" } # used port
