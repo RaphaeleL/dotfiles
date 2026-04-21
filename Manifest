@@ -4,7 +4,7 @@ tmux|.tmux.conf|tmux/.tmux.conf|link|all
 zsh|.zshrc|zsh/.zshrc|link|all
 vim|.vimrc|vim/.vimrc|link|all
 
-nvim|.config/nvim|nvim|link|all
+nvim|.config/nvim|https://github.com/RaphaeleL/nvim|git|all
 emacs|.emacs.d|https://github.com/RaphaeleL/.emacs.d|git|all
 
 ghostty|.config/ghostty/config|ghostty/config|link|all
