@@ -1,4 +1,5 @@
 imap kj <Esc>
+
 set wrap
 set nonumber
 set norelativenumber
@@ -37,3 +38,6 @@ map <space>e :Lexplore<cr>
 map <tab> :tabnext<cr>
 map <space>n :tabnew<cr>
 map <space>c :tabclose<cr>
+
+map L $
+map H 0
