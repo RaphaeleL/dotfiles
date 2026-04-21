@@ -94,8 +94,8 @@ emt() { emacs "$@" -nw } # TTY Emacs
 emdt() { emacsclient -c --nw "$@" } # TTY Emacs with Daemon
 emdaemon() { emacs --daemon >/dev/null 2>&1 & disown } # Start Emacs Daemon
 
-compress() { tar -czf "$1.tar.gz" "$1" }
-extract () {
+compress() { tar -czf "$1.tar.gz" "$1" } # compress anything
+extract () { # auto extract anything
     [ -f "$1" ] || { echo "file not found"; return 1; }
     case $1 in
         *.tar.bz2) tar xjf "$1" ;;
@@ -111,6 +111,48 @@ extract () {
         *.7z)      7z x "$1" ;;
         *) echo "cannot extract '$1'" ;;
     esac
+}
+
+regiongrep() { # region based grep wrapper with line range selection and optional regex filtering
+    local start=$1
+    local end=$2
+    local file=$3
+    local pattern=$4
+
+    # validate numbers
+    [[ "$start" =~ ^[0-9]+$ ]] || {
+        echo "usage: regiongrep START END|+OFFSET FILE PATTERN"
+        echo "error: start must be a number"
+        return 1
+    }
+
+    # relative mode
+    if [[ "$end" == +* ]]; then
+        end=$((start + ${end#+}))
+
+    # absolute mode
+    elif [[ "$end" =~ ^[0-9]+$ ]]; then
+        :
+
+    else
+        echo "usage: regiongrep START END|+OFFSET FILE PATTERN"
+        echo "error: invalid end argument"
+        return 1
+    fi
+
+    # sanity check
+    if (( end < start )); then
+        echo "usage: regiongrep START END|+OFFSET FILE PATTERN"
+        echo "error: end < start ($start > $end)"
+        return 1
+    fi
+
+    sed -n "${start},${end}p" "$file"  | nl -ba -v"$start" |
+    if [ -n "$pattern" ]; then
+        grep -iE -C 0 -- "$pattern" # -A 2 -B 2
+    else
+        cat
+    fi
 }
 
 prep() {
