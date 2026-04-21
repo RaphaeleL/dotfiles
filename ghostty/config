@@ -13,8 +13,8 @@ confirm-close-surface          = false
 ### UI #############################################
 ####################################################
 
-font-family                 = Lilex Nerd Font Mono 
-window-title-font-family    = Lilex Nerd Font Mono
+font-family                 = Comic Code 
+window-title-font-family    = Comic Code
 font-size                   = 16
 window-padding-x            = 2
 window-padding-y            = 2
@@ -45,7 +45,7 @@ window-height               = 32
 # theme = "Zenwritten Light"
 # theme = "Nord"
 theme = "Ghostty Default Style Dark"
-# background           = "#181818"
+background           = "#181818"
 # background-opacity   = 0.93
 # background-blur      = true 
 selection-background = #553b48
