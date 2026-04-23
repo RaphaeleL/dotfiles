@@ -1,6 +1,24 @@
 {
-    "update.mode": "none",
-    // Better defaults
+    // Explorer
+    "explorer.decorations.colors": true,
+    "explorer.decorations.badges": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    // Editor
+    "editor.fontSize": 14,
+    "editor.lineHeight": 1.6,
+    "editor.fontLigatures": true,
+    "editor.lineNumbers": "on",
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.mouseWheelZoom": false,
+    "editor.fontFamily": "Cascadia Code",
+    "editor.gotoLocation.multipleReferences": "goto",
+    "editor.gotoLocation.multipleDefinitions": "goto",
+    "editor.gotoLocation.multipleDeclarations": "goto",
+    "editor.gotoLocation.multipleImplementations": "goto",
+    "editor.gotoLocation.multipleTypeDefinitions": "goto",
+    "editor.minimap.enabled": false,
+    "editor.stickyScroll.enabled": false,
     "editor.copyWithSyntaxHighlighting": false,
     "editor.lightbulb.enabled": "off",
     "editor.smoothScrolling": true,
@@ -9,39 +27,9 @@
     "editor.wordWrap": "on",
     "editor.wrappingStrategy": "advanced",
     "editor.tabSize": 4,
-    "diffEditor.ignoreTrimWhitespace": false,
-    "files.insertFinalNewline": true,
-    "explorer.confirmDelete": false,
-    // Reduced noise
-    "editor.hover.enabled": "on",
-    "workbench.tips.enabled": false,
-    "explorer.decorations.colors": true,
-    "explorer.decorations.badges": false,
-    "explorer.confirmDragAndDrop": false,
     "editor.renderLineHighlight": "none",
     "editor.occurrencesHighlight": "off",
-    "editor.gotoLocation.multipleReferences": "goto",
-    "editor.gotoLocation.multipleDefinitions": "goto",
-    "editor.gotoLocation.multipleDeclarations": "goto",
-    "editor.gotoLocation.multipleImplementations": "goto",
-    "editor.gotoLocation.multipleTypeDefinitions": "goto",
-    // Improved search
-    "search.useIgnoreFiles": false,
-    "search.exclude": {
-        "**/node_modules": true,
-        "**/dist": true,
-        "**debug": true,
-        "**/package-lock.json": true,
-        "**/.next": true,
-        "**/data": true
-    },
-    // Code
-    "editor.fontSize": 14,
-    "editor.lineHeight": 1.6,
-    "editor.fontFamily": "Lilex Nerd Font Mono",
-    "editor.fontLigatures": true,
-    "editor.lineNumbers": "relative",
-    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.hover.enabled": "on",
     // Git
     "git.enableSmartCommit": true,
     "git.confirmSync": false,
@@ -49,12 +37,16 @@
     "git.decorations.enabled": false,
     "git.blame.editorDecoration.enabled": false,
     "git.blame.statusBarItem.enabled": true,
-    // Window & Workbench
+    // Window
     "window.systemColorTheme": "auto",
     "window.autoDetectColorScheme": true,
+    // Workbench
+    "workbench.tips.enabled": false,
     "workbench.colorTheme": "Default Light Modern",
-    "workbench.preferredLightColorTheme": "Default Dark Modern",
     "workbench.editor.enablePreview": false,
+    "workbench.preferredLightColorTheme": "Default Dark Modern",
+    "workbench.activityBar.location": "top",
+    "workbench.statusBar.visible": false,
     // Security
     "security.workspace.trust.untrustedFiles": "open",
     // Vim
@@ -84,17 +76,31 @@
         "<C-j>": false,
         "<C-w>": false
     },
+    // Search
+    "search.useIgnoreFiles": false,
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/dist": true,
+        "**debug": true,
+        "**/package-lock.json": true,
+        "**/.next": true,
+        "**/data": true
+    },
+    // Chat / KI
+    "chat.editing.confirmEditRequestRemoval": false,
+    "chat.agentsControl.enabled": false,
+    "chat.viewSessions.orientation": "stacked",
     // Misc.
-    "editor.mouseWheelZoom": false,
+    "update.mode": "none",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "files.insertFinalNewline": true,
+    "files.autoSave": "afterDelay",
     "[markdown]": {
         "editor.formatOnSave": true,
         "editor.formatOnPaste": true
     },
-    "chat.editing.confirmEditRequestRemoval": false,
-    "editor.minimap.enabled": false,
-    "files.autoSave": "afterDelay",
-    "chat.agentsControl.enabled": false,
     "http.noProxy": [
         "csainfopenaisdcprodcoda001.openai.azure.com"
     ],
+    "breadcrumbs.enabled": false,
 }
