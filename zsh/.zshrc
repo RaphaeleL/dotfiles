@@ -77,6 +77,7 @@ alias remove="shred -f -n 512 --remove -x -z" # absolutely remove it (not reliab
 alias tmp='cd "$(mktemp -d)"' # Quick temp dir
 alias back='cd -' # quick go to last dir
 alias w='watch -t -n 1' # quick watch
+hashit() { echo $1  | md5sum | cut -c1-8 } # create a 8 digit hash
 mkcd() { [ -n "$1" ] && mkdir -p "$1" && cd "$1" } # Create and Jump a Dir
 hist() { history | grep -i "$1" } # Grep the History
 ff() { find . -type f -iname "*$1*" 2>/dev/null } # Easier way to find files
