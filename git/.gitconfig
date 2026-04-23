@@ -5,19 +5,22 @@
     client = !lazygit
 [rebase]
 	pull = true
+[core]
+	; pager = cat 
 [color]
 	ui = auto 
+	; ui = always 
 [alias]
 
     # show the recent n commits as a graph
     recent = "!f() { \
         n=${1:-10}; \
-        git --no-pager log --graph --pretty=format:'%C(yellow)%h%Creset %C(auto)%<(55,trunc)%s%Creset %C(blue)%<(18,trunc)%cn%Creset %C(green)%<(12,trunc)%cd%Creset' --date=relative -n \"$n\"; \
+        git --no-pager log --pretty=format:'%C(yellow)%h%C(reset) %C(dim)%ad%C(reset) %C(auto)%s%C(reset)' --date=relative -n \"$n\"; \
     }; f"
 
     timeline = "!f() { \
         n=${1:-10}; \
-        git --no-pager log --decorate=short --graph --pretty=format:'%C(yellow)%h%Creset %C(auto)%<(55,trunc)%s%Creset %C(blue)%<(18,trunc)%cn%Creset %C(green)%cd%Creset %C(auto)%d%Creset' --date=format:'%d %b %Y %H:%M' -n \"$n\"; \
+        git --no-pager log --graph --decorate --pretty=format:'%C(yellow)%h%C(reset) %C(dim)%ad%C(reset) %C(auto)%s%C(reset)' --date=format:'%d %b %Y %H:%M' -n \"$n\"; \
     }; f"
 
     # diff summary stats
