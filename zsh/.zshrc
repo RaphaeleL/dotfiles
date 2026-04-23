@@ -5,7 +5,7 @@ export EDITOR='nvim'
 
 # --- THEME ---
 
-use_omz() {
+make_prompt_fancy() {
     # this function decides whether to use an Oh My Zsh based settings or stay in a 
     # rather Plain and basic version of it. 
 
@@ -16,7 +16,7 @@ use_omz() {
     [ -n "$TMUX" ] && return $PLAIN
 
     case "$TERM_PROGRAM" in
-        iTerm.app) return $FANCY ;;
+        iTerm.app) return $PLAIN ;;
         Apple_Terminal) return $PLAIN ;;
         ghostty) return $FANCY ;;
         vscode) return $PLAIN ;;
@@ -43,23 +43,39 @@ use_omz() {
     return $PLAIN
 }
 
-if use_omz; then
-    export ZSH="$HOME/.oh-my-zsh"
-    export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+if make_prompt_fancy; then
+    _git_symbolic_ref() {
+        command git symbolic-ref -q HEAD || command git name-rev --name-only --no-undefined --always HEAD
+    }
+    _git_where() {
+        local ref="$(_git_symbolic_ref 2>/dev/null)"
+        ref="${ref#refs/heads/}"
+        [ -z "$ref" ] || printf '%s%s%s' "$GIT_PROMPT_PREFIX" "$ref" "$GIT_PROMPT_SUFFIX"
+    }
+    autoload -U colors && colors
+    setopt prompt_subst
+    local GIT_PROMPT_PREFIX=" %{$fg[blue]%}git:(%{$fg[red]%}"
+    local GIT_PROMPT_SUFFIX="%{$fg[blue]%})%{$reset_color%}"
+    export PS1='%{$fg[green]%}➜ %{$fg[cyan]%}%1~%{$reset_color%}$(_git_where) '
+    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
     ZSH_HIGHLIGHT_STYLES[path]=none
     ZSH_HIGHLIGHT_STYLES[path_prefix]=none
-    ZSH_THEME="robbyrussell"
-    plugins=()
-    source $ZSH/oh-my-zsh.sh
-    autoload -U add-zsh-hook
-    add-zsh-hook precmd load_syntax_highlighting
-    load_syntax_highlighting() {
-        source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-        add-zsh-hook -d precmd load_syntax_highlighting
-    }
+    # export ZSH="$HOME/.oh-my-zsh"
+    # export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+    # ZSH_THEME="robbyrussell"
+    # plugins=()
+    # source $ZSH/oh-my-zsh.sh
+    # autoload -U add-zsh-hook
+    # add-zsh-hook precmd load_syntax_highlighting
+    # load_syntax_highlighting() {
+    #     source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    #     add-zsh-hook -d precmd load_syntax_highlighting
+    # }
     alias ls="eza -F"
     alias ll="eza -AF -ali"
+    # alias ls="ls -FG --color=always"
+    # alias ll="ls -AFGh -ali --color=always"
 else
     # export PS1="%n@%m %1~ %# " # default prompt
     export PS1='%~> '
@@ -167,10 +183,10 @@ prep() {
     tmux new-window -t "$session:" -n ssh
     tmux new-window -t "$session:" -n log
 
-    # TODO: still not working as i wish
-    # tmux send-keys -t "$session:build.0" 'make all -B -j' C-m
-    # tmux send-keys -t "$session:test.0" 'make all -B -j' C-m
-    # tmux send-keys -t "$session:git.0" 'git status' C-m
+    tmux send-keys -t "$session:dev" 'ls -al' C-m
+    tmux send-keys -t "$session:build" 'make all -B -j' C-m
+    tmux send-keys -t "$session:\test" 'make run' C-m
+    tmux send-keys -t "$session:git" 'git recent 20 && git status' C-m
 
 }
 
