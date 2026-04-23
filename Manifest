@@ -28,8 +28,8 @@ starship|.config/starship.toml|starship/starship.toml|link|all
 
 tmux-tools|.local/bin/tms|tms/tms|link|all
 
-vscode-settings|.config/Code/User/settings.json|vscode/settings.json|link|all
-vscode-keybindings|.config/Code/User/keybindings.json|vscode/keybindings.json|link|all
+vscode-settings|Library/Application Support/Code/User/settings.json|vscode/settings.json|link|all
+vscode-keybindings|Library/Application Support/Code/User/keybindings.json|vscode/keybindings.json|link|all
 
 xterm|.Xresources|xterm/.Xresources|link|linux
 
