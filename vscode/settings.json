@@ -44,9 +44,8 @@
     "workbench.tips.enabled": false,
     "workbench.colorTheme": "Default Light Modern",
     "workbench.editor.enablePreview": false,
-    "workbench.preferredLightColorTheme": "Default Dark Modern",
+    "workbench.preferredLightColorTheme": "Default Light+",
     "workbench.activityBar.location": "top",
-    "workbench.statusBar.visible": false,
     // Security
     "security.workspace.trust.untrustedFiles": "open",
     // Vim
@@ -103,4 +102,5 @@
         "csainfopenaisdcprodcoda001.openai.azure.com"
     ],
     "breadcrumbs.enabled": false,
+    "workbench.statusBar.visible": false,
 }
