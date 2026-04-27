@@ -2,7 +2,7 @@
 # ~/.zshrc file for zsh interactive shells.
 
 setopt autocd              # change directory just by typing its name
-#setopt correct            # auto correct mistakes
+setopt correct             # auto correct mistakes
 setopt interactivecomments # allow comments in interactive mode
 setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
 setopt nonomatch           # hide error message if there is no match for the pattern
@@ -87,7 +87,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 configure_prompt() {
-    prompt_symbol="::"
+    prompt_symbol="@"
     # Skull emoji for root terminal
     #[ "$EUID" -eq 0 ] && prompt_symbol="%"
     case "$PROMPT_ALTERNATIVE" in
@@ -99,6 +99,7 @@ configure_prompt() {
             ;;
         oneline)
             # PROMPT=$'${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))}%B%F{%(#.red.blue)}%n@%m%b%F{reset}:%B%F{%(#.blue.green)}%~%b%F{reset}%(#.#.$) '
+            NEWLINE_BEFORE_PROMPT=no
             PROMPT=$'[%n@%m %1~]%(#.#.$) '
             PROMPT=$'%n@%m:%~%(#.#.$) '
 
@@ -186,7 +187,7 @@ toggle_oneline_prompt(){
     zle reset-prompt
 }
 zle -N toggle_oneline_prompt
-bindkey ^O toggle_oneline_prompt
+bindkey ^H toggle_oneline_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -316,6 +317,9 @@ fh() {                                                                        # 
 }
 zle -N fh
 bindkey ^R fh
+
+export PATH="$HOME/.local/bin:$PATH";
+bindkey -s '^O' 'tms\n'
 
 # # --- PROFILE ---
 #
