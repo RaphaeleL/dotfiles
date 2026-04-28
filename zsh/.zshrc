@@ -245,7 +245,7 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -l'
+alias ll='ls -lh'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -284,15 +284,15 @@ fd() { find . -type d -iname "*$1*" 2>/dev/null }                             # 
 up() { cd "$(printf '../%.0s' $(seq 1 ${1:-1}))"; }                           # faster dir ups
 backup() { cp -r "$1" "$1.bak.$(date +%s)" }                                  # quick backup
 port(){ lsof -i :"$1" }                                                       # used port
-pk () { pgrep -if -- "$1" | grep -v grep | awk '{print $1}' | xargs kill -9 } # kill process
-p () { pgrep -if -- "$1" | grep -v grep }                                     # list process
+pk() { pgrep -if -- "$1" | grep -v grep | awk '{print $1}' | xargs kill -9 }  # kill process
+p() { pgrep -if -- "$1" | grep -v grep }                                      # list process
 em() { emacs "$@" >/dev/null 2>&1 &; disown }                                 # gui emacs
 emd() { emacsclient -c "$@" >/dev/null 2>&1 &; disown }                       # gui emacs with daemon
 emt() { emacs "$@" -nw }                                                      # tty emacs
 emdt() { emacsclient -c --nw "$@" }                                           # tty emacs with daemon
 emdaemon() { emacs --daemon >/dev/null 2>&1 & disown }                        # start emacs daemon
 compress() { tar -czf "$1.tar.gz" "$1" }                                      # compress anything
-extract () {                                                                  # auto extract anything
+extract() {                                                                   # auto extract anything
     [ -f "$1" ] || { echo "file not found"; return 1; }
     case $1 in
         *.tar.bz2) tar xjf "$1" ;;
@@ -318,6 +318,7 @@ fh() {                                                                        # 
 zle -N fh
 bindkey ^R fh
 
+# tms is located in ~/.local/bin/ if installed successful through dotman
 export PATH="$HOME/.local/bin:$PATH";
 bindkey -s '^O' 'tms\n'
 
