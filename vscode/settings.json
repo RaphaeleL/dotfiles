@@ -44,7 +44,6 @@
     "workbench.tips.enabled": false,
     "workbench.colorTheme": "Default Light Modern",
     "workbench.editor.enablePreview": false,
-    "workbench.preferredLightColorTheme": "Default Light+",
     "workbench.activityBar.location": "top",
     // Security
     "security.workspace.trust.untrustedFiles": "open",
@@ -101,6 +100,6 @@
     "http.noProxy": [
         "csainfopenaisdcprodcoda001.openai.azure.com"
     ],
-    "breadcrumbs.enabled": false,
-    "workbench.statusBar.visible": false,
+    "breadcrumbs.enabled": true,
+    "workbench.statusBar.visible": true,
 }
