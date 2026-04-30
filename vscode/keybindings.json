@@ -1,7 +1,7 @@
 // Place your key bindings in this file to override the defaults
 [
     {
-        "key": "cmd+e",
+        "key": "cmd+1",
         "command": "workbench.action.toggleSidebarVisibility"
     },
     {
@@ -9,7 +9,7 @@
         "command": "-workbench.action.toggleSidebarVisibility"
     },
     {
-        "key": "cmd+j",
+        "key": "cmd+2",
         "command": "workbench.action.togglePanel"
     },
     {
@@ -42,7 +42,7 @@
         "when": "accessibilityHelpIsShown"
     },
     {
-        "key": "cmd+b",
+        "key": "cmd+3",
         "command": "workbench.action.toggleAuxiliaryBar"
     },
     {
@@ -68,5 +68,37 @@
         "key": "alt+cmd+up",
         "command": "-editor.action.insertCursorAbove",
         "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+1",
+        "command": "-workbench.action.focusFirstEditorGroup"
+    },
+    {
+        "key": "cmd+2",
+        "command": "-workbench.action.focusSecondEditorGroup"
+    },
+    {
+        "key": "cmd+3",
+        "command": "-workbench.action.focusThirdEditorGroup"
+    },
+    {
+        "key": "cmd+6",
+        "command": "-workbench.action.focusSixthEditorGroup"
+    },
+    {
+        "key": "cmd+7",
+        "command": "-workbench.action.focusSeventhEditorGroup"
+    },
+    {
+        "key": "cmd+4",
+        "command": "-workbench.action.focusFourthEditorGroup"
+    },
+    {
+        "key": "cmd+5",
+        "command": "-workbench.action.focusFifthEditorGroup"
+    },
+    {
+        "key": "cmd+8",
+        "command": "-workbench.action.focusEighthEditorGroup"
     }
 ]

@@ -42,7 +42,7 @@
     "window.autoDetectColorScheme": true,
     // Workbench
     "workbench.tips.enabled": false,
-    "workbench.colorTheme": "Default Light Modern",
+    "workbench.colorTheme": "Light Modern",
     "workbench.editor.enablePreview": false,
     "workbench.activityBar.location": "top",
     // Security
