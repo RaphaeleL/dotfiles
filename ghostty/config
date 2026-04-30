@@ -13,20 +13,21 @@ confirm-close-surface          = false
 ### UI #############################################
 ####################################################
 
+font-thicken                = true
 font-family                 = Comic Code 
-window-title-font-family    = Comic Code
 font-size                   = 16
 window-padding-x            = 2
 window-padding-y            = 2
 window-padding-balance      = true
+window-title-font-family    = Comic Code
+window-width                = 100
+window-height               = 32
 macos-non-native-fullscreen = true
 macos-titlebar-proxy-icon   = hidden
 macos-titlebar-style        = tabs
-link-url                    = false 
-mouse-hide-while-typing     = true
 macos-non-native-fullscreen = visible-menu
-window-width                = 100
-window-height               = 32
+mouse-hide-while-typing     = true
+link-url                    = false 
 
 ####################################################
 ### Theme ##########################################
@@ -45,7 +46,7 @@ window-height               = 32
 # theme = "Zenwritten Light"
 # theme = "Nord"
 theme = "Ghostty Default Style Dark"
-background           = "#181818"
+background           = "#000000"
 # background-opacity   = 0.93
 # background-blur      = true 
 selection-background = #553b48
