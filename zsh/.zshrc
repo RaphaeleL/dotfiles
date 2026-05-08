@@ -87,23 +87,28 @@ fi
 
 configure_prompt() {
     prompt_symbol="@"
-    #[ "$EUID" -eq 0 ] && prompt_symbol="%"
     case "$PROMPT_ALTERNATIVE" in
+        # robbyrussell)
+        #     autoload -Uz vcs_info
+        #     precmd() { vcs_info }
+        #     zstyle ':vcs_info:*' formats '%F{blue}git:(%F{red}%b%F{blue})%f'
+        #     PROMPT='%F{yellow}➜ %F{cyan}%1~ ${vcs_info_msg_0_}%f '
+        #     RPROMPT=
+        #     NEWLINE_BEFORE_PROMPT=no
+        #     ;;
         twoline)
             PROMPT=$'%F{%(#.blue.green)}┌──${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n'$prompt_symbol$'%m%b%F{%(#.blue.green)})-[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}]\n└─%B%(#.%F{red}#.%F{blue}$)%b%F{reset} '
-            NEWLINE_BEFORE_PROMPT=yes
             RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
+            NEWLINE_BEFORE_PROMPT=yes
             ;;
-        oneline)
-            NEWLINE_BEFORE_PROMPT=no
-            PROMPT=$'%n@%m:%~%(#.#.$) '
-            PROMPT=$'[%n@%F{%(#.blue.blue)}%m%F{reset} %1~]%(#.#.$) '
+        classic)
+            # PROMPT=$'%n@%m:%~%(#.#.$) '
+            # PROMPT=$'[%n@%F{%(#.blue.blue)}%m%F{reset} %1~]%(#.#.$) '
             PROMPT=$'[%n@%m %1~]%(#.#.$) '
-
             RPROMPT=
             NEWLINE_BEFORE_PROMPT=no
             ;;
-        backtrack)
+        minimal)
             PROMPT=$'%~> '
             RPROMPT=
             NEWLINE_BEFORE_PROMPT=no
@@ -114,7 +119,7 @@ configure_prompt() {
 
 # The following block is surrounded by two delimiters.
 # These delimiters must not be modified. Thanks.
-PROMPT_ALTERNATIVE=oneline
+PROMPT_ALTERNATIVE=minimal
 NEWLINE_BEFORE_PROMPT=yes
 
 if [ "$color_prompt" = yes ]; then
@@ -173,10 +178,12 @@ fi
 unset color_prompt force_color_prompt
 
 toggle_oneline_prompt() {
+    # if [ "$PROMPT_ALTERNATIVE" = robbyrussell ]; then
+    #     PROMPT_ALTERNATIVE=twoline
     if [ "$PROMPT_ALTERNATIVE" = twoline ]; then
-        PROMPT_ALTERNATIVE=oneline
-    elif [ "$PROMPT_ALTERNATIVE" = oneline ]; then
-        PROMPT_ALTERNATIVE=backtrack
+        PROMPT_ALTERNATIVE=classic
+    elif [ "$PROMPT_ALTERNATIVE" = classic ]; then
+        PROMPT_ALTERNATIVE=minimal
     else
         PROMPT_ALTERNATIVE=twoline
     fi
@@ -195,19 +202,19 @@ xterm*|rxvt*|Eterm|aterm|kterm|gnome*|alacritty)
     ;;
 esac
 
-precmd() {
-    # Print the previously configured title
-    print -Pnr -- "$TERM_TITLE"
-
-    # Print a new line before the prompt, but only if it is not the first line
-    if [ "$NEWLINE_BEFORE_PROMPT" = yes ]; then
-        if [ -z "$_NEW_LINE_BEFORE_PROMPT" ]; then
-            _NEW_LINE_BEFORE_PROMPT=1
-        else
-            print ""
-        fi
-    fi
-}
+# precmd() {
+#     # Print the previously configured title
+#     print -Pnr -- "$TERM_TITLE"
+#
+#     # Print a new line before the prompt, but only if it is not the first line
+#     if [ "$NEWLINE_BEFORE_PROMPT" = yes ]; then
+#         if [ -z "$_NEW_LINE_BEFORE_PROMPT" ]; then
+#             _NEW_LINE_BEFORE_PROMPT=1
+#         else
+#             print ""
+#         fi
+#     fi
+# }
 
 # enable color support of ls, less and man, and also add handy aliases
 if [ 1 ]; then # -x /usr/bin/dircolors
