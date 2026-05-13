@@ -4,7 +4,7 @@
 
 clipboard-trim-trailing-spaces = true
 copy-on-select                 = true
-scrollback-limit               = 10000 
+scrollback-limit               = 10000
 shell-integration              = zsh
 shell-integration-features     = no-cursor,sudo,title
 confirm-close-surface          = false
@@ -14,7 +14,7 @@ confirm-close-surface          = false
 ####################################################
 
 font-thicken                = true
-font-family                 = Comic Code 
+font-family                 = Comic Code
 font-size                   = 16
 window-padding-x            = 2
 window-padding-y            = 2
@@ -27,13 +27,13 @@ macos-titlebar-proxy-icon   = hidden
 macos-titlebar-style        = tabs
 macos-non-native-fullscreen = visible-menu
 mouse-hide-while-typing     = true
-link-url                    = false 
+link-url                    = false
 
 ####################################################
 ### Theme ##########################################
 ####################################################
 
-# Location of the Theme's are under 
+# Location of the Theme's are under
 # /Applications/Ghostty.app/Contents/Resources/ghostty/themes/
 
 # theme = "light:Zenwritten Light,dark:Rose Pine"
@@ -46,9 +46,10 @@ link-url                    = false
 # theme = "Zenwritten Light"
 # theme = "Nord"
 theme = "Ghostty Default Style Dark"
-background           = "#000000"
+background           = "#181818"
+# background           = "#000000"
 # background-opacity   = 0.93
-# background-blur      = true 
+# background-blur      = true
 selection-background = #553b48
 selection-foreground = #ffffff
 
@@ -66,4 +67,3 @@ keybind = cmd+shift+l=goto_split:right
 
 # quick-terminal-animation-duration = 0
 # keybind = global:alt+backquote=toggle_quick_terminal
-
