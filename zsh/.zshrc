@@ -289,11 +289,15 @@ port(){ lsof -i :"$1" }                                                       # 
 pk() { pgrep -if -- "$1" | grep -v grep | awk '{print $1}' | xargs kill -9 }  # kill process
 p() { pgrep -if -- "$1" | grep -v grep }                                      # list process
 em() { emacs "$@" >/dev/null 2>&1 &; disown }                                 # gui emacs
-eml() { emacs --init-directory ~/.emacs.d/minimal/ "$@" >/dev/null 2>&1 &; disown }        # gui emacs legacy
 emd() { emacsclient -c "$@" >/dev/null 2>&1 &; disown }                       # gui emacs with daemon
 emt() { emacs "$@" -nw }                                                      # tty emacs
 emdt() { emacsclient -c --nw "$@" }                                           # tty emacs with daemon
 emdaemon() { emacs --daemon >/dev/null 2>&1 & disown }                        # start emacs daemon
+
+eml() { emacs --init-directory ~/.emacs.d/minimal/ "$@" >/dev/null 2>&1 &; disown }                     # minimal gui emacs
+emldaemon() { emacs --init-directory ~/.emacs.d/minimal/ --daemon=minimal >/dev/null 2>&1 &; disown }   # start emacs daemon for minimal emacs
+emld() { emacsclient -s minimal -c "$@" \ >/dev/null 2>&1 & disown }                                    # minimal gui emacs with daemon
+
 compress() { tar -czf "$1.tar.gz" "$1" }                                      # compress anything
 extract() {                                                                   # auto extract anything
     [ -f "$1" ] || { echo "file not found"; return 1; }
