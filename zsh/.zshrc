@@ -289,6 +289,7 @@ port(){ lsof -i :"$1" }                                                       # 
 pk() { pgrep -if -- "$1" | grep -v grep | awk '{print $1}' | xargs kill -9 }  # kill process
 p() { pgrep -if -- "$1" | grep -v grep }                                      # list process
 em() { emacs "$@" >/dev/null 2>&1 &; disown }                                 # gui emacs
+eml() { emacs --init-directory ~/.emacs.d/minimal/ "$@" >/dev/null 2>&1 &; disown }        # gui emacs legacy
 emd() { emacsclient -c "$@" >/dev/null 2>&1 &; disown }                       # gui emacs with daemon
 emt() { emacs "$@" -nw }                                                      # tty emacs
 emdt() { emacsclient -c --nw "$@" }                                           # tty emacs with daemon
