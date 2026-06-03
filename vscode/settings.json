@@ -8,7 +8,7 @@
     "editor.fontSize": 14,
     "editor.lineHeight": 1.6,
     "editor.fontLigatures": true,
-    "editor.lineNumbers": "on",
+    "editor.lineNumbers": "relative",
     "editor.unicodeHighlight.ambiguousCharacters": false,
     "editor.mouseWheelZoom": false,
     "editor.fontFamily": "Cascadia Code",
@@ -43,8 +43,14 @@
     // Workbench
     "workbench.tips.enabled": false,
     "workbench.colorTheme": "Light Modern",
+    "workbench.preferredLightColorTheme": "Dark 2026",
+    "workbench.preferredDarkColorTheme": "Dark 2026",
     "workbench.editor.enablePreview": false,
     "workbench.activityBar.location": "top",
+    "workbench.statusBar.visible": true,
+    // Files
+    "files.insertFinalNewline": true,
+    "files.autoSave": "afterDelay",
     // Security
     "security.workspace.trust.untrustedFiles": "open",
     // Vim
@@ -72,7 +78,8 @@
         "<C-p>": false,
         "<C-S-p>": false,
         "<C-j>": false,
-        "<C-w>": false
+        "<C-w>": false,
+        "<C-r>": false
     },
     // Search
     "search.useIgnoreFiles": false,
@@ -86,13 +93,11 @@
     },
     // Chat / KI
     "chat.editing.confirmEditRequestRemoval": false,
-    "chat.agentsControl.enabled": false,
+    "chat.agentsControl.enabled": "hidden",
     "chat.viewSessions.orientation": "stacked",
     // Misc.
     "update.mode": "none",
     "diffEditor.ignoreTrimWhitespace": false,
-    "files.insertFinalNewline": true,
-    "files.autoSave": "afterDelay",
     "[markdown]": {
         "editor.formatOnSave": true,
         "editor.formatOnPaste": true
@@ -101,5 +106,4 @@
         "csainfopenaisdcprodcoda001.openai.azure.com"
     ],
     "breadcrumbs.enabled": true,
-    "workbench.statusBar.visible": true,
 }
