@@ -29,8 +29,8 @@ bindkey '^[[F' end-of-line                        # end
 bindkey '^[[Z' undo                               # shift + tab undo last action
 
 # enable completion features
-autoload -Uz compinit
-compinit -d ~/.cache/zcompdump
+# autoload -Uz compinit
+# compinit -C -d ~/.cache/zcompdump
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete
@@ -288,16 +288,26 @@ backup() { cp -r "$1" "$1.bak.$(date +%s)" }                                  # 
 port(){ lsof -i :"$1" }                                                       # used port
 pk() { pgrep -if -- "$1" | grep -v grep | awk '{print $1}' | xargs kill -9 }  # kill process
 p() { pgrep -if -- "$1" | grep -v grep }                                      # list process
-em() { emacs "$@" >/dev/null 2>&1 &; disown }                                 # gui emacs
-emd() { emacsclient -c "$@" >/dev/null 2>&1 &; disown }                       # gui emacs with daemon
-emt() { emacs "$@" -nw }                                                      # tty emacs
-emdt() { emacsclient -c --nw "$@" }                                           # tty emacs with daemon
-emdaemon() { emacs --daemon >/dev/null 2>&1 & disown }                        # start emacs daemon
-
-eml() { emacs --init-directory ~/.emacs.d/minimal/ "$@" >/dev/null 2>&1 &; disown }                     # minimal gui emacs
-emldaemon() { emacs --init-directory ~/.emacs.d/minimal/ --daemon=minimal >/dev/null 2>&1 &; disown }   # start emacs daemon for minimal emacs
-emld() { emacsclient -s minimal -c "$@" \ >/dev/null 2>&1 & disown }                                    # minimal gui emacs with daemon
-
+em() {                                                                        # emacs
+    local server_name="server"
+    if emacsclient -s "$server_name" -e t >/dev/null 2>&1; then
+        emacsclient -s "$server_name" -c "$@" >/dev/null 2>&1 & disown
+    else
+        emacs --daemon="$server_name" >/dev/null 2>&1
+        emacsclient -s "$server_name" -c "$@" >/dev/null 2>&1 & disown
+    fi
+}
+eml() {                                                                       # emacs legacy
+    local init_dir="$HOME/.emacs.d/minimal"
+    # emacs --init-directory "$init_dir" >/dev/null 2>&1
+    local server_name="minimal"
+    if emacsclient -s "$server_name" -e '(+ 1 1)' >/dev/null 2>&1; then
+        emacsclient -s "$server_name" -c "$@" >/dev/null 2>&1 & disown
+    else
+        emacs --init-directory "$init_dir" --daemon="$server_name" >/dev/null 2>&1
+        emacsclient -s "$server_name" -c "$@" >/dev/null 2>&1 & disown
+    fi
+}
 compress() { tar -czf "$1.tar.gz" "$1" }                                      # compress anything
 extract() {                                                                   # auto extract anything
     [ -f "$1" ] || { echo "file not found"; return 1; }
