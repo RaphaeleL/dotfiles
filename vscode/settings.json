@@ -106,4 +106,6 @@
         "csainfopenaisdcprodcoda001.openai.azure.com"
     ],
     "breadcrumbs.enabled": true,
+    "workbench.statusBar.visible": true,
+    "terminal.integrated.initialHint": false,
 }
