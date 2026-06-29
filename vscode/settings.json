@@ -1,4 +1,8 @@
 {
+    // // Atruvia Proxy
+    // "http.proxy": "http://campus-proxy.rz.bankenit.de:8080",
+    // "http.proxyStrictSSL": false,
+    // "http.proxyAuthorization": null,
     // Explorer
     "explorer.decorations.colors": true,
     "explorer.decorations.badges": false,
@@ -40,10 +44,10 @@
     // Window
     "window.systemColorTheme": "auto",
     "window.autoDetectColorScheme": true,
+    "breadcrumbs.enabled": true,
     // Workbench
     "workbench.tips.enabled": false,
     "workbench.colorTheme": "Light Modern",
-    "workbench.preferredLightColorTheme": "Dark 2026",
     "workbench.preferredDarkColorTheme": "Dark 2026",
     "workbench.editor.enablePreview": false,
     "workbench.activityBar.location": "top",
@@ -105,7 +109,7 @@
     "http.noProxy": [
         "csainfopenaisdcprodcoda001.openai.azure.com"
     ],
-    "breadcrumbs.enabled": true,
-    "workbench.statusBar.visible": true,
+    // Terminal
     "terminal.integrated.initialHint": false,
+    "debug.onTaskErrors": "showErrors",
 }
