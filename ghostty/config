@@ -39,19 +39,20 @@ link-url                    = false
 # theme = "light:Zenwritten Light,dark:Rose Pine"
 # theme = "Gruber Darker"
 # theme = "Rose Pine"
+theme = "Rose Pine Moon"
 # theme = "Dracula+"
 # theme = "Solarized Osaka Night"
 # theme = "Monokai Pro"
 # theme = "Monokai Pro Light"
 # theme = "Monokai Pro Light Sun"
-theme = "Zenwritten Light"
+# theme = "Zenwritten Light"
 # theme = "Nord"
 # theme = "Ghostty Default Style Dark"
-# background           = "#181818"
+background           = "#181818"
 # background-opacity   = 0.93
 # background-blur      = true 
-selection-background = #553b48
-selection-foreground = #ffffff
+# selection-background = #553b48
+# selection-foreground = #ffffff
 
 ####################################################
 ### Keybind's ######################################
