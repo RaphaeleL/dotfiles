@@ -29,3 +29,6 @@
     # open lazygit UI
     client = !lazygit
 
+    # print latest commit aka head
+    head = !git log | head -1 | awk -F ' ' '{print $2}'
+
