@@ -21,7 +21,7 @@ set backspace=indent,eol,start
 " Use 'kj' as <Esc> replacement
 imap kj <Esc>
 
-"set ai			" always set autoindenting on
+set ai			" always set autoindenting on
 "set backup		" keep a backup file
 set viminfo='20,\"50	" read/write a .viminfo file, don't store more
 			" than 50 lines of registers
