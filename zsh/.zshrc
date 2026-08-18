@@ -177,21 +177,21 @@ if [ "$color_prompt" = yes ]; then
 fi
 unset color_prompt force_color_prompt
 
-toggle_oneline_prompt() {
-    # if [ "$PROMPT_ALTERNATIVE" = robbyrussell ]; then
-    #     PROMPT_ALTERNATIVE=twoline
-    if [ "$PROMPT_ALTERNATIVE" = twoline ]; then
-        PROMPT_ALTERNATIVE=classic
-    elif [ "$PROMPT_ALTERNATIVE" = classic ]; then
-        PROMPT_ALTERNATIVE=minimal
-    else
-        PROMPT_ALTERNATIVE=twoline
-    fi
-    configure_prompt
-    zle reset-prompt
-}
-zle -N toggle_oneline_prompt
-bindkey ^H toggle_oneline_prompt
+# toggle_oneline_prompt() {
+#     # if [ "$PROMPT_ALTERNATIVE" = robbyrussell ]; then
+#     #     PROMPT_ALTERNATIVE=twoline
+#     if [ "$PROMPT_ALTERNATIVE" = twoline ]; then
+#         PROMPT_ALTERNATIVE=classic
+#     elif [ "$PROMPT_ALTERNATIVE" = classic ]; then
+#         PROMPT_ALTERNATIVE=minimal
+#     else
+#         PROMPT_ALTERNATIVE=twoline
+#     fi
+#     configure_prompt
+#     zle reset-prompt
+# }
+# zle -N toggle_oneline_prompt
+# bindkey ^H toggle_oneline_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
