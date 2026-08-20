@@ -9,11 +9,9 @@
 	ui       = auto
 	; ui     = always
 [alias]
-
-    # History - Log Alternatives
-    recent   = "!f() { n=${1:-10}; git --no-pager log --decorate --oneline -n \"$n\"; }; f"
-    timeline = "!f() { n=${1:-10}; git --no-pager log --graph --decorate --pretty=format:'%C(yellow)%h%C(reset) %C(dim)%ad%C(reset) %C(auto)%s%C(reset) %C(dim)(%an)%C(reset)' --date=format:'%d %b %Y %H:%M' -n \"$n\"; }; f"
-
+	alias = "!awk '/^[[:space:]]*[a-zA-Z0-9_-]+[[:space:]]*=/{line=$0; name=line; sub(/^[[:space:]]*/, \"\", name); sub(/[[:space:]]*=.*/, \"\", name); if (line ~ /#/) { help=line; sub(/^.*#[[:space:]]*/, \"\", help); printf \"%-10s - %s\\n\", name, help }}' ~/.gitconfig" # show the help message
+    recent   = "!f() { n=${1:-10}; git --no-pager log --decorate --oneline -n \"$n\"; }; f" # short one line log
+    timeline = "!f() { n=${1:-10}; git --no-pager log --graph --decorate --pretty=format:'%C(yellow)%h%C(reset) %C(dim)%ad%C(reset) %C(auto)%s%C(reset) %C(dim)(%an)%C(reset)' --date=format:'%d %b %Y %H:%M' -n \"$n\"; }; f" # graph based one line log with detailes
     stat     = !git --no-pager diff --shortstat && git --no-pager status --short  # show status and change summary
     client   = !lazygit                                                           # open lazygit UI
     head     = !git rev-parse HEAD                                                # print current commit
