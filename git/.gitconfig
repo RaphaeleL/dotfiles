@@ -1,34 +1,25 @@
 [user]
-	name = Raphaele Licciardo
-	email = raphaele.licciardo@atruvia.de
-[alias]
-    client = !lazygit
+	name     = Raphaele Licciardo
+	email    = raphaele.licciardo@atruvia.de
 [rebase]
-	pull = true
+	pull     = true
 [core]
-	; pager = cat 
+    ; pager  = cat
 [color]
-	ui = auto 
-	; ui = always 
+	ui       = auto
+	; ui     = always
 [alias]
 
-    # show the recent n commits as a graph
-    recent = "!f() { \
-        n=${1:-10}; \
-        git --no-pager log --pretty=format:'%C(yellow)%h%C(reset) %C(dim)%ad%C(reset) %C(auto)%s%C(reset)' --date=relative -n \"$n\"; \
-    }; f"
+    # History - Log Alternatives
+    recent   = "!f() { n=${1:-10}; git --no-pager log --decorate --oneline -n \"$n\"; }; f"
+    timeline = "!f() { n=${1:-10}; git --no-pager log --graph --decorate --pretty=format:'%C(yellow)%h%C(reset) %C(dim)%ad%C(reset) %C(auto)%s%C(reset) %C(dim)(%an)%C(reset)' --date=format:'%d %b %Y %H:%M' -n \"$n\"; }; f"
 
-    timeline = "!f() { \
-        n=${1:-10}; \
-        git --no-pager log --graph --decorate --pretty=format:'%C(yellow)%h%C(reset) %C(dim)%ad%C(reset) %C(auto)%s%C(reset)' --date=format:'%d %b %Y %H:%M' -n \"$n\"; \
-    }; f"
-
-    # diff summary stats
-    diffstat = !git --no-pager diff --shortstat
-
-    # open lazygit UI
-    client = !lazygit
-
-    # print latest commit aka head
-    head = !git log | head -1 | awk -F ' ' '{print $2}'
-
+    stat     = !git --no-pager diff --shortstat && git --no-pager status --short  # show status and change summary
+    client   = !lazygit                                                           # open lazygit UI
+    head     = !git rev-parse HEAD                                                # print current commit
+    changes  = !git diff --stat                                                   # show changed files summary
+    branches = !git branch --sort=-committerdate                                  # list branches by recent activity
+    current  = !git branch --show-current                                         # show current branch
+    unpushed = !git log @{u}..HEAD --oneline                                      # show unpushed commits
+    unpulled = !git log HEAD..@{u} --oneline                                      # show unpulled commits
+    gone     = "!git fetch --prune && git branch -vv | awk '/: gone]/{print $1}'" # list deleted remote branches
