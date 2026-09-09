@@ -88,14 +88,6 @@ fi
 configure_prompt() {
     prompt_symbol="@"
     case "$PROMPT_ALTERNATIVE" in
-        # robbyrussell)
-        #     autoload -Uz vcs_info
-        #     precmd() { vcs_info }
-        #     zstyle ':vcs_info:*' formats '%F{blue}git:(%F{red}%b%F{blue})%f'
-        #     PROMPT='%F{yellow}➜ %F{cyan}%1~ ${vcs_info_msg_0_}%f '
-        #     RPROMPT=
-        #     NEWLINE_BEFORE_PROMPT=no
-        #     ;;
         twoline)
             PROMPT=$'%F{%(#.blue.green)}┌──${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n'$prompt_symbol$'%m%b%F{%(#.blue.green)})-[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}]\n└─%B%(#.%F{red}#.%F{blue}$)%b%F{reset} '
             RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
@@ -117,8 +109,6 @@ configure_prompt() {
     unset prompt_symbol
 }
 
-# The following block is surrounded by two delimiters.
-# These delimiters must not be modified. Thanks.
 PROMPT_ALTERNATIVE=minimal
 NEWLINE_BEFORE_PROMPT=yes
 
@@ -177,22 +167,6 @@ if [ "$color_prompt" = yes ]; then
 fi
 unset color_prompt force_color_prompt
 
-# toggle_oneline_prompt() {
-#     # if [ "$PROMPT_ALTERNATIVE" = robbyrussell ]; then
-#     #     PROMPT_ALTERNATIVE=twoline
-#     if [ "$PROMPT_ALTERNATIVE" = twoline ]; then
-#         PROMPT_ALTERNATIVE=classic
-#     elif [ "$PROMPT_ALTERNATIVE" = classic ]; then
-#         PROMPT_ALTERNATIVE=minimal
-#     else
-#         PROMPT_ALTERNATIVE=twoline
-#     fi
-#     configure_prompt
-#     zle reset-prompt
-# }
-# zle -N toggle_oneline_prompt
-# bindkey ^H toggle_oneline_prompt
-
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*|Eterm|aterm|kterm|gnome*|alacritty)
@@ -201,20 +175,6 @@ xterm*|rxvt*|Eterm|aterm|kterm|gnome*|alacritty)
 *)
     ;;
 esac
-
-# precmd() {
-#     # Print the previously configured title
-#     print -Pnr -- "$TERM_TITLE"
-#
-#     # Print a new line before the prompt, but only if it is not the first line
-#     if [ "$NEWLINE_BEFORE_PROMPT" = yes ]; then
-#         if [ -z "$_NEW_LINE_BEFORE_PROMPT" ]; then
-#             _NEW_LINE_BEFORE_PROMPT=1
-#         else
-#             print ""
-#         fi
-#     fi
-# }
 
 # enable color support of ls, less and man, and also add handy aliases
 if [ 1 ]; then # -x /usr/bin/dircolors
@@ -251,17 +211,17 @@ alias ll='ls -lh'
 alias la='ls -A'
 alias l='ls -CF'
 
-# enable auto-suggestions based on the history
-if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    # change suggestion color
-    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=244'
-fi
-
-# enable command-not-found if installed
-if [ -f /etc/zsh_command_not_found ]; then
-    . /etc/zsh_command_not_found
-fi
+# # enable auto-suggestions based on the history
+# if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+#     . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#     # change suggestion color
+#     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=244'
+# fi
+#
+# # enable command-not-found if installed
+# if [ -f /etc/zsh_command_not_found ]; then
+#     . /etc/zsh_command_not_found
+# fi
 
 # enable certain things on macos
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -338,3 +298,8 @@ bindkey ^R fh
 # tms is located in ~/.local/bin/ if installed successful through dotman
 export PATH="$HOME/.local/bin:$PATH";
 bindkey -s '^O' 'tms\n'
+
+# Keep the zsh prompt at the bottom of the terminal
+# autoload -Uz add-zsh-hook
+# function bottom_prompt() { printf '\033[999;1H' }
+# add-zsh-hook precmd bottom_prompt
