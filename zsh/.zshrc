@@ -95,21 +95,23 @@ configure_prompt() {
             ;;
         classic)
             # PROMPT=$'%n@%m:%~%(#.#.$) '
-            # PROMPT=$'[%n@%F{%(#.blue.blue)}%m%F{reset} %1~]%(#.#.$) '
-            PROMPT=$'[%n@%m %1~]%(#.#.$) '
+            # PROMPT=$'%n@%m %1~ %# '
+            PROMPT=$'[%n@%F{%(#.cyan.cyan)}%m%F{reset} %1~]%(#.#.$) '
+            # PROMPT=$'[%n@%m %1~]%(#.#.$) '
             RPROMPT=
             NEWLINE_BEFORE_PROMPT=no
             ;;
         minimal)
             PROMPT=$'%~> '
-            RPROMPT=
+            # RPROMPT='$(date)'
+            RPROMPT=''
             NEWLINE_BEFORE_PROMPT=no
             ;;
     esac
     unset prompt_symbol
 }
 
-PROMPT_ALTERNATIVE=minimal
+PROMPT_ALTERNATIVE=classic
 NEWLINE_BEFORE_PROMPT=yes
 
 if [ "$color_prompt" = yes ]; then
@@ -181,7 +183,7 @@ if [ 1 ]; then # -x /usr/bin/dircolors
     #test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     export LS_COLORS="$LS_COLORS:ow=30;44:" # fix ls color for folders with 777 permissions
 
-    alias ls='ls --color=never -F'
+    alias ls='ls --color=auto -F'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
