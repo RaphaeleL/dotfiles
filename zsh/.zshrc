@@ -248,7 +248,7 @@ fd() { find . -type d -iname "*$1*" 2>/dev/null }                             # 
 up() { cd "$(printf '../%.0s' $(seq 1 ${1:-1}))"; }                           # faster dir ups
 backup() { cp -r "$1" "$1.bak.$(date +%s)" }                                  # quick backup
 port(){ lsof -i :"$1" }                                                       # used port
-pk() { pgrep -if -- "$1" | grep -v grep | awk '{print $1}' | xargs kill -9 }  # kill process
+pk() { pgrep -if -- "$1" | grep -v grep | awk '{print $1}' | xargs kill -9 2> /dev/null }  # kill process
 p() { pgrep -if -- "$1" | grep -v grep }                                      # list process
 em() {                                                                        # emacs
     local server_name="server"
