@@ -11,6 +11,13 @@ setopt promptsubst         # enable command substitution in prompt
 
 WORDCHARS='_-' # Don't consider certain characters part of the word
 
+# # Atruvia Proxy
+export HTTP_PROXY="http://campus-proxy.rz.bankenit.de:8080"
+export HTTPS_PROXY="http://campus-proxy.rz.bankenit.de:8080"
+export NO_PROXY="rz.bankenit.de,fiducia.de"
+export NO_PROXY="$NO_PROXY,ai-gateway.rz.bankenit.de"
+export NODE_EXTRA_CA_CERTS="$HOME/.continue/ai-gateway-rz-bankenit-de-zertifikatskette.pem"
+
 # hide EOL sign ('%')
 PROMPT_EOL_MARK=""
 
@@ -106,6 +113,12 @@ configure_prompt() {
             # RPROMPT='$(date)'
             RPROMPT=''
             NEWLINE_BEFORE_PROMPT=no
+            ;;
+        omz)
+            export ZSH="$HOME/.oh-my-zsh"
+            ZSH_THEME="robbyrussell"
+            plugins=(git)
+            source $ZSH/oh-my-zsh.sh
             ;;
     esac
     unset prompt_symbol
