@@ -115,13 +115,13 @@ configure_prompt() {
             ZSH_THEME="robbyrussell"
             plugins=(git)
             source $ZSH/oh-my-zsh.sh
+            NEWLINE_BEFORE_PROMPT=no
             ;;
     esac
     unset prompt_symbol
 }
 
 PROMPT_ALTERNATIVE=classic
-NEWLINE_BEFORE_PROMPT=yes
 
 if [ "$color_prompt" = yes ]; then
     # override default virtualenv indicator in prompt
