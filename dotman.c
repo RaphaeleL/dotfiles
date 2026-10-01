@@ -224,7 +224,7 @@ int main(int argc, char** argv) {
     config.os = detect_os();
 
     static char dotfiles[PATH_MAX];
-    snprintf(dotfiles, sizeof(dotfiles), "%s/workspace/dotfiles", config.home);
+    snprintf(dotfiles, sizeof(dotfiles), "%s/workspace/privates/dotfiles", config.home);
     config.dotfiles_dir = dotfiles;
 
     Entry entries[MAX_ENTRIES];

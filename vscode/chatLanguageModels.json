@@ -1,0 +1,121 @@
+[
+	
+	{
+		"name": "LiteLLM endpoint",
+		"vendor": "customendpoint",
+		"apiKey": "v1.primary.CaIWdXEltUaGdHhz.anOQgSx2WvkrQ_Co8Hokac9-BExBm7HLhd23PPNOHUKlI-4-YSBihaNUTlreVu1ldwd3VMOQ0iJABgLxIKAky123avN7IBXasyn5TTjs4JMpScPYxW1V0HhvHZeMMQKKMqeFLJmcFiuDbVqxFU4OxNpeFAfA_5O4T61MhUJCjOAQAEoenE0TRw0-xl3dOAgw6upovpAdymMsi8pCgn42Midi-JIZwYJ81PT-ylxB6iLFgQ8fp7PogS5vc_dEfmwOQt48AkttCaY6FjNqlg7Yfv5I0bnTXfPDwPk0V0VIxlrmJsWYI1vKPHM8mGIQustv0knK_BXUMwg3e1ErmfZWwu0YGnRmU71uXwShPBCJfZWZY28U1hPvJBKnU5UDV6jeNQFegLOA0gSQGPyVtguD8siTNEUxjpnT6VlFpjvNJib2ZyWNUsoYNoFveMjUfpi1Cj3MwNfcwANBkqzx3eg-wlGAytxJvfWYEVTjPTaeLOB3oGrr92MgSOhorVI0IK5lbl537E1XF0rWh3eIEnJEDmmRkHXSmHDYhcOLw55sm2uOUUenvbaVjxsspovTBTmfH2wD0No_omBNDdJCNGOqCO1sEugryVu9sMPx0xXhcBO1pGiIfOcCJsBtaA1cnR0eJ1gceq8L8OH_mdsDO1wXJqg0_A",
+		"apiType": "chat-completions",
+		"models": [
+      {
+				"id": "gpt-5.5",
+				"name": "gpt-5.5",
+				"url": "https://ai-gateway.rz.bankenit.de/v1",
+				"toolCalling": false,
+				"vision": true,
+				"maxInputTokens": 40000,
+				"maxOutputTokens": 16000,
+				"thinking": true
+			},
+			{
+				"id": "gpt-4.1",
+				"name": "gpt-4.1",
+				"url": "https://ai-gateway.rz.bankenit.de/v1",
+				"toolCalling": false,
+				"vision": true,
+				"maxInputTokens": 40000,
+				"maxOutputTokens": 16000,
+				"thinking": true
+			},
+			
+			{
+				"id": "o4-mini",
+				"name": "o4-mini",
+				"url": "https://ai-gateway.rz.bankenit.de/v1",
+				"toolCalling": false,
+				"vision": false,
+				"maxInputTokens": 40000,
+				"maxOutputTokens": 16000,
+				"thinking": true
+			},
+			{
+				"id": "gpt-5-mini",
+				"name": "gpt-5-mini",
+				"url": "https://ai-gateway.rz.bankenit.de/v1",
+				"toolCalling": false,
+				"vision": true,
+				"maxInputTokens": 40000,
+				"maxOutputTokens": 16000,
+				"thinking": true
+			},
+			{
+				"id": "gpt-5",
+				"name": "gpt-5",
+				"url": "https://ai-gateway.rz.bankenit.de/v1",
+				"toolCalling": false,
+				"vision": true,
+				"maxInputTokens": 40000,
+				"maxOutputTokens": 16000,
+				"thinking": true
+			},
+			{
+				"id": "gpt-5.1",
+				"name": "gpt-5.1",
+				"url": "https://ai-gateway.rz.bankenit.de/v1",
+				"toolCalling": false,
+				"vision": true,
+				"maxInputTokens": 40000,
+				"maxOutputTokens": 16000,
+				"thinking": true
+			},
+			{
+				"id": "gpt-5.4",
+				"name": "gpt-5.4",
+				"url": "https://ai-gateway.rz.bankenit.de/v1",
+				"toolCalling": false,
+				"vision": true,
+				"maxInputTokens": 40000,
+				"maxOutputTokens": 16000,
+				"thinking": true
+			}
+		]
+	},
+  {
+		"name": "gpt5-6-config",
+		"vendor": "customendpoint",
+		"apiKey": "v1.primary.CaIWdXEltUaGdHhz.anOQgSx2WvkrQ_Co8Hokac9-BExBm7HLhd23PPNOHUKlI-4-YSBihaNUTlreVu1ldwd3VMOQ0iJABgLxIKAky123avN7IBXasyn5TTjs4JMpScPYxW1V0HhvHZeMMQKKMqeFLJmcFiuDbVqxFU4OxNpeFAfA_5O4T61MhUJCjOAQAEoenE0TRw0-xl3dOAgw6upovpAdymMsi8pCgn42Midi-JIZwYJ81PT-ylxB6iLFgQ8fp7PogS5vc_dEfmwOQt48AkttCaY6FjNqlg7Yfv5I0bnTXfPDwPk0V0VIxlrmJsWYI1vKPHM8mGIQustv0knK_BXUMwg3e1ErmfZWwu0YGnRmU71uXwShPBCJfZWZY28U1hPvJBKnU5UDV6jeNQFegLOA0gSQGPyVtguD8siTNEUxjpnT6VlFpjvNJib2ZyWNUsoYNoFveMjUfpi1Cj3MwNfcwANBkqzx3eg-wlGAytxJvfWYEVTjPTaeLOB3oGrr92MgSOhorVI0IK5lbl537E1XF0rWh3eIEnJEDmmRkHXSmHDYhcOLw55sm2uOUUenvbaVjxsspovTBTmfH2wD0No_omBNDdJCNGOqCO1sEugryVu9sMPx0xXhcBO1pGiIfOcCJsBtaA1cnR0eJ1gceq8L8OH_mdsDO1wXJqg0_A",
+		"apiType": "responses",
+		"models": [
+			{
+				"id": "gpt-5.6-sol",
+				"name": "gpt-5.6-sol",
+				"url": "https://ai-gateway.rz.bankenit.de/v1",
+				"toolCalling": false,
+				"vision": true,
+				"maxInputTokens": 40000,
+				"maxOutputTokens": 16000,
+				"thinking": true
+			},
+			{
+				"id": "gpt-5.6-terra",
+				"name": "gpt-5.6-terra",
+				"url": "https://ai-gateway.rz.bankenit.de/v1",
+				"toolCalling": false,
+				"vision": true,
+				"maxInputTokens": 40000,
+				"maxOutputTokens": 16000,
+				"thinking": true
+			},
+			{
+				"id": "gpt-5.6-luna",
+				"name": "gpt-5.6-luna",
+				"url": "https://ai-gateway.rz.bankenit.de/v1",
+				"toolCalling": false,
+				"vision": true,
+				"maxInputTokens": 40000,
+				"maxOutputTokens": 16000,
+				"thinking": true
+			}
+		]
+	}
+    
+]

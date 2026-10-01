@@ -1,8 +1,17 @@
 {
-    // // Atruvia Proxy
-    // "http.proxy": "http://campus-proxy.rz.bankenit.de:8080",
-    // "http.proxyStrictSSL": false,
-    // "http.proxyAuthorization": null,
+    // Atruvia Proxy
+    "http.proxy": "http://campus-proxy.rz.bankenit.de:8080",
+    "http.proxySupport": "on",
+    "http.proxyStrictSSL": false,
+    "http.proxyAuthorization": null,
+    "http.noProxy": [
+        "ai-gateway.rz.bankenit.de",
+        "ai-gateway-non-prod.rz.bankenit.de",
+        // "csainfopenaisdcprodcoda001.openai.azure.com",
+        "rz.bankenit.de",
+        "fiducia.de"
+    ],
+    "chat.agentHost.byokModels.enabled": true,
     // Explorer
     "explorer.decorations.colors": true,
     "explorer.decorations.badges": false,
@@ -34,13 +43,22 @@
     "editor.renderLineHighlight": "none",
     "editor.occurrencesHighlight": "off",
     "editor.hover.enabled": "on",
+    "editor.formatOnPaste": false,
+    "editor.formatOnType": false,
+    // "files.trimTrailingWhitespace": true,
+    // "files.trimFinalNewlines": true,
     // Git
     "git.enableSmartCommit": true,
     "git.confirmSync": false,
     "git.autofetch": true,
     "git.decorations.enabled": false,
-    "git.blame.editorDecoration.enabled": false,
+    "git.blame.editorDecoration.enabled": true,
     "git.blame.statusBarItem.enabled": true,
+    "git.openRepositoryInParentFolders": "always",
+    "git.postCommitCommand": "none",
+    "git.enableCommitSigning": false,
+    "git.showPushSuccessNotification": true,
+    "git.untrackedChanges": "mixed",
     // Window
     "window.systemColorTheme": "auto",
     "window.autoDetectColorScheme": true,
@@ -54,8 +72,34 @@
     // Files
     "files.insertFinalNewline": true,
     "files.autoSave": "afterDelay",
+    "files.participants.timeout": 100,
     // Security
     "security.workspace.trust.untrustedFiles": "open",
+    // Search
+    "search.useIgnoreFiles": false,
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/dist": true,
+        "**debug": true,
+        "**/package-lock.json": true,
+        "**/.next": true,
+        "**/data": true
+    },
+    // Chat / KI
+    "chat.editing.confirmEditRequestRemoval": false,
+    "chat.agentsControl.enabled": "hidden",
+    "chat.viewSessions.orientation": "stacked",
+    "chat.titleBar.openInAgentsWindow.enabled": false,
+    "chat.disableAIFeatures": true,
+    // Terminal
+    "terminal.integrated.initialHint": false,
+    "terminal.integrated.scrollback": 10000,
+    "terminal.integrated.copyOnSelection": false,
+    "terminal.integrated.confirmOnExit": "never",
+    "terminal.integrated.enableMultiLinePasteWarning": "auto",
+    "terminal.integrated.smoothScrolling": true,
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.defaultProfile.osx": "zsh",
     // Vim
     "vim.easymotion": true,
     "vim.incsearch": true,
@@ -84,20 +128,9 @@
         "<C-w>": false,
         "<C-r>": false
     },
-    // Search
-    "search.useIgnoreFiles": false,
-    "search.exclude": {
-        "**/node_modules": true,
-        "**/dist": true,
-        "**debug": true,
-        "**/package-lock.json": true,
-        "**/.next": true,
-        "**/data": true
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
     },
-    // Chat / KI
-    "chat.editing.confirmEditRequestRemoval": false,
-    "chat.agentsControl.enabled": "hidden",
-    "chat.viewSessions.orientation": "stacked",
     // Misc.
     "update.mode": "none",
     "diffEditor.ignoreTrimWhitespace": false,
@@ -105,12 +138,7 @@
         "editor.formatOnSave": true,
         "editor.formatOnPaste": true
     },
-    "http.noProxy": [
-        "csainfopenaisdcprodcoda001.openai.azure.com"
-    ],
-    // Terminal
-    "terminal.integrated.initialHint": false,
     "debug.onTaskErrors": "showErrors",
-    "chat.titleBar.openInAgentsWindow.enabled": false,
-    "workbench.preferredLightColorTheme": "Dark Modern",
+    "extensions.ignoreRecommendations": true,
+    "workbench.preferredLightColorTheme": "Dark 2026",
 }

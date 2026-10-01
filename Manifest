@@ -28,10 +28,10 @@ starship|.config/starship.toml|starship/starship.toml|link|all
 
 tmux-tools|.local/bin/tms|tms/tms|link|all
 
-vscode-settings|Library/Application Support/Code/User/settings.json|vscode/settings.json|link|all
-vscode-keybindings|Library/Application Support/Code/User/keybindings.json|vscode/keybindings.json|link|all
+vscode_settings|~/Library/Application\ Support/Code/User/settings.json|vscode/settings.json|link|macos
+vscode_keybinds|~/Library/Application\ Support/Code/User/keybindings.json|vscode/keybindings.json|link|macos
 
 xterm|.Xresources|xterm/.Xresources|link|linux
 
-git-move|.local/bin/git-move|git/move.sh|link|all
-
+atruvia|.atruvia.sh|zsh/atruvia.sh|link|macos
+# vscode_chatLanguageModels|~/Library/Application\ Support/Code/User/chatLanguageModels.json|vscode/chatLanguageModels.json|link|macos
