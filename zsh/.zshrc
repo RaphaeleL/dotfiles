@@ -11,46 +11,42 @@ setopt promptsubst         # enable command substitution in prompt
 
 WORDCHARS='_-' # Don't consider certain characters part of the word
 
-# # Atruvia Proxy
-export HTTP_PROXY="http://campus-proxy.rz.bankenit.de:8080"
-export HTTPS_PROXY="http://campus-proxy.rz.bankenit.de:8080"
-export NO_PROXY="rz.bankenit.de,fiducia.de"
-export NO_PROXY="$NO_PROXY,ai-gateway.rz.bankenit.de"
-export NODE_EXTRA_CA_CERTS="$HOME/.continue/ai-gateway-rz-bankenit-de-zertifikatskette.pem"
+# Atruvia Proxy
+[[ -f "$HOME/.atruvia.sh" ]] && source "$HOME/.atruvia.sh"
 
 # hide EOL sign ('%')
 PROMPT_EOL_MARK=""
 
 # configure key keybindings
-bindkey -e                                        # emacs key bindings
-bindkey ' ' magic-space                           # do history expansion on space
-bindkey '^U' backward-kill-line                   # ctrl + U
-bindkey '^[[3;5~' kill-word                       # ctrl + Supr
-bindkey '^[[3~' delete-char                       # delete
-bindkey '^[[1;5C' forward-word                    # ctrl + ->
-bindkey '^[[1;5D' backward-word                   # ctrl + <-
-bindkey '^[[5~' beginning-of-buffer-or-history    # page up
-bindkey '^[[6~' end-of-buffer-or-history          # page down
-bindkey '^[[H' beginning-of-line                  # home
-bindkey '^[[F' end-of-line                        # end
-bindkey '^[[Z' undo                               # shift + tab undo last action
+bindkey -e                                         # emacs key bindings
+bindkey ' '        magic-space                     # do history expansion on space
+bindkey '^U'       backward-kill-line              # ctrl + U
+bindkey '^[[3;5~'  kill-word                       # ctrl + Supr
+bindkey '^[[3~'    delete-char                     # delete
+bindkey '^[[1;5C'  forward-word                    # ctrl + ->
+bindkey '^[[1;5D'  backward-word                   # ctrl + <-
+bindkey '^[[5~'    beginning-of-buffer-or-history  # page up
+bindkey '^[[6~'    end-of-buffer-or-history        # page down
+bindkey '^[[H'     beginning-of-line               # home
+bindkey '^[[F'     end-of-line                     # end
+bindkey '^[[Z'     undo                            # shift + tab undo last action
 
 # enable completion features
 # autoload -Uz compinit
 # compinit -C -d ~/.cache/zcompdump
-zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-zstyle ':completion:*' rehash true
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+zstyle ':completion:*:*:*:*:*'  menu select
+zstyle ':completion:*'          auto-description 'specify: %d'
+zstyle ':completion:*'          completer _expand _complete
+zstyle ':completion:*'          format 'Completing %d'
+zstyle ':completion:*'          group-name ''
+zstyle ':completion:*'          list-colors ''
+zstyle ':completion:*'          list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*'          matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*'          rehash true
+zstyle ':completion:*'          select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*'          use-compctl false
+zstyle ':completion:*'          verbose true
+zstyle ':completion:*:kill:*'   command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # History configurations
 HISTFILE=~/.zsh_history
@@ -60,7 +56,7 @@ setopt hist_expire_dups_first # delete duplicates first when HISTFILE size excee
 setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
-#setopt share_history         # share command history data
+setopt share_history          # share command history data
 
 # force zsh to show the complete history
 alias history="history 0"
