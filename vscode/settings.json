@@ -52,7 +52,7 @@
     "git.confirmSync": false,
     "git.autofetch": true,
     "git.decorations.enabled": false,
-    "git.blame.editorDecoration.enabled": true,
+    "git.blame.editorDecoration.enabled": false,
     "git.blame.statusBarItem.enabled": true,
     "git.openRepositoryInParentFolders": "always",
     "git.postCommitCommand": "none",
@@ -60,9 +60,9 @@
     "git.showPushSuccessNotification": true,
     "git.untrackedChanges": "mixed",
     // Window
+    "window.title": "${rootName}", // ${activeEditorShort}${separator}${rootName}${separator}${profileName}
     "window.systemColorTheme": "auto",
     "window.autoDetectColorScheme": true,
-    "breadcrumbs.enabled": true,
     // Workbench
     "workbench.tips.enabled": false,
     "workbench.colorTheme": "Light Modern",
@@ -141,4 +141,5 @@
     "debug.onTaskErrors": "showErrors",
     "extensions.ignoreRecommendations": true,
     "workbench.preferredLightColorTheme": "Dark 2026",
+    "breadcrumbs.enabled": true,
 }
