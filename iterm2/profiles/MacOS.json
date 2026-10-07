@@ -498,37 +498,37 @@
     "Green Component" : 0.75290000000000001
   },
   "Keyboard Map" : {
-    "0xf703-0x280000" : {
-      "Action" : 10,
-      "Text" : "f"
+    "0xf703-0x300000" : {
+      "Text" : "0x5",
+      "Action" : 11
     },
     "0xf702-0x280000" : {
-      "Action" : 10,
-      "Text" : "b"
+      "Text" : "b",
+      "Action" : 10
     },
     "0xf702-0x300000" : {
-      "Action" : 11,
-      "Text" : "0x1"
+      "Text" : "0x1",
+      "Action" : 11
     },
-    "0xf728-0x80000" : {
-      "Action" : 10,
-      "Text" : "d"
+    "0xf703-0x280000" : {
+      "Text" : "f",
+      "Action" : 10
     },
     "0x7f-0x100000" : {
-      "Action" : 11,
-      "Text" : "0x15"
+      "Text" : "0x15",
+      "Action" : 11
     },
-    "0xf703-0x300000" : {
-      "Action" : 11,
-      "Text" : "0x5"
+    "0xf728-0x80000" : {
+      "Text" : "d",
+      "Action" : 10
     },
     "0x7f-0x80000" : {
-      "Action" : 11,
-      "Text" : "0x1b 0x7f"
+      "Text" : "0x1b 0x7f",
+      "Action" : 11
     },
     "0xf728-0x0" : {
-      "Action" : 11,
-      "Text" : "0x4"
+      "Text" : "0x4",
+      "Action" : 11
     }
   },
   "Bold Color (Dark)" : {
