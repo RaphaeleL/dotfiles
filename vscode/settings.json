@@ -45,8 +45,8 @@
     "editor.hover.enabled": "on",
     "editor.formatOnPaste": false,
     "editor.formatOnType": false,
-    // "files.trimTrailingWhitespace": true,
-    // "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": false,
+    "files.trimFinalNewlines": false,
     // Git
     "git.enableSmartCommit": true,
     "git.confirmSync": false,
@@ -142,4 +142,5 @@
     "extensions.ignoreRecommendations": true,
     "workbench.preferredLightColorTheme": "Dark 2026",
     "breadcrumbs.enabled": true,
+    "workbench.activityBar.location": "top",
 }
