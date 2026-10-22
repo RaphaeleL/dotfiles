@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Proxy Settings
-export HTTP_PROXY="http://campus-proxy.rz.bankenit.de:8080"
-export HTTPS_PROXY="http://campus-proxy.rz.bankenit.de:8080"
-export NO_PROXY="rz.bankenit.de,fiducia.de,ai-gateway.rz.bankenit.de"
+# export HTTP_PROXY="http://campus-proxy.rz.bankenit.de:8080"
+# export HTTPS_PROXY="http://campus-proxy.rz.bankenit.de:8080"
+# export NO_PROXY="rz.bankenit.de,fiducia.de,ai-gateway.rz.bankenit.de"
 
 # Username und Password 
 export USER="xcxa1b9"
