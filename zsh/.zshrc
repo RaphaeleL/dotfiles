@@ -259,26 +259,7 @@ backup() { cp -r "$1" "$1.bak.$(date +%s)" }                                  # 
 port(){ lsof -i :"$1" }                                                       # used port
 pk() { pgrep -if -- "$1" | grep -v grep | awk '{print $1}' | xargs kill -9 2> /dev/null }  # kill process
 p() { pgrep -if -- "$1" | grep -v grep }                                      # list process
-em() {                                                                        # emacs
-    local server_name="server"
-    if emacsclient -s "$server_name" -e t >/dev/null 2>&1; then
-        emacsclient -s "$server_name" -c "$@" >/dev/null 2>&1 & disown
-    else
-        emacs --daemon="$server_name" >/dev/null 2>&1
-        emacsclient -s "$server_name" -c "$@" >/dev/null 2>&1 & disown
-    fi
-}
-eml() {                                                                       # emacs legacy
-    local init_dir="$HOME/.emacs.d/minimal"
-    # emacs --init-directory "$init_dir" >/dev/null 2>&1
-    local server_name="minimal"
-    if emacsclient -s "$server_name" -e '(+ 1 1)' >/dev/null 2>&1; then
-        emacsclient -s "$server_name" -c "$@" >/dev/null 2>&1 & disown
-    else
-        emacs --init-directory "$init_dir" --daemon="$server_name" >/dev/null 2>&1
-        emacsclient -s "$server_name" -c "$@" >/dev/null 2>&1 & disown
-    fi
-}
+em() { emacsclient -s "main" -a "" -c -n "$@" >/dev/null 2>&1 }               # emacs
 compress() { tar -czf "$1.tar.gz" "$1" }                                      # compress anything
 extract() {                                                                   # auto extract anything
     [ -f "$1" ] || { echo "file not found"; return 1; }
