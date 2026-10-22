@@ -1,17 +1,16 @@
 {
     // Atruvia Proxy
-    "http.proxy": "http://campus-proxy.rz.bankenit.de:8080",
     "http.proxySupport": "on",
     "http.proxyStrictSSL": false,
     "http.proxyAuthorization": null,
+    // "http.proxy": "http://campus-proxy.rz.bankenit.de:8080",
+    "http.proxy": "http://campus-pilot-proxy.rz.bankenit.de:8080",
+    "https.proxy": "http://campus-pilot-proxy.rz.bankenit.de:8080",
     "http.noProxy": [
         "ai-gateway.rz.bankenit.de",
         "ai-gateway-non-prod.rz.bankenit.de",
-        // "csainfopenaisdcprodcoda001.openai.azure.com",
-        "rz.bankenit.de",
-        "fiducia.de"
+        "csainfopenaisdcprodcoda001.openai.azure.com",
     ],
-    "chat.agentHost.byokModels.enabled": true,
     // Explorer
     "explorer.decorations.colors": true,
     "explorer.decorations.badges": false,
@@ -90,6 +89,7 @@
     "chat.agentsControl.enabled": "hidden",
     "chat.viewSessions.orientation": "stacked",
     "chat.titleBar.openInAgentsWindow.enabled": false,
+    "chat.agentHost.byokModels.enabled": true,
     "chat.disableAIFeatures": true,
     // Terminal
     "terminal.integrated.initialHint": false,
@@ -140,7 +140,6 @@
     },
     "debug.onTaskErrors": "showErrors",
     "extensions.ignoreRecommendations": true,
-    "workbench.preferredLightColorTheme": "Dark 2026",
     "breadcrumbs.enabled": true,
     "workbench.activityBar.location": "top",
 }
