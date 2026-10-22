@@ -51,8 +51,8 @@ theme = "Ghostty Default Style Dark"
 # background           = "#181818"
 # background-opacity   = 0.93
 # background-blur      = true 
-# selection-background = #553b48
-# selection-foreground = #ffffff
+selection-background = #553b48
+selection-foreground = #ffffff
 
 ####################################################
 ### Keybind's ######################################
