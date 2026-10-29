@@ -207,6 +207,7 @@ if [ 1 ]; then # -x /usr/bin/dircolors
     export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
     export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
     export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+    export LESS='-R'                       #
     export MANROFFOPT="-c"
 
     # Take advantage of $LS_COLORS for completion as well
@@ -281,7 +282,7 @@ extract() {                                                                   # 
 }
 fh() {                                                                        # custom history search with fzf
     local cmd
-    cmd=$(fc -lnr 1 | sed 's/^[[:space:]]*//' | fzf --height 40% --border --tac --no-mouse --no-info)
+    cmd=$(fc -lnr 1 | sed 's/^[[:space:]]*//' | fzf --height='40%' --border --no-scrollbar --no-mouse --pointer='' --no-info --prompt='> ' --marker='' --no-color )
     [[ -n $cmd ]] && LBUFFER+="$cmd"
     zle redisplay
 }
