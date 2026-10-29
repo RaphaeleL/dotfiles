@@ -23,7 +23,7 @@
     "editor.lineNumbers": "off",
     "editor.unicodeHighlight.ambiguousCharacters": false,
     "editor.mouseWheelZoom": false,
-    "editor.fontFamily": "Cascadia Code",
+    "editor.fontFamily": "Menlo",
     "editor.gotoLocation.multipleReferences": "goto",
     "editor.gotoLocation.multipleDefinitions": "goto",
     "editor.gotoLocation.multipleDeclarations": "goto",
