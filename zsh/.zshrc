@@ -121,7 +121,7 @@ configure_prompt() {
     unset prompt_symbol
 }
 
-PROMPT_ALTERNATIVE=classic
+PROMPT_ALTERNATIVE=minimal
 
 if [ "$color_prompt" = yes ]; then
     # override default virtualenv indicator in prompt
@@ -192,7 +192,7 @@ if [ 1 ]; then # -x /usr/bin/dircolors
     #test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     export LS_COLORS="$LS_COLORS:ow=30;44:" # fix ls color for folders with 777 permissions
 
-    alias ls='ls --color=auto -F'
+    alias ls='ls --color=never -F'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -260,6 +260,7 @@ port(){ lsof -i :"$1" }                                                       # 
 pk() { pgrep -if -- "$1" | grep -v grep | awk '{print $1}' | xargs kill -9 2> /dev/null }  # kill process
 p() { pgrep -if -- "$1" | grep -v grep }                                      # list process
 em() { emacsclient -s "main" -a "" -c -n "$@" >/dev/null 2>&1 }               # emacs
+e() { emacs -nw -q -l ~/.emacs.d/minimal/init.el "$1" }                       # emacs terminal
 compress() { tar -czf "$1.tar.gz" "$1" }                                      # compress anything
 extract() {                                                                   # auto extract anything
     [ -f "$1" ] || { echo "file not found"; return 1; }
