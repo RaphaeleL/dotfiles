@@ -112,5 +112,84 @@
     {
         "key": "ctrl+3",
         "command": "workbench.action.focusThirdEditorGroup"
+    },
+    {
+        "key": "cmd+numpad0",
+        "command": "-workbench.action.zoomReset"
+    },
+    {
+        "key": "cmd+numpad0",
+        "command": "-workbench.action.browser.resetZoom",
+        "when": "browserFocused && browserHasUrl && !browserHasError && activeEditor == 'workbench.editor.browser'"
+    },
+    {
+        "key": "cmd+numpad_add",
+        "command": "-workbench.action.browser.zoomIn",
+        "when": "browserFocused && browserHasUrl && !browserHasError && activeEditor == 'workbench.editor.browser'"
+    },
+    {
+        "key": "shift+cmd+=",
+        "command": "-workbench.action.browser.zoomIn",
+        "when": "browserFocused && browserHasUrl && !browserHasError && activeEditor == 'workbench.editor.browser'"
+    },
+    {
+        "key": "cmd+=",
+        "command": "-workbench.action.browser.zoomIn",
+        "when": "browserFocused && browserHasUrl && !browserHasError && activeEditor == 'workbench.editor.browser'"
+    },
+    {
+        "key": "cmd+numpad_subtract",
+        "command": "-workbench.action.browser.zoomOut",
+        "when": "browserFocused && browserHasUrl && !browserHasError && activeEditor == 'workbench.editor.browser'"
+    },
+    {
+        "key": "shift+cmd+-",
+        "command": "-workbench.action.browser.zoomOut",
+        "when": "browserFocused && browserHasUrl && !browserHasError && activeEditor == 'workbench.editor.browser'"
+    },
+    {
+        "key": "cmd+-",
+        "command": "-workbench.action.browser.zoomOut",
+        "when": "browserFocused && browserHasUrl && !browserHasError && activeEditor == 'workbench.editor.browser'"
+    },
+    {
+        "key": "cmd+numpad_add",
+        "command": "-workbench.action.zoomIn"
+    },
+    {
+        "key": "shift+cmd+=",
+        "command": "-workbench.action.zoomIn"
+    },
+    {
+        "key": "cmd+=",
+        "command": "-workbench.action.zoomIn"
+    },
+    {
+        "key": "cmd+numpad_subtract",
+        "command": "-workbench.action.zoomOut"
+    },
+    {
+        "key": "shift+cmd+-",
+        "command": "-workbench.action.zoomOut"
+    },
+    {
+        "key": "cmd+-",
+        "command": "-workbench.action.zoomOut"
+    },
+    {
+        "key": "cmd+=",
+        "command": "editor.action.fontZoomIn"
+    },
+    {
+        "key": "cmd+-",
+        "command": "editor.action.fontZoomOut"
+    },
+    {
+        "key": "cmd+0",
+        "command": "editor.action.fontZoomReset"
+    },
+    {
+        "key": "shift+cmd+=",
+        "command": "editor.action.fontZoomIn"
     }
 ]
