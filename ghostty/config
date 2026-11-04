@@ -14,14 +14,16 @@ confirm-close-surface          = false
 ####################################################
 
 # font-thicken                = true
-font-family                 = Comic Code 
+# font-family                 = Iosevka 
+# font-family                 = Comic Code 
+font-family                 = SF Mono 
 font-size                   = 16
 # window-padding-x            = 2
 # window-padding-y            = 2
 window-padding-balance      = true
-window-title-font-family    = Comic Code
-window-width                = 135
-window-height               = 45
+window-title-font-family    = SF Mono 
+# window-width                = 135
+# window-height               = 45
 macos-non-native-fullscreen = true
 macos-titlebar-proxy-icon   = hidden
 macos-titlebar-style        = tabs
