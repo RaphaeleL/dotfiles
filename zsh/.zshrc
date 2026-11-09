@@ -96,7 +96,8 @@ configure_prompt() {
             # PROMPT=$'%n@%m:%~%(#.#.$) '
             # PROMPT=$'%n@%m %1~ %# '
             # PROMPT=$'[%n@%m %1~]%(#.#.$) '
-            PROMPT=$'[%n@%F{cyan}%m%F{reset} %1~]%(#.#.$) '
+            # PROMPT=$'[%n@%F{cyan}%m%F{reset} %1~]%(#.#.$) '
+            PROMPT=$'[%n@%F{blue}%m%F{reset} %1~]%(#.#.$) '
             RPROMPT=
             ;;
         minimal)
