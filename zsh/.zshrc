@@ -61,19 +61,19 @@ else
     compinit -C -d $_zcd
 fi
 unset _zcd
-zstyle ':completion:*:*:*:*:*'  menu select
-zstyle ':completion:*'          auto-description 'specify: %d'
-zstyle ':completion:*'          completer _expand _complete
-zstyle ':completion:*'          format 'Completing %d'
-zstyle ':completion:*'          group-name ''
-zstyle ':completion:*'          list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*'          matcher-list 'm:{a-zA-Z}={A-Za-z}'
-zstyle ':completion:*'          select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*'          use-compctl false
-zstyle ':completion:*'          use-cache on
-zstyle ':completion:*'          cache-path ${XDG_CACHE_HOME:-$HOME/.cache}/zcompcache
-zstyle ':completion:*'          verbose true
-zstyle ':completion:*:kill:*'   command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+# zstyle ':completion:*:*:*:*:*'  menu select
+# zstyle ':completion:*'          auto-description 'specify: %d'
+# zstyle ':completion:*'          completer _expand _complete
+# zstyle ':completion:*'          format 'Completing %d'
+# zstyle ':completion:*'          group-name ''
+# zstyle ':completion:*'          list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+# zstyle ':completion:*'          matcher-list 'm:{a-zA-Z}={A-Za-z}'
+# zstyle ':completion:*'          select-prompt %SScrolling active: current selection at %p%s
+# zstyle ':completion:*'          use-compctl false
+# zstyle ':completion:*'          use-cache on
+# zstyle ':completion:*'          cache-path ${XDG_CACHE_HOME:-$HOME/.cache}/zcompcache
+# zstyle ':completion:*'          verbose true
+# zstyle ':completion:*:kill:*'   command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # History configurations
 HISTFILE=~/.zsh_history
