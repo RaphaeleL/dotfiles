@@ -2,6 +2,18 @@ if v:progname =~? "evim"
   finish
 endif
 
+" Handle Clipboard
+" set clipboard=unnamedplus
+" nnoremap <leader>y "+y
+" nnoremap <leader>yy "+yy
+" nnoremap <leader>yw "+yw
+" nnoremap <leader>y$ "+y$
+" nnoremap <leader>y} "+y}
+" vnoremap <leader>y "+y
+" nnoremap <leader>p "+p
+" nnoremap <leader>P "+P
+" vnoremap <leader>p "+p
+
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 " Avoid side effects when it was already reset.
